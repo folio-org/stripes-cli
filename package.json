@@ -1,0 +1,29 @@
+{
+  "name": "stripes-cli",
+  "version": "0.1.0",
+  "description": "Stripes Command Line Interface",
+  "repository": "",
+  "publishConfig": {
+    "registry": "https://repository.folio.org/repository/npm-folio/"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "main": "index.js",
+  "bin": {
+    "str": "./lib/stripes-cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./"
+  },
+  "dependencies": {
+    "@folio/stripes-core": "folio-org/stripes-core#stripes-cli",
+    "commander": "^2.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.7.2",
+    "eslint-config-stripes": "^1.0.0"
+  }
+}
