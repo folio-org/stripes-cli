@@ -1,0 +1,29 @@
+{
+  "name": "<%= packageName %>",
+  "version": "0.1.0",
+  "description": "Description for <%= displayName %>",
+  "main": "src/index.js",
+  "repository": "",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "start": "",
+    "build": "",
+    "test": "",
+    "lint": "eslint ./"
+  },
+  "devDependencies": {
+    "eslint": "^4.8.0",
+    "eslint-config-stripes": "^1.0.0"
+  },
+  "dependencies": {
+  },
+  "stripes": {
+    "type": "app",
+    "displayName": "<%= displayName %>",
+    "route": "<%= appRoute %>",
+    "hasSettings": true
+  }
+}
