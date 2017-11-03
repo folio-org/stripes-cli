@@ -23,6 +23,7 @@
     "commander": "^2.11.0",
     "kopy": "^8.2.3",
     "lodash.kebabcase": "^4.1.1",
+    "lodash.startcase": "^4.4.0",
     "resolve": "^1.4.0"
   },
   "devDependencies": {

@@ -19,11 +19,15 @@
     "eslint-config-stripes": "^1.0.0"
   },
   "dependencies": {
+    "react": "^15.6.1",
+    "react-router-dom": "^4.1.1"
   },
   "stripes": {
     "type": "app",
     "displayName": "<%= displayName %>",
     "route": "<%= appRoute %>",
-    "hasSettings": true
+    "hasSettings": true,
+    "okapiInterfaces": {},
+    "permissionSets": []
   }
 }
