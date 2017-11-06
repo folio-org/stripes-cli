@@ -1,8 +1,8 @@
 {
-  "name": "stripes-cli",
+  "name": "@folio/stripes-cli",
   "version": "0.1.0",
   "description": "Stripes Command Line Interface",
-  "repository": "",
+  "repository": "https://github.com/folio-org/stripes-cli",
   "publishConfig": {
     "registry": "https://repository.folio.org/repository/npm-folio/"
   },
@@ -24,7 +24,8 @@
     "kopy": "^8.2.3",
     "lodash.kebabcase": "^4.1.1",
     "lodash.startcase": "^4.4.0",
-    "resolve": "^1.4.0"
+    "resolve": "^1.4.0",
+    "update-notifier": "^2.3.0"
   },
   "devDependencies": {
     "eslint": "^4.7.2",
