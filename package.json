@@ -21,9 +21,9 @@
   "dependencies": {
     "@folio/stripes-core": "folio-org/stripes-core#stripes-cli",
     "commander": "^2.11.0",
+    "just-kebab-case": "^1.0.0",
+    "just-pascal-case": "^1.0.0",
     "kopy": "^8.2.3",
-    "lodash.kebabcase": "^4.1.1",
-    "lodash.startcase": "^4.4.0",
     "resolve": "^1.4.0",
     "update-notifier": "^2.3.0"
   },
