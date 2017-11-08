@@ -1,6 +1,6 @@
 
 buildNPM {
-  publishModDescriptor = 'yes'
+  publishModDescriptor = 'no'
   runLint = 'yes'
   runTest = 'no'
 }  
