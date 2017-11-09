@@ -32,7 +32,7 @@ npm install -g
 
 ## Available commands
 
-Stripes CLI is currently invoked using `str` rather than `stripes` so it can run side-by-side with commands currently integrated within stripes-core.
+Stripes CLI is currently invoked using `str` rather than `stripes` so it can run side-by-side with commands currently integrated within stripes-core. Eventually stripes-cli will be invoked using `stripes` once stripe-cli is stable and proven to be a suitable replacement for the commands in stripes-core today.
 
 * `serve` or `dev`: Serve up an app or platform with the development server.
 * `build`: Build a static tenant bundle.
