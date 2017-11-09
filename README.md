@@ -13,9 +13,14 @@ Stripes CLI is a command line interface to facilitate the creation, development,
 
 ## Installation
 
-Stripes CLI is currently unpublished, so a quick way to take it for a spin is to run:
+Stripes CLI is currently not published to `npm-folio`.  This will change once it becomes more stable.  To install it now, use the `npm-folioci` registry.
 ```
-npm install -g folio-org/stripes-cli
+npm config set @folio:registry https://repository.folio.org/repository/npm-folioci/
+npm install -g @folio/stripes-cli
+```
+Alternatively, copy this to leave your @folio scope settings alone:
+```
+npm install -g @folio/stripes-cli --scope=@folio --registry=https://repository.folio.org/repository/npm-folioci/
 ```
 
 To develop the CLI:
@@ -27,7 +32,7 @@ npm install -g
 
 ## Available commands
 
-Stripes CLI is currently invoked using `str` rather than `stripes` so it can run side-by-side with commands currently integrated within stripes-core.
+Stripes CLI is currently invoked using `str` rather than `stripes` so it can run side-by-side with commands currently integrated within stripes-core. Eventually stripes-cli will be invoked using `stripes` once stripe-cli is stable and proven to be a suitable replacement for the commands in stripes-core today.
 
 * `serve` or `dev`: Serve up an app or platform with the development server.
 * `build`: Build a static tenant bundle.
@@ -41,13 +46,16 @@ Previous `dev` and `build` commands continue to work as expected for existing pl
 
 ## Example usage
 
-Create a new stripes UI app and directory: 
+Create a new stripes UI app, directory, and yarn install the dependencies: 
 ```
-str new app "Hello World"
+str new app "Hello World" --install
 ```
 
 Run the newly created stripes UI app from within its own directory:
 ```
-str serve --allperms
+str serve --allperms --port=3000
 ```
-(This assumes dependencies have previously been yarn installed and a suitable OKAPI backend is running locally on port 9130)
+
+Notes:
+- This assumes dependencies have previously been yarn installed and a suitable OKAPI backend is running locally on port 9130
+- When serving or building an existing app module that depends on unreleased dependencies, be sure to use the `npm-folioci` registry.

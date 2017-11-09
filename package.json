@@ -16,7 +16,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "lint-templates": "eslint ./resources --no-ignore"
   },
   "dependencies": {
     "@folio/stripes-core": "folio-org/stripes-core#stripes-cli",

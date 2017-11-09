@@ -1,0 +1,3 @@
+# Ignore app templates from CI linting of stripes-cli due to template syntax
+# Run lint-templates to lint the app templates separately
+resources/**/*
