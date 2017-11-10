@@ -28,7 +28,8 @@
     "kopy": "^8.2.3",
     "mocha": "^4.0.1",
     "resolve": "^1.4.0",
-    "update-notifier": "^2.3.0"
+    "update-notifier": "^2.3.0",
+    "yargs": "^10.0.3"
   },
   "devDependencies": {
     "eslint": "^4.7.2",
