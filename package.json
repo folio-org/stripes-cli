@@ -20,7 +20,7 @@
     "lint-templates": "eslint ./resources --no-ignore"
   },
   "dependencies": {
-    "@folio/stripes-core": "folio-org/stripes-core#stripes-cli",
+    "@folio/stripes-core": "folio-org/stripes-core#stripes-cli-support",
     "commander": "^2.11.0",
     "just-kebab-case": "^1.0.0",
     "just-pascal-case": "^1.0.0",
