@@ -37,12 +37,13 @@ Stripes CLI is currently invoked using `str` rather than `stripes` so it can run
 * `serve` or `dev`: Serve up an app or platform with the development server.
 * `build`: Build a static tenant bundle.
 * `new`: Create a new UI module (work in progress).
-* `test`: Runs tests (not implemented).
+* `test`: Runs integration tests using ui-testing framework (work in progress).
 
 Run each command with `--help` to view available options.
 
 Previous `dev` and `build` commands continue to work as expected for existing platforms given a file argument like `stripes.config.js` is provided.  However, stripes-cli will now generate a config when the config file is omitted.  This is most useful for developing a new ui-app in isolation within its own virtual platform as there is no need clone or link supporting repositories.
 
+Integration tests support a small subset of the options available in [ui-testing](https://github.com/folio-org/ui-testing).  This inclues `--run`, `--devTools`, `--host`, and `--port`.  Note: The `--run` option should be supplied with only a test script name (`--run=<script>`) and not include the app name as it does in ui-testing (`--run=<app:script>`).
 
 ## Example usage
 
@@ -54,6 +55,11 @@ str new app "Hello World" --install
 Run the newly created stripes UI app from within its own directory:
 ```
 str serve --allperms --port=3000
+```
+
+Start a server and run integration tests for a stripes UI app from within its own directory:
+```
+str test --run=demo --devTools --port=3000
 ```
 
 Notes:
