@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes-cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Stripes Command Line Interface",
   "repository": "https://github.com/folio-org/stripes-cli",
   "publishConfig": {
@@ -12,7 +12,7 @@
   },
   "main": "index.js",
   "bin": {
-    "str": "./lib/stripes-cli.js"
+    "stripescli": "./lib/stripes-cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,7 +22,6 @@
   "dependencies": {
     "@folio/stripes-core": "folio-org/stripes-core#stripes-cli-support",
     "@folio/ui-testing": "folio-org/ui-testing#framework-only",
-    "commander": "^2.11.0",
     "just-kebab-case": "^1.0.0",
     "just-pascal-case": "^1.0.0",
     "kopy": "^8.2.3",
