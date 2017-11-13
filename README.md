@@ -13,55 +13,105 @@ Stripes CLI is a command line interface to facilitate the creation, development,
 
 ## Installation
 
-Stripes CLI is currently not published to `npm-folio`.  This will change once it becomes more stable.  To install it now, use the `npm-folioci` registry.
+Stripes CLI is currently not published to `npm-folio`.  This will change once it becomes more stable.  To install the CLI now, use the `npm-folioci` registry.
 ```
 npm config set @folio:registry https://repository.folio.org/repository/npm-folioci/
 npm install -g @folio/stripes-cli
 ```
-Alternatively, copy this to leave your @folio scope settings alone:
+Alternatively, run the following to leave your @folio scope settings alone:
 ```
 npm install -g @folio/stripes-cli --scope=@folio --registry=https://repository.folio.org/repository/npm-folioci/
 ```
 
 To develop the CLI:
 1. Clone this repo
-1. From the `stripes-cli` directory, run:
-```
-npm install -g
-```
+1. From the `stripes-cli` directory, run: `npm install -g`
+
+## Running Stripes-CLI
+
+Stripes CLI is currently invoked using `stripescli` rather than `stripes` so it can run side-by-side with commands integrated within stripes-core. Eventually stripes-cli will be invoked using `stripes` once the CLI is stable and proven to be a suitable replacement.
+
+Note: When serving or building an existing app module that has dependencies on unreleased versions of other Stripes modules, be sure to use the `npm-folioci` registry.
 
 ## Available commands
 
-Stripes CLI is currently invoked using `str` rather than `stripes` so it can run side-by-side with commands currently integrated within stripes-core. Eventually stripes-cli will be invoked using `stripes` once stripe-cli is stable and proven to be a suitable replacement for the commands in stripes-core today.
-
-* `serve` or `dev`: Serve up an app or platform with the development server.
-* `build`: Build a static tenant bundle.
-* `new`: Create a new UI module (work in progress).
-* `test`: Runs integration tests using ui-testing framework (work in progress).
-
-Run each command with `--help` to view available options.
-
-Previous `dev` and `build` commands continue to work as expected for existing platforms given a file argument like `stripes.config.js` is provided.  However, stripes-cli will now generate a config when the config file is omitted.  This is most useful for developing a new ui-app in isolation within its own virtual platform as there is no need clone or link supporting repositories.
-
-Integration tests support a small subset of the options available in [ui-testing](https://github.com/folio-org/ui-testing).  This inclues `--run`, `--devTools`, `--host`, and `--port`.  Note: The `--run` option should be supplied with only a test script name (`--run=<script>`) and not include the app name as it does in ui-testing (`--run=<app:script>`).
-
-## Example usage
-
-Create a new stripes UI app, directory, and yarn install the dependencies: 
+Run each command with `--help` to view all available options and more examples.
 ```
-str new app "Hello World" --install
+stripescli build --help
 ```
 
-Run the newly created stripes UI app from within its own directory:
+### `new` command (work in progress)
+
+Creates a new Stripes module, directory, and optionally yarn install its dependencies.  Currently this command only supports the creation of UI app modules, but could be extended to create plugins, platforms, components, and tests.
+
+The skeleton module created by `new app` can be served up right away, but is limited to a demonstrating a very simple set of static pages at the moment.
+
+Example:
 ```
-str serve --allperms --port=3000
+stripescli new app "Hello World" --install
 ```
 
-Start a server and run integration tests for a stripes UI app from within its own directory:
+### `serve` command
+
+Build Stripes tenant bundle and launch a development web server. Given a file argument like `stripes.config.js`, `serve` will operate much like the `dev` command does today in stripes-core.
+
+In an APP context, `serve` will generate a virtual platform containing just the current app module.  This is most useful for developing a new ui-app in isolation within its own virtual platform as there is no need clone or link supporting repositories.
+
+In order to log into a Folio platform, a suitable OKAPI backend will need to be running. The [Folio testing-backend](https://app.vagrantup.com/folio/boxes/testing-backend) Vagrant box should work when serving up a newly created app that does not yet have its own backend module.
+
+Note: When serving up a newly created app that does not have its own backend permissions established, pass the `--hasAllPerms` option to display the app in the UI navigation.
+
+Example:
 ```
-str test --run=demo --devTools --port=3000
+stripescli serve --port=8080 --hasAllPerms
 ```
 
-Notes:
-- This assumes dependencies have previously been yarn installed and a suitable OKAPI backend is running locally on port 9130
-- When serving or building an existing app module that depends on unreleased dependencies, be sure to use the `npm-folioci` registry.
+
+### `build` command
+
+Build a Stripes tenant bundle and save build artifacts to a directory.  Given a file argument like `stripes.config.js`, `build` will operate much like `build` does today in stripes-core.  However, stripes-cli will now generate a config when the file is omitted (APP context).
+
+Note: The output directory can now be supplied as an option `--output`.  This differs from stripes-core's `build` command which only used a positional argument.  This was done to accommodate building of virtual platforms (work in progress) which do not require passing a stripes configuration file.
+
+Example:
+```
+stripescli build stripes.config.js ./path/to/directory
+```
+
+
+### `test` command (work in progress)
+
+Runs tests for an app in the APP context.  Right now `test` only supports UI integration tests written for NightmareJS.  
+
+Integration tests support a small subset of the options available in [ui-testing](https://github.com/folio-org/ui-testing).  This includes `--run`, `--host`, and `--port`.  Note: The `--run` option varies slightly from ui-testing in that it should be supplied with only a test script name (`--run=<script>`) and not include the app name as it does today (`--run=<app:script>`).
+
+Example:
+```
+stripescli test --run=demo --show
+```
+
+### `alias` command (work in progress)
+
+Create and persists aliases for demonstration purposes. Sub-commands include `add`, `remove`, `list`, and `clear`.  At the moment the CLI does nothing with this data, but the plan is to use it when generating virtual platforms outside of the APP context.
+
+Example:
+```
+stripescli alias add @folio/users ./path/to/ui-users
+```
+
+### `status` command
+
+Display basic information about the CLI including the inferred context which it is running in.  This will be expanded to provide insight into the virtual platforms that are generated.
+
+Example:
+```
+stripescli status
+```
+
+## Note about context
+
+Certain CLI operations will vary depending on the context in which the command was run.  Stripes CLI will attempt to infer the context.  Contexts include:
+
+- APP:  Used when a package.json containing `stripes` is present.  Context actually matches the `stripes.type` property, but only "app" is currently supported.
+- PLATFORM: Used when a package.json containing one or more `@folio/` dependencies is found, but no `stripes` object.
+- EMPTY:  No package.json detected.  Suitable for creating new UI modules
