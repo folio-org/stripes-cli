@@ -1,7 +1,7 @@
 /* global Nightmare, describe, it, before, after */
 
 module.exports.test = (uiTestCtx) => {
-  describe('Module test: <%= uiAppName %>:hello', () => {
+  describe('Module test: <%= uiAppName %>:hello', function() {
     const { config, helpers: { login, logout } } = uiTestCtx;
     const nightmare = new Nightmare(config.nightmare);
 
@@ -20,7 +20,7 @@ module.exports.test = (uiTestCtx) => {
           .click('#clickable-<%= appName %>-module')
           .wait('#<%= appName %>-module-display')
           .wait('#demo-message')
-          .then(() => { done(); })
+          .then(result => { done(); })
           .catch(done);
       });
     });
@@ -40,7 +40,7 @@ module.exports.test = (uiTestCtx) => {
           .click('a[href="/settings/<%= appRoute %>"]')
           .wait(2222)
           .wait('#demo-settings-message')
-          .then(() => { done(); })
+          .then(result => { done(); })
           .catch(done);
       });
     });
