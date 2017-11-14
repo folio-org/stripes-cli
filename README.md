@@ -92,12 +92,14 @@ stripescli test --run=demo --show
 
 ### `alias` command (work in progress)
 
-Create and persists aliases for demonstration purposes. Sub-commands include `add`, `remove`, `list`, and `clear`.  At the moment the CLI does nothing with this data, but the plan is to use it when generating virtual platforms outside of the APP context.
+Create and persists Webpack resolve aliases for use when building a platform. Sub-commands include `add`, `remove`, `list`, and `clear`.  These are applied automatically to builds in both app and platform contexts.
 
 Example:
 ```
 stripescli alias add @folio/users ./path/to/ui-users
 ```
+Note:  UI module aliases should not be used in production builds.  As with yarn linking, a module aliased to a separately yarn installed repository will have no overlap for common dependencies, resulting in a larger bundle.
+
 
 ### `status` command
 

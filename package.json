@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes-cli",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Stripes Command Line Interface",
   "repository": "https://github.com/folio-org/stripes-cli",
   "publishConfig": {
