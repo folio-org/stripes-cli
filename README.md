@@ -18,10 +18,6 @@ Stripes CLI is currently not published to `npm-folio`.  This will change once it
 npm config set @folio:registry https://repository.folio.org/repository/npm-folioci/
 npm install -g @folio/stripes-cli
 ```
-Alternatively, run the following to leave your @folio scope settings alone:
-```
-npm install -g @folio/stripes-cli --scope=@folio --registry=https://repository.folio.org/repository/npm-folioci/
-```
 
 To develop the CLI:
 1. Clone this repo
