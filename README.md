@@ -71,12 +71,14 @@ stripescli serve --port=8080 --hasAllPerms
 
 Build a Stripes tenant bundle and save build artifacts to a directory.  Given a file argument like `stripes.config.js`, `build` will operate much like `build` does today in stripes-core.  However, stripes-cli will now generate a config when the file is omitted (APP context).
 
-Note: The output directory can now be supplied as an option `--output`.  This differs from stripes-core's `build` command which only used a positional argument.  This was done to accommodate building of virtual platforms (work in progress) which do not require passing a stripes configuration file.
+The output directory can now be supplied as an option `--output`.  This differs from stripes-core's `build` command which only used a positional argument.  This was done to accommodate building of virtual platforms (work in progress) which do not require passing a stripes configuration file.
 
 Example:
 ```
 stripescli build stripes.config.js ./path/to/directory
 ```
+
+Note: Builds intended for production should be made using a previously defined platform with its own yarn installed dependencies, including stripes-core, no yarn linking, and no aliases set in the CLI.
 
 
 ### `test` command (work in progress)
@@ -92,16 +94,18 @@ stripescli test --run=demo --show
 
 ### `alias` command (work in progress)
 
-Create and persists aliases for demonstration purposes. Sub-commands include `add`, `remove`, `list`, and `clear`.  At the moment the CLI does nothing with this data, but the plan is to use it when generating virtual platforms outside of the APP context.
+Create and persists Webpack resolve aliases for use when building a platform. Sub-commands include `add`, `remove`, `list`, and `clear`.  These are applied automatically to builds in both app and platform contexts.
 
 Example:
 ```
 stripescli alias add @folio/users ./path/to/ui-users
 ```
+Note:  UI module aliases should not be used in production builds.  As with yarn linking, a module aliased to a separately yarn installed repository will have no overlap for common dependencies, resulting in a larger bundle.
+
 
 ### `status` command
 
-Display basic information about the CLI including the inferred context which it is running in.  This will be expanded to provide insight into the virtual platforms that are generated.
+Display information about the CLI, including the inferred context which it is running.  The status output also includes the Stripes config JSON used when generating a virtual platform in the current context.  Any aliases that have been set are also noted.
 
 Example:
 ```
@@ -115,3 +119,5 @@ Certain CLI operations will vary depending on the context in which the command w
 - APP:  Used when a package.json containing `stripes` is present.  Context actually matches the `stripes.type` property, but only "app" is currently supported.
 - PLATFORM: Used when a package.json containing one or more `@folio/` dependencies is found, but no `stripes` object.
 - EMPTY:  No package.json detected.  Suitable for creating new UI modules
+
+Use the `status` command to view the current context.

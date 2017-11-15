@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes-cli",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Stripes Command Line Interface",
   "repository": "https://github.com/folio-org/stripes-cli",
   "publishConfig": {
@@ -29,6 +29,7 @@
     "mocha": "^4.0.1",
     "resolve": "^1.4.0",
     "update-notifier": "^2.3.0",
+    "webpack-bundle-analyzer": "^2.9.1",
     "yargs": "^10.0.3"
   },
   "devDependencies": {
