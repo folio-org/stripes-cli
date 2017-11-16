@@ -53,7 +53,7 @@ Build Stripes tenant bundle and launch a development web server. Given a file ar
 
 In an APP context, `serve` will generate a virtual platform containing just the current app module.  This is most useful for developing a new ui-app in isolation within its own virtual platform as there is no need clone or link supporting repositories.
 
-In order to log into a Folio platform, a suitable OKAPI backend will need to be running. The [Folio testing-backend](https://app.vagrantup.com/folio/boxes/testing-backend) Vagrant box should work when serving up a newly created app that does not yet have its own backend module.
+In order to view and log into the platform being served up, a suitable OKAPI backend will need to be running. The [Folio testing-backend](https://app.vagrantup.com/folio/boxes/testing-backend) Vagrant box should work when serving up a newly created app that does not yet have its own backend module.
 
 Note: When serving up a newly created app that does not have its own backend permissions established, pass the `--hasAllPerms` option to display the app in the UI navigation.
 
@@ -67,7 +67,7 @@ stripescli serve --port=8080 --hasAllPerms
 
 Build a Stripes tenant bundle and save build artifacts to a directory.  Given a file argument like `stripes.config.js`, `build` will operate much like `build` does today in stripes-core.  However, stripes-cli will now generate a config when the file is omitted (APP context).
 
-The output directory can now be supplied as an option `--output`.  This differs from stripes-core's `build` command which only used a positional argument.  This was done to accommodate building of virtual platforms (work in progress) which do not require passing a stripes configuration file.
+The output directory can now be supplied as an option `--output`.  This differs from stripes-core's `build` command which only used a positional argument.  This was done to accommodate building of virtual platforms which do not require passing a stripes configuration file.
 
 Example:
 ```
@@ -88,7 +88,7 @@ Example:
 stripescli test --run=demo --show
 ```
 
-### `alias` command (work in progress)
+### `alias` command
 
 Create and persists Webpack resolve aliases for use when building a platform. Sub-commands include `add`, `remove`, `list`, and `clear`.  These are applied automatically to builds in both app and platform contexts.
 
@@ -117,3 +117,17 @@ Certain CLI operations will vary depending on the context in which the command w
 - EMPTY:  No package.json detected.  Suitable for creating new UI modules
 
 Use the `status` command to view the current context.
+
+## Note about platforms
+
+Stripes UI modules are meant to be built together with other modules in a platform that shares common build infrastructure.  A platform consists of a `package.json` and a tenant configuration typically named `stripes.config.js`. See the [Stripes Sample Platform](https://github.com/folio-org/stripes-sample-platform) for a good example.  
+
+The platform that Stripes CLI uses is constructed in the following order:
+
+1. Base configuration:  When a file argument like `stripes.config.js` is provided, this will be used as the base.  Otherwise, the CLI will use its own internal defaults that contain no modules.
+
+2. Virtual configuration:  In the APP context, the CLI will apply the current app as a module and generate an alias for the app to be run in isolation.  In the PLATFORM context, the CLI will add modules for all aliases previously defined with the `alias` command.
+
+3. Command configuration: Any relevant options passed in on the command line are applied to the configuration last.
+
+Tip: Use the `status` command (optionally with a file and/or other config options) to view the CLI's generated platform configuration in the current context.
