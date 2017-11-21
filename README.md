@@ -79,13 +79,20 @@ Note: Builds intended for production should be made using a previously defined p
 
 ### `test` command (work in progress)
 
-Runs tests for an app in the APP context.  Right now `test` only supports UI integration tests written for NightmareJS.  
+Runs tests for an app in the APP context.  Right now `test` supports UI integration tests written for NightmareJS and preliminary support for unit tests run with Karma.
 
 Integration tests support a small subset of the options available in [ui-testing](https://github.com/folio-org/ui-testing).  This includes `--run`, `--host`, and `--port`.  Note: The `--run` option varies slightly from ui-testing in that it should be supplied with only a test script name (`--run=<script>`) and not include the app name as it does today (`--run=<app:script>`).
 
 Example:
 ```
 stripescli test --run=demo --show
+```
+
+Unit tests currently depend on the app's own infrastructure to define test harness that loads the app (work in progress).  The CLI will generate a webpack configuration for Karma similar to `build` and `serve` so no mocking of `stripes-config` is necessary.
+
+Example:
+```
+stripescli test --type=unit
 ```
 
 ### `alias` command
