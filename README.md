@@ -115,6 +115,27 @@ Example:
 stripescli status
 ```
 
+## Stripes CLI Configuration
+
+Frequently used options can be saved to a `.stripesclirc` file to avoid entering them each time.  Stripes CLI will use the configuration file found in the current working directory, or the first one walking up the tree.
+
+Any supported command line positional or option can be defined.  For example:
+```
+{
+  "configFile": "stripes.config.js",
+  "port": 8080
+}
+```
+
+Webpack resolve aliases are also supported.
+```
+{
+  "aliases": {
+    "@folio/users": "../ui-users"
+  }
+}
+```
+
 ## Note about context
 
 Certain CLI operations will vary depending on the context in which the command was run.  Stripes CLI will attempt to infer the context.  Contexts include:
