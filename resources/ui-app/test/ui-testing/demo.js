@@ -36,8 +36,8 @@ module.exports.test = (uiTestCtx) => {
         nightmare
           .wait(config.select.settings)
           .click(config.select.settings)
-          .wait('a[href="/settings/<%= appRoute %>"]')
-          .click('a[href="/settings/<%= appRoute %>"]')
+          .wait('a[href="/settings<%= appRoute %>"]')
+          .click('a[href="/settings<%= appRoute %>"]')
           .wait(2222)
           .wait('#demo-settings-message')
           .then(result => { done(); })
