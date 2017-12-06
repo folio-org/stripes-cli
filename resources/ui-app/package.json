@@ -9,12 +9,13 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "start": "",
-    "build": "",
-    "test": "",
-    "lint": "eslint ./"
+    "start": "stripescli serve",
+    "build": "stripescli build --output ./output",
+    "test": "stripescli test --run demo --show",
+    "lint": "eslint src"
   },
   "devDependencies": {
+    "babel-eslint": "^8.0.3",
     "eslint": "^4.8.0",
     "eslint-config-stripes": "^1.0.0"
   },
