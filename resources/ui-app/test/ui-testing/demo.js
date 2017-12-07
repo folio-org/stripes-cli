@@ -14,12 +14,12 @@ module.exports.test = (uiTestCtx) => {
       after((done) => {
         logout(nightmare, config, done);
       });
-      it('should open app and see demo message', (done) => {
+      it('should open app and see stripes-new-app-message', (done) => {
         nightmare
           .wait('#clickable-<%= appName %>-module')
           .click('#clickable-<%= appName %>-module')
           .wait('#<%= appName %>-module-display')
-          .wait('#demo-message')
+          .wait('#stripes-new-app-message')
           .then(result => { done(); })
           .catch(done);
       });
@@ -32,14 +32,15 @@ module.exports.test = (uiTestCtx) => {
       after((done) => {
         logout(nightmare, config, done);
       });
-      it('should open app settings', (done) => {
+      it('should open app settings and see stripes-new-app-settings-message', (done) => {
         nightmare
           .wait(config.select.settings)
           .click(config.select.settings)
           .wait('a[href="/settings<%= appRoute %>"]')
           .click('a[href="/settings<%= appRoute %>"]')
-          .wait(2222)
-          .wait('#demo-settings-message')
+          .wait('a[href="/settings<%= appRoute %>/general"]')
+          .click('a[href="/settings<%= appRoute %>/general"]')
+          .wait('#stripes-new-app-settings-message')
           .then(result => { done(); })
           .catch(done);
       });

@@ -5,7 +5,8 @@ import Switch from 'react-router-dom/Switch';
 import Route from 'react-router-dom/Route';
 import Application from './routes/application';
 import ExamplePage from './routes/example-page';
-import Settings from './routes/settings';
+import Settings from './settings';
+
 
 class <%= componentName %> extends React.Component {
   render() {
