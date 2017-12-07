@@ -1,7 +1,7 @@
 import React from 'react';
 import Settings from '@folio/stripes-components/lib/Settings';
-import GeneralSettings from './GeneralSettings';
-import SomeFeatureSettings from './SomeFeatureSettings';
+import GeneralSettings from './general-settings';
+import SomeFeatureSettings from './some-feature-settings';
 
 /*
   STRIPES-NEW-APP
@@ -25,7 +25,7 @@ const pages = [
 export default class <%= componentName %>Settings extends React.Component {
   render() {
     return (
-      <Settings {...this.props} pages={pages} paneTitle="Hello World" />
+      <Settings {...this.props} pages={pages} paneTitle="<%= displayName %>" />
     );
   }
 }
