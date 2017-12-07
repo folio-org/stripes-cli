@@ -7,6 +7,10 @@ import Application from './routes/application';
 import ExamplePage from './routes/example-page';
 import Settings from './settings';
 
+/*
+  STRIPES-NEW-APP
+  This is the main entry point into your new app.
+*/
 
 class <%= componentName %> extends React.Component {
   render() {
