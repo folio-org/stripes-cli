@@ -1,7 +1,7 @@
 /* global Nightmare, describe, it, before, after */
 
 module.exports.test = (uiTestCtx) => {
-  describe('Module test: <%= uiAppName %>:hello', function() {
+  describe('Module test: <%= uiAppName %>:', function() {
     const { config, helpers: { login, logout } } = uiTestCtx;
     const nightmare = new Nightmare(config.nightmare);
 
@@ -14,12 +14,12 @@ module.exports.test = (uiTestCtx) => {
       after((done) => {
         logout(nightmare, config, done);
       });
-      it('should open app and see stripes-new-app-message', (done) => {
+      it('should open app and see stripes-new-app-greeting', (done) => {
         nightmare
           .wait('#clickable-<%= appName %>-module')
           .click('#clickable-<%= appName %>-module')
           .wait('#<%= appName %>-module-display')
-          .wait('#stripes-new-app-message')
+          .wait('#stripes-new-app-greeting')
           .then(result => { done(); })
           .catch(done);
       });
