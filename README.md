@@ -101,9 +101,12 @@ Create and persists Webpack resolve aliases for use when building a platform. Su
 
 Example:
 ```
-stripescli alias add @folio/users ./path/to/ui-users
+stripescli alias add @folio/users ../path/to/ui-users
 ```
-Note:  UI module aliases should not be used in production builds.  As with yarn linking, a module aliased to a separately yarn installed repository will have no overlap for common dependencies, resulting in a larger bundle.
+
+Aliases can also be defined in a [.stripesclirc file](#stripes-cli-configuration).  This is particularly useful if you have a group of Stripes UI apps that you develop locally with and prefer not to enter them individually on the command line.
+
+Note:  UI module aliases should not be used in production builds.  As with Yarn linking, a module aliased to a separately Yarn installed repository will have no overlap for common dependencies, resulting in a larger bundle.
 
 
 ### `status` command
@@ -127,7 +130,7 @@ Any supported command line positional or option can be defined.  For example:
 }
 ```
 
-Webpack resolve aliases are also supported.
+Aliases for Stripes UI apps are also supported:
 ```
 {
   "aliases": {
