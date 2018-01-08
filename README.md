@@ -139,6 +139,10 @@ Aliases for Stripes UI apps are also supported:
 }
 ```
 
+## Environment Variables
+
+CLI options can be set using environment variables prefixed with `STRIPES_`.  For example, to specify the `--port` option using an environment variable, use `STRIPES_PORT`.
+
 ## Note about context
 
 Certain CLI operations will vary depending on the context in which the command was run.  Stripes CLI will attempt to infer the context.  Contexts include:
