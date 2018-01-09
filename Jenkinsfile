@@ -2,5 +2,5 @@
 buildNPM {
   publishModDescriptor = 'no'
   runLint = 'yes'
-  runTest = 'no'
+  runTest = 'yes'
 }
