@@ -32,9 +32,9 @@ describe('The auth-service', function () {
     beforeEach(function () {
       this.sut = new AuthService({ authn: authnStub });
       this.sandbox.spy(authnStub, 'login');
-      this.sandbox.spy(this.sut.tokenStorage, 'setToken');
-      this.sandbox.spy(this.sut.tokenStorage, 'getToken');
-      this.sandbox.spy(this.sut.tokenStorage, 'clearToken');
+      this.sandbox.stub(this.sut.tokenStorage, 'setToken').callsFake(() => {});
+      this.sandbox.stub(this.sut.tokenStorage, 'getToken').callsFake(() => {});
+      this.sandbox.stub(this.sut.tokenStorage, 'clearToken').callsFake(() => {});
     });
 
     it('clears prior token', function (done) {
@@ -84,7 +84,7 @@ describe('The auth-service', function () {
   describe('logout method', function () {
     it('clears the token', function (done) {
       const sut = new AuthService();
-      this.sandbox.spy(sut.tokenStorage, 'clearToken');
+      this.sandbox.stub(sut.tokenStorage, 'clearToken').callsFake(() => {});
       sut.logout()
         .then(() => {
           expect(sut.tokenStorage.clearToken).to.have.been.calledOnce;
