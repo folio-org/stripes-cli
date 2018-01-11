@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@folio/developer": "^1.3.0",
-    "@folio/stripes-core": "^2.8.0",
+    "@folio/stripes-core": "^2.8.1000116",
     "@folio/ui-testing": "folio-org/ui-testing#framework-only",
     "configstore": "^3.1.1",
     "find-up": "^2.1.0",
