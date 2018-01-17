@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 
 const AuthService = require('../../../lib/okapi/auth-service');
-const loginCommand = require('../../../lib/commands/okapi-commands/login');
+const loginCommand = require('../../../lib/commands/okapi/login');
 
 const authServiceStub = {
   login: (username, password) => {
