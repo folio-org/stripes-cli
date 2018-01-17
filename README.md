@@ -5,6 +5,25 @@ Copyright (C) 2017 The Open Library Foundation
 This software is distributed under the terms of the Apache License,
 Version 2.0. See the file "[LICENSE](LICENSE)" for more information.
 
+* [Introduction](#introduction)
+* [Installation](#installation)
+* [Running Stripes-CLI](#running-stripes-cli)
+* [Available commands](#available-commands)
+    * [`new` command (work in progress)](#new-command-work-in-progress)
+    * [`serve` command](#serve-command)
+    * [`build` command](#build-command)
+    * [`test` command (work in progress)](#test-command-work-in-progress)
+    * [`alias` command](#alias-command)
+    * [`status` command](#status-command)
+* [Available Okapi Commands](#available-okapi-commands)
+    * [`okapi` command](#okapi-command)
+    * [`mod` command (work in progress)](#mod-command-work-in-progress)
+    * [`perm` command (work in progress)](#perm-command-work-in-progress)
+* [Stripes CLI Configuration](#stripes-cli-configuration)
+* [Environment Variables](#environment-variables)
+* [Note about context](#note-about-context)
+* [Note about platforms](#note-about-platforms)
+
 ## Introduction
 
 *Note: This is an early prototype and not ready to fully scaffold a new Stripes UI module.*
@@ -118,6 +137,37 @@ Example:
 stripescli status
 ```
 
+## Available Okapi Commands
+
+The following commands primarily interact with Okapi.  When working with Okapi, it easiest to set `okapi` and `tenant` options in a [.stripesclirc file](#stripes-cli-configuration) or [environment variables](#environment-vairables).  Either method avoids the need  to manually supply `--okapi` and `--tenant` with each command.
+
+### `okapi` command
+
+Log into an Okapi instance and persist the token.
+
+Example:
+```
+stripescli okapi login myusername
+```
+
+### `mod` command (work in progress)
+
+Manage UI modules in Okapi. At the moment support is limited to the current UI module defined in the APP context.  Sub-commands include `add`, `remove`, `update`, `enable`, and `disable`.
+
+Example:
+```
+stripescli mod add
+```
+
+### `perm` command (work in progress)
+
+Manage UI module permissions.  Sub-commands include `create` and `assign`.  When creating a new permission, the `--push` option will attempt to update the module descriptor in Okapi and optionally assign the newly created permission to a user.
+
+Example:
+```
+stripescli perm create ui-hello-world.example --desc "An example permission" --push --assign someone
+```
+
 ## Stripes CLI Configuration
 
 Frequently used options can be saved to a `.stripesclirc` file to avoid entering them each time.  Stripes CLI will use the configuration file found in the current working directory, or the first one walking up the tree.
@@ -141,7 +191,7 @@ Aliases for Stripes UI apps are also supported:
 
 ## Environment Variables
 
-CLI options can be set using environment variables prefixed with `STRIPES_`.  For example, to specify the `--port` option using an environment variable, use `STRIPES_PORT`.
+CLI options can be set using environment variables prefixed with `STRIPES_`.  For example, to specify the `--port` option using an environment variable, use `STRIPES_PORT=8080`.
 
 ## Note about context
 
