@@ -1,7 +1,7 @@
 {
   "name": "<%= packageName %>",
   "version": "0.1.0",
-  "description": "Description for <%= displayName %>",
+  "description": "<%= appDescription %>",
   "main": "src/index.js",
   "repository": "",
   "license": "Apache-2.0",
@@ -31,6 +31,20 @@
     "route": "<%= appRoute %>",
     "hasSettings": true,
     "okapiInterfaces": {},
-    "permissionSets": []
+    "permissionSets": [
+      {
+        "permissionName": "module.<%= appName %>.enabled",
+        "displayName": "UI: <%= displayName %> module is enabled",
+        "visible": true
+      },
+      {
+        "permissionName": "settings.<%= appName %>.enabled",
+        "displayName": "Settings (<%= appName %>): display list of settings pages",
+        "subPermissions": [
+          "settings.enabled"
+        ],
+        "visible": true
+      }
+    ]
   }
 }
