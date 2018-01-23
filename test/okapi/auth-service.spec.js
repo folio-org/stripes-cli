@@ -7,7 +7,7 @@ const authnStub = {
     if (password === 'correct-password') {
       return Promise.resolve({ ok: true, headers: { get: x => `value for header ${x}` } });
     } else if (password === 'wrong-password') {
-      return Promise.resolve({ text: () => Promise.resolve('okapi says uh-oh!') });
+      return Promise.reject('okapi says uh-oh!');
     } else {
       return Promise.reject('other-error');
     }

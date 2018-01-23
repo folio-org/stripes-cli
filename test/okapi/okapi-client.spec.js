@@ -1,5 +1,4 @@
 const expect = require('chai').expect;
-const fetch = require('node-fetch-npm');
 const OkapiClient = require('../../lib/okapi/okapi-client');
 
 

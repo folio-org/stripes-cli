@@ -70,6 +70,7 @@ describe('The CLI questions module', function () {
     beforeEach(function () {
       this.argv = {
         username: 'user',
+        interactive: true,
       };
       this.yargsOptions = {
         password: {
@@ -98,12 +99,24 @@ describe('The CLI questions module', function () {
 
     it('does not pass populated yargs options to inquirer', function (done) {
       this.argv.password = 'password1';
+      this.yargsOptions.somethingElse = { describe: 'another option for testing' };
 
       this.sut.askIfUndefined(this.argv, this.yargsOptions)
         .then(() => {
           expect(inquirer.prompt).to.have.been.calledOnce;
           const inquirerCall = inquirer.prompt.getCall(0);
-          expect(inquirerCall.args[0]).to.be.empty;
+          expect(inquirerCall.args[0].length).to.equal(1);
+          expect(inquirerCall.args[0][0].name).to.equal('somethingElse');
+          done();
+        });
+    });
+
+    it('does not invoke inquirer when all options are populated', function (done) {
+      this.argv.password = 'password1';
+
+      this.sut.askIfUndefined(this.argv, this.yargsOptions)
+        .then(() => {
+          expect(inquirer.prompt).not.to.have.been.called;
           done();
         });
     });
@@ -122,6 +135,7 @@ describe('The CLI questions module', function () {
     beforeEach(function () {
       this.argv = {
         username: 'user',
+        interactive: true,
       };
       this.yargsOptions = {
         password: {
