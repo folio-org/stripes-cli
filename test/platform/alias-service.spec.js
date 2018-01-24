@@ -151,9 +151,7 @@ describe('The alias-service', function () {
 
     it('returns alias data', function () {
       const result = this.sut.validateAlias('moduleName', '../modulePath');
-      expect(result).to.have.property('path');
-      expect(result).to.have.property('type');
-      expect(result).to.have.property('isValid');
+      expect(result).to.have.keys('path', 'type', 'isValid');
     });
 
     it('assigns stripes type', function () {
@@ -172,8 +170,8 @@ describe('The alias-service', function () {
       try {
         this.sut.validateAlias('moduleName', '../modulePath');
       } catch (error) {
-        expect(error instanceof AliasError).to.equal(true);
-        expect(error.message.includes('No package.json found')).to.equal(true);
+        expect(error).to.be.an.instanceof(AliasError);
+        expect(error).to.have.property('message').and.match(/No package\.json found/);
       }
     });
 
@@ -183,8 +181,8 @@ describe('The alias-service', function () {
       try {
         this.sut.validateAlias('anotherModuleName', '../modulePath');
       } catch (error) {
-        expect(error instanceof AliasError).to.equal(true);
-        expect(error.message.includes('was expecting anotherModuleName')).to.equal(true);
+        expect(error).to.be.an.instanceof(AliasError);
+        expect(error).to.have.property('message').and.match(/was expecting anotherModuleName/);
       }
     });
 
@@ -194,8 +192,8 @@ describe('The alias-service', function () {
       try {
         this.sut.validateAlias('moduleName', '../modulePath');
       } catch (error) {
-        expect(error instanceof AliasError).to.equal(true);
-        expect(error.message.includes('does not contain a stripes configuration')).to.equal(true);
+        expect(error).to.be.an.instanceof(AliasError);
+        expect(error).to.have.property('message').and.match(/does not contain a stripes configuration/);
       }
     });
 
