@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const webpackCommon = require('../lib/webpack-common');
-
+const path = require('path');
 
 describe('The webpack-common module', function () {
   beforeEach(function () {
@@ -52,8 +52,10 @@ describe('The webpack-common module', function () {
       const webpackOverride = this.sut.cliResolve(false, '');
       const result = webpackOverride(this.inputConfig);
       expect(result).to.have.property('entry').that.includes('/original/path/to/@folio/stripes-core/src/index');
-      expect(result.resolve.modules).to.match(/stripes-cli\/node_modules/);
-      expect(result.resolveLoader.modules).to.match(/stripes-cli\/node_modules/);
+
+      const cliNodeModulePath = path.join(__dirname, '..', 'node_modules');
+      expect(result.resolve.modules).to.include(cliNodeModulePath);
+      expect(result.resolveLoader.modules).to.include(cliNodeModulePath);
     });
   });
 });
