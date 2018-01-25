@@ -5,7 +5,10 @@ Copyright (C) 2017-2018 The Open Library Foundation
 This software is distributed under the terms of the Apache License,
 Version 2.0. See the file "[LICENSE](LICENSE)" for more information.
 
-* [Introduction](#introduction)
+## Introduction
+
+Stripes CLI is a command line interface to facilitate the creation, development, building, and testing of Stripes UI modules.
+
 * [Installation](#installation)
 * [Running Stripes-CLI](#running-stripes-cli)
 * [Available commands](#available-commands)
@@ -25,16 +28,12 @@ Version 2.0. See the file "[LICENSE](LICENSE)" for more information.
 * [Note about context](#note-about-context)
 * [Note about platforms](#note-about-platforms)
 
-## Introduction
-
-Stripes CLI is a command line interface to facilitate the creation, development, building, and testing of Stripes UI modules.
-
 ## Installation
 
 Stripes CLI is currently not published to `npm-folio`.  This will change once it becomes more stable.  To install the CLI now, use the `npm-folioci` registry.
 ```
-npm config set @folio:registry https://repository.folio.org/repository/npm-folioci/
-npm install -g @folio/stripes-cli
+yarn config set @folio:registry https://repository.folio.org/repository/npm-folioci/
+yarn global add @folio/stripes-cli
 ```
 
 To develop the CLI:
