@@ -151,7 +151,7 @@ describe('The alias-service', function () {
 
     it('returns alias data', function () {
       const result = this.sut.validateAlias('moduleName', '../modulePath');
-      expect(result).to.have.keys('path', 'type', 'isValid');
+      expect(result).to.have.keys('path', 'type', 'isValid', 'hasNodeModules');
     });
 
     it('assigns stripes type', function () {
