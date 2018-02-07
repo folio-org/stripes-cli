@@ -16,7 +16,7 @@ class <%= componentName %> extends React.Component {
     match: PropTypes.object.isRequired,
     showSettings: PropTypes.bool,
   }
-  
+
   render() {
     if (this.props.showSettings) {
       return <Settings {...this.props} />;
