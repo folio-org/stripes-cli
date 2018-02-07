@@ -170,7 +170,7 @@ stripescli okapi login myusername
 
 ### `mod` command (work in progress)
 
-Manage UI modules in Okapi. At the moment support is limited to the UI module present in the current working directory (APP context).  
+Manage UI modules in Okapi. At the moment support is limited to the UI module present in the current working directory (APP context).
 
 Sub-commands `add`, `remove`, and `update` will operate on the current Stripes UI app's module descriptor in Okapi.  When issuing an update on an existing module descriptor, the CLI will attempt to remove it first.
 
