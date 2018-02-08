@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes-cli",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "description": "Stripes Command Line Interface",
   "repository": "https://github.com/folio-org/stripes-cli",
   "publishConfig": {
@@ -12,7 +12,7 @@
   },
   "main": "index.js",
   "bin": {
-    "stripescli": "./lib/stripes-cli.js"
+    "stripes": "./lib/stripes-cli.js"
   },
   "scripts": {
     "test": "mocha --recursive",

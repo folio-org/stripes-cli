@@ -11,6 +11,7 @@
 * App create command optionally orchestrates Okapi calls after generating an app
 * Introduce interactive input for some command options
 * Improve handling of aliases with added support for stripes-core, STCLI-13
+* Invoke CLI with `stripes` rather than `stripescli`. STCLI-11
 
 
 ## 0.10.0 (2017-12-12 demo)
