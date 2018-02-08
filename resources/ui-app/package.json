@@ -9,9 +9,9 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "start": "stripescli serve",
-    "build": "stripescli build --output ./output",
-    "test": "stripescli test --run demo --show",
+    "start": "stripes serve",
+    "build": "stripes build --output ./output",
+    "test": "stripes test nightmare --run demo --show",
     "lint": "eslint src"
   },
   "devDependencies": {
