@@ -22,8 +22,10 @@
   "dependencies": {
     "@folio/stripes-components": "^2.0.0",
     "prop-types": "^15.6.0",
-    "react": "^15.6.1",
     "react-router-dom": "^4.1.1"
+  },
+  "peerDependencies": {
+    "react": "*"
   },
   "stripes": {
     "type": "app",
