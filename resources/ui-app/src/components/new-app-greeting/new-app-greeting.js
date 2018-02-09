@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 export default class NewAppGreeting extends React.Component {
   render() {
     return (
       <div>
-        <h2 id="stripes-new-app-greeting">Congratulations!</h2>
-        Your Stripes app is running.
+        <h2 id="stripes-new-app-greeting"><FormattedMessage id="<%= uiAppName %>.new-app.greeting" /></h2>
+        <FormattedMessage id="<%= uiAppName %>.new-app.message" />
       </div>
     );
   }
