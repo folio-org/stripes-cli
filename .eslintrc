@@ -1,3 +1,6 @@
 {
-  "extends": "stripes"
+  "extends": "@folio/eslint-config-stripes",
+  "rules": {
+    "no-console": "off"
+  }
 }
