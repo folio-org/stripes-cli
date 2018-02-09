@@ -75,8 +75,7 @@ describe('The stripes-platform', function () {
 
     it('applies aliases to module config', function () {
       const validAliasMock = {
-        '@folio/my-app': { path: '/path/to/ui-my-app', type: 'app', isValid: true,
-        },
+        '@folio/my-app': { path: '/path/to/ui-my-app', type: 'app', isValid: true },
       };
       this.sut.applyAliasesToPlatform(validAliasMock);
       expect(this.sut.config).to.have.property('modules').with.property('@folio/my-app');
@@ -84,8 +83,7 @@ describe('The stripes-platform', function () {
 
     it('does not apply aliases of unspecified type to module config', function () {
       const validAliasMock = {
-        '@folio/stripes-core': { path: '/path/to/stripes-core', isValid: true,
-        },
+        '@folio/stripes-core': { path: '/path/to/stripes-core', isValid: true },
       };
       this.sut.applyAliasesToPlatform(validAliasMock);
       expect(this.sut.config).to.have.property('modules').but.not.property('@folio/stripes-core');
@@ -93,8 +91,7 @@ describe('The stripes-platform', function () {
 
     it('applies aliases to platform', function () {
       const validAliasMock = {
-        '@folio/my-app': { path: '/path/to/ui-my-app', type: 'app', isValid: true,
-        },
+        '@folio/my-app': { path: '/path/to/ui-my-app', type: 'app', isValid: true },
       };
       this.sut.applyAliasesToPlatform(validAliasMock);
       expect(this.sut.aliases).to.have.property('@folio/my-app').with.match(/\/path\/to\/ui-my-app/);
