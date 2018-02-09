@@ -9,23 +9,23 @@ import SomeFeatureSettings from './some-feature-settings';
   The pages "general" and "some feature" are examples. Name them however you like.
 */
 
-const pages = [
-  {
-    route: 'general',
-    label: 'General',
-    component: GeneralSettings,
-  },
-  {
-    route: 'somefeature',
-    label: 'Some Feature',
-    component: SomeFeatureSettings,
-  },
-];
-
 export default class <%= componentName %>Settings extends React.Component {
+  pages = [
+    {
+      route: 'general',
+      label: this.props.stripes.intl.formatMessage({ id: '<%= uiAppName %>.settings.general' }),
+      component: GeneralSettings,
+    },
+    {
+      route: 'somefeature',
+      label: this.props.stripes.intl.formatMessage({ id: '<%= uiAppName %>.settings.some-feature' }),
+      component: SomeFeatureSettings,
+    },
+  ];
+
   render() {
     return (
-      <Settings {...this.props} pages={pages} paneTitle="<%= displayName %>" />
+      <Settings {...this.props} pages={this.pages} paneTitle="<%= displayName %>" />
     );
   }
 }

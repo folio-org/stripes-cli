@@ -16,24 +16,24 @@ In order to view and log into the platform being served up, a suitable Okapi bac
 
 Run the following from the <%= uiAppName %> directory to serve your new app using a development server:
 ```
-stripescli serve
+stripes serve
 ```
 
 Note: When serving up a newly created app that does not have its own backend permissions established, pass the `--hasAllPerms` option to display the app in the UI navigation. For example:
 ```
-stripescli serve --hasAllPerms
+stripes serve --hasAllPerms
 ```
 
 To specify your own tenant ID or to use an Okapi instance other than http://localhost:9130, pass the `--okapi` and `--tenant` options.
 ```
-stripescli serve --okapi http://my-okapi.example.com:9130 --tenant my-tenant-id
+stripes serve --okapi http://my-okapi.example.com:9130 --tenant my-tenant-id
 ```
 
 ## Run the tests
 
 Run the included UI test `demo` with the following command:
 ```
-stripescli test --run demo --show
+stripes test --run demo --show
 ```
 
 ## What to do next?
