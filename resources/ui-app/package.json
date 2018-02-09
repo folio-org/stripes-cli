@@ -9,9 +9,9 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "start": "stripescli serve",
-    "build": "stripescli build --output ./output",
-    "test": "stripescli test --run demo --show",
+    "start": "stripes serve",
+    "build": "stripes build --output ./output",
+    "test": "stripes test nightmare --run demo --show",
     "lint": "eslint src"
   },
   "devDependencies": {
@@ -22,8 +22,10 @@
   "dependencies": {
     "@folio/stripes-components": "^2.0.0",
     "prop-types": "^15.6.0",
-    "react": "^15.6.1",
     "react-router-dom": "^4.1.1"
+  },
+  "peerDependencies": {
+    "react": "*"
   },
   "stripes": {
     "type": "app",

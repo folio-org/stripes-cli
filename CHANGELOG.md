@@ -1,16 +1,21 @@
 # Change history for stripes-cli
 
-## 1.0.0 (IN PROGRESS)
+## [1.0.0](https://github.com/folio-org/stripes-cli/tree/v1.0.0) (2018-02-08)
+
 * Add support for passing options to Karma. STCLI-16
-* Add permissions to new app templates and ability to push to Okapi. STCLI-7
-* Okapi command to log into an Okapi instance
-* Mod commands to add/remove/update an app's module descriptor in Okapi
-* Mod commands to enable/disable an app module for a tenant in Okapi
-* Perm commands to create and assign app permissions to a user in Okapi
-* Include default module and settings enabled permissions with new app template
-* App create command optionally orchestrates Okapi calls after generating an app
-* Introduce interactive input for some command options
+* Add permissions to new app templates and ability to push to Okapi. Includes the following: STCLI-7
+  * Okapi command to log into an Okapi instance
+  * Mod commands to add/remove/update an app's module descriptor in Okapi
+  * Mod commands to enable/disable an app module for a tenant in Okapi
+  * Perm commands to create and assign app permissions to a user in Okapi
+  * Include default module and settings enabled permissions with new app template
+  * App create command optionally orchestrates Okapi calls after generating an app
+  * Introduce interactive input for some command options
 * Improve handling of aliases with added support for stripes-core, STCLI-13
+* Apply proper exit code upon test failure. Fixes STCLI-17
+* Update webpack config for test with translations plugin. Fixes STCLI-21
+* Invoke CLI with `stripes` rather than `stripescli`. STCLI-11
+* Update new app templates to use React 16 and translations. STCLI-25
 
 
 ## 0.10.0 (2017-12-12 demo)

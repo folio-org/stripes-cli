@@ -1,0 +1,8 @@
+{
+  "new-app.greeting": "Congratulations!",
+  "new-app.message": "Your Stripes app is running.",
+  "settings.general": "General",
+  "settings.general.message": "These are your general app settings.",
+  "settings.some-feature": "Some Feature",
+  "settings.some-feature.message": "These are your settings for some app feature."
+}
