@@ -40,15 +40,16 @@
     "mocha": "^4.0.1",
     "node-fetch-npm": "^2.0.2",
     "resolve": "^1.4.0",
+    "simple-git": "^1.89.0",
     "update-notifier": "^2.3.0",
     "webpack": "^3.4.1",
     "webpack-bundle-analyzer": "^2.9.1",
     "yargs": "^10.0.3"
   },
   "devDependencies": {
+    "@folio/eslint-config-stripes": "^1.1.0",
     "chai": "^4.1.2",
     "eslint": "^4.8.0",
-    "@folio/eslint-config-stripes": "^1.1.0",
     "sinon": "^4.1.4",
     "sinon-chai": "^2.14.0"
   }
