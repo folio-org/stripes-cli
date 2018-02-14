@@ -26,6 +26,7 @@
     "configstore": "^3.1.1",
     "debug": "^3.1.0",
     "find-up": "^2.1.0",
+    "http-server": "^0.11.1",
     "import-lazy": "^3.1.0",
     "inquirer": "^4.0.2",
     "just-kebab-case": "^1.0.0",
@@ -46,9 +47,9 @@
     "yargs": "^10.0.3"
   },
   "devDependencies": {
+    "@folio/eslint-config-stripes": "^1.1.0",
     "chai": "^4.1.2",
     "eslint": "^4.8.0",
-    "@folio/eslint-config-stripes": "^1.1.0",
     "sinon": "^4.1.4",
     "sinon-chai": "^2.14.0"
   }

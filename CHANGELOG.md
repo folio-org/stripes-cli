@@ -1,5 +1,10 @@
 # Change history for stripes-cli
 
+## 1.1.0 (IN PROGRESS)
+
+* Add option to serve an existing build. STCLI-26
+
+
 ## [1.0.0](https://github.com/folio-org/stripes-cli/tree/v1.0.0) (2018-02-08)
 
 * Add support for passing options to Karma. STCLI-16
@@ -15,7 +20,8 @@
 * Apply proper exit code upon test failure. Fixes STCLI-17
 * Update webpack config for test with translations plugin. Fixes STCLI-21
 * Invoke CLI with `stripes` rather than `stripescli`. STCLI-11
-* Update new app templates to use React 16 and translations. STCLI-25
+* Update new app templates to use React 16. STCLI-25
+* Add translations to new app templates. STCLI-6
 
 
 ## 0.10.0 (2017-12-12 demo)
