@@ -4,6 +4,7 @@
 
 * Add option to serve an existing build. STCLI-26
 * When a config file with modules is provided, do not automatically apply aliases to module config. STCLI-18
+* Resolve alias paths relative to `.stripesclirc` config file location. Fixes STCLI-35
 
 
 ## [1.0.0](https://github.com/folio-org/stripes-cli/tree/v1.0.0) (2018-02-08)

@@ -208,7 +208,7 @@ Any supported command-line positional or option can be defined.  For example:
 }
 ```
 
-Aliases for Stripes UI apps are also supported:
+Aliases for Stripes UI apps are also supported.  Aliases paths should be relative to the directory containing the `.stripesclirc` config file which defines the aliases.
 ```
 {
   "aliases": {
