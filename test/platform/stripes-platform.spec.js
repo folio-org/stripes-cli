@@ -81,6 +81,16 @@ describe('The stripes-platform', function () {
       expect(this.sut.config).to.have.property('modules').with.property('@folio/my-app');
     });
 
+    it('does not apply aliases to module config when a config file is provided', function () {
+      this.sandbox.stub(StripesPlatform, 'loadStripesConfig').returns({ okapi: {}, config: {}, modules: {} });
+      this.sut.applyDefaultConfig('stripes.config.js');
+      const validAliasMock = {
+        '@folio/my-app': { path: '/path/to/ui-my-app', type: 'app', isValid: true },
+      };
+      this.sut.applyAliasesToPlatform(validAliasMock);
+      expect(this.sut.config).to.have.property('modules').but.not.property('@folio/my-app');
+    });
+
     it('does not apply aliases of unspecified type to module config', function () {
       const validAliasMock = {
         '@folio/stripes-core': { path: '/path/to/stripes-core', isValid: true },
