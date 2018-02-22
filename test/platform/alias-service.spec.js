@@ -29,8 +29,20 @@ describe('The alias-service', function () {
 
     it('loads aliases from config', function () {
       this.sandbox.stub(cliConfig, 'aliases').value(this.aliases);
+      // Simulate that the config file is in the current working directory
+      this.sandbox.stub(cliConfig, 'configPath').value(path.join(path.resolve(), '.stripesclirc'));
       this.sut = new AliasService(storageStub);
       expect(this.sut.configAliases).to.deep.equal(this.aliases);
+    });
+
+    it('loads alias relative to config file location', function () {
+      this.sandbox.stub(cliConfig, 'aliases').value(this.aliases);
+      // Simulate that the config file is up a directory
+      this.sandbox.stub(cliConfig, 'configPath').value(path.join(path.resolve(), '..', '.stripesclirc'));
+      this.sut = new AliasService(storageStub);
+      expect(this.sut.configAliases).to.deep.equal({
+        '@folio/users': '../../ui-users',
+      });
     });
   });
 
