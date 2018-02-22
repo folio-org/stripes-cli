@@ -239,7 +239,7 @@ The platform that Stripes CLI uses is constructed in the following order:
 
 1. Base configuration:  When a file argument like `stripes.config.js` is provided, this will be used as the base.  Otherwise, the CLI will use its own internal defaults that contain no modules.
 
-2. Virtual configuration:  In the APP context, the CLI will apply the current app as a module and generate an alias for the app to be run in isolation.  In the PLATFORM context, the CLI will add modules for all aliases previously defined with the `alias` command.
+2. Virtual configuration:  In the APP context, the CLI will apply the current app as a module and generate an alias for the app to be run in isolation.  In the PLATFORM or APP context, the CLI will then add modules for all aliases defined, but only when an explicit module configuration is absent from `stripes.config.js`, or no `stripes.config.js` has been provided.
 
 3. Command configuration: Any relevant options passed in on the command line are applied to the configuration last.
 
