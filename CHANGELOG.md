@@ -5,7 +5,7 @@
 * Add option to serve an existing build. STCLI-26
 * When a config file with modules is provided, do not automatically apply aliases to module config. STCLI-18
 * Resolve alias paths relative to `.stripesclirc` config file location. Fixes STCLI-35
-* New `platform create` and `platform pull` commands with support for Yarn workspaces: STCLI-23
+* New `platform` commands to create, clean, and install with support for Yarn workspaces: STCLI-23
 
 
 ## [1.0.0](https://github.com/folio-org/stripes-cli/tree/v1.0.0) (2018-02-08)

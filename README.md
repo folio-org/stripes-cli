@@ -19,10 +19,11 @@ Stripes CLI is a command line interface to facilitate the creation, development,
     * [`test` command (work in progress)](#test-command-work-in-progress)
     * [`alias` command](#alias-command)
     * [`status` command](#status-command)
+    * [`platform` command (work in progress)](#platform-command-work-in-progress)
 * [Available Okapi Commands](#available-okapi-commands)
     * [`okapi` command](#okapi-command)
-    * [`mod` command (work in progress)](#mod-command-work-in-progress)
-    * [`perm` command (work in progress)](#perm-command-work-in-progress)
+    * [`mod` command](#mod-command)
+    * [`perm` command](#perm-command)
 * [Stripes CLI Configuration](#stripes-cli-configuration)
 * [Environment Variables](#environment-variables)
 * [Note about context](#note-about-context)
@@ -155,6 +156,25 @@ Example:
 stripes status
 ```
 
+### `platform` command (work in progress)
+
+Manage a Stripes development platform with `platform` command and sub-commands.
+
+The `create` sub-command creates a new Stripes directory, workspace, and platform.  It will also clone selected repositories and install dependencies.  When no name is supplied, it will attempt to create a "stripes" directory under the current directory.
+
+Example:
+```
+stripes platform create
+```
+
+Additional sub-commands `pull`, `clean`, and `install` are available.  These will all operate on the current workspace, platform, and take into account defined aliases.  More details to follow.
+
+Example:
+```
+stripes platform pull
+```
+
+
 ## Available Okapi Commands
 
 The following commands primarily interact with Okapi.  When working with Okapi, it easiest to set `okapi` and `tenant` options in a [.stripesclirc file](#stripes-cli-configuration) or [environment variables](#environment-variables).  Either method avoids the need  to manually supply `--okapi` and `--tenant` with each command.
@@ -168,7 +188,7 @@ Example:
 stripes okapi login myusername
 ```
 
-### `mod` command (work in progress)
+### `mod` command
 
 Manage UI modules in Okapi. At the moment support is limited to the UI module present in the current working directory (APP context).
 
@@ -187,7 +207,7 @@ stripes mod enable
 ```
 
 
-### `perm` command (work in progress)
+### `perm` command
 
 Manage UI module permissions.  Sub-commands include `create` and `assign`.  When creating a new permission, the `--push` option will attempt to update the module descriptor in Okapi and optionally assign the newly created permission to a user.
 
