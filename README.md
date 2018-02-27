@@ -162,9 +162,14 @@ Manage a Stripes development platform with `platform` command and sub-commands.
 
 The `create` sub-command creates a new Stripes directory, workspace, and platform.  It will also clone selected repositories and install dependencies.  When no name is supplied, it will attempt to create a "stripes" directory under the current directory.
 
-Example:
+By default, `create` will prompt for modules.  Example:
 ```
 stripes platform create
+```
+
+The `--modules` option can be used to select modules without prompting.  Example:
+```
+stripes platform create --modules ui-users stripes-components stripes-core
 ```
 
 Additional sub-commands `pull`, `clean`, and `install` are available.  These will all operate on the current workspace, platform, and take into account defined aliases.  More details to follow.
