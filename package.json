@@ -41,6 +41,8 @@
     "mocha": "^4.0.1",
     "node-fetch-npm": "^2.0.2",
     "resolve": "^1.4.0",
+    "rimraf": "^2.6.2",
+    "simple-git": "^1.89.0",
     "update-notifier": "^2.3.0",
     "webpack": "^3.4.1",
     "webpack-bundle-analyzer": "^2.9.1",
