@@ -1,13 +1,58 @@
 # Stripes CLI Commands
 
+* [Common options](#common-options)
+* [`app` command](#app-command)
+    * [`app create` command](#app-create-command)
+* [`serve` command](#serve-command)
+* [`build` command](#build-command)
+* [`test` command (work in progress)](#test-command-work-in-progress)
+    * [`test nightmare` command](#test-nightmare-command)
+    * [`test karma` command](#test-karma-command)
+* [`status` command](#status-command)
+* [`platform` command (work in progress)](#platform-command-work-in-progress)
+    * [`platform create` command](#platform-create-command)
+    * [`platform pull` command](#platform-pull-command)
+    * [`platform clean` command](#platform-clean-command)
+    * [`platform install` command](#platform-install-command)
+* [`alias` command](#alias-command)
+* [`okapi` command](#okapi-command)
+    * [`okapi login` command](#okapi-login-command)
+    * [`okapi logout` command](#okapi-logout-command)
+* [`mod` command](#mod-command)
+    * [`mod add` command](#mod-add-command)
+    * [`mod remove` command](#mod-remove-command)
+    * [`mod enable` command](#mod-enable-command)
+    * [`mod disable` command](#mod-disable-command)
+    * [`mod update` command](#mod-update-command)
+* [`perm` command](#perm-command)
+    * [`perm create` command](#perm-create-command)
+    * [`perm assign` command](#perm-assign-command)
 
 
-## 
+## Common options
 
-Run each command with `--help` to view all available options and more examples.
+The following options are available for all commands:
 
+Option | Description | Type | Info
+---|---|---|---
+`--help` | Show help | boolean | 
+`--version` | Show version number | boolean | 
+`--interactive` | Enable interactive input (use --no-interactive to disable) | boolean | default: true
+
+Notes:
+* Boolean options can be negated with `--no-[option]`.
+* Any option can be passed on the command line, as an environment variable, or in a `.stripesclirc` file.
+
+Examples:
+
+Show help for the build command:
 ```
 stripes build --help
+```
+
+Disable interactive option
+```
+stripes app create "Hello World" --no-interactive
 ```
 
 
@@ -320,27 +365,27 @@ Option | Description | Type | Info
 
 Examples:
 
-Create a "stripes" dir and prompt for modules.:
+Create a "stripes" dir and prompt for modules:
 ```
 stripes platform create
 ```
-Create an "example" dir and prompt for modules.:
+Create an "example" dir and prompt for modules:
 ```
 stripes platform create example
 ```
-Create and select ui-users and stripes-core.:
+Create and select ui-users and stripes-core:
 ```
 stripes platform create --modules ui-users stripes-core
 ```
-Create and select all available modules.:
+Create and select all available modules:
 ```
 stripes platform create --modules all
 ```
-Create without a Yarn workspace.:
+Create without a Yarn workspace:
 ```
 stripes platform create --no-workspace
 ```
-Create without a installing dependencies.:
+Create without a installing dependencies:
 ```
 stripes platform create --no-install
 ```
@@ -425,12 +470,9 @@ stripes alias add @folio/ui-users ./path/to/ui-users
 ```
 
 
+# Okapi Commands
 
-
-
-# Available Okapi Commands
-
-The following commands primarily interact with Okapi.  When working with Okapi, it easiest to set `okapi` and `tenant` options in a [.stripesclirc file](#stripes-cli-configuration) or [environment variables](#environment-variables).  Either method avoids the need  to manually supply `--okapi` and `--tenant` with each command.
+The following commands primarily interact with Okapi.  When working with Okapi, it easiest to set `okapi` and `tenant` options in a `.stripesclirc` file or environment variables.  Either method avoids the need  to manually supply `--okapi` and `--tenant` with each command.
 
 
 ## `okapi` command
@@ -507,7 +549,7 @@ Sub-commands:
 * `stripes mod remove`
 * `stripes mod update`
 
-## `mod add` command
+### `mod add` command
 
 Add an app module descriptor to Okapi
 
@@ -527,7 +569,7 @@ Examples:
 stripes mod add
 ```
 
-## `mod remove` command
+### `mod remove` command
 
 Remove an app module descriptor from Okapi
 
@@ -548,7 +590,7 @@ Examples:
 stripes mod remove
 ```
 
-## `mod enable` command
+### `mod enable` command
 
 Enable an app module descriptor for a tenant in Okapi
 
@@ -571,7 +613,7 @@ stripes mod enable
 ```
 
 
-## `mod disable` command
+### `mod disable` command
 
 Disable an app module descriptor for a tenant in Okapi
 
@@ -592,10 +634,7 @@ stripes mod disable
 ```
 
 
-
-
-
-## `mod update` command
+### `mod update` command
 
 Update an app module descriptor in Okapi
 
@@ -629,7 +668,7 @@ Sub-commands:
 * `stripes perm create [name]`
 
 
-## `perm create` command
+### `perm create` command
 
 Adds new UI permission to permissionSet
 
@@ -654,7 +693,6 @@ Option | Description | Type | Info
 `--assign` | Assign the permission to the given user (requires --push) | string | 
 
 
-
 Examples:
 
 Create a new permission for this UI module:
@@ -667,9 +705,8 @@ stripes perm create ui-my-app.example --push --assign someone
 ```
 
 
-## `perm assign` command
+### `perm assign` command
 Assign permission to a user
-
 
 Usage:
 ```
@@ -679,7 +716,7 @@ stripes perm assign
 Option | Description | Type | Info
 ---|---|---|---
 `--name` | Name of the permission | string | 
-`--user` | , --assign  Username to assign permission to | string | 
+`--user` | Username to assign permission to | string | alias: assign  
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
 

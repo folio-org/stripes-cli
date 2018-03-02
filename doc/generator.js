@@ -29,6 +29,8 @@ function parseOption(data) {
     const descriptionMatch = data[2].match(/^[^[]*/);
     const typeMatch = data[2].match(/\[(\w*)]/);
     const defaultMatch = data[2].match(/\[default: (\w*)]/);
+    const choicesMatch = data[2].match(/\[choices: ([^\]]*)]/);
+    const requiredMatch = data[2].match(/\[required\]/);
 
     if (descriptionMatch) {
       option.description = descriptionMatch[0].trim();
@@ -38,6 +40,12 @@ function parseOption(data) {
     }
     if (defaultMatch) {
       option.default = defaultMatch[1].trim();
+    }
+    if (choicesMatch) {
+      option.choices = choicesMatch[1].trim();
+    }
+    if (requiredMatch) {
+      option.required = true;
     }
   }
   return option;
@@ -54,7 +62,17 @@ function getOptions(group) {
     if (optionMatch && optionMatch.length) {
       const option = parseOption(optionMatch);
       if (option) {
-        optionRows += `\`${option.name}\` | ${option.description} | ${option.type} | ${option.default}\n`;
+        optionRows += `\`${option.name}\` | ${option.description} | ${option.type} | `;
+        if (option.required) {
+          optionRows += '(*) ';
+        }
+        if (option.default) {
+          optionRows += `default: ${option.default} `;
+        }
+        if (option.choices) {
+          optionRows += `choices: ${option.choices}`;
+        }
+        optionRows += '\n';
       }
     }
   }
@@ -66,7 +84,7 @@ function getOptionTable(input, isPositional) {
   const groups = input.match(groupRegex);
   let optionsTable = '';
   if (groups && groups.length) {
-    optionsTable += `${isPositional ? 'Positional' : 'Option'} | Description | Type | Default\n`;
+    optionsTable += `${isPositional ? 'Positional' : 'Option'} | Description | Type | Info\n`;
     optionsTable += '---|---|---|---\n';
     groups.forEach((group) => {
       optionsTable += getOptions(group);
@@ -80,7 +98,7 @@ function getExampleSection(input) {
   const match = input.match(groupRegex);
   let exampleSection = '';
   if (match) {
-    exampleSection += 'Examples:\n';
+    exampleSection += 'Examples:\n\n';
     const exampleRegex = /^\s+(.*?)\s{2,}\b(.*)$/gm;
     let exampleMatch;
     while (exampleMatch !== null) {
@@ -98,13 +116,33 @@ function getExampleSection(input) {
   return exampleSection;
 }
 
+function getSubCommandsSection(input) {
+  const groupRegex = /Commands:([\s\S]*?)^$/m;
+  const match = input.match(groupRegex);
+  let section = '';
+  if (match) {
+    section += 'Sub-commands:\n';
+    const cmdRegex = /^\s+(stripes.*?)\s{2,}\b(.*)$/gm;
+    let cmdMatch;
+    while (cmdMatch !== null) {
+      cmdMatch = cmdRegex.exec(match[0]);
+      if (cmdMatch) {
+        section += `* \`${cmdMatch[1]}\`\n`;
+      }
+    }
+  }
+  return section;
+}
+
 function getCommandSummary(input) {
   const commandRegex = /(stripes\s.*)\n\n\b(.*)\n/;
   let commandSummary = '';
   const match = input.match(commandRegex);
   if (match) {
-    commandSummary += `\`${match[1]}\`\n`;
-    commandSummary += `${match[2]}\n`;
+    commandSummary += `${match[2]}\n\n`;
+    commandSummary += 'Usage:\n```\n';
+    commandSummary += `${match[1]}\n`;
+    commandSummary += '```\n';
   }
   return commandSummary;
 }
@@ -113,10 +151,12 @@ getStdin().then((input) => {
   let doc = '';
   doc += getCommandSummary(input);
   doc += '\n';
+  doc += getSubCommandsSection(input);
+  doc += '\n';
   doc += getOptionTable(input, true);
-  doc += '\n';
+  doc += '\n\n';
   doc += getOptionTable(input);
-  doc += '\n';
+  doc += '\n\n';
   doc += getExampleSection(input);
   console.log(doc);
 });
