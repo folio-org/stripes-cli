@@ -1,5 +1,7 @@
 # Stripes CLI Commands
 
+This following command documentation is largely generated from the the CLI's own built-in help.  Run each command with the `--help` option to see the latest for your currently installed CLI.
+
 * [Common options](#common-options)
 * [`app` command](#app-command)
     * [`app create` command](#app-create-command)
@@ -38,10 +40,6 @@ Option | Description | Type | Info
 `--help` | Show help | boolean | 
 `--version` | Show version number | boolean | 
 `--interactive` | Enable interactive input (use --no-interactive to disable) | boolean | default: true
-
-Notes:
-* Boolean options can be negated with `--no-[option]`.
-* Any option can be passed on the command line, as an environment variable, or in a `.stripesclirc` file.
 
 Examples:
 
@@ -468,12 +466,6 @@ stripes alias remove @folio/ui-users:
 ```
 stripes alias add @folio/ui-users ./path/to/ui-users
 ```
-
-
-# Okapi Commands
-
-The following commands primarily interact with Okapi.  When working with Okapi, it easiest to set `okapi` and `tenant` options in a `.stripesclirc` file or environment variables.  Either method avoids the need  to manually supply `--okapi` and `--tenant` with each command.
-
 
 ## `okapi` command
 
