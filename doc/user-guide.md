@@ -2,6 +2,31 @@
 
 Note: When serving or building an existing app module that has dependencies on unreleased versions of other Stripes modules, be sure to use the `npm-folioci` registry.  This applies whether you've installed the CLI from `npm-folio` or `npm-folioci`.
 
+* [Using the CLI](#using-the-cli)
+    * [Options](#options)
+    * [Help](#help)
+    * [Sub-commands](#sub-commands)
+    * [Interactive commands](#interactive-commands)
+* [Configuration](#configuration)
+    * [Module export](#module-export)
+    * [Environment variables](#environment-variables)
+* [Background](#background)
+    * [CLI Context](#cli-context)
+    * [Platforms](#platforms)
+    * [Aliases](#aliases)
+* [Developing a new stripes app ](#developing-a-new-stripes-app-)
+    * [Create your app](#create-your-app)
+    * [Assigning permissions](#assigning-permissions)
+    * [Run your app](#run-your-app)
+    * [Running tests](#running-tests)
+    * [Including another Stripes module](#including-another-stripes-module)
+* [Developing multiple existing apps ](#developing-multiple-existing-apps-)
+* [Interacting with Okapi](#interacting-with-okapi)
+* [Generating a production build](#generating-a-production-build)
+* [Viewing diagnostic output](#viewing-diagnostic-output)
+* [Authoring a CLI config file and its options](#authoring-a-cli-config-file-and-its-options)
+
+
 ## Using the CLI
 
 Stripes CLI is invoked with the `stripes` command.  When Stripes CLI is [installed](../README.md#installation) globally, Yarn will make the `stripes` command available in your path.  To run a given command, run `stripes` followed by the desired command name.
