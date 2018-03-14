@@ -14,18 +14,25 @@ Note: When serving or building an existing app module that has dependencies on u
     * [CLI Context](#cli-context)
     * [Platforms](#platforms)
     * [Aliases](#aliases)
-* [Developing a new stripes app ](#developing-a-new-stripes-app-)
-    * [Create your app](#create-your-app)
+* [App development](#app-development)
+    * [Creating your app](#creating-your-app)
     * [Assigning permissions](#assigning-permissions)
-    * [Run your app](#run-your-app)
+    * [Running your app](#running-your-app)
     * [Running tests](#running-tests)
     * [Including another Stripes module](#including-another-stripes-module)
-* [Developing multiple existing apps ](#developing-multiple-existing-apps-)
+* [Platform development](#platform-development)
+    * [Environment setup](#environment-setup)
+    * [Running the platform](#running-the-platform)
+    * [Running tests for a platform](#running-tests-for-a-platform)
+    * [Updating the platform](#updating-the-platform)
 * [Interacting with Okapi](#interacting-with-okapi)
+    * [Managing UI modules](#managing-ui-modules)
+    * [Managing UI permissions](#managing-ui-permissions)
 * [Generating a production build](#generating-a-production-build)
+    * [Analyzing bundle output](#analyzing-bundle-output)
+    * [Reducing build output](#reducing-build-output)
 * [Viewing diagnostic output](#viewing-diagnostic-output)
-* [Authoring a CLI config file and its options](#authoring-a-cli-config-file-and-its-options)
-
+    * [Observing Okapi requests](#observing-okapi-requests)
 
 ## Using the CLI
 
@@ -88,7 +95,7 @@ Note: This will force default values, if available, to be used.  When no suitabl
 Frequently used options can be saved to a `.stripesclirc` configuration file to avoid entering them each time.  Stripes CLI will use the configuration file found in the current working directory, or the first one found walking up the tree.  The default configuration file format is JSON.
 
 Any supported command line positional or option can be defined.  For example:
-```
+```json
 {
   "configFile": "stripes.config.js",
   "port": 8080
@@ -96,7 +103,7 @@ Any supported command line positional or option can be defined.  For example:
 ```
 
 In addition to command line options, aliases for Stripes UI modules are also supported.  Aliases paths should be relative to the directory containing the `.stripesclirc` config file which defines the aliases.
-```
+```json
 {
   "aliases": {
     "@folio/users": "../ui-users"
@@ -108,7 +115,7 @@ In addition to command line options, aliases for Stripes UI modules are also sup
 In addition to JSON, the CLI configuration may be authored as a JavaScript module export.  This is useful for generating options dynamically or defining [CLI plugins](./dev-guide.md#plugins). When defining a JavaScript module export, be sure to use the `.js` file extension.
 
 Example `.stripesclirc.js`:
-```
+```javascript
 const environment = process.env.NODE_ENV;
 let url;
 
@@ -126,7 +133,7 @@ module.exports = {
 ```
 
 ### Environment variables
-Any CLI option can be set using environment variables prefixed with `STRIPES_`.  For example, to specify the `--port` option, use an environment variable named `STRIPES_PORT=8080`.
+Any CLI option can be set using environment variables prefixed with `STRIPES_`.  For example, to specify the `--port` option, use an environment variable named `STRIPES_PORT`.
 
 
 ## Background
@@ -161,7 +168,7 @@ Tip: Use the `status` command (optionally with a file and/or other config option
 
 ### Aliases
 
-Aliases are used to do associate platform modules with local code repositories in a development environment.  An alias is comprised of a key-value pair where the key is a module (`@folio/users`) and the value is the relative path to where the module (`../ui-users`) can be found.  Aliases are not limited to `@folio` scope modules.  At build time, any defined aliases will be applied to the Webpack configuration as Webpack aliases.
+Aliases are used to associate platform modules with local code repositories in a development environment.  An alias is comprised of a key-value pair where the key is a module (`@folio/users`) and the value is the relative path to where the module can be found (`../ui-users`).  Aliases are not limited to `@folio` scope modules.  At build time, any defined aliases will be applied to the Webpack configuration as Webpack aliases.
 
 The initial goals of defining aliases was to facilitate serving an app in isolation, as well as eliminate the need for Yarn-linking modules for platform development.  The latter can be mitigated by using Yarn workspaces for the platform developer, however, aliases can still provide some advantages.  Aliases are easily added ad-hoc for debugging or testing.  They can work with modules outside the workspace, or used to share across workspaces.
 
@@ -172,13 +179,13 @@ There are two methods of adding aliases in the CLI:
 1) `.stripesclirc` file - Any aliases defined in a CLI configuration file apply to commands run from the directory containing `.stripesclirc` file.  Use the configuration file when adding aliases in bulk or looking for a consistent set of alias. See the [CLI configuration](#configuration) for more information.
 
 
-## Developing a new stripes app 
+## App development
 
 As a UI app developer, it is often preferred to develop your app independent from an entire platform.  This allows you to focus on your app's own code and not worry about how it is built or integrated within FOLIO.  The Stripes CLI provides all the necessary configuration to develop both new and existing apps in isolation.
 
-Prerequisites:  The following assumes an existing Okapi backend, such as the FOLIO testing-backend Vagrant box, is installed and running locally on your development.  See (TODO: link here) on how to setup your the FOLIO testing-backend.
+Prerequisites:  The following assumes an existing Okapi backend, such as the FOLIO testing-backend Vagrant box, is installed and running locally on your development.  See (TODO: link here) on how to setup a FOLIO testing-backend.
 
-### Create your app
+### Creating your app
 
 From a suitable directory, run the following:
 ```
@@ -243,7 +250,7 @@ stripes mod add
 
 Next enable the module descriptor for your tenant:
 ```
-stripes mod enable
+stripes mod enable --tenant diku
 ```
 
 Finally assign the app's default enabled permissions for a user:
@@ -255,7 +262,7 @@ stripes perm assign --name settings.hello-world.enabled --user diku_admin
 See Stripes-core's [Adding Permissions](https://github.com/folio-org/stripes-core/blob/master/doc/adding-permissions.md) for more detail and on how to manually add permissions.
 
 
-### Run your app
+### Running your app
 
 After creating "Hello World" and installing dependencies, the new app is ready to run.  Change to the new app directory and serve your new app using a development server:
 
@@ -268,7 +275,7 @@ To specify your own tenant ID or to use an Okapi instance other than the default
 stripes serve --okapi http://my-okapi.example.com:9130 --tenant my-tenant-id
 ```
 
-Note: When serving up a newly created app that either does not have a module descriptor in Okapi, or permissions assigned to the user, pass the `--hasAllPerms` option to display the app in the UI navigation.  While handy for initial development, `--hasAllPerms` should be avoided See [assigning permissions](#assigning-permissions) to eliminate the need for this. 
+Note: When serving up a newly created app that either does not have a module descriptor in Okapi, or permissions assigned to the user, pass the `--hasAllPerms` option to display the app in the UI navigation.  While handy for initial development, `--hasAllPerms` should not be used in production builds. See [assigning permissions](#assigning-permissions) to eliminate the need for this. 
 
 ```
 stripes serve --hasAllPerms
@@ -298,8 +305,9 @@ yarn install
 
 We should now have the following directory structure:
 ```
-/ui-hello-world
-/ui-users
+myDir
+├─ui-hello-world
+└─ui-users
 ```
 
 Next add an alias for ui-users. Provide a relative path to the ui-users directory. Given you're in /ui-hello-world:
@@ -312,28 +320,185 @@ Now simply start the app up again.  From the ui-hello-world directory, run:
 stripes serve
 ```
 
-The FOLIO platform generated will now include ui-users!
+The FOLIO platform generated will now include ui-users!  The same procedure can be followed to include non-app modules as well such as `stripes-components` and `stripes-core`.
 
 Note: When adding an alias via the `alias add` command, the alias is considered global and will remain in effect for any command, run from any directory, until removed with `alias remove`.
 
 
-## Developing multiple existing apps 
+## Platform development
 
-TODO:
-* Whole platform/workspace setup
-* Running tests for a platform
-* Updating the platform
+When developing multiple Stripes apps and/or core modules at the same time, it is often desired to work with a platform containing most or all of the available FOLIO Stripes modules.  See [new development setup](https://github.com/folio-org/stripes-core/blob/master/doc/new-development-setup.md) in stripes-core for more details.  The Stripes CLI provides commands to simplify the creation of such platforms, consolidating several of the steps.
+
+Prerequisites:  The following assumes an existing Okapi backend, such as the FOLIO testing-backend Vagrant box, is installed and running locally on your development.  See (TODO: link here) on how to setup a FOLIO testing-backend.
+
+### Environment setup
+
+From a suitable directory, run the following:
+```
+stripes platform create
+```
+
+After prompting for modules, the `platform create` command will generate a directory named "stripes", clone all the selected modules, and install their dependencies.  If no platform (like `stripes-sample-platform`) was chosen during module selection, a platform named `stripes-dev-platform` will be generated.  A local Stripes platform configuration (`stripes.config.js.local`) will be generated for each platform in the directory, as well as a `.stripesclirc` file referencing it.
+
+If a directory other than "stripes" is desired, pass the desired name to the command:
+```
+stripes platform create temp1
+```
+
+To skip the interactive module selection and just include everything, pass `all` to the `--modules` option.
+```
+stripes platform create --modules all
+```
+
+By default, `platform create` will include a pacakge.json defining a Yarn workspace in the newly created directory.  This simplifies dependency installation and management. A workspace is not required to create a platform and can be omitted with the `--no-workspace` option.
+
+*Note about workspaces:* Although similar in that both "workspace" and "platform" may be used to mean "development environment", they are both independent things.  A Yarn workspace is a method for managing a dependencies in a development environment, whereas a FOLIO platform defines a collection of Stripes modules configured for FOLIO.  One workspace can contain multiple platforms and a platform can exist without a workspace.
+
+
+### Running the platform
+
+After creating a platform, you can immediately serve it up.  Change directories to your platform and run `stripes serve`.
+
+```
+cd stripes/stripes-sample-platform
+stripes serve
+```
+
+
+### Running tests for a platform
+
+See the [ui-testing readme](https://github.com/folio-org/ui-testing/blob/master/README.md).
+
+TODO: Document CLI-specific operations that help with this.
+
+
+### Updating the platform
+
+To pull the latest code changes from master for all cloned modules in your platform, run `platform pull` from either the a platform directory, or the Yarn workspace directory.
+
+```
+stripes platform pull
+```
+
+When run from a platform directory, the CLI will pull the latest code for all aliased modules in the platform wherever they exist on the file system.  When run from a workspace directory, the CLI will pull the latest code for all known Stripes apps/modules in the workspace directory.
 
 
 ## Interacting with Okapi
 
-When working with Okapi, it is easiest to set `okapi` and `tenant` options in a `.stripesclirc` file or environment variables.  Either method avoids the need  to manually supply `--okapi` and `--tenant` with each command.
+Some CLI commands make requests to a running Okapi instance.  For these to work, you must have a valid token.  To obtain a token, use the `okapi` command to login:
+
+```
+stripes okapi login diku_admin --okapi http://localhost:9130 --tenant diku
+```
+
+*Note:* When working with Okapi, it is easiest to set `okapi` and `tenant` options in a `.stripesclirc` file or environment variables.  Either method avoids the need to manually supply `--okapi` and `--tenant` with each command.  The remaining examples in this section assume `okapi` and `tenant` are already set via config file or environment variable.
+
+```
+stripes okapi login diku_admin
+```
+
+If not supplied after the username, the CLI will prompt for a password.  After a successful login, the token will be stored for use with future CLI commands.
+
+To clear a previously saved token run:
+```
+stripes okapi logout
+```
+
+### Managing UI modules
+
+The CLI `mod` command can be used to manage Stripes UI modules for a tenant.  All `mod` commands operate on the app context of the current directory.  Therefore, be sure to `cd` into the desired app directory first.
+
+To add a module to Okapi and enable it for a tenant:
+```
+stripes mod add
+stripes mod enable --tenant diku
+```
+
+To remove a module from Okapi:
+```
+stripes mod remove
+```
+
+When a module is already associated with a tenant it cannot be removed without disabling it for the tenant first.
+```
+stripes mod disable --tenant diku
+```
+
+When updating a module descriptor in Okapi, the CLI provides a shortcut.  The following will attempt to remove a module descriptor, and if necessary, disable it.  After adding the new module descriptor, the module will be re-enabled for the tenant.
+```
+stripes mod update
+```
+Note: At this time, `mod update` will only attempt to disable/enable one tenant (typical development use-case).  Multiple tenants will have to be disabled manually.
+
+### Managing UI permissions
+
+Create new UI permissions with the following command:
+```
+stripes perm create ui-hello-world.example --push --assign diku_admin
+```
+
+This will update the current app's `package.json` with a new permission and invoke the `mod add` or `mod update` command as needed to push the new module descriptor to Okapi.  Finally, the permission will be assigned to the username provided.
+
+If the `--push` and `--assign` options are omitted (or the permissions were created manually in pacakge.json), run the following commands to update Okapi and assign permissions to a user:
+
+```
+stripes mod update
+stripes perm assign --name ui-hello-world.example --user diku_admin
+```
 
 
 ## Generating a production build
 
+To generate a build for production, it is best to use a clean platform-only install with no aliases defined.  The following describes how to build `folio-testing-platform`:
+
+```
+git clone https://github.com/folio-org/folio-testing-platform.git
+cd folio-testing-platform
+yarn install
+stripes build stripes.config.js my-build-output
+```
+
+If source maps are desired, include them with the `--sourcemap` option.
+```
+stripes build stripes.config.js my-build-output --sourcemap
+```
+
+The generated build assets will be placed in the directory path provided (in this case, `my-build-output`).  These files are ready to serve up from the file server of your choice.  For testing purposes, you can serve up an existing Stripes build using the following command:
+```
+stripes serve --existing-build my-build-output
+```
+
+### Analyzing bundle output
+
+Sometimes it is useful to visualize the contents of the build to identify areas that could use some optimization.  Stripes CLI includes the Webpack Bundle Analyzer to help with this.  To enable the bundle analyzer, pass the `--analyze` option to the `build` command:
+
+```
+stripes build stripes.config.js my-build-output --analyze
+```
+
+Note: If running the analyzer with aliased modules, duplication is likely.  It is best to run the analyzer on a platform-only install.
+
+
+### Reducing build output
+
+One quick way to limit the build output, is to limit the number of languages included in the build.  This is done my modifying a tenant's Stripes configuration.  See [filtering translations at build time](https://github.com/folio-org/stripes-core/blob/master/doc/dev-guide.md#filtering-translations-at-build-time) of the Stripes developer guide on how to to this.  The result will not only limit translation files, but also locale assets for `react-intl` and `moment` libraries.
+
+
 ## Viewing diagnostic output
 
-## Authoring a CLI config file and its options
-TODO:
-* Writing a CLI plugin
+TODO: Implement and document `DEBUG=stripes`
+
+### Observing Okapi requests
+
+Monitoring Okapi requests for any Stripes CLI command is easy. Set the DEBUG environment variable to "okapi".  This can be done by prefixing any CLI command with `DEBUG=okapi`.  For example:
+
+```
+DEBUG=okapi stripes okapi login diku_admin
+```
+
+This will show what Okapi endpoints were called during a CLI command and how Okapi responded.
+```
+  okapi ---> POST http://localhost:9130/authn/login +0ms
+  okapi <--- 201 Created +136ms
+User diku_admin logged into tenant diku on Okapi http://localhost:9130
+```

@@ -1,5 +1,5 @@
 /*
-  Generates basic Stripes CLI commnad documentation in markdown using Yargs --help output.
+  Generates basic Stripes CLI command documentation in markdown using Yargs --help output.
   The output serves as good starting point for command documentation.
   Suitable headings must be added/edited to match desired placement in document structure.
 
