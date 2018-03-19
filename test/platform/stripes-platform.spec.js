@@ -134,20 +134,10 @@ describe('The stripes-platform', function () {
         '@folio/my-app': '/path/to/ui-my-app',
       };
       this.sut.aliases = aliases;
-      const result = this.sut.getWebpackOverrides(false);
+      const result = this.sut.getWebpackOverrides('mock context');
       expect(result).to.be.an('array').with.lengthOf(2);
-      expect(webpackCommon.cliResolve).to.have.been.calledWith(false, undefined);
+      expect(webpackCommon.cliResolve).to.have.been.calledWith('mock context');
       expect(webpackCommon.cliAliases).to.have.been.calledWith(aliases);
-    });
-
-    it('informs cliResolve override if an alias exists for stripes-core', function () {
-      const aliases = {
-        '@folio/my-app': '/path/to/ui-my-app',
-        '@folio/stripes-core': '/path/to/stripes-core',
-      };
-      this.sut.aliases = aliases;
-      this.sut.getWebpackOverrides(false);
-      expect(webpackCommon.cliResolve).to.have.been.calledWith(false, '/path/to/stripes-core');
     });
   });
 });
