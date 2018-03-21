@@ -12,6 +12,7 @@ Stripes CLI is a command line interface to facilitate the creation, development,
 * [User Guide](./doc/user-guide.md)
 * [List of Commands](./doc/commands.md)
 * [Developer Guide](./doc/dev-guide.md)
+* [Troubleshooting](./doc/troubleshooting.md)
 
 ## Installation
 
