@@ -9,6 +9,9 @@
 * Consolidate stripes-core location logic and support for yarn global install. Fixes STCLI-38
 * Add ability to use local/aliased stripes-core for build operations, STCLI-27
 * Fix issue locating local stripes-core on Windows, STCLI-33
+* New CLI user guide and developer guide documents, STCLI-20
+* Report unknown commands and enable Yargs recommended commands, fixes STCLI-36
+* Disable automatic help display on failure, fixes STCLI-37
 
 
 ## [1.0.0](https://github.com/folio-org/stripes-cli/tree/v1.0.0) (2018-02-08)

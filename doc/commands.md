@@ -3,6 +3,7 @@
 This following command documentation is largely generated from the the CLI's own built-in help.  Run each command with the `--help` option to see the latest for your currently installed CLI.
 
 * [Common options](#common-options)
+* [`completion` command](#completion-command)
 * [`app` command](#app-command)
     * [`app create` command](#app-create-command)
 * [`serve` command](#serve-command)
@@ -53,6 +54,14 @@ Disable interactive option
 stripes app create "Hello World" --no-interactive
 ```
 
+## `completion` command
+
+Generate a bash completion script for use with Stripes CLI.  Follow instructions included with the generated script for adding it to your bash profile.
+
+Usage:
+```
+stripes completion
+```
 
 ## `app` command
 
