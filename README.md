@@ -28,3 +28,7 @@ Upgrade your globally installed CLI with the following command:
 ```
 yarn global upgrade @folio/stripes-cli
 ```
+
+## Issues
+
+See project [STCLI](https://issues.folio.org/browse/STCLI) in the [FOLIO issue tracker](https://dev.folio.org/community/guide-issues).
