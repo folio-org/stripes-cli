@@ -20,6 +20,7 @@ This following command documentation is largely generated from the the CLI's own
 * [`okapi` command](#okapi-command)
     * [`okapi login` command](#okapi-login-command)
     * [`okapi logout` command](#okapi-logout-command)
+    * [`okapi token` command](#okapi-token-command)
 * [`mod` command](#mod-command)
     * [`mod add` command](#mod-add-command)
     * [`mod remove` command](#mod-remove-command)
@@ -29,6 +30,7 @@ This following command documentation is largely generated from the the CLI's own
 * [`perm` command](#perm-command)
     * [`perm create` command](#perm-create-command)
     * [`perm assign` command](#perm-assign-command)
+    * [`perm view` command](#perm-view-command)
 
 
 ## Common options
@@ -478,6 +480,7 @@ stripes okapi <command>
 Sub-commands:
 * `stripes okapi login <username> [password]`
 * `stripes okapi logout`
+* `stripes okapi token`
 
 
 ### `okapi login` command
@@ -521,6 +524,17 @@ Clear previously saved Okapi token.
 Usage:
 ```
 stripes okapi logout
+```
+
+### `okapi token` command
+
+Display the stored Okapi token
+
+Examples:
+
+Display the stored Okapi token:
+```
+stripes okapi token
 ```
 
 
@@ -657,6 +671,7 @@ stripes perm <command>
 Sub-commands:
 * `stripes perm assign`
 * `stripes perm create [name]`
+* `stripes perm view`
 
 
 ### `perm create` command
@@ -714,4 +729,27 @@ Option | Description | Type | Info
 Examples:
 ```
 stripes perm assign
+```
+
+### `perm view` command
+
+View permissions for a user
+
+Usage:
+```
+stripes perm view
+```
+
+Option | Description | Type | Info
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string | 
+`--tenant` | Specify a tenant ID | string | 
+`--user` | Username | string | (*) 
+
+
+Examples:
+
+View permissions for user diku_admin:
+```
+stripes perm view --user diku_admin
 ```
