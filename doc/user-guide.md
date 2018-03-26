@@ -144,11 +144,11 @@ CLI operations may vary depending on the context in which the command is run.  B
 
 Types:
 * `APP` - Identified by the value of the `stripes.type` property in `package.json`.  The CLI will automatically generate a virtual platform when serving an UI app module in isolation.
-* `PLATFORM` - Identified by a package.json containing one or more `@folio/` dependencies, but no `stripes` object. 
+* `PLATFORM` - Identified by a package.json containing one or more `@folio/` dependencies, but no `stripes` object.
 * `WORKSPACE` - CLI is run from a directory containing a Yarn workspace package.json.
 * `EMPTY` - No `package.json` detected.  Suitable for creating new UI apps or platforms.
 * `CLI` - Command is run from the Stripes CLI directory.
- 
+
 
 ### Platforms
 
@@ -275,7 +275,7 @@ To specify your own tenant ID or to use an Okapi instance other than the default
 stripes serve --okapi http://my-okapi.example.com:9130 --tenant my-tenant-id
 ```
 
-Note: When serving up a newly created app that either does not have a module descriptor in Okapi, or permissions assigned to the user, pass the `--hasAllPerms` option to display the app in the UI navigation.  While handy for initial development, `--hasAllPerms` should not be used in production builds. See [assigning permissions](#assigning-permissions) to eliminate the need for this. 
+Note: When serving up a newly created app that either does not have a module descriptor in Okapi, or permissions assigned to the user, pass the `--hasAllPerms` option to display the app in the UI navigation.  While handy for initial development, `--hasAllPerms` should not be used in production builds. See [assigning permissions](#assigning-permissions) to eliminate the need for this.
 
 ```
 stripes serve --hasAllPerms
@@ -283,13 +283,13 @@ stripes serve --hasAllPerms
 
 ### Running tests
 
-The newly created app as some basic UI end-to-end tests included designed to run with the Nightmare framework.  To run these tests, use the `test nightmare` command: 
+The newly created app as some basic UI end-to-end tests included designed to run with the Nightmare framework.  To run these tests, use the `test nightmare` command:
 
 ```
 stripes test nightmare --run demo --show
 ```
 
-The `--run` option specifies the tests, in this case the sample tests included with our app are named "demo".  The `--show` option will display the UI while running the tests. 
+The `--run` option specifies the tests, in this case the sample tests included with our app are named "demo".  The `--show` option will display the UI while running the tests.
 
 
 ### Including another Stripes module

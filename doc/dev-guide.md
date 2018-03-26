@@ -28,7 +28,7 @@ To develop Stripes CLI, first clone the repo.  Although not required, it helps t
 git clone https://github.com/folio-org/stripes-cli.git
 cd stripes-cli
 npm install -g
-``` 
+```
 
 Note: NPM is used here as it appears Yarn does not have an equivalent for globally installing a local module.  Really all we need out of this operation is the global symlink.  The symlink could be created manually and the dependencies installed with Yarn.
 
@@ -206,7 +206,7 @@ TODO: Document
 
 ## Plugins
 
-The CLI can be extended with plugins.  Plugins provide a means for the user to perform custom logic, possibly altering the Webpack configuration prior to invoking a Webpack build.  They are defined in a `.stripesclirc.js` [configuration file](./user-guide.md#Configuration). 
+The CLI can be extended with plugins.  Plugins provide a means for the user to perform custom logic, possibly altering the Webpack configuration prior to invoking a Webpack build.  They are defined in a `.stripesclirc.js` [configuration file](./user-guide.md#Configuration).
 
 To create a plugin, define a `plugins` object in `.stripesclirc.js` which contains keys representing each command that is receiving a plugin.  In this example, a plugin has been defined for `serve`:
 
@@ -221,7 +221,7 @@ module.exports = {
 
 The value should be an object containing `beforeBuild` and, optionally, `options`.
 * `beforeBuild` is a function that will be passed the command's parsed `argv`.  It should return a function that will be passed Webpack config processed by the CLI.  This gives the opportunity for the plugin to inspect or modify the config prior to running Webpack.
-* `options` define additional Yargs options for the command.  When provided, options will be validated and included in the command help along the CLI's built-in options.  
+* `options` define additional Yargs options for the command.  When provided, options will be validated and included in the command help along the CLI's built-in options.
 
 ```javascript
 const servePlugin = {
@@ -276,9 +276,9 @@ After creating a new command or updating an existing one, be sure to update `doc
 stripes build --help | node doc/generator
 ```
 
-Note: This script helps to quickly create markdown tables out of the command options and code blocks for the examples, but it is far from perfect.  Review the generated markdown with the actual help output to correct formatting errors and check for possible omissions. 
+Note: This script helps to quickly create markdown tables out of the command options and code blocks for the examples, but it is far from perfect.  Review the generated markdown with the actual help output to correct formatting errors and check for possible omissions.
 
-Finally update table of contents in `doc/commands.md` as needed. The TOC can be regenerated using Okapi's [`md2toc` script](https://github.com/folio-org/okapi/blob/master/doc/md2toc). 
+Finally update table of contents in `doc/commands.md` as needed. The TOC can be regenerated using Okapi's [`md2toc` script](https://github.com/folio-org/okapi/blob/master/doc/md2toc).
 
 ```
 perl md2toc -l 2 doc/commands.md
