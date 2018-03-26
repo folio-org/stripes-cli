@@ -22,6 +22,8 @@ yarn config set @folio:registry https://repository.folio.org/repository/npm-foli
 yarn global add @folio/stripes-cli
 ```
 
+*Yarn on Windows:* Please see [this troubleshooting note](./doc/troubleshooting.md#global-install-on-windows-with-yarn-151) regarding global installation issues.
+
 ## Upgrading
 
 Upgrade your globally installed CLI with the following command:

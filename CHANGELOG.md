@@ -12,6 +12,8 @@
 * New CLI user guide and developer guide documents, STCLI-20
 * Report unknown commands and enable Yargs recommended commands, fixes STCLI-36
 * Disable automatic help display on failure, fixes STCLI-37
+* New `perm view` command to view permissions for a user, STCLI-42
+* New `okapi token` command to retrieve CLI's stored token, STCLI-43
 
 
 ## [1.0.0](https://github.com/folio-org/stripes-cli/tree/v1.0.0) (2018-02-08)
