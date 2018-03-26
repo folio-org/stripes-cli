@@ -206,7 +206,7 @@ TODO: Document
 
 ## Plugins
 
-The CLI can be extended with plugins.  Plugins provide a means for the user to perform custom logic, possibly altering the Webpack configuration prior to invoking a Webpack build.  They are defined in a `.stripesclirc.js` [configuration file](./user-guide.md#Configuration).
+The CLI can be extended with plugins.  Plugins provide a means for the user to perform custom logic, possibly altering the Webpack configuration prior to invoking a Webpack build.  They are defined in a `.stripesclirc.js` [configuration file](./user-guide.md#configuration).
 
 To create a plugin, define a `plugins` object in `.stripesclirc.js` which contains keys representing each command that is receiving a plugin.  In this example, a plugin has been defined for `serve`:
 

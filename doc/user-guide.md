@@ -210,7 +210,7 @@ Creating app...
 
 The `--install` option prompts the CLI to automatically run `yarn install` on the directory afterwards.  If the install option was omitted, please `cd` to the app's directory and run `yarn install`.
 
-From here you can immediately start [running your app](#run-your-app), but it is best to properly post the app's module descriptor to Okapi and [assign permissions](#assigning-permissions).
+From here you can immediately start [running your app](#running-your-app), but it is best to properly post the app's module descriptor to Okapi and [assign permissions](#assigning-permissions).
 
 *Tip:* If you've already [logged into Okapi](#interacting-with-okapi), you can do this all with one command:
 
