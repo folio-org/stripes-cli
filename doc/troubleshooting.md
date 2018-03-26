@@ -2,6 +2,22 @@
 
 This page contains troubleshooting suggestions and known issues for the CLI.  Refer to [stripes-core's troubleshooting guide](https://github.com/folio-org/stripes-core/blob/master/doc/troubleshooting.md) for more.
 
+
+## My new Stripes UI app does not show up!
+
+When a newly created app does not show up in the navigation bar, this is likely due to the user not having permission to view the app.  In order to have permission to view the app:
+  1. The app's module descriptor must be posted to Okapi
+  2. The module must be associated with a tenant
+  3. The user must be assigned the app's permission `module.[appName].enabled`
+
+Given you've already [logged into Okapi](./commands.md#okapi-login-command), check to see if the user has permissions to your app.  For example:
+```
+stripes perm view --user diku_admin
+```
+
+See [assigning permissions](./commands.md#assigning-permissions) if you need to add the module descriptor to Okapi, or assign the module to a tenant, or assign module permissions to a user.
+
+
 ## Global install on Windows with Yarn 1.5.1
 
 Yarn's global install directory changed on Windows with the release of Yarn 1.5.1.  A dependent package used to retrieve the global installation has not been updated to reflect this change.  This causes an issue in which the CLI is unable to locate `stripes-core`.
