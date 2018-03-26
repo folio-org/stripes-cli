@@ -6,7 +6,7 @@ This page contains troubleshooting suggestions and known issues for the CLI.  Re
 
 Yarn's global install directory changed on Windows with the release of Yarn 1.5.1.  A dependent package used to retrieve the global installation has not been updated to reflect this change.  This causes an issue in which the CLI is unable to locate `stripes-core`.
 
-The problem will surface at build time as a few "Module not found" errors such as the following: 
+The problem will surface at build time as a few "Module not found" errors such as the following:
 ```
 ERROR in multi webpack-hot-middleware/client typeface-source-sans-pro @folio/stripes-components/lib/global.css C:/Users/mattjones/AppData/Local/Yarn/Data/global/node_modules/@folio/stripes-core/src/index
 Module not found: Error: Can't resolve 'babel-loader' in 'C:\Users\mattjones\projects\folio\ui-users'
@@ -26,7 +26,7 @@ Create an alias:
 stripes alias add @folio/stripes-core ..path/to/stripes-core
 ```
 
-Alternativly, update your `.stripesclirc` configuration:
+Alternatively, update your `.stripesclirc` configuration:
 ```
 {
   "aliases": {
