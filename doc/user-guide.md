@@ -94,7 +94,7 @@ Note: This will force default values, if available, to be used.  When no suitabl
 ## Configuration
 Frequently used options can be saved to a `.stripesclirc` configuration file to avoid entering them each time.  Stripes CLI will use the configuration file found in the current working directory, or the first one found walking up the tree.  The default configuration file format is JSON.
 
-Any supported command line positional or option can be defined.  For example:
+Any supported command-line positional or option can be defined.  For example:
 ```json
 {
   "configFile": "stripes.config.js",
@@ -102,7 +102,7 @@ Any supported command line positional or option can be defined.  For example:
 }
 ```
 
-In addition to command line options, aliases for Stripes UI modules are also supported.  Aliases paths should be relative to the directory containing the `.stripesclirc` config file which defines the aliases.
+In addition to command-line options, aliases for Stripes UI modules are also supported.  Aliases paths should be relative to the directory containing the `.stripesclirc` config file which defines the aliases.
 ```json
 {
   "aliases": {
@@ -192,7 +192,7 @@ From a suitable directory, run the following:
 stripes app create "Hello World --install"
 ```
 
-This generate a skeleton Stripes UI app with sample routes and settings.  The CLI will transform the provided app name, "Hello World", to follow naming conventions where the `ui-` prefix or `@folio` scope is used.
+This generates a skeleton Stripes UI app with sample routes and settings.  The CLI will transform the provided app name, "Hello World", to follow naming conventions where the `ui-` prefix or `@folio` scope is used.
 
 ```
 Creating app...
@@ -283,7 +283,7 @@ stripes serve --hasAllPerms
 
 ### Running tests
 
-The newly created app as some basic UI end-to-end tests included designed to run with the Nightmare framework.  To run these tests, use the `test nightmare` command:
+The newly created app has some basic UI end-to-end tests included, designed to run with the Nightmare framework.  To run these tests, use the `test nightmare` command:
 
 ```
 stripes test nightmare --run demo --show
@@ -350,7 +350,7 @@ To skip the interactive module selection and just include everything, pass `all`
 stripes platform create --modules all
 ```
 
-By default, `platform create` will include a pacakge.json defining a Yarn workspace in the newly created directory.  This simplifies dependency installation and management. A workspace is not required to create a platform and can be omitted with the `--no-workspace` option.
+By default, `platform create` will include a package.json defining a Yarn workspace in the newly created directory.  This simplifies dependency installation and management. A workspace is not required to create a platform and can be omitted with the `--no-workspace` option.
 
 *Note about workspaces:* Although similar in that both "workspace" and "platform" may be used to mean "development environment", they are both independent things.  A Yarn workspace is a method for managing a dependencies in a development environment, whereas a FOLIO platform defines a collection of Stripes modules configured for FOLIO.  One workspace can contain multiple platforms and a platform can exist without a workspace.
 
@@ -374,7 +374,7 @@ TODO: Document CLI-specific operations that help with this.
 
 ### Updating the platform
 
-To pull the latest code changes from master for all cloned modules in your platform, run `platform pull` from either the a platform directory, or the Yarn workspace directory.
+To pull the latest code changes from master for all cloned modules in your platform, run `platform pull` from either the platform directory, or the Yarn workspace directory.
 
 ```
 stripes platform pull
@@ -439,7 +439,7 @@ stripes perm create ui-hello-world.example --push --assign diku_admin
 
 This will update the current app's `package.json` with a new permission and invoke the `mod add` or `mod update` command as needed to push the new module descriptor to Okapi.  Finally, the permission will be assigned to the username provided.
 
-If the `--push` and `--assign` options are omitted (or the permissions were created manually in pacakge.json), run the following commands to update Okapi and assign permissions to a user:
+If the `--push` and `--assign` options are omitted (or the permissions were created manually in package.json), run the following commands to update Okapi and assign permissions to a user:
 
 ```
 stripes mod update

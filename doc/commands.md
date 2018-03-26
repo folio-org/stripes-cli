@@ -1,6 +1,6 @@
 # Stripes CLI Commands
 
-This following command documentation is largely generated from the the CLI's own built-in help.  Run each command with the `--help` option to see the latest for your currently installed CLI.
+This following command documentation is largely generated from the CLI's own built-in help.  Run each command with the `--help` option to see the latest for your currently installed CLI.
 
 * [Common options](#common-options)
 * [`app` command](#app-command)

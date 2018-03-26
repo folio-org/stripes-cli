@@ -15,7 +15,7 @@
 
 ## Introduction
 
-The Stripes CLI is a command line interface that runs using Node.  It enhances the default `build` and `serve` operations found within stripes-core's [Node API](https://github.com/folio-org/stripes-core/blob/master/webpack/stripes-node-api.js).  It does this by modifying the Webpack configuration as needed.
+The Stripes CLI is a command-line interface that runs using Node.  It enhances the default `build` and `serve` operations found within stripes-core's [Node API](https://github.com/folio-org/stripes-core/blob/master/webpack/stripes-node-api.js).  It does this by modifying the Webpack configuration as needed.
 
 Stripes CLI uses the [Yargs](https://github.com/yargs/yargs/) framework for defining commands and [Inquirer](https://www.npmjs.com/package/inquirer) for accepting interactive input.  In addition to providing a convention for defining commands and options, Yargs offers great built-in help.
 

@@ -26,7 +26,7 @@ Create an alias:
 stripes alias add @folio/stripes-core ..path/to/stripes-core
 ```
 
-Alternativly, update your `.stripesclirc` configuration:
+Alternatively, update your `.stripesclirc` configuration:
 ```
 {
   "aliases": {
