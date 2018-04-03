@@ -38,6 +38,40 @@ describe('The stripes-platform', function () {
       expect(this.sut.config).to.have.property('modules').with.property('my-app');
     });
 
+    it('adds app module to an existing config', function () {
+      this.sut.isAppContext = true;
+      this.sut.config = {
+        modules: {
+          'not-my-app': { one: 'value' },
+        },
+      };
+      this.sut.applyVirtualAppPlatform('my-app');
+      expect(this.sut.config).to.have.property('modules').with.property('my-app');
+    });
+
+    it('does not override current app module\'s existing config', function () {
+      this.sut.isAppContext = true;
+      this.sut.config = {
+        modules: {
+          'my-app': { two: 'value' },
+        },
+      };
+      this.sut.applyVirtualAppPlatform('my-app');
+      expect(this.sut.config).to.have.property('modules').with.property('my-app').with.property('two');
+    });
+
+    it('does not override other app module configs', function () {
+      this.sut.isAppContext = true;
+      this.sut.config = {
+        modules: {
+          'not-my-app': { one: 'value' },
+          'my-app': { two: 'value' },
+        },
+      };
+      this.sut.applyVirtualAppPlatform('my-app');
+      expect(this.sut.config).to.have.property('modules').with.property('not-my-app').with.property('one');
+    });
+
     it('adds app alias', function () {
       this.sut.isAppContext = true;
       this.sut.applyVirtualAppPlatform('my-app');
