@@ -41,6 +41,7 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-webpack": "2.0.6",
     "kopy": "^8.2.3",
+    "lodash": "^4.17.5",
     "mocha": "^4.0.1",
     "node-fetch-npm": "^2.0.2",
     "resolve-from": "^4.0.0",
