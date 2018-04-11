@@ -14,6 +14,10 @@
 * Disable automatic help display on failure, fixes STCLI-37
 * New `perm view` command to view permissions for a user, STCLI-42
 * New `okapi token` command to retrieve CLI's stored token, STCLI-43
+* Maintain user-supplied module config in app context, STCLI-44
+* New `workspace` command, STCLI-41
+* Fix issue assigning isGlobalYarn to context, STCLI-45
+* Simplify `app create` options, STLCI-46
 
 
 ## [1.0.0](https://github.com/folio-org/stripes-cli/tree/v1.0.0) (2018-02-08)

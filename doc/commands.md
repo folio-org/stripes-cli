@@ -11,8 +11,8 @@ This following command documentation is largely generated from the CLI's own bui
     * [`test nightmare` command](#test-nightmare-command)
     * [`test karma` command](#test-karma-command)
 * [`status` command](#status-command)
-* [`platform` command (work in progress)](#platform-command-work-in-progress)
-    * [`platform create` command](#platform-create-command)
+* [`workspace` command](#workspace-command)
+* [`platform` command](#platform-command)
     * [`platform pull` command](#platform-pull-command)
     * [`platform clean` command](#platform-clean-command)
     * [`platform install` command](#platform-install-command)
@@ -86,21 +86,24 @@ Positional | Description | Type | Info
 Option | Description | Type | Info
 ---|---|---|---
 `--desc` | Description of the app | string | 
-`--install` | Yarn install dependencies | boolean | 
-`--push` | Push new app module descriptor to Okapi (use "mod add" to do so later) | boolean | 
-`--assign` | Assign new app permission to the given user (requires --push) | string | 
+`--install` | Yarn install dependencies | boolean | default: true
+`--assign` | Assign new app permission to the given user (includes pushing module descriptor to Okapi and enabling for tenant) | string | 
 
 
 
 Examples:
 
-Create new Stripes UI app and directory:
+Create new Stripes UI app, directory, and install dependencies:
 ```
 stripes app create "Hello World"
 ```
-Create new Stripes UI app, directory, and install dependencies:
+Create app and assign permissions to user diku_admin:
 ```
-stripes app create "Hello World" --install
+stripes app create "Hello World" --assign diku_admin
+```
+Create new Stripes UI app, but do not install dependencies:
+```
+stripes app create "Hello World" --no-install
 ```
 
 
@@ -320,44 +323,21 @@ Option | Description | Type | Info
 
 
 
+## `workspace` command
 
-
-## `platform` command (work in progress)
-
-Commands to create and manage stripes UI platforms
+Create a Yarn workspace for Stripes development, select modules, clone, and install.
 
 Usage:
 ```
-stripes platform <command>
+stripes workspace
 ```
-
-Sub-commands:
-* `stripes platform clean`
-* `stripes platform create [name]`
-* `stripes platform install`
-* `stripes platform pull`
-
-
-
-### `platform create` command
-
-Create a new development environment, clone, and install.
-
-Usage:
-```
-stripes platform create [name]
-```
-
-
-Positional | Description | Type | Info
----|---|---|---
-`name` | Directory to create | string | 
-
 
 Option | Description | Type | Info
 ---|---|---|---
+`--dir` | Directory to create | string | 
 `--modules` | Stripes modules to include | array | 
-`--workspace` | Include a Yarn Workspaces configuration | boolean | default: true 
+`--default.okapi` | Default Okapi URL for CLI config | string | default: http://localhost:9130
+`--default.tenant` | Default tenant for CLI config | string | default: diku
 `--clone` | Clone the selected modules's repositories | boolean | default: true 
 `--install` | Install dependencies | boolean | default: true 
 
@@ -366,28 +346,40 @@ Examples:
 
 Create a "stripes" dir and prompt for modules:
 ```
-stripes platform create
+stripes workspace
 ```
-Create an "example" dir and prompt for modules:
+Create an "temp" dir and prompt for modules:
 ```
-stripes platform create example
+stripes workspace --dir temp
 ```
 Create and select ui-users and stripes-core:
 ```
-stripes platform create --modules ui-users stripes-core
+stripes workspace --modules ui-users stripes-core
 ```
 Create and select all available modules:
 ```
-stripes platform create --modules all
-```
-Create without a Yarn workspace:
-```
-stripes platform create --no-workspace
+stripes workspace --modules all
 ```
 Create without a installing dependencies:
 ```
-stripes platform create --no-install
+stripes workspace --no-install
 ```
+
+
+
+## `platform` command
+
+Commands to manage stripes UI platforms
+
+Usage:
+```
+stripes platform <command>
+```
+
+Sub-commands:
+* `stripes platform clean`
+* `stripes platform install`
+* `stripes platform pull`
 
 
 ### `platform pull` command

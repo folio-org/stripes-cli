@@ -15,7 +15,7 @@ Given you are already [logged into Okapi](./commands.md#okapi-login-command), ch
 stripes perm view --user diku_admin
 ```
 
-See [assigning permissions](./commands.md#perm-assign-command) if you need to add the module descriptor to Okapi, assign the module to a tenant, or assign module permissions to a user.
+See [assigning permissions](./user-guide.md#assigning-permissions) if you need to add the module descriptor to Okapi, assign the module to a tenant, or assign module permissions to a user.
 
 
 ## Global install on Windows with Yarn 1.5.1

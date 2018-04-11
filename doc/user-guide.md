@@ -22,7 +22,8 @@ Note: When serving or building an existing app module that has dependencies on u
     * [Including another Stripes module](#including-another-stripes-module)
 * [Platform development](#platform-development)
     * [Environment setup](#environment-setup)
-    * [Running the platform](#running-the-platform)
+    * [Creating a platform](#creating-a-platform)
+    * [Running a platform](#running-a-platform)
     * [Running tests for a platform](#running-tests-for-a-platform)
     * [Updating the platform](#updating-the-platform)
 * [Interacting with Okapi](#interacting-with-okapi)
@@ -215,10 +216,10 @@ From here you can immediately start [running your app](#running-your-app), but i
 *Tip:* If you've already [logged into Okapi](#interacting-with-okapi), you can do this all with one command:
 
 ```
-stripes app create "Hello World" --install --push --assign diku_admin
+stripes app create "Hello World" --assign diku_admin
 ```
 
-In the above command, after creating an app and installing dependencies, `--push` will post the module descriptor to Okapi and enable the module for the tenant.  Next, `--assign` will assign the new app's default permissions to the user `diku_admin`.  See [assigning permissions](#assigning-permissions) below for details on how to perform these operations independently, or to add permissions later on during development.
+In the above command, after creating an app and installing dependencies, `--assign` will first post the module descriptor to Okapi and then enable the module for the tenant.  Next, it will assign the new app's default permissions to the user `diku_admin`.  See [assigning permissions](#assigning-permissions) below for details on how to perform these operations independently, or to add permissions later on during development.
 
 
 ### Assigning permissions
@@ -333,31 +334,36 @@ Prerequisites:  The following assumes an existing Okapi backend, such as the FOL
 
 ### Environment setup
 
+The easiest way to manage all the apps within a platform is with a [Yarn workspace](https://yarnpkg.com/lang/en/docs/workspaces/).  The CLI's `workspace` command will help set up a workspace-based development environment that is ready to go.
+
 From a suitable directory, run the following:
 ```
-stripes platform create
+stripes workspace
 ```
 
-After prompting for modules, the `platform create` command will generate a directory named "stripes", clone all the selected modules, and install their dependencies.  If no platform (like `stripes-sample-platform`) was chosen during module selection, a platform named `stripes-dev-platform` will be generated.  A local Stripes platform configuration (`stripes.config.js.local`) will be generated for each platform in the directory, as well as a `.stripesclirc` file referencing it.
+After prompting for modules, the `workspace` command will generate a directory named "stripes", clone all the selected modules, and install their dependencies.  For any platforms chosen during module selection, such as `stripes-sample-platform`, a local Stripes configuration (`stripes.config.js.local`) will be generated.
 
-If a directory other than "stripes" is desired, pass the desired name to the command:
+If a directory other than "stripes" is desired, use the `--dir` option.
 ```
-stripes platform create temp1
+stripes workspace --dir temp
 ```
 
 To skip the interactive module selection and just include everything, pass `all` to the `--modules` option.
 ```
-stripes platform create --modules all
+stripes workspace --modules all
 ```
 
-By default, `platform create` will include a package.json defining a Yarn workspace in the newly created directory.  This simplifies dependency installation and management. A workspace is not required to create a platform and can be omitted with the `--no-workspace` option.
-
-*Note about workspaces:* Although similar in that both "workspace" and "platform" may be used to mean "development environment", they are both independent things.  A Yarn workspace is a method for managing a dependencies in a development environment, whereas a FOLIO platform defines a collection of Stripes modules configured for FOLIO.  One workspace can contain multiple platforms and a platform can exist without a workspace.
+*Note about workspaces:* Although similar in that both "workspace" and "platform" may be used to mean "development environment", they are both independent things.  A Yarn workspace is a method for managing a dependencies across multiple modules, whereas a FOLIO platform defines a collection of Stripes modules configured for FOLIO.  One workspace may contain multiple platforms.  Also, a platform can exist without a Yarn workspace.
 
 
-### Running the platform
+### Creating a platform
 
-After creating a platform, you can immediately serve it up.  Change directories to your platform and run `stripes serve`.
+If you selected a platform such as `stripes-sample-platform` or `folio-testing-platform` at the time of creating a workspace, you are all set.  Refer to `stripes.config.js` and `package.json` of the [Stripes Sample Platform](https://github.com/folio-org/stripes-sample-platform) if you wish to create a platform manually. 
+
+
+### Running a platform
+
+After creating a workspace with a selected platform, you can immediately serve it up.  Change directories to your platform and run `stripes serve`.
 
 ```
 cd stripes/stripes-sample-platform
