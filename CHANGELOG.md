@@ -16,6 +16,7 @@
 * New `okapi token` command to retrieve CLI's stored token, STCLI-43
 * Maintain user-supplied module config in app context, STCLI-44
 * New `workspace` command, STCLI-41
+* Fix issue assigning isGlobalYarn to context, STCLI-45
 * Simplify `app create` options, STLCI-46
 
 
