@@ -11,8 +11,8 @@ This following command documentation is largely generated from the CLI's own bui
     * [`test nightmare` command](#test-nightmare-command)
     * [`test karma` command](#test-karma-command)
 * [`status` command](#status-command)
-* [`platform` command (work in progress)](#platform-command-work-in-progress)
-    * [`platform create` command](#platform-create-command)
+* [`workspace` command](#workspace-command)
+* [`platform` command](#platform-command)
     * [`platform pull` command](#platform-pull-command)
     * [`platform clean` command](#platform-clean-command)
     * [`platform install` command](#platform-install-command)
@@ -320,9 +320,51 @@ Option | Description | Type | Info
 
 
 
+## `workspace` command
+
+Create a Yarn workspace for Stripes development, select modules, clone, and install.
+
+Usage:
+```
+stripes workspace
+```
+
+Option | Description | Type | Info
+---|---|---|---
+`--dir` | Directory to create | string | 
+`--modules` | Stripes modules to include | array | 
+`--default.okapi` | Default Okapi URL for CLI config | string | default: http://localhost:9130
+`--default.tenant` | Default tenant for CLI config | string | default: diku
+`--clone` | Clone the selected modules's repositories | boolean | default: true 
+`--install` | Install dependencies | boolean | default: true 
 
 
-## `platform` command (work in progress)
+Examples:
+
+Create a "stripes" dir and prompt for modules:
+```
+stripes workspace
+```
+Create an "temp" dir and prompt for modules:
+```
+stripes workspace temp
+```
+Create and select ui-users and stripes-core:
+```
+stripes workspace --modules ui-users stripes-core
+```
+Create and select all available modules:
+```
+stripes workspace --modules all
+```
+Create without a installing dependencies:
+```
+stripes workspace --no-install
+```
+
+
+
+## `platform` command
 
 Commands to create and manage stripes UI platforms
 
@@ -333,61 +375,8 @@ stripes platform <command>
 
 Sub-commands:
 * `stripes platform clean`
-* `stripes platform create [name]`
 * `stripes platform install`
 * `stripes platform pull`
-
-
-
-### `platform create` command
-
-Create a new development environment, clone, and install.
-
-Usage:
-```
-stripes platform create [name]
-```
-
-
-Positional | Description | Type | Info
----|---|---|---
-`name` | Directory to create | string | 
-
-
-Option | Description | Type | Info
----|---|---|---
-`--modules` | Stripes modules to include | array | 
-`--workspace` | Include a Yarn Workspaces configuration | boolean | default: true 
-`--clone` | Clone the selected modules's repositories | boolean | default: true 
-`--install` | Install dependencies | boolean | default: true 
-
-
-Examples:
-
-Create a "stripes" dir and prompt for modules:
-```
-stripes platform create
-```
-Create an "example" dir and prompt for modules:
-```
-stripes platform create example
-```
-Create and select ui-users and stripes-core:
-```
-stripes platform create --modules ui-users stripes-core
-```
-Create and select all available modules:
-```
-stripes platform create --modules all
-```
-Create without a Yarn workspace:
-```
-stripes platform create --no-workspace
-```
-Create without a installing dependencies:
-```
-stripes platform create --no-install
-```
 
 
 ### `platform pull` command
