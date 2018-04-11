@@ -1,0 +1,134 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Stripes-CLI Mocha Tests",
+            "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+            "args": [
+                "--timeout",
+                "999999",
+                "--recursive",
+                "${workspaceFolder}/test"
+            ],
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Serve from APP",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": [ "serve"],
+            "cwd": "${workspaceFolder}/../ui-users"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Serve from PLATFORM",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": [ "serve", "stripes.config.js"],
+            "cwd": "${workspaceFolder}/../stripes-sample-platform"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Build from PLATFORM",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": [ "build", "stripes.config.js", "--output", "temp"],
+            "cwd": "${workspaceFolder}/../stripes-sample-platform"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "App Create",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": ["app", "create", "hello1", "--desc", "hello1", "--no-install", "--assign", "diku_admin"],
+            "cwd": "${workspaceFolder}/../cli-demo/"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Create Permission",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": ["perm", "create", "module.hello-world.enabled", "--push", "--user", "diku_admin"],
+            "cwd": "${workspaceFolder}/../cli-demo/ui-hello-world"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Assign Permission",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": ["perm", "assign", "--name", "module.hello-world.enabled", "--user", "diku_admin"],
+            "cwd": "${workspaceFolder}/../cli-demo/ui-hello-world"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Mod Remove",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": ["mod", "remove"],
+            "cwd": "${workspaceFolder}/../cli-demo/ui-hello-world"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Alias from PLATFORM",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": [ "alias", "add", "@folio/eholdings", "../ui-eholdings"],
+            "cwd": "${workspaceFolder}/../stripes-sample-platform"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Status from APP",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": [ "status"],
+            "cwd": "${workspaceFolder}/../ui-users"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Status from PLATFORM",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": [ "status", "stripes.config.js"],
+            "cwd": "${workspaceFolder}/../stripes-sample-platform"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test Karma from APP",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": [ "test", "karma", "demo/stripes.config.js"],
+            "cwd": "${workspaceFolder}/../ui-eholdings"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test Nightmare from APP",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": [ "test", "nightmare", "--run=demo"],
+            "cwd": "${workspaceFolder}/../ui-users"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Workspace Create",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": [ "workspace" , "create", "--modules", "ui-users", "stripes-components", "--no-install", "--no-clone"],
+            "cwd": "${workspaceFolder}/../cli-demo"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Platform Clean",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": [ "platform" , "clean", "--no-install"],
+            "cwd": "${workspaceFolder}/../cli-demo/stripes/stripes-sample-platform"
+        },
+    ]
+}

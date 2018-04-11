@@ -1,7 +1,7 @@
 # Stripes CLI Developer's Guide
 
 * [Introduction](#introduction)
-* [Development installation](#development-installation)
+* [Development Installation](#development-installation)
 * [Running tests](#running-tests)
 * [Code organization](#code-organization)
 * [Commands](#commands)
@@ -12,6 +12,8 @@
 * [Plugins](#plugins)
 * [Documentation](#documentation)
 * [Debugging](#debugging)
+    * [Visual Studio Code](#visual-studio-code)
+    * [Stripes-Core build logic](#stripes-core-build-logic)
 
 ## Introduction
 
@@ -286,5 +288,40 @@ perl md2toc -l 2 doc/commands.md
 
 ## Debugging
 
-TODO: Document
+TODO: Document setting of DEBUG environment variable.
 
+
+### Visual Studio Code
+
+Included in the Stripes-CLI repository is a Visual Studio Code `launch.json` configuration making debugging a command or Stripes build easy.  This file contains the debug configuration of several sample CLI commands as well as the CLI's own unit tests. No longer will you be littering your code with `console.log()` statements to isolate an issue!  
+
+Pay careful attention to the current working directory, `cwd`, defined for each configuration as this may not match an app or platform on your current system.  Modify the `cwd` to a suitable (and often temporary) path.  This will be the path in which the CLI is invoked from via VSCode.  It is necessary for determining proper context.
+
+Example configuration:
+```json
+{
+  "type": "node",
+  "request": "launch",
+  "name": "Serve from PLATFORM",
+  "program": "${workspaceFolder}/lib/stripes-cli.js",
+  "args": [ "serve", "stripes.config.js"],
+  "cwd": "${workspaceFolder}/../stripes-sample-platform"
+},
+```
+
+Modify the `args` property to include the command name and any command options desired.  For options, separate out the key from the value.  For example, `--user diku_admin` will have two entries in the array, `--user` and `diku_admin`.
+
+```
+  "args": ["perm", "create", "module.hello-world.enabled", "--push", "--user", "diku_admin"],
+```
+
+To debug with VSCode, set a breakpoint on the desired command or unit test.  For commands, it is often best to start at the top of the handler, for example, in `lib/commands/serve.js`.  Next, from the debug menu, select the appropriate configuration and click play.
+
+In situations where the handler is not invoked as expected, check your input in `args`.  Also, try adding `--no-interactive` to ensure the debugger is not improperly handling interactive input.  You can always set the breakpoint in `lib/stripes-cli.js` as the very first point of entry.
+
+
+### Stripes-Core build logic
+
+The version of stripes-core in use by the CLI could vary depending on your CLI install, app, platform, or workspace configuration.  The easiest way to ensure your stripes-core breakpoints will be hit properly is to initiate debugging in the CLI using the `Stripes Serve from PLATFORM` or `Stripes Serve from APP` configuration.  Set your breakpoint at the end of the `serve` command handler where the stripes-core API, `stripes.api.serve(...)`, is invoked:
+
+From there, simply step into the stripes-core code.  VSCode will open the version of stripes-core in use.  Once a stripes-core file is open, inspect its path and set breakpoints on any other desired files found within the stripes-core's `webpack` directory.
