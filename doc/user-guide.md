@@ -219,7 +219,7 @@ From here you can immediately start [running your app](#running-your-app), but i
 stripes app create "Hello World" --assign diku_admin
 ```
 
-In the above command, after creating an app and installing dependencies, `--assign` will first post the module descriptor to Okapi and enable the module for the tenant.  Next, it will assign the new app's default permissions to the user `diku_admin`.  See [assigning permissions](#assigning-permissions) below for details on how to perform these operations independently, or to add permissions later on during development.
+In the above command, after creating an app and installing dependencies, `--assign` will first post the module descriptor to Okapi and then enable the module for the tenant.  Next, it will assign the new app's default permissions to the user `diku_admin`.  See [assigning permissions](#assigning-permissions) below for details on how to perform these operations independently, or to add permissions later on during development.
 
 
 ### Assigning permissions
@@ -334,7 +334,7 @@ Prerequisites:  The following assumes an existing Okapi backend, such as the FOL
 
 ### Environment setup
 
-The easiest way to manage all the apps within a plaform is with a [Yarn workspace](https://yarnpkg.com/lang/en/docs/workspaces/).  The CLI will create one for you and install UI modules with its own `workspace` command.
+The easiest way to manage all the apps within a platform is with a [Yarn workspace](https://yarnpkg.com/lang/en/docs/workspaces/).  The CLI's `workspace` command will help set up a workspace-based development environment that is ready to go.
 
 From a suitable directory, run the following:
 ```

@@ -350,7 +350,7 @@ stripes workspace
 ```
 Create an "temp" dir and prompt for modules:
 ```
-stripes workspace temp
+stripes workspace --dir temp
 ```
 Create and select ui-users and stripes-core:
 ```
@@ -369,7 +369,7 @@ stripes workspace --no-install
 
 ## `platform` command
 
-Commands to create and manage stripes UI platforms
+Commands to manage stripes UI platforms
 
 Usage:
 ```
