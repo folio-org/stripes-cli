@@ -216,10 +216,10 @@ From here you can immediately start [running your app](#running-your-app), but i
 *Tip:* If you've already [logged into Okapi](#interacting-with-okapi), you can do this all with one command:
 
 ```
-stripes app create "Hello World" --install --push --assign diku_admin
+stripes app create "Hello World" --assign diku_admin
 ```
 
-In the above command, after creating an app and installing dependencies, `--push` will post the module descriptor to Okapi and enable the module for the tenant.  Next, `--assign` will assign the new app's default permissions to the user `diku_admin`.  See [assigning permissions](#assigning-permissions) below for details on how to perform these operations independently, or to add permissions later on during development.
+In the above command, after creating an app and installing dependencies, `--assign` will first post the module descriptor to Okapi and enable the module for the tenant.  Next, it will assign the new app's default permissions to the user `diku_admin`.  See [assigning permissions](#assigning-permissions) below for details on how to perform these operations independently, or to add permissions later on during development.
 
 
 ### Assigning permissions

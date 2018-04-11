@@ -86,21 +86,24 @@ Positional | Description | Type | Info
 Option | Description | Type | Info
 ---|---|---|---
 `--desc` | Description of the app | string | 
-`--install` | Yarn install dependencies | boolean | 
-`--push` | Push new app module descriptor to Okapi (use "mod add" to do so later) | boolean | 
-`--assign` | Assign new app permission to the given user (requires --push) | string | 
+`--install` | Yarn install dependencies | boolean | default: true
+`--assign` | Assign new app permission to the given user (includes pushing module descriptor to Okapi and enabling for tenant) | string | 
 
 
 
 Examples:
 
-Create new Stripes UI app and directory:
+Create new Stripes UI app, directory, and install dependencies:
 ```
 stripes app create "Hello World"
 ```
-Create new Stripes UI app, directory, and install dependencies:
+Create app and assign permissions to user diku_admin:
 ```
-stripes app create "Hello World" --install
+stripes app create "Hello World" --assign diku_admin
+```
+Create new Stripes UI app, but do not install dependencies:
+```
+stripes app create "Hello World" --no-install
 ```
 
 

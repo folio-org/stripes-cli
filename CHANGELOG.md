@@ -16,6 +16,7 @@
 * New `okapi token` command to retrieve CLI's stored token, STCLI-43
 * Maintain user-supplied module config in app context, STCLI-44
 * New `workspace` command, STCLI-41
+* Simplify `app create` options, STLCI-46
 
 
 ## [1.0.0](https://github.com/folio-org/stripes-cli/tree/v1.0.0) (2018-02-08)
