@@ -18,6 +18,7 @@
 * New `workspace` command, STCLI-41
 * Fix issue assigning isGlobalYarn to context, STCLI-45
 * Simplify `app create` options, STLCI-46
+* Static upgrade message to omit false npm reference, STCLI-34
 
 
 ## [1.0.0](https://github.com/folio-org/stripes-cli/tree/v1.0.0) (2018-02-08)
