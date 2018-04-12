@@ -1,6 +1,5 @@
 const expect = require('chai').expect;
 const webpackCommon = require('../lib/webpack-common');
-const path = require('path');
 
 describe('The webpack-common module', function () {
   beforeEach(function () {

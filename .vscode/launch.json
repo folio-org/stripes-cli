@@ -130,5 +130,13 @@
             "args": [ "platform" , "clean", "--no-install"],
             "cwd": "${workspaceFolder}/../cli-demo/stripes/stripes-sample-platform"
         },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Platform Pull",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": [ "platform" , "pull"],
+            "cwd": "${workspaceFolder}/../stripes-sample-platform"
+        },
     ]
 }
