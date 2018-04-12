@@ -1,13 +1,14 @@
 # Stripes CLI Developer's Guide
 
 * [Introduction](#introduction)
-* [Development Installation](#development-installation)
+* [Development installation](#development-installation)
 * [Running tests](#running-tests)
 * [Code organization](#code-organization)
 * [Commands](#commands)
     * [Options](#options)
     * [Interactive input](#interactive-input)
     * [Grouping](#grouping)
+* [Logging](#logging)
 * [Okapi Client](#okapi-client)
 * [Plugins](#plugins)
 * [Documentation](#documentation)
@@ -22,7 +23,7 @@ The Stripes CLI is a command-line interface that runs using Node.  It enhances t
 Stripes CLI uses the [Yargs](https://github.com/yargs/yargs/) framework for defining commands and [Inquirer](https://www.npmjs.com/package/inquirer) for accepting interactive input.  In addition to providing a convention for defining commands and options, Yargs offers great built-in help.
 
 
-## Development Installation
+## Development installation
 
 To develop Stripes CLI, first clone the repo.  Although not required, it helps to install the Stripes globally with NPM.  This will put "stripes" in your path so it can easily be run from anywhere.
 
@@ -201,6 +202,26 @@ stripes mod remove
 
 Yargs will surface descriptions for each command in the `mod` directory with the help output for `stripes mod --help`.
 
+
+## Logging
+
+Logging is instrumented with the [debug](https://www.npmjs.com/package/debug) utility. All logs within the CLI pass through `lib/cli/logger.js`, a wrapper around `debug`, to ensure proper namespace assignment.
+
+To add a logger to code, require and invoke it:
+```javascript
+const logger = require('./cli/logger')();
+logger.log('a message');
+```
+
+Optionally, pass the name of a feature or category when invoking the logger.  This is useful for filtering log output.
+```javascript
+const okapiLogger = require('./cli/logger')('okapi');
+okapiLogger.log('a message about Okapi');
+```
+
+See [debugging](#debugging) below for details on viewing log output.
+
+
 ## Okapi Client
 
 TODO: Document
@@ -241,7 +262,6 @@ const servePlugin = {
   },
 }
 ```
-
 
 
 ## Documentation
@@ -288,12 +308,40 @@ perl md2toc -l 2 doc/commands.md
 
 ## Debugging
 
-TODO: Document setting of DEBUG environment variable.
+Stripes-CLI implements [debug](https://www.npmjs.com/package/debug) for diagnostic logging.  This can be a useful starting point to diagnose errors.
+
+Debug output is enabled by setting the `DEBUG` environment variable.  The value of `DEBUG` is a comma-separated list of namespaces you wish to view debug output for.  By convention, namespaces match the supporting package name.  Features within a namespace may be separated by a colon.  The wildcard `*` is supported.
+
+For example, to view all stripes-cli debug logs:
+```
+DEBUG=stripes-cli* stripes serve
+```
+
+To view only the cli's calls to Okapi:
+```
+DEBUG=stripes-cli:okapi stripes serve
+```
+
+To view all stripes-cli and stripes-core debug logs:
+```
+DEBUG=stripes-cli*,stripes-core* stripes serve
+```
+
+Alternatively set the wildcard on stripes:
+```
+DEBUG=stripes* stripes serve
+```
+
+It is also possible set the wildcard for all namespaces:
+```
+DEBUG=* stripes serve
+```
+**Note:** The above will enable logging for all packages that happen to be instrumented with `debug`, including `express`.
 
 
 ### Visual Studio Code
 
-Included in the Stripes-CLI repository is a Visual Studio Code `launch.json` configuration making debugging a command or Stripes build easy.  This file contains the debug configuration of several sample CLI commands as well as the CLI's own unit tests. No longer will you be littering your code with `console.log()` statements to isolate an issue!  
+Included in the Stripes-CLI repository is a Visual Studio Code `launch.json` configuration which makes debugging a command or Stripes build easy.  This file contains the debug configuration of several sample CLI commands as well as the CLI's own unit tests. No longer will you be littering your code with `console.log()` statements to isolate an issue!  
 
 Pay careful attention to the current working directory, `cwd`, defined for each configuration as this may not match an app or platform on your current system.  Modify the `cwd` to a suitable (and often temporary) path.  This will be the path in which the CLI is invoked from via VSCode.  It is necessary for determining proper context.
 
@@ -315,13 +363,13 @@ Modify the `args` property to include the command name and any command options d
   "args": ["perm", "create", "module.hello-world.enabled", "--push", "--user", "diku_admin"],
 ```
 
-To debug with VSCode, set a breakpoint on the desired command or unit test.  For commands, it is often best to start at the top of the handler, for example, in `lib/commands/serve.js`.  Next, from the debug menu, select the appropriate configuration and click play.
+To debug with VSCode, set a breakpoint on the desired command or unit test.  For CLI commands, it is often best to start at the top of the handler, for example, in `lib/commands/serve.js`.  Next, from the debug menu, select the appropriate configuration and click play.
 
 In situations where the handler is not invoked as expected, check your input in `args`.  Also, try adding `--no-interactive` to ensure the debugger is not improperly handling interactive input.  You can always set the breakpoint in `lib/stripes-cli.js` as the very first point of entry.
 
 
 ### Stripes-Core build logic
 
-The version of stripes-core in use by the CLI could vary depending on your CLI install, app, platform, or workspace configuration.  The easiest way to ensure your stripes-core breakpoints will be hit properly is to initiate debugging in the CLI using the `Stripes Serve from PLATFORM` or `Stripes Serve from APP` configuration.  Set your breakpoint at the end of the `serve` command handler where the stripes-core API, `stripes.api.serve(...)`, is invoked:
+The version of stripes-core in use by the CLI could vary depending on your CLI install, app, platform, or workspace configuration.  The easiest way to ensure your stripes-core breakpoints will be hit properly is to initiate debugging in the CLI using the `Stripes Serve from PLATFORM` or `Stripes Serve from APP` configuration.  Set your breakpoint at the end of the `serve` command handler where the stripes-core API, `stripes.api.serve(...)`, is invoked.
 
-From there, simply step into the stripes-core code.  VSCode will open the version of stripes-core in use.  Once a stripes-core file is open, inspect its path and set breakpoints on any other desired files found within the stripes-core's `webpack` directory.
+From there, simply step into the stripes-core code.  VSCode will open the version of stripes-core in use.  Once a stripes-core file is open, inspect its path, then open and set breakpoints on any other desired files found within the stripes-core's `webpack` directory.
