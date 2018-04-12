@@ -492,19 +492,36 @@ One quick way to limit the build output, is to limit the number of languages inc
 
 ## Viewing diagnostic output
 
-TODO: Implement and document `DEBUG=stripes`
+The CLI's `status` command is a helpful starting point for diagnosing errors.  Among other things, `status` will output which stripes-core is in use, the stripes config for the current context and list any aliases. 
+
+```
+stripes status stripes.config.js
+```
+
+To view stripes-cli and stripes-core diagnostic output for any command while it is running, set the `DEBUG` environment variable to `stripes*`.  For example:
+```
+DEBUG=stripes* stripes serve stripes.config.js
+```
+
+On Windows set the environment variable using the `set` command:
+```
+set DEBUG=stripes*
+```
+
+See the [debugging section](./dev-guide.md#debugging) in the CLI developer guide for more information on `DEBUG` usage.
+
 
 ### Observing Okapi requests
 
-Monitoring Okapi requests for any Stripes CLI command is easy. Set the DEBUG environment variable to "okapi".  This can be done by prefixing any CLI command with `DEBUG=okapi`.  For example:
+Monitoring Okapi requests for any Stripes CLI command is easy. Set the DEBUG environment variable to `stripes-cli:okapi`.  This can be done by prefixing any CLI command with `DEBUG=stripes-cli:okapi`.  For example:
 
 ```
-DEBUG=okapi stripes okapi login diku_admin
+DEBUG=stripes-cli:okapi stripes okapi login diku_admin
 ```
 
 This will show what Okapi endpoints were called during a CLI command and how Okapi responded.
 ```
-  okapi ---> POST http://localhost:9130/authn/login +0ms
-  okapi <--- 201 Created +136ms
+  stripes-cli:okapi ---> POST http://localhost:9130/authn/login +0ms
+  stripes-cli:okapi <--- 201 Created +136ms
 User diku_admin logged into tenant diku on Okapi http://localhost:9130
 ```
