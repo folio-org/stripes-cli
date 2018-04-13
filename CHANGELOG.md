@@ -1,6 +1,8 @@
 # Change history for stripes-cli
 
-## 1.1.0 (IN PROGRESS)
+## 1.2.0 (IN PROGRESS)
+
+## 1.1.0 (https://github.com/folio-org/stripes-cli/tree/v1.1.0) (2018-4-13)
 
 * Add option to serve an existing build. STCLI-26
 * When a config file with modules is provided, do not automatically apply aliases to module config. STCLI-18
