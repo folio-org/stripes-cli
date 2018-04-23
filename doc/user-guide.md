@@ -60,9 +60,9 @@ Notes:
 * String options can be wrapped in quotes when spaces are desired. This is helpful for descriptions.
 * Array option values are space-separated.
 
-Example passing array values for `modules` and false for `workspace`:
+Example passing array values for `modules` and false for `install`:
 ```
-stripes platform create --modules ui-users stripes-core stripes-components --no-workspace
+stripes workspace --modules ui-users stripes-core stripes-components --no-install
 ```
 
 
@@ -78,7 +78,7 @@ Related CLI commands are often grouped together.  This for organizational purpos
 
 Example "sub-commands" of the `platform` command:
 ```
-stripes platform create
+stripes platform clean
 stripes platform pull
 ```
 
