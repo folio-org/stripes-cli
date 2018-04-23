@@ -360,7 +360,7 @@ Create and select all available modules:
 ```
 stripes workspace --modules all
 ```
-Create without a installing dependencies:
+Create without installing dependencies:
 ```
 stripes workspace --no-install
 ```
