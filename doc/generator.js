@@ -84,7 +84,7 @@ function getOptionTable(input, isPositional) {
   const groups = input.match(groupRegex);
   let optionsTable = '';
   if (groups && groups.length) {
-    optionsTable += `${isPositional ? 'Positional' : 'Option'} | Description | Type | Info\n`;
+    optionsTable += `${isPositional ? 'Positional' : 'Option'} | Description | Type | Notes\n`;
     optionsTable += '---|---|---|---\n';
     groups.forEach((group) => {
       optionsTable += getOptions(group);

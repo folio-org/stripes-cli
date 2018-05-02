@@ -37,7 +37,7 @@ This following command documentation is largely generated from the CLI's own bui
 
 The following options are available for all commands:
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--help` | Show help | boolean | 
 `--version` | Show version number | boolean | 
@@ -78,12 +78,12 @@ stripes app create [name]
 ```
 
 
-Positional | Description | Type | Info
+Positional | Description | Type | Notes
 ---|---|---|---
 `name` | Name of the app | string | 
 
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--desc` | Description of the app | string | 
 `--install` | Yarn install dependencies | boolean | default: true
@@ -117,12 +117,12 @@ stripes serve [configFile]
 ```
 
 
-Positional | Description | Type | Info
+Positional | Description | Type | Notes
 ---|---|---|---
 `configFile` | File containing a Stripes tenant configuration | string | 
 
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--uiDev` | Include Stripes ui-developer tools (app context) | boolean | 
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean | 
@@ -166,13 +166,13 @@ stripes build [configFile] [outputPath]
 ```
 
 
-Positional | Description | Type | Info
+Positional | Description | Type | Notes
 ---|---|---|---
 `configFile` | File containing a Stripes tenant configuration | string | 
 `outputPath` | Directory to place build output | string | 
 
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
@@ -214,7 +214,7 @@ Sub-commands:
 * `stripes test nightmare [configFile]`
 
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--port` | Development server port | number | default: 3000 
 `--host` | Development server host | string | 
@@ -244,12 +244,12 @@ stripes test nightmare [configFile]
 ```
 
 
-Positional | Description | Type | Info
+Positional | Description | Type | Notes
 ---|---|---|---
 `configFile` | File containing a Stripes tenant configuration | string | 
 
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--port` | Development server port | number | default: 3000 
 `--host` | Development server host | string | 
@@ -277,12 +277,12 @@ stripes test karma [configFile]
 ```
 
 
-Positional | Description | Type | Info
+Positional | Description | Type | Notes
 ---|---|---|---
 `configFile` | File containing a Stripes tenant configuration | string | 
 
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--port` | Development server port | number | default: 3000 
 `--host` | Development server host | string | 
@@ -310,12 +310,12 @@ Usage:
 stripes status [configFile]
 ```
 
-Positional | Description | Type | Info
+Positional | Description | Type | Notes
 ---|---|---|---
 `configFile` | File containing a Stripes tenant configuration | string | 
 
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
@@ -332,9 +332,9 @@ Usage:
 stripes workspace
 ```
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
-`--dir` | Directory to create | string | 
+`--dir` | Directory to create | string | default: stripes
 `--modules` | Stripes modules to include | array | 
 `--default.okapi` | Default Okapi URL for CLI config | string | default: http://localhost:9130
 `--default.tenant` | Default tenant for CLI config | string | default: diku
@@ -411,7 +411,7 @@ stripes platform clean
 ```
 
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--install` | Install dependencies after cleaning | boolean | default: false 
 
@@ -446,7 +446,7 @@ stripes alias <sub> [mod] [path]
 ```
 
 
-Positional | Description | Type | Info 
+Positional | Description | Type | Notes 
 ---|---|---|---
 `sub` | Alias operation | string | (*) choices: "add", "list", "remove", "clear"
 `mod` | UI module to alias | string | 
@@ -485,13 +485,13 @@ stripes okapi login <username> [password]
 ```
 
 
-Positional | Description | Type | Info
+Positional | Description | Type | Notes
 ---|---|---|---
 `username` | Okapi tenant username | string | (*) 
 `password` | Okapi tenant password | string | 
 
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | (*) 
 `--tenant` | Specify a tenant ID | string | (*) 
@@ -555,7 +555,7 @@ Usage:
 stripes mod add
 ```
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
@@ -575,7 +575,7 @@ Usage:
 stripes mod remove
 ```
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
@@ -597,7 +597,7 @@ stripes mod enable
 ```
 
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
@@ -619,7 +619,7 @@ Usage:
 stripes mod disable
 ```
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
@@ -641,7 +641,7 @@ stripes mod update
 ```
 
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
@@ -676,12 +676,12 @@ stripes perm create [name]
 ```
 
 
-Positional | Description | Type | Info
+Positional | Description | Type | Notes
 ---|---|---|---
 `name` | Name of the permission | string | 
 
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--desc` | Description of the permission | string | 
 `--visible` | Permission is visible in the UI | boolean | default: true 
@@ -711,7 +711,7 @@ Usage:
 stripes perm assign
 ```
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--name` | Name of the permission | string | 
 `--user` | Username to assign permission to | string | alias: assign  
@@ -732,7 +732,7 @@ Usage:
 stripes perm view
 ```
 
-Option | Description | Type | Info
+Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
