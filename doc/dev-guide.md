@@ -25,16 +25,18 @@ Stripes CLI uses the [Yargs](https://github.com/yargs/yargs/) framework for defi
 
 ## Development installation
 
-To develop Stripes CLI, first clone the repo.  Although not required, it helps to install the Stripes globally with NPM.  This will put "stripes" in your path so it can easily be run from anywhere.
+To develop Stripes CLI, first clone the repo and then `yarn install` its dependencies:
 
 ```
 git clone https://github.com/folio-org/stripes-cli.git
 cd stripes-cli
-npm install -g
+yarn install
 ```
 
-Note: NPM is used here as it appears Yarn does not have an equivalent for globally installing a local module.  Really all we need out of this operation is the global symlink.  The symlink could be created manually and the dependencies installed with Yarn.
-
+Then create a link to `lib/stripes-cli.js` in your path so stripes can easily be run from anywhere.
+```
+ln -s ./lib/stripes-cli.js /usr/local/bin/stripes
+```
 
 ## Running tests
 
