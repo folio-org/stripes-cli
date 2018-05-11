@@ -1,6 +1,7 @@
 # Change history for stripes-cli
 
 ## 1.2.0 (IN PROGRESS)
+* Exit process when Nightmare tests pass, fixes STCLI-49
 
 ## 1.1.0 (https://github.com/folio-org/stripes-cli/tree/v1.1.0) (2018-4-13)
 
