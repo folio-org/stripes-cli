@@ -5,6 +5,7 @@ This following command documentation is largely generated from the CLI's own bui
 * [Common options](#common-options)
 * [`app` command](#app-command)
     * [`app create` command](#app-create-command)
+    * [`app perms` command](#app-perms-command)
 * [`serve` command](#serve-command)
 * [`build` command](#build-command)
 * [`test` command (work in progress)](#test-command-work-in-progress)
@@ -27,6 +28,9 @@ This following command documentation is largely generated from the CLI's own bui
     * [`mod enable` command](#mod-enable-command)
     * [`mod disable` command](#mod-disable-command)
     * [`mod update` command](#mod-update-command)
+    * [`mod descriptor` command](#mod-descriptor-command)
+    * [`mod view` command](#mod-view-command)
+    * [`mod install` command (work in progress)](#mod-install-command-work-in-progress)
 * [`perm` command](#perm-command)
     * [`perm create` command](#perm-create-command)
     * [`perm assign` command](#perm-assign-command)
@@ -66,6 +70,7 @@ stripes app <command>
 
 Sub-commands:
 * `stripes app create [name]`
+* `stripes app perms`
 
 
 ### `app create` command
@@ -90,7 +95,6 @@ Option | Description | Type | Notes
 `--assign` | Assign new app permission to the given user (includes pushing module descriptor to Okapi and enabling for tenant) | string | 
 
 
-
 Examples:
 
 Create new Stripes UI app, directory, and install dependencies:
@@ -104,6 +108,26 @@ stripes app create "Hello World" --assign diku_admin
 Create new Stripes UI app, but do not install dependencies:
 ```
 stripes app create "Hello World" --no-install
+```
+
+### `app perms` command
+
+View list of permissions for the current app (app context)
+
+Usage:
+```
+stripes app perms
+```
+
+Examples:
+
+View current app permissions:
+```
+stripes app perms
+```
+Assign current app permissions to user diku_admin:
+```
+stripes app perms | stripes perm assign --user diku_admin
 ```
 
 
@@ -541,10 +565,13 @@ stripes mod <command>
 
 Sub-commands:
 * `stripes mod add`
+* `stripes mod descriptor`
 * `stripes mod disable`
 * `stripes mod enable`
+* `stripes mod install`
 * `stripes mod remove`
 * `stripes mod update`
+* `stripes mod view`
 
 ### `mod add` command
 
@@ -601,18 +628,28 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
+`--ids` | Module descriptor ids | array | supports stdin
 
 
 Examples:
 
+Enable the current ui-module (app context):
 ```
-stripes mod enable
+stripes mod enable --tenant diku
+```
+Enable module ids "one" and "two" for tenant diku:
+```
+stripes mod enable --ids one two --tenant diku
+```
+Enable module ids "one" and "two" for tenant diku with stdin:
+```
+echo one two | stripes mod enable --tenant diku
 ```
 
 
 ### `mod disable` command
 
-Disable an app module descriptor for a tenant in Okapi
+Disable modules for a tenant in Okapi
 
 Usage:
 ```
@@ -623,11 +660,22 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
+`--ids` | Module descriptor ids | array | supports stdin
+
 
 Examples:
 
+Disable the current ui-module (app context):
 ```
-stripes mod disable
+stripes mod disable --tenant diku
+```
+Disable module ids "one" and "two" for tenant diku:
+```
+stripes mod disable --ids one two --tenant diku
+```
+Disable module ids "one" and "two" for tenant diku with stdin:
+```
+echo one two | stripes mod disable --tenant diku
 ```
 
 
@@ -650,6 +698,85 @@ Option | Description | Type | Notes
 stripes mod update
 ```
 
+### `mod descriptor` command
+
+Generate module descriptors for an app or platform.
+
+Usage:
+```
+stripes mod descriptor
+```
+
+
+Option | Description | Type | Notes
+---|---|---|---
+`--configFile` | File containing a Stripes tenant configuration (platform context only) | string | 
+`--full` | Return full module descriptor JSON | boolean | default: false 
+
+
+Examples:
+
+Display module descriptor id for current app:
+```
+stripes mod descriptor
+```
+Display module descriptor ids for platform:
+```
+stripes mod descriptor --configFile stripes.config.js
+```
+Display full module descriptor as JSON:
+```
+stripes mod descriptor --full
+```
+
+### `mod view` command
+
+View enabled module ids for a tenant in Okapi
+
+Usage:
+```
+stripes mod view
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string | 
+`--tenant` | Specify a tenant ID | string | 
+
+
+Examples:
+
+View enabled module ids for tenant diku:
+```
+stripes mod view --tenant diku
+```
+
+### `mod install` command (work in progress)
+
+Enable, disable, or upgrade one or more modules for a tenant in Okapi (work in progress)
+
+Usage:
+```
+stripes mod install
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string | 
+`--tenant` | Specify a tenant ID | string | 
+`--ids` | Module descriptor ids | array | supports stdin
+
+
+Examples:
+
+Install modules "one" and "two":
+```
+stripes mod install --ids one two --tenant diku
+```
+Install module ids "one" and "two" using stdin:
+```
+echo one two | stripes mod install --tenant diku
+```
 
 ## `perm` command
 
@@ -713,14 +840,21 @@ stripes perm assign
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--name` | Name of the permission | string | 
-`--user` | Username to assign permission to | string | alias: assign  
+`--name` | Name of the permission | string | supports stdin
+`--user` | Username to assign permission to | string | alias: assign
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
 
+
 Examples:
+
+Assign permission to user diku_admin:
 ```
-stripes perm assign
+stripes perm assign --name module.hello-world.enabled --user diku_admin
+```
+Assign permissions from user jack to user jill:
+```
+stripes perm view --user jack | stripes perm assign --user jill
 ```
 
 ### `perm view` command
