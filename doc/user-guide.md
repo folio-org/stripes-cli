@@ -190,7 +190,7 @@ Prerequisites:  The following assumes an existing Okapi backend, such as the FOL
 
 From a suitable directory, run the following:
 ```
-stripes app create "Hello World --install"
+stripes app create "Hello World" --install
 ```
 
 This generates a skeleton Stripes UI app with sample routes and settings.  The CLI will transform the provided app name, "Hello World", to follow naming conventions where the `ui-` prefix or `@folio` scope is used.
