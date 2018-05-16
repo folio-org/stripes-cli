@@ -24,6 +24,7 @@
 * Static upgrade message to omit false npm reference, STCLI-34
 * Add debug notes and VSCode configuration, STCLI-47
 * Fix --install typo, STCLI-50
+* ui-items has been deprecated
 
 
 ## [1.0.0](https://github.com/folio-org/stripes-cli/tree/v1.0.0) (2018-02-08)
