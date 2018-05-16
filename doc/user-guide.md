@@ -3,7 +3,9 @@
 Note: When serving or building an existing app module that has dependencies on unreleased versions of other Stripes modules, be sure to use the `npm-folioci` registry.  This applies whether you've installed the CLI from `npm-folio` or `npm-folioci`.
 
 * [Using the CLI](#using-the-cli)
+    * [Installation](#installation)
     * [Options](#options)
+    * [Standard input](#standard-input)
     * [Help](#help)
     * [Sub-commands](#sub-commands)
     * [Interactive commands](#interactive-commands)
@@ -44,6 +46,10 @@ Example:
 stripes serve
 ```
 
+### Installation
+
+See the [README](../README.md#installation) for installation and upgrade instructions.
+
 ### Options
 
 Any option can be passed to the CLI either on the command line, as an [environment variable](#environment-variables), or in a `.stripesclirc` [configuration file](#configuration).
@@ -64,6 +70,37 @@ Example passing array values for `modules` and false for `install`:
 ```
 stripes workspace --modules ui-users stripes-core stripes-components --no-install
 ```
+
+### Standard input
+
+Some commands support passing an option via standard input (stdin).  Where supported, `stdin` is typically accepted as a whitespace-delimited (including line breaks) list of values.
+
+For example, a file containing the module descriptor ids, one per line, can be piped to a command using `stdin`.
+
+File: `my-modules`
+```
+folio_users-2.12.2
+folio_inventory-1.0.0
+folio_checkout-1.1.0
+folio_checkin-1.1.0
+```
+
+The above file can be piped to `mod enable` to enable multiple module descriptor ids for a tenant:
+```
+cat my-modules | stripes mod enable --tenant diku
+```
+
+Various commands produce output that is suitable for piping to related commands.  For example, `perm view` will output a list of permission names, one on each line.  This can be optionally be filtered and piped to `perm assign`.
+
+```
+stripes perm view --user jack | grep hello-world | stripes perm assign --user jill
+```
+
+Support for `stdin` is indicated in a command option's notes in the [command reference](./commands.md).
+
+Option | Description | Type | Notes
+---|---|---|---
+`--ids` | Module descriptor ids | array | *supports stdin*
 
 
 ### Help
@@ -412,12 +449,22 @@ stripes okapi logout
 
 ### Managing UI modules
 
-The CLI `mod` command can be used to manage Stripes UI modules for a tenant.  All `mod` commands operate on the app context of the current directory.  Therefore, be sure to `cd` into the desired app directory first.
+The CLI `mod` command can be used to manage Stripes UI modules for a tenant.  All `mod` commands can operate on the app context of the current directory.  Therefore, be sure to `cd` into the desired app directory when working with a single app. The `mod enable` and `mod disable` commands have recently added support for [stdin](#standard-input) and can work with multiple modules descriptor ids.
+
+To view the current app's module descriptor:
+```
+stripes mod descriptor --full
+```
 
 To add a module to Okapi and enable it for a tenant:
 ```
 stripes mod add
 stripes mod enable --tenant diku
+```
+
+To enable multiple modules for a tenant given an existing file, `my-modules`, containing module descriptor ids:
+```
+cat my-modules | stripes mod enable --tenant diku
 ```
 
 To remove a module from Okapi:
@@ -436,6 +483,7 @@ stripes mod update
 ```
 Note: At this time, `mod update` will only attempt to disable/enable one tenant (typical development use-case).  Multiple tenants will have to be disabled manually.
 
+
 ### Managing UI permissions
 
 Create new UI permissions with the following command:
@@ -449,7 +497,7 @@ If the `--push` and `--assign` options are omitted (or the permissions were crea
 
 ```
 stripes mod update
-stripes perm assign --name ui-hello-world.example --user diku_admin
+stripes app perms | stripes perms --user diku_admin
 ```
 
 
@@ -524,4 +572,14 @@ This will show what Okapi endpoints were called during a CLI command and how Oka
   stripes-cli:okapi ---> POST http://localhost:9130/authn/login +0ms
   stripes-cli:okapi <--- 201 Created +136ms
 User diku_admin logged into tenant diku on Okapi http://localhost:9130
+```
+
+To avoid having to prefix every command, simply set the DEBUG environment variable accordingly.
+```
+export DEBUG=stripes-cli:okapi
+```
+
+On Windows:
+```
+set DEBUG=stripes-cli:okapi
 ```
