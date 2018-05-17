@@ -7,6 +7,7 @@
 * [Commands](#commands)
     * [Options](#options)
     * [Interactive input](#interactive-input)
+    * [Standard input](#standard-input)
     * [Grouping](#grouping)
 * [Logging](#logging)
 * [Okapi Client](#okapi-client)
@@ -163,6 +164,21 @@ password: {
   },
 },
 ```
+
+### Standard input
+
+To accept standard input (stdin) within a command, wrap the command's handler with one of the CLI's stdin handlers from `lib/cli/stdin-handler.js`.  Available stdin handlers include `stdinStringHandler`, `stdinArrayHandler`, and `stdinJsonHandler` for parsing string, array, and JSON input.  The `stdinArrayHandler` splits on whitespace, including line breaks, to make accepting multi-line input easy. 
+
+When the invoked, each stdin handler will parse standard input and assign the result to the specified option key.  From within the command, simply access the value as you would any other option.
+
+For example, the following will assign `stdin`, parsed as an array, to the `ids` option:
+
+```javascript
+handler: mainHandler(
+  stdinArrayHandler('ids', enableModuleCommand)
+),
+```
+
 
 ### Grouping
 
@@ -338,7 +354,7 @@ It is also possible set the wildcard for all namespaces:
 ```
 DEBUG=* stripes serve
 ```
-**Note:** The above will enable logging for all packages that happen to be instrumented with `debug`, including `express`.
+**Note:** The above will enable logging for all packages that happen to be instrumented with `debug`, including `express` and `babel`.
 
 Some of the available diagnostic output can be lengthy.  The `debug` utility writes to stderr, so if you would like to send this content in a file, you can do so with:
 ```

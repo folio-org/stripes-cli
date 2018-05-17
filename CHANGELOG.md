@@ -2,6 +2,12 @@
 
 ## 1.2.0 (IN PROGRESS)
 * Exit process when Nightmare tests pass, fixes STCLI-49
+* Fix --install typo, STCLI-50
+* Updated ui-module inventory
+* New `mod` commands to generate descriptors and view tenant modules, STCLI-52
+* New `app perms` command to view permissions for an app, STCLI-54
+* Support for stdin, added initially to mod enable/disable and perm assign, STCLI-55
+
 
 ## 1.1.0 (https://github.com/folio-org/stripes-cli/tree/v1.1.0) (2018-4-13)
 
@@ -23,8 +29,6 @@
 * Simplify `app create` options, STLCI-46
 * Static upgrade message to omit false npm reference, STCLI-34
 * Add debug notes and VSCode configuration, STCLI-47
-* Fix --install typo, STCLI-50
-* ui-items has been deprecated
 
 
 ## [1.0.0](https://github.com/folio-org/stripes-cli/tree/v1.0.0) (2018-02-08)
