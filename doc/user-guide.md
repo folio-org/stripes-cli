@@ -497,7 +497,7 @@ If the `--push` and `--assign` options are omitted (or the permissions were crea
 
 ```
 stripes mod update
-stripes app perms | stripes perms --user diku_admin
+stripes app perms | stripes perm assign --user diku_admin
 ```
 
 

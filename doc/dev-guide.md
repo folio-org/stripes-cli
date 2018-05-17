@@ -167,9 +167,11 @@ password: {
 
 ### Standard input
 
-When accepting standard input (stdin), use one of the available handlers in `stdin-handler`.  Available stdin handlers include `stdinStringHandler`, `stdinArrayHandler`, and `stdinJsonHandler` for parsing strings, arrays, and JSON.
+To accept standard input (stdin) within a command, wrap the command's handler with one of the CLI's stdin handlers from `lib/cli/stdin-handler.js`.  Available stdin handlers include `stdinStringHandler`, `stdinArrayHandler`, and `stdinJsonHandler` for parsing string, array, and JSON input.  The `stdinArrayHandler` splits on whitespace, including line breaks, to make accepting multi-line input easy. 
 
-The following example will parse `stdin`, when present, as an array of whitespace-delimited values assign the array to the command's `ids` option:
+When the invoked, each stdin handler will parse standard input and assign the result to the specified option key.  From within the command, simply access the value as you would any other option.
+
+For example, the following will assign `stdin`, parsed as an array, to the `ids` option:
 
 ```javascript
 handler: mainHandler(
