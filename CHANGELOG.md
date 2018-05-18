@@ -7,6 +7,7 @@
 * New `mod` commands to generate descriptors and view tenant modules, STCLI-52
 * New `app perms` command to view permissions for an app, STCLI-54
 * Support for stdin, added initially to mod enable/disable and perm assign, STCLI-55
+* Account for new global Yarn directory on Windows with Yarn >=1.5.1, Fixes STLCI-39
 
 
 ## 1.1.0 (https://github.com/folio-org/stripes-cli/tree/v1.1.0) (2018-4-13)
