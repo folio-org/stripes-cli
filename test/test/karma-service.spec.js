@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const path = require('path');
-const { Server, config } = require('karma');
-const { generateKarmaConfig, runKarmaTests } = require('../../lib/test/run-karma');
+const { config } = require('karma');
+const KarmaService = require('../../lib/test/karma-service');
 
 const webpackStub = {
   entry: 'somewhere',
@@ -9,7 +9,11 @@ const webpackStub = {
 
 const parseConfigSub = (configPath, options) => options;
 
-describe('The run-karma module', function () {
+describe('The karma-service', function () {
+  beforeEach(function () {
+    this.sut = new KarmaService(path.resolve());
+  });
+
   describe('generateKarmaConfig method', function () {
     beforeEach(function () {
       this.karmaOptions = {};
@@ -17,33 +21,49 @@ describe('The run-karma module', function () {
     });
 
     it('applies webpack config', function () {
-      const karmaConfig = generateKarmaConfig(webpackStub, this.karmaOptions);
+      const karmaConfig = this.sut.generateKarmaConfig(webpackStub, this.karmaOptions);
       expect(karmaConfig).to.have.property('webpack').with.property('entry', 'somewhere');
     });
 
     it('applies karma options to the config', function () {
       this.karmaOptions.singleRun = true;
-      const karmaConfig = generateKarmaConfig(webpackStub, this.karmaOptions);
+      const karmaConfig = this.sut.generateKarmaConfig(webpackStub, this.karmaOptions);
       expect(karmaConfig).to.have.property('singleRun', true);
     });
 
     it('defaults to mocha reporter', function () {
-      const karmaConfig = generateKarmaConfig(webpackStub, this.karmaOptions);
+      const karmaConfig = this.sut.generateKarmaConfig(webpackStub, this.karmaOptions);
       expect(karmaConfig).to.have.property('reporters').to.be.an('array').that.includes('mocha');
     });
 
     it('enables the junit reporter', function () {
       this.karmaOptions.reporters = ['junit'];
-      const karmaConfig = generateKarmaConfig(webpackStub, this.karmaOptions);
+      const karmaConfig = this.sut.generateKarmaConfig(webpackStub, this.karmaOptions);
       expect(karmaConfig).to.have.property('reporters').to.be.an('array').that.includes('junit');
       expect(karmaConfig).to.have.property('plugins').to.be.an('array').that.includes('karma-junit-reporter');
     });
 
     it('enables the coverage reporter', function () {
       this.karmaOptions.coverage = true;
-      const karmaConfig = generateKarmaConfig(webpackStub, this.karmaOptions);
+      const karmaConfig = this.sut.generateKarmaConfig(webpackStub, this.karmaOptions);
       expect(karmaConfig).to.have.property('reporters').to.be.an('array').that.includes('coverage');
       expect(karmaConfig).to.have.property('plugins').to.be.an('array').that.includes('karma-coverage');
+    });
+
+    it('applies a local karma config', function () {
+      // Passing __dirname should prompt the service to consider the karma.conf.js within the current test directory.
+      this.sut = new KarmaService(__dirname);
+
+      // Expected from applying local karma.conf.js
+      const globalExpected = {
+        statements: 95,
+        branches: 85,
+        functions: 95,
+        lines: 95,
+      };
+
+      const karmaConfig = this.sut.generateKarmaConfig(webpackStub, this.karmaOptions);
+      expect(karmaConfig).to.have.property('coverageReporter').with.property('check').with.deep.property('global', globalExpected);
     });
   });
 });
