@@ -314,6 +314,7 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean | 
+`--coverage` | Enable Karma coverage reports | boolean | 
 `--karma` | Options passed to Karma using dot-notation and camelCase: --karma.browsers=Chrome --karma.singleRun |  | 
 
 
