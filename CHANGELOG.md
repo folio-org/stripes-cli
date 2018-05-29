@@ -9,6 +9,7 @@
 * Support for stdin, added initially to mod enable/disable and perm assign, STCLI-55
 * Account for new global Yarn directory on Windows with Yarn >=1.5.1, Fixes STLCI-39
 * Add `--coverage` option to test karma command, STCLI-53
+* Add junit reporter and headless Chrome to Karma config for CI, STCLI-56
 
 
 ## 1.1.0 (https://github.com/folio-org/stripes-cli/tree/v1.1.0) (2018-4-13)
