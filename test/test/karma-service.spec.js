@@ -7,7 +7,10 @@ const webpackStub = {
   entry: 'somewhere',
 };
 
-const parseConfigSub = (configPath, options) => options;
+const parseConfigSub = (configPath, options) => {
+  options.set = () => {};
+  return options;
+};
 
 describe('The karma-service', function () {
   beforeEach(function () {

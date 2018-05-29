@@ -15,7 +15,7 @@
     "stripes": "./lib/stripes-cli.js"
   },
   "scripts": {
-    "test": "DEBUG=stripes-cli:karma mocha --recursive",
+    "test": "mocha --recursive",
     "lint": "eslint ./",
     "lint-templates": "eslint ./resources --no-ignore"
   },
