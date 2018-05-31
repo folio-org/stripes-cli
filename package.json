@@ -27,6 +27,7 @@
     "configstore": "^3.1.1",
     "debug": "^3.1.0",
     "find-up": "^2.1.0",
+    "get-stdin": "^6.0.0",
     "global-dirs": "^0.1.1",
     "http-server": "^0.11.1",
     "import-lazy": "^3.1.0",
@@ -61,7 +62,6 @@
     "@folio/eslint-config-stripes": "^1.1.0",
     "chai": "^4.1.2",
     "eslint": "^4.8.0",
-    "get-stdin": "^5.0.1",
     "sinon": "^4.1.4",
     "sinon-chai": "^2.14.0"
   }
