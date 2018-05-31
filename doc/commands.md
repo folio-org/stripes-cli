@@ -587,6 +587,7 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | 
 `--tenant` | Specify a tenant ID | string | 
+`--strict` | Include required interface dependencies | boolean | default: false 
 
 Examples:
 
@@ -713,6 +714,7 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--configFile` | File containing a Stripes tenant configuration (platform context only) | string | 
 `--full` | Return full module descriptor JSON | boolean | default: false 
+`--strict` | Include required interface dependencies | boolean | default: false 
 
 
 Examples:
