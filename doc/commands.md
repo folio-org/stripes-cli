@@ -43,8 +43,8 @@ The following options are available for all commands:
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--help` | Show help | boolean | 
-`--version` | Show version number | boolean | 
+`--help` | Show help | boolean |
+`--version` | Show version number | boolean |
 `--interactive` | Enable interactive input (use --no-interactive to disable) | boolean | default: true
 
 Examples:
@@ -85,14 +85,14 @@ stripes app create [name]
 
 Positional | Description | Type | Notes
 ---|---|---|---
-`name` | Name of the app | string | 
+`name` | Name of the app | string |
 
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--desc` | Description of the app | string | 
+`--desc` | Description of the app | string |
 `--install` | Yarn install dependencies | boolean | default: true
-`--assign` | Assign new app permission to the given user (includes pushing module descriptor to Okapi and enabling for tenant) | string | 
+`--assign` | Assign new app permission to the given user (includes pushing module descriptor to Okapi and enabling for tenant) | string |
 
 
 Examples:
@@ -143,25 +143,24 @@ stripes serve [configFile]
 
 Positional | Description | Type | Notes
 ---|---|---|---
-`configFile` | File containing a Stripes tenant configuration | string | 
+`configFile` | File containing a Stripes tenant configuration | string |
 
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--uiDev` | Include Stripes ui-developer tools (app context) | boolean | 
-`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean | 
-`--port` | Development server port | number | default: 3000 
-`--host` | Development server host | string | 
-`--cache` | Use HardSourceWebpackPlugin cache | boolean | 
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
-`--existing-build` | Serve an existing build from the supplied directory | string | 
-`--prod` | Use production build settings | boolean | 
-`--dev` | Use development build settings | boolean | 
-`--publicPath` | Specify the Webpack publicPath output option | string | 
-`--devtool` | Specify the Webpack devtool for generating source maps | string | 
-`--lint` | Show eslint warnings with build | boolean | 
-`--maxChunks` | Limit the number of Webpack chunks in build output | number | 
+`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--port` | Development server port | number | default: 3000
+`--host` | Development server host | string |
+`--cache` | Use HardSourceWebpackPlugin cache | boolean |
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+`--existing-build` | Serve an existing build from the supplied directory | string |
+`--prod` | Use production build settings | boolean |
+`--dev` | Use development build settings | boolean |
+`--publicPath` | Specify the Webpack publicPath output option | string |
+`--devtool` | Specify the Webpack devtool for generating source maps | string |
+`--lint` | Show eslint warnings with build | boolean |
+`--maxChunks` | Limit the number of Webpack chunks in build output | number |
 
 
 Examples:
@@ -192,24 +191,24 @@ stripes build [configFile] [outputPath]
 
 Positional | Description | Type | Notes
 ---|---|---|---
-`configFile` | File containing a Stripes tenant configuration | string | 
-`outputPath` | Directory to place build output | string | 
+`configFile` | File containing a Stripes tenant configuration | string |
+`outputPath` | Directory to place build output | string |
 
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
-`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean | 
-`--output` | Directory to place build output | string | 
-`--sourcemap` | Include sourcemaps in build output | boolean | 
-`--analyze` | Run the Webpack Bundle Analyzer after build (launches in browser) | boolean | 
-`--prod` | Use production build settings | boolean | 
-`--dev` | Use development build settings | boolean | 
-`--publicPath` | Specify the Webpack publicPath output option | string | 
-`--devtool` | Specify the Webpack devtool for generating source maps | string | 
-`--lint` | Show eslint warnings with build | boolean | 
-`--maxChunks` | Limit the number of Webpack chunks in build output | number | 
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--output` | Directory to place build output | string |
+`--sourcemap` | Include sourcemaps in build output | boolean |
+`--analyze` | Run the Webpack Bundle Analyzer after build (launches in browser) | boolean |
+`--prod` | Use production build settings | boolean |
+`--dev` | Use development build settings | boolean |
+`--publicPath` | Specify the Webpack publicPath output option | string |
+`--devtool` | Specify the Webpack devtool for generating source maps | string |
+`--lint` | Show eslint warnings with build | boolean |
+`--maxChunks` | Limit the number of Webpack chunks in build output | number |
 
 
 Examples:
@@ -240,12 +239,12 @@ Sub-commands:
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--port` | Development server port | number | default: 3000 
-`--host` | Development server host | string | 
-`--cache` | Use HardSourceWebpackPlugin cache | boolean | 
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
-`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean | 
+`--port` | Development server port | number | default: 3000
+`--host` | Development server host | string |
+`--cache` | Use HardSourceWebpackPlugin cache | boolean |
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
 
 
 Examples:
@@ -270,19 +269,19 @@ stripes test nightmare [configFile]
 
 Positional | Description | Type | Notes
 ---|---|---|---
-`configFile` | File containing a Stripes tenant configuration | string | 
+`configFile` | File containing a Stripes tenant configuration | string |
 
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--port` | Development server port | number | default: 3000 
-`--host` | Development server host | string | 
-`--cache` | Use HardSourceWebpackPlugin cache | boolean | 
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
-`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean | 
-`--run` | Name of the test script to run | string | 
-`--show` | Show UI and dev tools while running tests | boolean | 
+`--port` | Development server port | number | default: 3000
+`--host` | Development server host | string |
+`--cache` | Use HardSourceWebpackPlugin cache | boolean |
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--run` | Name of the test script to run | string |
+`--show` | Show UI and dev tools while running tests | boolean |
 
 
 Examples:
@@ -303,19 +302,19 @@ stripes test karma [configFile]
 
 Positional | Description | Type | Notes
 ---|---|---|---
-`configFile` | File containing a Stripes tenant configuration | string | 
+`configFile` | File containing a Stripes tenant configuration | string |
 
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--port` | Development server port | number | default: 3000 
-`--host` | Development server host | string | 
-`--cache` | Use HardSourceWebpackPlugin cache | boolean | 
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
-`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean | 
-`--coverage` | Enable Karma coverage reports | boolean | 
-`--karma` | Options passed to Karma using dot-notation and camelCase: --karma.browsers=Chrome --karma.singleRun |  | 
+`--port` | Development server port | number | default: 3000
+`--host` | Development server host | string |
+`--cache` | Use HardSourceWebpackPlugin cache | boolean |
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--coverage` | Enable Karma coverage reports | boolean |
+`--karma` | Options passed to Karma using dot-notation and camelCase: --karma.browsers=Chrome --karma.singleRun |  |
 
 
 Examples:
@@ -337,14 +336,14 @@ stripes status [configFile]
 
 Positional | Description | Type | Notes
 ---|---|---|---
-`configFile` | File containing a Stripes tenant configuration | string | 
+`configFile` | File containing a Stripes tenant configuration | string |
 
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
-`--platform` | View development platform status | boolean | 
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+`--platform` | View development platform status | boolean |
 
 
 
@@ -360,11 +359,11 @@ stripes workspace
 Option | Description | Type | Notes
 ---|---|---|---
 `--dir` | Directory to create | string | default: stripes
-`--modules` | Stripes modules to include | array | 
+`--modules` | Stripes modules to include | array |
 `--default.okapi` | Default Okapi URL for CLI config | string | default: http://localhost:9130
 `--default.tenant` | Default tenant for CLI config | string | default: diku
-`--clone` | Clone the selected modules's repositories | boolean | default: true 
-`--install` | Install dependencies | boolean | default: true 
+`--clone` | Clone the selected modules's repositories | boolean | default: true
+`--install` | Install dependencies | boolean | default: true
 
 
 Examples:
@@ -438,7 +437,7 @@ stripes platform clean
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--install` | Install dependencies after cleaning | boolean | default: false 
+`--install` | Install dependencies after cleaning | boolean | default: false
 
 
 Examples:
@@ -471,11 +470,11 @@ stripes alias <sub> [mod] [path]
 ```
 
 
-Positional | Description | Type | Notes 
+Positional | Description | Type | Notes
 ---|---|---|---
 `sub` | Alias operation | string | (*) choices: "add", "list", "remove", "clear"
-`mod` | UI module to alias | string | 
-`path` | Relative path to UI module | string | 
+`mod` | UI module to alias | string |
+`path` | Relative path to UI module | string |
 
 
 Examples:
@@ -512,14 +511,14 @@ stripes okapi login <username> [password]
 
 Positional | Description | Type | Notes
 ---|---|---|---
-`username` | Okapi tenant username | string | (*) 
-`password` | Okapi tenant password | string | 
+`username` | Okapi tenant username | string | (*)
+`password` | Okapi tenant password | string |
 
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | (*) 
-`--tenant` | Specify a tenant ID | string | (*) 
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
 
 
 Examples:
@@ -585,9 +584,9 @@ stripes mod add
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
-`--strict` | Include required interface dependencies | boolean | default: false 
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+`--strict` | Include required interface dependencies | boolean | default: false
 
 Examples:
 
@@ -606,8 +605,8 @@ stripes mod remove
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
 
 
 Examples:
@@ -628,8 +627,8 @@ stripes mod enable
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
 `--ids` | Module descriptor ids | array | supports stdin
 
 
@@ -660,8 +659,8 @@ stripes mod disable
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
 `--ids` | Module descriptor ids | array | supports stdin
 
 
@@ -693,8 +692,8 @@ stripes mod update
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
 
 ```
 stripes mod update
@@ -712,9 +711,9 @@ stripes mod descriptor
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--configFile` | File containing a Stripes tenant configuration (platform context only) | string | 
-`--full` | Return full module descriptor JSON | boolean | default: false 
-`--strict` | Include required interface dependencies | boolean | default: false 
+`--configFile` | File containing a Stripes tenant configuration (platform context only) | string |
+`--full` | Return full module descriptor JSON | boolean | default: false
+`--strict` | Include required interface dependencies | boolean | default: false
 
 
 Examples:
@@ -743,8 +742,8 @@ stripes mod view
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
 
 
 Examples:
@@ -765,8 +764,8 @@ stripes mod install
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
 `--ids` | Module descriptor ids | array | supports stdin
 
 
@@ -808,17 +807,17 @@ stripes perm create [name]
 
 Positional | Description | Type | Notes
 ---|---|---|---
-`name` | Name of the permission | string | 
+`name` | Name of the permission | string |
 
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--desc` | Description of the permission | string | 
-`--visible` | Permission is visible in the UI | boolean | default: true 
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
-`--push` | Push the permission to Okapi by adding/updating module descriptor | boolean | default: false 
-`--assign` | Assign the permission to the given user (requires --push) | string | 
+`--desc` | Description of the permission | string |
+`--visible` | Permission is visible in the UI | boolean | default: true
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+`--push` | Push the permission to Okapi by adding/updating module descriptor | boolean | default: false
+`--assign` | Assign the permission to the given user (requires --push) | string |
 
 
 Examples:
@@ -845,8 +844,8 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--name` | Name of the permission | string | supports stdin
 `--user` | Username to assign permission to | string | alias: assign
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
 
 
 Examples:
@@ -871,9 +870,9 @@ stripes perm view
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
-`--user` | Username | string | (*) 
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+`--user` | Username | string | (*)
 
 
 Examples:

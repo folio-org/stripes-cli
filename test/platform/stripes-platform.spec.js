@@ -79,18 +79,6 @@ describe('The stripes-platform', function () {
     });
   });
 
-  describe('applyUiDeveloperTools method', function () {
-    it('adds developer module to config', function () {
-      this.sut.applyUiDeveloperTools();
-      expect(this.sut.config).to.have.property('modules').with.property('@folio/developer');
-    });
-
-    it('adds developer alias', function () {
-      this.sut.applyUiDeveloperTools();
-      expect(this.sut.aliases).to.have.property('@folio/developer').with.match(/node_modules\/@folio\/developer/);
-    });
-  });
-
   describe('applyVirtualPlatform method', function () {
     it('loads validated aliases from service and calls applyAliasesToPlatform', function () {
       this.sandbox.stub(this.sut.aliasService, 'getValidatedAliases').returns('alias-mock');
