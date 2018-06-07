@@ -1,6 +1,9 @@
 # Change history for stripes-cli
 
-## 1.2.0 (IN PROGRESS)
+## 1.3.0 (IN PROGRESS)
+
+
+## [1.2.0](https://github.com/folio-org/stripes-cli/tree/v1.2.0) (2018-06-07)
 * Exit process when Nightmare tests pass, fixes STCLI-49
 * Fix --install typo, STCLI-50
 * Updated ui-module inventory
@@ -12,9 +15,10 @@
 * Add junit reporter and headless Chrome to Karma config for CI, STCLI-56
 * Add `--strict` option to mod add and descriptor commands, STCLI-59
 * Correct get-stdin dependency, fixes STCLI-60
+* Use Node 8 to be in line with stripes-core requirement
 
 
-## 1.1.0 (https://github.com/folio-org/stripes-cli/tree/v1.1.0) (2018-4-13)
+## [1.1.0](https://github.com/folio-org/stripes-cli/tree/v1.1.0) (2018-04-13)
 
 * Add option to serve an existing build. STCLI-26
 * When a config file with modules is provided, do not automatically apply aliases to module config. STCLI-18
