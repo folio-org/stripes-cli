@@ -1,6 +1,7 @@
 # Change history for stripes-cli
 
 ## 1.3.0 (IN PROGRESS)
+* Highlight failed git-pull attempts in a dumb-terminal-friendly way.
 
 
 ## [1.2.0](https://github.com/folio-org/stripes-cli/tree/v1.2.0) (2018-06-07)
@@ -16,7 +17,6 @@
 * Add `--strict` option to mod add and descriptor commands, STCLI-59
 * Correct get-stdin dependency, fixes STCLI-60
 * Use Node 8 to be in line with stripes-core requirement
-* Highlight failed git-pull attempts in a dumb-terminal-friendly way.
 
 
 ## [1.1.0](https://github.com/folio-org/stripes-cli/tree/v1.1.0) (2018-04-13)
