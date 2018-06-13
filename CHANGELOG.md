@@ -2,6 +2,7 @@
 
 ## 1.3.0 (IN PROGRESS)
 * Highlight failed git-pull attempts in a dumb-terminal-friendly way.
+* Directly invoke ui-testing framework, STCLI-5
 
 
 ## [1.2.0](https://github.com/folio-org/stripes-cli/tree/v1.2.0) (2018-06-07)
