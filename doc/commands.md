@@ -793,6 +793,7 @@ stripes perm <command>
 Sub-commands:
 * `stripes perm assign`
 * `stripes perm create [name]`
+* `stripes perm unassign`
 * `stripes perm view`
 
 
@@ -859,6 +860,30 @@ Assign permissions from user jack to user jill:
 ```
 stripes perm view --user jack | stripes perm assign --user jill
 ```
+
+### `perm unassign` command
+Unassign permissions from a user
+
+Usage:
+```
+stripes perm unassign
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--name` | Name of the permission | string | supports stdin
+`--user` | Username to unassign permission from | string |
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+
+
+Examples:
+
+Unassign permission from user diku_admin:
+```
+stripes perm unassign --name module.hello-world.enabled --user diku_admin
+```
+
 
 ### `perm view` command
 
