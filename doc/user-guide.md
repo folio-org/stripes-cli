@@ -329,6 +329,8 @@ stripes test nightmare --run demo --show
 
 The `--run` option specifies the tests, in this case the sample tests included with our app are named "demo".  The `--show` option will display the UI while running the tests.
 
+Additional options specific to the `@folio/ui-testing` framework can be passed in the form of `--uiTest.optionName value`.  For example, to override the default `typeInterval`, pass `--uiTest.typeInterval 50`.  Refer to [@folio/ui-testing](https://github.com/folio-org/ui-testing) for more information on available options.
+
 
 ### Including another Stripes module
 

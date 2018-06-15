@@ -282,6 +282,7 @@ Option | Description | Type | Notes
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
 `--run` | Name of the test script to run | string |
 `--show` | Show UI and dev tools while running tests | boolean |
+`--uiTest` | Additional options for ui-testing framework |  |
 
 
 Examples:
