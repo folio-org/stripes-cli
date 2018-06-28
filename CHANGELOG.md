@@ -5,6 +5,7 @@
 * Invoke Nightmare tests with ui-testing's copy of test-module, STCLI-5
 * Generate HTML coverage reports with Istanbul
 * Add perm unassign command, STCLI-64
+* Prefer local/aliased stripes-core for Nightmare tests, STCLI-69
 
 
 ## [1.2.0](https://github.com/folio-org/stripes-cli/tree/v1.2.0) (2018-06-07)
