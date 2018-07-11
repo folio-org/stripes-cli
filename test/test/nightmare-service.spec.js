@@ -36,6 +36,16 @@ describe('The nightmare-service', function () {
       expectOrdered(this.sut.testArgs, ['--url', 'http://localhost:3000']);
     });
 
+    it('prefers existing --url when supplied', function () {
+      const options = {
+        url: 'http://example.com',
+        host: 'localhost',
+        port: 3000,
+      };
+      this.sut = new NightmareService(context, options);
+      expectOrdered(this.sut.testArgs, ['--url', 'http://example.com']);
+    });
+
     it('generates --run for working directory', function () {
       const options = { run: 'new_user' };
       this.sut = new NightmareService(context, options);
