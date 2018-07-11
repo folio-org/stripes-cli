@@ -282,6 +282,7 @@ Option | Description | Type | Notes
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
 `--run` | Name of the test script to run | string |
 `--show` | Show UI and dev tools while running tests | boolean |
+`--url` | Url of FOLIO UI to run tests against | string | 
 `--uiTest` | Additional options for ui-testing framework |  |
 
 
@@ -289,7 +290,17 @@ Examples:
 
 Serve app and run it's demo.js Nightmare tests:
 ```
-stripes test nightmare --run=demo
+stripes test nightmare --run demo
+```
+
+Run Nightmare tests against an existing instance of FOLIO:
+```
+stripes test nightmare --run demo --url http://localhost:3000
+```
+
+Specify a username via ui-testing options:
+```
+stripes test nightmare --run demo --uiTest.username admin
 ```
 
 ### `test karma` command
