@@ -9,6 +9,7 @@
 * Include extra modules when generating descriptors for a platform, STCLI-65
 * Upgrade to Webpack 4, STCLI-61
 * Support running Nightmare tests against an existing instance of FOLIO, STCLI-63
+* Update wildcard in workspace template to consider all workspace directories
 
 
 ## [1.2.0](https://github.com/folio-org/stripes-cli/tree/v1.2.0) (2018-06-07)
