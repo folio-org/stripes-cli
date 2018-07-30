@@ -149,6 +149,7 @@ Positional | Description | Type | Notes
 Option | Description | Type | Notes
 ---|---|---|---
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--languages` | Languages to include in tenant build | array |
 `--port` | Development server port | number | default: 3000
 `--host` | Development server host | string |
 `--cache` | Use HardSourceWebpackPlugin cache | boolean |
@@ -200,6 +201,7 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--languages` | Languages to include in tenant build | array |
 `--output` | Directory to place build output | string |
 `--sourcemap` | Include sourcemaps in build output | boolean |
 `--analyze` | Run the Webpack Bundle Analyzer after build (launches in browser) | boolean |
@@ -245,6 +247,7 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--languages` | Languages to include in tenant build | array |
 
 
 Examples:
@@ -280,6 +283,7 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--languages` | Languages to include in tenant build | array |
 `--run` | Name of the test script to run | string |
 `--show` | Show UI and dev tools while running tests | boolean |
 `--url` | Url of FOLIO UI to run tests against | string | 
@@ -325,6 +329,7 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--languages` | Languages to include in tenant build | array |
 `--coverage` | Enable Karma coverage reports | boolean |
 `--karma` | Options passed to Karma using dot-notation and camelCase: --karma.browsers=Chrome --karma.singleRun |  |
 
@@ -355,6 +360,8 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
+`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--languages` | Languages to include in tenant build | array |
 `--platform` | View development platform status | boolean |
 
 
