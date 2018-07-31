@@ -539,6 +539,10 @@ Note: If running the analyzer with aliased modules, duplication is likely.  It i
 
 One quick way to limit the build output, is to limit the number of languages included in the build.  This is done my modifying a tenant's Stripes configuration.  See [filtering translations at build time](https://github.com/folio-org/stripes-core/blob/master/doc/dev-guide.md#filtering-translations-at-build-time) of the Stripes developer guide on how to to this.  The result will not only limit translation files, but also locale assets for `react-intl` and `moment` libraries.
 
+Filtering languages can be done with the CLI by specifying the `languages` option which accepts an array of values.  
+```
+stripes build stripes.config.js --languages en es
+```
 
 ## Viewing diagnostic output
 
