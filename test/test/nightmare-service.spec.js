@@ -58,6 +58,41 @@ describe('The nightmare-service', function () {
       expectOrdered(this.sut.testArgs, ['--run', 'WD']);
     });
 
+    it('does not apply working directory token when token is already present', function () {
+      const options = { run: 'WD:110-auth-success' };
+      this.sut = new NightmareService(context, options);
+      expectOrdered(this.sut.testArgs, ['--run', 'WD:110-auth-success']);
+    });
+
+    it('does not apply working directory token when a ui-module is provided', function () {
+      const options = { run: 'users' };
+      this.sut = new NightmareService(context, options);
+      expectOrdered(this.sut.testArgs, ['--run', 'users']);
+    });
+
+    it('does not apply working directory token when module:testScript format is provided', function () {
+      const options = { run: 'moduleA:testX' };
+      this.sut = new NightmareService(context, options);
+      expectOrdered(this.sut.testArgs, ['--run', 'moduleA:testX']);
+    });
+
+    it('generates multiple --run segments of different conditions', function () {
+      const options = { run: 'WD/WD:testX/testY/users/moduleA:testZ' };
+      this.sut = new NightmareService(context, options);
+      expectOrdered(this.sut.testArgs, ['--run', 'WD/WD:testX/WD:testY/users/moduleA:testZ']);
+    });
+
+    it('prefers --uiTest.run when supplied', function () {
+      const options = {
+        run: 'not-this',
+        uiTest: {
+          run: 'users:new_user'
+        }
+      };
+      this.sut = new NightmareService(context, options);
+      expectOrdered(this.sut.testArgs, ['--run', 'users:new_user']);
+    });
+
     it('generates --show and --devTools', function () {
       const options = { show: true };
       this.sut = new NightmareService(context, options);
