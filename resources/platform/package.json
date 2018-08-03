@@ -6,6 +6,9 @@
     "start": "stripes serve stripes.config.js.local",
     "build": "stripes build stripes.config.js"
   },
+  "devDependencies": {
+    "@folio/stripes-cli": "^1.2.0"
+  },
   "dependencies": {
   }
 }

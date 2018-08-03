@@ -149,6 +149,7 @@ Positional | Description | Type | Notes
 Option | Description | Type | Notes
 ---|---|---|---
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--languages` | Languages to include in tenant build | array |
 `--port` | Development server port | number | default: 3000
 `--host` | Development server host | string |
 `--cache` | Use HardSourceWebpackPlugin cache | boolean |
@@ -200,6 +201,7 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--languages` | Languages to include in tenant build | array |
 `--output` | Directory to place build output | string |
 `--sourcemap` | Include sourcemaps in build output | boolean |
 `--analyze` | Run the Webpack Bundle Analyzer after build (launches in browser) | boolean |
@@ -245,6 +247,7 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--languages` | Languages to include in tenant build | array |
 
 
 Examples:
@@ -280,28 +283,37 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--languages` | Languages to include in tenant build | array |
 `--run` | Name of the test script to run | string |
 `--show` | Show UI and dev tools while running tests | boolean |
-`--url` | Url of FOLIO UI to run tests against | string | 
+`--url` | URL of FOLIO UI to run tests against | string | 
+`--local` | Shortcut for --url http://localhost:3000 | boolean | defaults to --host and --port
 `--uiTest` | Additional options for ui-testing framework |  |
 
 
 Examples:
 
-Serve app and run it's demo.js Nightmare tests:
+Serve app or platform and run all of its Nightmare tests:
+```
+stripes test nightmare
+```
+Serve app or platform and run its demo.js Nightmare tests:
 ```
 stripes test nightmare --run demo
 ```
+Run Nightmare tests against a locally hosted instance of FOLIO:
+```
+stripes test nightmare --local
+```
+Run Nightmare tests against an external instance of FOLIO:
+```
+stripes test nightmare --url http://folio-testing.aws.indexdata.com/
+```
+Specify a username via ui-testing's test-module CLI options:
+```
+stripes test nightmare --uiTest.username admin
+```
 
-Run Nightmare tests against an existing instance of FOLIO:
-```
-stripes test nightmare --run demo --url http://localhost:3000
-```
-
-Specify a username via ui-testing options:
-```
-stripes test nightmare --run demo --uiTest.username admin
-```
 
 ### `test karma` command
 Run the current app module's Karma tests
@@ -325,6 +337,7 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--languages` | Languages to include in tenant build | array |
 `--coverage` | Enable Karma coverage reports | boolean |
 `--karma` | Options passed to Karma using dot-notation and camelCase: --karma.browsers=Chrome --karma.singleRun |  |
 
@@ -355,6 +368,8 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
+`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--languages` | Languages to include in tenant build | array |
 `--platform` | View development platform status | boolean |
 
 

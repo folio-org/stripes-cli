@@ -10,6 +10,10 @@
 * Upgrade to Webpack 4, STCLI-61
 * Support running Nightmare tests against an existing instance of FOLIO, STCLI-63
 * Update wildcard in workspace template to consider all workspace directories
+* Apply a default language to generated tenant config for faster build times, STCOR-232
+* Simplify webpack config when testing stripes-components to reduce build time, STCLI-74
+* Improve support for running tests against a platform and its apps, STCLI-76
+* Check for platform first when generating module descriptors, fixes STCLI-77
 
 
 ## [1.2.0](https://github.com/folio-org/stripes-cli/tree/v1.2.0) (2018-06-07)
