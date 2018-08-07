@@ -16,6 +16,7 @@ Note: When serving or building an existing app module that has dependencies on u
     * [CLI Context](#cli-context)
     * [Platforms](#platforms)
     * [Aliases](#aliases)
+* [Development prerequisites](#development-prerequisites)
 * [App development](#app-development)
     * [Creating your app](#creating-your-app)
     * [Assigning permissions](#assigning-permissions)
@@ -216,12 +217,31 @@ There are two methods of adding aliases in the CLI:
 
 1) `.stripesclirc` file - Any aliases defined in a CLI configuration file apply to commands run from the directory containing `.stripesclirc` file.  Use the configuration file when adding aliases in bulk or looking for a consistent set of alias. See the [CLI configuration](#configuration) for more information.
 
+## Development prerequisites
+
+The subsequent development sections assume an existing Okapi backend, such as the [FOLIO testing-backend](https://app.vagrantup.com/folio/boxes/testing-backend) Vagrant box, is installed and running locally for front-end development.  With Vagrant installed, you can set up FOLIO testing-backend with the following commands:
+```
+$ mkdir testing-backend
+$ cd testing-backend
+$ vagrant init folio/testing-backend
+$ vagrant up
+```
+The FOLIO testing-backend vagrant box includes the default tenant, "diku".  See [this stripes-core document](https://github.com/folio-org/stripes-core/blob/master/doc/new-development-setup.md#update-your-vm) for information updating your Vagrant box.
+
+As an alternative to using a local Vagrant box for Okapi, you can develop against an external Okapi instance.  To do this, specify the URL of your Okapi using the `--okapi` option with each command.  This can also be passed via a `.stripesclirc` [configuration file](#configuration).
+
+```json
+{
+  "okapi": "http://your-okapi-host:and-port",
+  "tenant": "your-tenant-id"
+}
+```
 
 ## App development
 
 As a UI app developer, it is often preferred to develop your app independent from an entire platform.  This allows you to focus on your app's own code and not worry about how it is built or integrated within FOLIO.  The Stripes CLI provides all the necessary configuration to develop both new and existing apps in isolation.
 
-Prerequisites:  The following assumes an existing Okapi backend, such as the FOLIO testing-backend Vagrant box, is installed and running locally on your development.  See (TODO: link here) on how to setup a FOLIO testing-backend.
+Prerequisites:  An Okapi backend is required. See [development prerequisites](#development-prerequisites)
 
 ### Creating your app
 
@@ -369,7 +389,7 @@ Note: When adding an alias via the `alias add` command, the alias is considered 
 
 When developing multiple Stripes apps and/or core modules at the same time, it is often desired to work with a platform containing most or all of the available FOLIO Stripes modules.  See [new development setup](https://github.com/folio-org/stripes-core/blob/master/doc/new-development-setup.md) in stripes-core for more details.  The Stripes CLI provides commands to simplify the creation of such platforms, consolidating several of the steps.
 
-Prerequisites:  The following assumes an existing Okapi backend, such as the FOLIO testing-backend Vagrant box, is installed and running locally on your development.  See (TODO: link here) on how to setup a FOLIO testing-backend.
+Prerequisites:  An Okapi backend is required. See [development prerequisites](#development-prerequisites)
 
 ### Environment setup
 

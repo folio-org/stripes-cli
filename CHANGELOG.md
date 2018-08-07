@@ -14,6 +14,7 @@
 * Simplify webpack config when testing stripes-components to reduce build time, STCLI-74
 * Improve support for running tests against a platform and its apps, STCLI-76
 * Check for platform first when generating module descriptors, fixes STCLI-77
+* Support `app create` from within a workspace, STCLI-82
 
 
 ## [1.2.0](https://github.com/folio-org/stripes-cli/tree/v1.2.0) (2018-06-07)
