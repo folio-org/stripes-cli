@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 1.3.0 (IN PROGRESS)
+## [1.3.0](https://github.com/folio-org/stripes-cli/tree/v1.3.0) (2018-08-07)
 
 * Highlight failed git-pull attempts in a dumb-terminal-friendly way.
 * Invoke Nightmare tests with ui-testing's copy of test-module, STCLI-5
