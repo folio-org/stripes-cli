@@ -1,9 +1,11 @@
 # Change history for stripes-cli
 
-## 1.3.0 (IN PROGRESS)
+## [1.3.0](https://github.com/folio-org/stripes-cli/tree/v1.3.0) (2018-08-07)
+
 * Highlight failed git-pull attempts in a dumb-terminal-friendly way.
 * Invoke Nightmare tests with ui-testing's copy of test-module, STCLI-5
 * Generate HTML coverage reports with Istanbul
+* Add non-headless Chrome custom launcher config, STCLI-70
 * Add perm unassign command, STCLI-64
 * Prefer local/aliased stripes-core for Nightmare tests, STCLI-69
 * Include extra modules when generating descriptors for a platform, STCLI-65
@@ -14,10 +16,12 @@
 * Simplify webpack config when testing stripes-components to reduce build time, STCLI-74
 * Improve support for running tests against a platform and its apps, STCLI-76
 * Check for platform first when generating module descriptors, fixes STCLI-77
+* Add `--coverage` option to test nightmare command, STCLI-71 (depends on UITEST-39)
 * Support `app create` from within a workspace, STCLI-82
 
 
 ## [1.2.0](https://github.com/folio-org/stripes-cli/tree/v1.2.0) (2018-06-07)
+
 * Exit process when Nightmare tests pass, fixes STCLI-49
 * Fix --install typo, STCLI-50
 * Updated ui-module inventory
