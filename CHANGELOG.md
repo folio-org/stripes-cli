@@ -1,5 +1,9 @@
 # Change history for stripes-cli
 
+## [1.4.0] (IN PROGRESS)
+* Switched from `karma-coverage` to `karma-coverage-istanbul-reporter`
+
+
 ## [1.3.0](https://github.com/folio-org/stripes-cli/tree/v1.3.0) (2018-08-07)
 
 * Highlight failed git-pull attempts in a dumb-terminal-friendly way.

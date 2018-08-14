@@ -1,5 +1,5 @@
 module.exports = (config) => {
-  config.coverageReporter.check.global = {
+  config.coverageIstanbulReporter.thresholds.global = {
     statements: 95,
     branches: 85,
     functions: 95,

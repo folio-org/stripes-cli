@@ -49,8 +49,8 @@ describe('The karma-service', function () {
     it('enables the coverage reporter', function () {
       this.karmaOptions.coverage = true;
       const karmaConfig = this.sut.generateKarmaConfig(webpackStub, this.karmaOptions);
-      expect(karmaConfig).to.have.property('reporters').to.be.an('array').that.includes('coverage');
-      expect(karmaConfig).to.have.property('plugins').to.be.an('array').that.includes('karma-coverage');
+      expect(karmaConfig).to.have.property('reporters').to.be.an('array').that.includes('coverage-istanbul');
+      expect(karmaConfig).to.have.property('plugins').to.be.an('array').that.includes('karma-coverage-istanbul-reporter');
     });
 
     it('applies a local karma config', function () {
@@ -66,7 +66,7 @@ describe('The karma-service', function () {
       };
 
       const karmaConfig = this.sut.generateKarmaConfig(webpackStub, this.karmaOptions);
-      expect(karmaConfig).to.have.property('coverageReporter').with.property('check').with.deep.property('global', globalExpected);
+      expect(karmaConfig).to.have.property('coverageIstanbulReporter').with.property('thresholds').with.deep.property('global', globalExpected);
     });
   });
 });
