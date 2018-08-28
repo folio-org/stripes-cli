@@ -1,6 +1,8 @@
 # Stripes CLI Troubleshooting
 
-This page contains troubleshooting suggestions and known issues for the CLI.  Refer to [stripes-core's troubleshooting guide](https://github.com/folio-org/stripes-core/blob/master/doc/troubleshooting.md) for more.
+This page contains troubleshooting suggestions and known issues for the CLI.  Refer to [stripes-core's troubleshooting guide](https://github.com/folio-org/stripes-core/blob/master/doc/troubleshooting.md) for general Stripes troubleshooting.
+
+Also refer to the [STCLI project](https://issues.folio.org/browse/STCLI) in the [FOLIO issue tracker](https://dev.folio.org/guidelines/issue-tracker) to review open bugs that may contain relevant notes or workarounds.
 
 
 ## My new Stripes UI app does not show up!
