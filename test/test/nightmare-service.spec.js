@@ -130,7 +130,7 @@ describe('The nightmare-service', function () {
     it('passes test-module to mocha', function () {
       this.sut.runNightmareTests();
       const testArgs = this.sut.runProcess.args[0][1];
-      expect(testArgs[0]).to.include('ui-testing/test-module.js');
+      expect(testArgs[0]).to.include('stripes-testing/test-module.js');
     });
 
     it('passes test args to mocha', function () {
