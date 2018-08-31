@@ -5,6 +5,7 @@
 * Resolve issue causing nightmare command to throw an error even when tests pass, fixes STCLI-86
 * STCLI-88 resolved. Resolved an issue where command test nightmare would not return process error when failing
 * Enable shell when spawning child process on Windows, fixes STCLI-89
+* Replace `ui-testing#framework-only` with `stripes-testing`, STCLI-92
 
 
 ## [1.3.0](https://github.com/folio-org/stripes-cli/tree/v1.3.0) (2018-08-07)
