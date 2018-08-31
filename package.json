@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@folio/stripes-core": "^2.10.0",
-    "@folio/ui-testing": "folio-org/ui-testing#framework-only",
+    "@folio/stripes-testing": "^1.0.0",
     "babel-plugin-istanbul": "^4.1.6",
     "configstore": "^3.1.1",
     "debug": "^3.1.0",
