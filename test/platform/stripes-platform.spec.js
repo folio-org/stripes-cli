@@ -25,6 +25,13 @@ describe('The stripes-platform', function () {
   });
 
   describe('applyVirtualAppPlatform method', function () {
+    it('does nothing for not "app" context', function () {
+      this.sut.isAppContext = false;
+      this.sut.applyVirtualAppPlatform('my-app');
+      expect(this.sut.config).to.deep.equal({});
+      expect(this.sut.aliases).to.deep.equal({});
+    });
+
     it('does nothing if missing module name', function () {
       this.sut.isAppContext = true;
       this.sut.applyVirtualAppPlatform();
@@ -160,6 +167,20 @@ describe('The stripes-platform', function () {
       expect(result).to.be.an('array').with.lengthOf(2);
       expect(webpackCommon.cliResolve).to.have.been.calledWith('mock context');
       expect(webpackCommon.cliAliases).to.have.been.calledWith(aliases);
+    });
+  });
+
+  describe('Stripes platform context', function () {
+    it('has "app" context if it is ui module', function () {
+      this.sut = new StripesPlatform('', { isUiModule: true });
+
+      expect(this.sut.isAppContext).to.be.true;
+    });
+
+    it('has not "app" context if it is not ui module', function () {
+      this.sut = new StripesPlatform('', { isUiModule: false });
+
+      expect(this.sut.isAppContext).to.be.false;
     });
   });
 });
