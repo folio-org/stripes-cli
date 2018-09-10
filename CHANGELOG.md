@@ -7,6 +7,7 @@
 * Enable shell when spawning child process on Windows, fixes STCLI-89
 * Replace `ui-testing#framework-only` with `stripes-testing`, STCLI-92
 * Include platforms in logic that generates --run option for stripes-testing, STCLI-100
+* Don't throw warning when serving `settings` modules
 
 
 ## [1.3.0](https://github.com/folio-org/stripes-cli/tree/v1.3.0) (2018-08-07)
