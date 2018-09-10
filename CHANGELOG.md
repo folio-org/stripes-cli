@@ -6,6 +6,7 @@
 * STCLI-88 resolved. Resolved an issue where command test nightmare would not return process error when failing
 * Enable shell when spawning child process on Windows, fixes STCLI-89
 * Replace `ui-testing#framework-only` with `stripes-testing`, STCLI-92
+* Allow testing of settings modules, STCLI-91
 * Include platforms in logic that generates --run option for stripes-testing, STCLI-100
 * Don't throw warning when serving `settings` modules
 
