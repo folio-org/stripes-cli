@@ -2,6 +2,7 @@
 
 ## [1.5.0] (IN PROGRESS)
 
+* On pull, highlight updated repositories
 
 ## [1.4.0](https://github.com/folio-org/stripes-cli/tree/v1.4.0) (2018-09-10)
 * Switched from `karma-coverage` to `karma-coverage-istanbul-reporter`
