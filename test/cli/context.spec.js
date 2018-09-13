@@ -133,5 +133,4 @@ describe('The CLI\'s getContext', function () {
       isLocalCoreAvailable: false,
     });
   });
-
 });
