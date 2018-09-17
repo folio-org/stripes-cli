@@ -6,7 +6,7 @@ import {
   Headline,
   Pane,
   Paneset
-} from '@folio/stripes-components/lib/Paneset';
+} from '@folio/stripes-components';
 import GreetingModal from '../components/greeting-modal';
 
 /*
