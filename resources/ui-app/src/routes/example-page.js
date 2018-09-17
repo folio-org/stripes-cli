@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'react-router-dom/Link';
-import Paneset from '@folio/stripes-components/lib/Paneset';
-import Pane from '@folio/stripes-components/lib/Pane';
-import Button from '@folio/stripes-components/lib/Button';
-import Headline from '@folio/stripes-components/lib/Headline';
+import {
+  Button,
+  Headline,
+  Pane,
+  Paneset
+} from '@folio/stripes-components/lib/Paneset';
 import GreetingModal from '../components/greeting-modal';
 
 /*
@@ -53,7 +55,13 @@ export default class ExamplePage extends React.Component {
           <GreetingModal onClose={this.onClose} open={this.state.showModal} />
           <hr />
           <Headline size="small" margin="medium">More...</Headline>
-          Please refer to the <a href="https://github.com/folio-org/stripes-components/blob/master/README.md">Stripes Components README</a> for more components and examples.
+          Please refer to the
+          {' '}
+          <a href="https://github.com/folio-org/stripes-components/blob/master/README.md">
+            Stripes Components README
+          </a>
+          {' '}
+          for more components and examples.
         </Pane>
       </Paneset>
     );

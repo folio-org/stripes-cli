@@ -7,7 +7,7 @@
     "build": "stripes build stripes.config.js"
   },
   "devDependencies": {
-    "@folio/stripes-cli": "^1.2.0"
+    "@folio/stripes-cli": "^1.4.0"
   },
   "dependencies": {
   }
