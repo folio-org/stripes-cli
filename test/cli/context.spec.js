@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
-const context = require('../../lib/cli/context');
 const path = require('path');
+const context = require('../../lib/cli/context');
 
 const createModule = (type) => ({
   name: 'moduleName',
