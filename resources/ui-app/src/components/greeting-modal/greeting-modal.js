@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Modal from '@folio/stripes-components/lib/Modal';
+import { Modal } from '@folio/stripes-components';
 import NewAppGreeting from '../new-app-greeting';
 
 export default class GreetingModal extends React.Component {
@@ -11,7 +11,14 @@ export default class GreetingModal extends React.Component {
 
   render() {
     return (
-      <Modal onClose={this.props.onClose} open={this.props.open} size="small" label="Greeting Message Modal" dismissible closeOnBackgroundClick>
+      <Modal
+        onClose={this.props.onClose}
+        open={this.props.open}
+        size="small"
+        label="Greeting Message Modal"
+        dismissible
+        closeOnBackgroundClick
+      >
         <NewAppGreeting />
       </Modal>
     );

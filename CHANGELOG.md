@@ -4,6 +4,7 @@
 
 * On pull, highlight updated repositories
 * Correct isPlatform logic, fixes STCLI-104
+* Start new apps at v1.0.0. Fixes STCLI-105
 * Upgrade `debug` dependency, STRIPES-553
 
 

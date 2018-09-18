@@ -61,9 +61,9 @@
     "yargs": "^10.0.3"
   },
   "devDependencies": {
-    "@folio/eslint-config-stripes": "^1.1.0",
+    "@folio/eslint-config-stripes": "^3.2.1",
     "chai": "^4.1.2",
-    "eslint": "^4.8.0",
+    "eslint": "^5.6.0",
     "sinon": "^4.1.4",
     "sinon-chai": "^2.14.0"
   }
