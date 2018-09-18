@@ -24,7 +24,7 @@
     "@folio/stripes-testing": "^1.0.0",
     "babel-plugin-istanbul": "^4.1.6",
     "configstore": "^3.1.1",
-    "debug": "^3.1.0",
+    "debug": "^4.0.1",
     "find-up": "^2.1.0",
     "get-stdin": "^6.0.0",
     "global-dirs": "^0.1.1",
