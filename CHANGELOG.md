@@ -6,6 +6,7 @@
 * Correct isPlatform logic, fixes STCLI-104
 * Start new apps at v1.0.0. Fixes STCLI-105
 * Upgrade `debug` dependency, STRIPES-553
+* Enable module for tenant via `perm create` command, fixes STCLI-106
 
 
 ## [1.4.0](https://github.com/folio-org/stripes-cli/tree/v1.4.0) (2018-09-10)
