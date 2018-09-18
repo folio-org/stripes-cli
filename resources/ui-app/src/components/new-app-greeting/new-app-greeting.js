@@ -6,7 +6,9 @@ export default class NewAppGreeting extends React.Component {
   render() {
     return (
       <div>
-        <h2 id="stripes-new-app-greeting"><FormattedMessage id="<%= uiAppName %>.new-app.greeting" /></h2>
+        <h2 id="stripes-new-app-greeting">
+          <FormattedMessage id="<%= uiAppName %>.new-app.greeting" />
+        </h2>
         <FormattedMessage id="<%= uiAppName %>.new-app.message" />
       </div>
     );
