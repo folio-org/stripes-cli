@@ -3,7 +3,7 @@ const path = require('path');
 const context = require('../../lib/cli/context');
 
 const createModule = (type) => ({
-  name: 'moduleName',
+  name: type === 'components' ? '@folio/stripes-components' : '@folio/ui-app',
   stripes: {
     type,
   }
@@ -79,6 +79,20 @@ describe('The CLI\'s getContext', function () {
     expect(result).to.include({
       type: 'workspace',
       isStripesModule: false,
+      isUiModule: false,
+      isPlatform: false,
+    });
+  });
+
+  it('identifies stripes modules', function () {
+    this.sandbox.stub(context, 'require').returns({
+      name: '@folio/stripes-core',
+      stripes: {},
+    });
+    const result = this.sut('someDir');
+
+    expect(result).to.include({
+      isStripesModule: true,
       isUiModule: false,
       isPlatform: false,
     });
