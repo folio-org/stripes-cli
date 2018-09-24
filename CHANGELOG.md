@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## [1.5.0] (IN PROGRESS)
+## [1.5.0](https://github.com/folio-org/stripes-cli/tree/v1.5.0) (2018-09-24)
 
 * On pull, highlight updated repositories
 * Correct isPlatform logic, fixes STCLI-104
