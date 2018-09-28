@@ -422,11 +422,11 @@ If you selected a platform such as `stripes-sample-platform` or `folio-testing-p
 
 ### Running a platform
 
-After creating a workspace with a selected platform, you can immediately serve it up.  Change directories to your platform and run `stripes serve`.
+After creating a workspace with a selected platform, you can immediately serve it up.  Change directories to your platform and run `stripes serve` with a tenant configuration file, such as `stripes.config.js` or `stripes.config.js.local`.
 
 ```
 cd stripes/stripes-sample-platform
-stripes serve
+stripes serve stripes.config.js.local
 ```
 
 
