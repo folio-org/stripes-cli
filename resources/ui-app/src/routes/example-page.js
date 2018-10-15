@@ -47,17 +47,24 @@ export default class ExamplePage extends React.Component {
           <Headline size="small">Paneset and Panes</Headline>
           These columns are created with Paneset and Pane components.
           <hr />
-          <Link to={`<%= appRoute %>`}>home page</Link>
+          <div data-test-example-page-home>
+            <Link to="<%= appRoute %>">home page</Link>
+          </div>
         </Pane>
         <Pane defaultWidth="80%" paneTitle="Some Stripes Components">
           <Headline size="small" margin="medium">Button with modal</Headline>
-          <Button onClick={this.buttonClick}>Click me</Button>
+          <div data-test-example-page-button>
+            <Button onClick={this.buttonClick}>Click me</Button>
+          </div>
           <GreetingModal onClose={this.onClose} open={this.state.showModal} />
           <hr />
           <Headline size="small" margin="medium">More...</Headline>
           Please refer to the
           {' '}
-          <a href="https://github.com/folio-org/stripes-components/blob/master/README.md">
+          <a
+            data-test-example-page-components-link
+            href="https://github.com/folio-org/stripes-components/blob/master/README.md"
+          >
             Stripes Components README
           </a>
           {' '}
