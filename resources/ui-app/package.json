@@ -11,6 +11,7 @@
   "scripts": {
     "start": "stripes serve",
     "build": "stripes build --output ./output",
+    "test-int": "stripes test nightmare --run demo --show",
     "test": "stripes test karma",
     "lint": "eslint ."
   },
