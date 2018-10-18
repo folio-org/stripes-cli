@@ -3,6 +3,8 @@
 ## 1.6.0 (IN PROGRESS)
 
 * Remove HMR plugin during Karma tests
+* Update ui-app blueprint to use stripes framework, STCLI-108
+* Add BigTest infrastructure blueprint and bootstrap command, STCLI-85
 
 
 ## [1.5.0](https://github.com/folio-org/stripes-cli/tree/v1.5.0) (2018-09-24)

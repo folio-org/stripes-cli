@@ -1,4 +1,5 @@
 {
+  "meta.title": "<%= displayName %>",
   "new-app.greeting": "Congratulations!",
   "new-app.message": "Your Stripes app is running.",
   "settings.general": "General",

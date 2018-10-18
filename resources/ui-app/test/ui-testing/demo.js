@@ -19,7 +19,7 @@ module.exports.test = (uiTestCtx) => {
           .wait('#clickable-<%= appName %>-module')
           .click('#clickable-<%= appName %>-module')
           .wait('#<%= appName %>-module-display')
-          .wait('#stripes-new-app-greeting')
+          .wait('[data-test-application-greeting]')
           .then(() => { done(); })
           .catch(done);
       });
@@ -40,7 +40,7 @@ module.exports.test = (uiTestCtx) => {
           .click('a[href="/settings<%= appRoute %>"]')
           .wait('a[href="/settings<%= appRoute %>/general"]')
           .click('a[href="/settings<%= appRoute %>/general"]')
-          .wait('#stripes-new-app-settings-message')
+          .wait('[data-test-application-settings-general-message]')
           .then(() => { done(); })
           .catch(done);
       });

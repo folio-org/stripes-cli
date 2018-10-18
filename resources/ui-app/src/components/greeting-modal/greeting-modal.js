@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal } from '@folio/stripes-components';
+import { Modal } from '@folio/stripes/components';
 import NewAppGreeting from '../new-app-greeting';
 
 export default class GreetingModal extends React.Component {
@@ -19,7 +19,9 @@ export default class GreetingModal extends React.Component {
         dismissible
         closeOnBackgroundClick
       >
-        <NewAppGreeting />
+        <div data-test-greeting-modal>
+          <NewAppGreeting />
+        </div>
       </Modal>
     );
   }

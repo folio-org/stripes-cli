@@ -6,6 +6,7 @@ This following command documentation is largely generated from the CLI's own bui
 * [`app` command](#app-command)
     * [`app create` command](#app-create-command)
     * [`app perms` command](#app-perms-command)
+    * [`app bigtest` command](#app-bigtest-command)
 * [`serve` command](#serve-command)
 * [`build` command](#build-command)
 * [`test` command (work in progress)](#test-command-work-in-progress)
@@ -71,6 +72,7 @@ stripes app <command>
 Sub-commands:
 * `stripes app create [name]`
 * `stripes app perms`
+* `stripes app bigtest`
 
 
 ### `app create` command
@@ -130,6 +132,29 @@ Assign current app permissions to user diku_admin:
 stripes app perms | stripes perm assign --user diku_admin
 ```
 
+### `app bigtest` command
+
+Setup BigTest for the current app
+
+Usage:
+```
+stripes app bigtest
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--install` | Yarn add dependencies | boolean | default: true
+
+Examples:
+
+Setup BigTest for the current app, and add dependencies:
+```
+stripes app bigtest
+```
+Setup BigTest for the current app, but do not add dependencies:
+```
+stripes app bigtest --no-install
+```
 
 ## `serve` command
 
@@ -139,7 +164,6 @@ Usage:
 ```
 stripes serve [configFile]
 ```
-
 
 Positional | Description | Type | Notes
 ---|---|---|---
@@ -156,13 +180,13 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 `--existing-build` | Serve an existing build from the supplied directory | string |
+`--mirage` | Enable Mirage Server when available and optionally specify a scenario | string |
 `--prod` | Use production build settings | boolean |
 `--dev` | Use development build settings | boolean |
 `--publicPath` | Specify the Webpack publicPath output option | string |
 `--devtool` | Specify the Webpack devtool for generating source maps | string |
 `--lint` | Show eslint warnings with build | boolean |
 `--maxChunks` | Limit the number of Webpack chunks in build output | number |
-
 
 Examples:
 
@@ -178,7 +202,10 @@ Serve a build previously created with "stripes build":
 ```
 stripes serve --existing-build output
 ```
-
+Serve an app (in app context) with a mock backend server":
+```
+stripes serve --mirage
+```
 
 ## `build` command
 
