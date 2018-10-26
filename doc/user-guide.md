@@ -226,7 +226,7 @@ $ cd testing-backend
 $ vagrant init folio/testing-backend
 $ vagrant up
 ```
-The FOLIO testing-backend vagrant box includes the default tenant, "diku".  See [this stripes-core document](https://github.com/folio-org/stripes-core/blob/master/doc/new-development-setup.md#update-your-vm) for information updating your Vagrant box.
+The FOLIO testing-backend vagrant box includes the default tenant, "diku".  See [this stripes document](https://github.com/folio-org/stripes/blob/master/doc/new-development-setup.md#update-your-vm) for information updating your Vagrant box.
 
 As an alternative to using a local Vagrant box for Okapi, you can develop against an external Okapi instance.  To do this, specify the URL of your Okapi using the `--okapi` option with each command.  This can also be passed via a `.stripesclirc` [configuration file](#configuration).
 
@@ -387,7 +387,7 @@ Note: When adding an alias via the `alias add` command, the alias is considered 
 
 ## Platform development
 
-When developing multiple Stripes apps and/or core modules at the same time, it is often desired to work with a platform containing most or all of the available FOLIO Stripes modules.  See [new development setup](https://github.com/folio-org/stripes-core/blob/master/doc/new-development-setup.md) in stripes-core for more details.  The Stripes CLI provides commands to simplify the creation of such platforms, consolidating several of the steps.
+When developing multiple Stripes apps and/or core modules at the same time, it is often desired to work with a platform containing most or all of the available FOLIO Stripes modules.  See [new development setup](https://github.com/folio-org/stripes/blob/master/doc/new-development-setup.md) in stripes-core for more details.  The Stripes CLI provides commands to simplify the creation of such platforms, consolidating several of the steps.
 
 Prerequisites:  An Okapi backend is required. See [development prerequisites](#development-prerequisites)
 
@@ -417,7 +417,7 @@ stripes workspace --modules all
 
 ### Creating a platform
 
-If you selected a platform such as `stripes-sample-platform` or `folio-testing-platform` at the time of creating a workspace, you are all set.  Refer to `stripes.config.js` and `package.json` of the [Stripes Sample Platform](https://github.com/folio-org/stripes-sample-platform) if you wish to create a platform manually. 
+If you selected a platform such as `stripes-sample-platform` or `platform-core` at the time of creating a workspace, you are all set.  Refer to `stripes.config.js` and `package.json` of the [Stripes Sample Platform](https://github.com/folio-org/stripes-sample-platform) if you wish to create a platform manually. 
 
 
 ### Running a platform
@@ -525,11 +525,11 @@ stripes app perms | stripes perm assign --user diku_admin
 
 ## Generating a production build
 
-To generate a build for production, it is best to use a clean platform-only install with no aliases defined.  The following describes how to build `folio-testing-platform`:
+To generate a build for production, it is best to use a clean platform install with no workspace or aliases defined.  The following describes how to build `platform-core`:
 
 ```
-git clone https://github.com/folio-org/folio-testing-platform.git
-cd folio-testing-platform
+git clone https://github.com/folio-org/platform-core.git
+cd platform-core
 yarn install
 stripes build stripes.config.js my-build-output
 ```
@@ -557,7 +557,7 @@ Note: If running the analyzer with aliased modules, duplication is likely.  It i
 
 ### Reducing build output
 
-One quick way to limit the build output, is to limit the number of languages included in the build.  This is done my modifying a tenant's Stripes configuration.  See [filtering translations at build time](https://github.com/folio-org/stripes-core/blob/master/doc/dev-guide.md#filtering-translations-at-build-time) of the Stripes developer guide on how to to this.  The result will not only limit translation files, but also locale assets for `react-intl` and `moment` libraries.
+One quick way to limit the build output, is to limit the number of languages included in the build.  This is done my modifying a tenant's Stripes configuration.  See [filtering translations at build time](https://github.com/folio-org/stripes/blob/master/doc/dev-guide.md#filtering-translations-at-build-time) of the Stripes developer guide on how to to this.  The result will not only limit translation files, but also locale assets for `react-intl` and `moment` libraries.
 
 Filtering languages can be done with the CLI by specifying the `languages` option which accepts an array of values.  
 ```

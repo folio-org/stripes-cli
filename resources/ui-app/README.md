@@ -40,6 +40,6 @@ stripes test --run demo --show
 
 Now that your new app is running, search the code for "`stripes-new-app`" to find comments and subbed placeholders that may need your attention.
 
-Read the [Stripes Module Developer's Guide](https://github.com/folio-org/stripes-core/blob/master/doc/dev-guide.md).
+Read the [Stripes Module Developer's Guide](https://github.com/folio-org/stripes/blob/master/doc/dev-guide.md).
 
 Update this README with information about your app.
