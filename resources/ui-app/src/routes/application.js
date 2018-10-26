@@ -26,7 +26,7 @@ export default class Application extends React.Component {
             <li data-test-application-guide>
               Please refer to the
               {' '}
-              <a href="https://github.com/folio-org/stripes-core/blob/master/doc/dev-guide.md">
+              <a href="https://github.com/folio-org/stripes/blob/master/doc/dev-guide.md">
                 Stripes Module Developer's Guide
               </a>
               {' '}
