@@ -417,7 +417,7 @@ stripes workspace --modules all
 
 ### Creating a platform
 
-If you selected a platform such as `stripes-sample-platform` or `folio-testing-platform` at the time of creating a workspace, you are all set.  Refer to `stripes.config.js` and `package.json` of the [Stripes Sample Platform](https://github.com/folio-org/stripes-sample-platform) if you wish to create a platform manually. 
+If you selected a platform such as `stripes-sample-platform` or `platform-core` at the time of creating a workspace, you are all set.  Refer to `stripes.config.js` and `package.json` of the [Stripes Sample Platform](https://github.com/folio-org/stripes-sample-platform) if you wish to create a platform manually. 
 
 
 ### Running a platform
@@ -525,11 +525,11 @@ stripes app perms | stripes perm assign --user diku_admin
 
 ## Generating a production build
 
-To generate a build for production, it is best to use a clean platform-only install with no aliases defined.  The following describes how to build `folio-testing-platform`:
+To generate a build for production, it is best to use a clean platform install with no workspace or aliases defined.  The following describes how to build `platform-core`:
 
 ```
-git clone https://github.com/folio-org/folio-testing-platform.git
-cd folio-testing-platform
+git clone https://github.com/folio-org/platform-core.git
+cd platform-core
 yarn install
 stripes build stripes.config.js my-build-output
 ```

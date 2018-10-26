@@ -16,9 +16,9 @@ Stripes CLI is a command line interface to facilitate the creation, development,
 
 ## Installation
 
-Stripes CLI is available on both the `npm-folio` and `npm-folioci` registries.  The following shows how to install the CLI globally from `npm-folioci`:
+Stripes CLI is available on both the `npm-folio` and `npm-folioci` registries.  Refer to [configuring the FOLIO registry](https://github.com/folio-org/stripes/blob/master/doc/new-development-setup.md#configure-the-folio-registry) for information on which registry to use. The following shows how to install the CLI globally from `npm-folio`:
 ```
-yarn config set @folio:registry https://repository.folio.org/repository/npm-folioci/
+yarn config set @folio:registry https://repository.folio.org/repository/npm-folio/
 yarn global add @folio/stripes-cli
 ```
 
