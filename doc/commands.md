@@ -623,9 +623,9 @@ Sub-commands:
 * `stripes mod disable`
 * `stripes mod enable`
 * `stripes mod install`
+* `stripes mod list`
 * `stripes mod remove`
 * `stripes mod update`
-* `stripes mod view`
 
 ### `mod add` command
 
@@ -785,13 +785,13 @@ Display full module descriptor as JSON:
 stripes mod descriptor --full
 ```
 
-### `mod view` command
+### `mod list` command
 
-View enabled module ids for a tenant in Okapi
+List all module ids available in Okapi or enabled for a tenant
 
 Usage:
 ```
-stripes mod view
+stripes mod list
 ```
 
 Option | Description | Type | Notes
@@ -799,12 +799,19 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 
-
 Examples:
 
-View enabled module ids for tenant diku:
+List enabled module ids for tenant diku:
 ```
-stripes mod view --tenant diku
+stripes mod list --tenant diku
+```
+List all available module ids in Okapi:
+```
+stripes mod list
+```
+List available module ids in Okapi (overriding any tenant set via config):
+```
+stripes mod list --no-tenant
 ```
 
 ### `mod install` command (work in progress)

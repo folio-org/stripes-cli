@@ -1,6 +1,12 @@
 # Change history for stripes-cli
 
-## 1.6.0 (https://github.com/folio-org/stripes-cli/tree/v1.6.0) (2018-10-19)
+## 1.7.0  (IN PROGRESS)
+
+* Rename `mod view` to `mod list` and add support for listing all module ids, STCLI-79
+* 
+
+
+## [1.6.0](https://github.com/folio-org/stripes-cli/tree/v1.6.0) (2018-10-19)
 
 * Remove HMR plugin during Karma tests
 * Update ui-app blueprint to use stripes framework, STCLI-108
