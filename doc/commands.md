@@ -828,6 +828,7 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 `--ids` | Module descriptor ids | array | supports stdin
+`--simulate` | Perform a dry run | boolean |
 
 
 Examples:
