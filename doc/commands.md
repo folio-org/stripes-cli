@@ -33,6 +33,7 @@ This following command documentation is largely generated from the CLI's own bui
     * [`mod list` command](#mod-list-command)
     * [`mod install` command (work in progress)](#mod-install-command-work-in-progress)
     * [`mod view` command](#mod-view-command)
+    * [`mod pull` command](#mod-pull-command)
 * [`perm` command](#perm-command)
     * [`perm create` command](#perm-create-command)
     * [`perm assign` command](#perm-assign-command)
@@ -626,6 +627,7 @@ Sub-commands:
 * `stripes mod enable`
 * `stripes mod install`
 * `stripes mod list`
+* `stripes mod pull`
 * `stripes mod remove`
 * `stripes mod update`
 * `stripes mod view`
@@ -870,6 +872,28 @@ stripes mod view --ids one two
 View module descriptors for ids "one" and "two" with stdin:
 ```
 echo one two | stripes mod view
+```
+
+### `mod pull` command
+
+Pull module descriptors from a remote okapi
+
+Usage:
+```
+stripes mod pull --remote http://folio-registry.aws.indexdata.com
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string | 
+`--tenant` | Specify a tenant ID | string | 
+`--remote` | Remote Okapi to pull from | string | (*) 
+
+Examples:
+
+Pull module descriptors from remote Okapi:
+```
+stripes mod pull --okapi http://localhost:9130 --remote http://folio-registry.aws.indexdata.com
 ```
 
 ## `perm` command
