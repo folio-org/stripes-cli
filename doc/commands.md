@@ -655,7 +655,7 @@ stripes mod add
 
 ### `mod remove` command
 
-Remove an app module descriptor from Okapi
+Remove a module descriptor from Okapi
 
 Usage:
 ```
@@ -664,14 +664,23 @@ stripes mod remove
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
-
+`--okapi` | Specify an Okapi URL | string | 
+`--tenant` | Specify a tenant ID | string | 
+`--ids` | Module descriptor ids | array | 
 
 Examples:
 
+Remove ui-module located in current directory:
 ```
 stripes mod remove
+```
+Remove module ids "one" and "two" from Okapi:
+```
+stripes mod remove --ids one two
+```
+Remove module ids "one" and "two" from Okapi with stdin:
+```
+echo one two | stripes mod remove
 ```
 
 ### `mod enable` command
