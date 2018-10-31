@@ -30,11 +30,13 @@ This following command documentation is largely generated from the CLI's own bui
     * [`mod disable` command](#mod-disable-command)
     * [`mod update` command](#mod-update-command)
     * [`mod descriptor` command](#mod-descriptor-command)
-    * [`mod view` command](#mod-view-command)
+    * [`mod list` command](#mod-list-command)
     * [`mod install` command (work in progress)](#mod-install-command-work-in-progress)
+    * [`mod view` command](#mod-view-command)
 * [`perm` command](#perm-command)
     * [`perm create` command](#perm-create-command)
     * [`perm assign` command](#perm-assign-command)
+    * [`perm unassign` command](#perm-unassign-command)
     * [`perm view` command](#perm-view-command)
 
 
