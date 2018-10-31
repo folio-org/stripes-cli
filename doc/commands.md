@@ -30,11 +30,13 @@ This following command documentation is largely generated from the CLI's own bui
     * [`mod disable` command](#mod-disable-command)
     * [`mod update` command](#mod-update-command)
     * [`mod descriptor` command](#mod-descriptor-command)
-    * [`mod view` command](#mod-view-command)
+    * [`mod list` command](#mod-list-command)
     * [`mod install` command (work in progress)](#mod-install-command-work-in-progress)
+    * [`mod view` command](#mod-view-command)
 * [`perm` command](#perm-command)
     * [`perm create` command](#perm-create-command)
     * [`perm assign` command](#perm-assign-command)
+    * [`perm unassign` command](#perm-unassign-command)
     * [`perm view` command](#perm-view-command)
 
 
@@ -623,6 +625,7 @@ Sub-commands:
 * `stripes mod disable`
 * `stripes mod enable`
 * `stripes mod install`
+* `stripes mod list`
 * `stripes mod remove`
 * `stripes mod update`
 * `stripes mod view`
@@ -785,13 +788,13 @@ Display full module descriptor as JSON:
 stripes mod descriptor --full
 ```
 
-### `mod view` command
+### `mod list` command
 
-View enabled module ids for a tenant in Okapi
+List all module ids available in Okapi or enabled for a tenant
 
 Usage:
 ```
-stripes mod view
+stripes mod list
 ```
 
 Option | Description | Type | Notes
@@ -799,12 +802,19 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 
-
 Examples:
 
-View enabled module ids for tenant diku:
+List enabled module ids for tenant diku:
 ```
-stripes mod view --tenant diku
+stripes mod list --tenant diku
+```
+List all available module ids in Okapi:
+```
+stripes mod list
+```
+List available module ids in Okapi (overriding any tenant set via config):
+```
+stripes mod list --no-tenant
 ```
 
 ### `mod install` command (work in progress)
@@ -821,6 +831,7 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 `--ids` | Module descriptor ids | array | supports stdin
+`--simulate` | Perform a dry run | boolean |
 
 
 Examples:
@@ -832,6 +843,33 @@ stripes mod install --ids one two --tenant diku
 Install module ids "one" and "two" using stdin:
 ```
 echo one two | stripes mod install --tenant diku
+```
+
+### `mod view` command
+
+View module descriptors of module ids in Okapi
+
+Usage:
+```
+stripes mod view
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string | 
+`--tenant` | Specify a tenant ID | string | 
+`--ids` | Module descriptor ids | array | 
+
+
+Examples:
+
+View module descriptors for ids "one" and "two":
+```
+stripes mod view --ids one two
+```
+View module descriptors for ids "one" and "two" with stdin:
+```
+echo one two | stripes mod view
 ```
 
 ## `perm` command
