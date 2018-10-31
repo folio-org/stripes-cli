@@ -626,6 +626,7 @@ Sub-commands:
 * `stripes mod list`
 * `stripes mod remove`
 * `stripes mod update`
+* `stripes mod view`
 
 ### `mod add` command
 
@@ -840,6 +841,33 @@ stripes mod install --ids one two --tenant diku
 Install module ids "one" and "two" using stdin:
 ```
 echo one two | stripes mod install --tenant diku
+```
+
+### `mod view` command
+
+View module descriptors of module ids in Okapi
+
+Usage:
+```
+stripes mod view
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string | 
+`--tenant` | Specify a tenant ID | string | 
+`--ids` | Module descriptor ids | array | 
+
+
+Examples:
+
+View module descriptors for ids "one" and "two":
+```
+stripes mod view --ids one two
+```
+View module descriptors for ids "one" and "two" with stdin:
+```
+echo one two | stripes mod view
 ```
 
 ## `perm` command
