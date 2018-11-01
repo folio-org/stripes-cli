@@ -832,8 +832,8 @@ stripes mod install
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
 `--simulate` | Perform a dry run | boolean |
 `--ids` | Module descriptor ids  | array | supports stdin
 
