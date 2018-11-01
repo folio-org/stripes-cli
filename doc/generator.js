@@ -31,6 +31,7 @@ function parseOption(data) {
     const defaultMatch = data[2].match(/\[default: (\w*)]/);
     const choicesMatch = data[2].match(/\[choices: ([^\]]*)]/);
     const requiredMatch = data[2].match(/\[required\]/);
+    const stdinMatch = data[2].match(/\(stdin\)/);
 
     if (descriptionMatch) {
       option.description = descriptionMatch[0].trim();
@@ -47,6 +48,9 @@ function parseOption(data) {
     if (requiredMatch) {
       option.required = true;
     }
+    if (stdinMatch) {
+      option.stdin = true;
+    }
   }
   return option;
 }
@@ -62,17 +66,14 @@ function getOptions(group) {
     if (optionMatch && optionMatch.length) {
       const option = parseOption(optionMatch);
       if (option) {
-        optionRows += `\`${option.name}\` | ${option.description} | ${option.type} | `;
-        if (option.required) {
-          optionRows += '(*) ';
-        }
-        if (option.default) {
-          optionRows += `default: ${option.default} `;
-        }
-        if (option.choices) {
-          optionRows += `choices: ${option.choices}`;
-        }
-        optionRows += '\n';
+        const description = option.stdin ? option.description.replace('(stdin)', '') : option.description;       
+        const notes = [
+          option.required ? '(*)' : '',
+          option.default ? `default: ${option.default}` : '',
+          option.choices ? `choices: ${option.choices}` : '',
+          option.stdin ? 'supports stdin' : '',
+        ];
+        optionRows += `\`${option.name}\` | ${description} | ${option.type} | ${notes.filter(note => note.length > 0).join(' ')}\n`;
       }
     }
   }
@@ -83,14 +84,19 @@ function getOptionTable(input, isPositional) {
   const groupRegex = isPositional ? /Positionals:([\s\S]*?)^$/gm : /Options:([\s\S]*?)^$/gm;
   const groups = input.match(groupRegex);
   let optionsTable = '';
+  let hasOptions = false;
   if (groups && groups.length) {
     optionsTable += `${isPositional ? 'Positional' : 'Option'} | Description | Type | Notes\n`;
     optionsTable += '---|---|---|---\n';
     groups.forEach((group) => {
-      optionsTable += getOptions(group);
+      const optionRow = getOptions(group);
+      if (optionRow.length) {
+        hasOptions = true;
+        optionsTable += optionRow;
+      }
     });
   }
-  return optionsTable;
+  return hasOptions ? optionsTable : '';
 }
 
 function getExampleSection(input) {
@@ -147,16 +153,24 @@ function getCommandSummary(input) {
   return commandSummary;
 }
 
+function getCommandHeading(input) {
+  const commandRegex = /(stripes\s)(.*)\n\n\b(.*)\n/;
+  const match = input.match(commandRegex);
+  if (match) {
+    return `\`${match[2].replace(' <command>', '')}\` command\n`;
+  }
+  return 'unknown command\n';
+}
+
 getStdin().then((input) => {
-  let doc = '';
-  doc += getCommandSummary(input);
-  doc += '\n';
-  doc += getSubCommandsSection(input);
-  doc += '\n';
-  doc += getOptionTable(input, true);
-  doc += '\n\n';
-  doc += getOptionTable(input);
-  doc += '\n\n';
-  doc += getExampleSection(input);
-  console.log(doc);
+  const doc = [
+    getCommandHeading(input),
+    getCommandSummary(input),
+    getSubCommandsSection(input),
+    getOptionTable(input, true),
+    getOptionTable(input),
+    getExampleSection(input)
+  ];
+
+  console.log(doc.filter(section => section.length > 0).join('\n'));
 });

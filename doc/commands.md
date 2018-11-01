@@ -316,7 +316,7 @@ Option | Description | Type | Notes
 `--languages` | Languages to include in tenant build | array |
 `--run` | Name of the test script to run | string |
 `--show` | Show UI and dev tools while running tests | boolean |
-`--url` | URL of FOLIO UI to run tests against | string | 
+`--url` | URL of FOLIO UI to run tests against | string |
 `--local` | Shortcut for --url http://localhost:3000 | boolean | defaults to --host and --port
 `--uiTest` | Additional options for ui-testing framework |  |
 
@@ -643,12 +643,12 @@ stripes mod add
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
+`--okapi` | Specify an Okapi URL | string | (*)
 `--strict` | Include required interface dependencies | boolean | default: false
 
 Examples:
 
+Add descriptor for ui-module in current directory:
 ```
 stripes mod add
 ```
@@ -664,9 +664,8 @@ stripes mod remove
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
-`--ids` | Module descriptor ids | array | 
+`--okapi` | Specify an Okapi URL | string | (*)
+`--ids` | Module descriptor ids  | array | supports stdin
 
 Examples:
 
@@ -692,13 +691,11 @@ Usage:
 stripes mod enable
 ```
 
-
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
-`--ids` | Module descriptor ids | array | supports stdin
-
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
+`--ids` | Module descriptor ids  | array | supports stdin
 
 Examples:
 
@@ -715,7 +712,6 @@ Enable module ids "one" and "two" for tenant diku with stdin:
 echo one two | stripes mod enable --tenant diku
 ```
 
-
 ### `mod disable` command
 
 Disable modules for a tenant in Okapi
@@ -727,10 +723,9 @@ stripes mod disable
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
-`--ids` | Module descriptor ids | array | supports stdin
-
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
+`--ids` | Module descriptor ids  | array | supports stdin
 
 Examples:
 
@@ -747,7 +742,6 @@ Disable module ids "one" and "two" for tenant diku with stdin:
 echo one two | stripes mod disable --tenant diku
 ```
 
-
 ### `mod update` command
 
 Update an app module descriptor in Okapi
@@ -757,12 +751,13 @@ Usage:
 stripes mod update
 ```
 
-
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
+`--okapi` | Specify an Okapi URL | string | (*)
 
+Examples:
+
+Update descriptor for ui-module in current directory:
 ```
 stripes mod update
 ```
@@ -776,13 +771,11 @@ Usage:
 stripes mod descriptor
 ```
 
-
 Option | Description | Type | Notes
 ---|---|---|---
 `--configFile` | File containing a Stripes tenant configuration (platform context only) | string |
 `--full` | Return full module descriptor JSON | boolean | default: false
 `--strict` | Include required interface dependencies | boolean | default: false
-
 
 Examples:
 
@@ -810,7 +803,7 @@ stripes mod list
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
+`--okapi` | Specify an Okapi URL | string | (*)
 `--tenant` | Specify a tenant ID | string |
 
 Examples:
@@ -841,13 +834,12 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
-`--ids` | Module descriptor ids | array | supports stdin
 `--simulate` | Perform a dry run | boolean |
-
+`--ids` | Module descriptor ids  | array | supports stdin
 
 Examples:
 
-Install modules "one" and "two":
+Install module ids "one" and "two":
 ```
 stripes mod install --ids one two --tenant diku
 ```
@@ -867,10 +859,8 @@ stripes mod view
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
-`--ids` | Module descriptor ids | array | 
-
+`--okapi` | Specify an Okapi URL | string | (*)
+`--ids` | Module descriptor ids  | array | supports stdin
 
 Examples:
 
@@ -889,14 +879,13 @@ Pull module descriptors from a remote okapi
 
 Usage:
 ```
-stripes mod pull --remote http://folio-registry.aws.indexdata.com
+stripes mod pull
 ```
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
-`--remote` | Remote Okapi to pull from | string | (*) 
+`--okapi` | Specify an Okapi URL | string | (*)
+`--remote` | Remote Okapi to pull from | string | (*)
 
 Examples:
 
