@@ -18,6 +18,7 @@ This following command documentation is largely generated from the CLI's own bui
     * [`platform pull` command](#platform-pull-command)
     * [`platform clean` command](#platform-clean-command)
     * [`platform install` command](#platform-install-command)
+    * [`platform backend` command (work in progress)](#platform-backend-command-work-in-progress)
 * [`alias` command](#alias-command)
 * [`okapi` command](#okapi-command)
     * [`okapi login` command](#okapi-login-command)
@@ -518,6 +519,24 @@ Usage:
 stripes platform install
 ```
 
+### `platform backend` command (work in progress)
+
+Initialize Okapi backend for a platform (work in progress)
+
+Usage:
+```
+stripes platform backend [configFile]
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
+`--simulate` | Perform a dry run | boolean |
+`--remote` | Update module descriptors via remote before install | string |
+`--include` | Additional backend module ids to include with install | array |
+
+
 ## `alias` command
 Maintain global aliases that apply to all platforms and apps
 
@@ -768,7 +787,7 @@ Generate module descriptors for an app or platform.
 
 Usage:
 ```
-stripes mod descriptor
+stripes mod descriptor [configFile]
 ```
 
 Option | Description | Type | Notes

@@ -66,7 +66,7 @@ function getOptions(group) {
     if (optionMatch && optionMatch.length) {
       const option = parseOption(optionMatch);
       if (option) {
-        const description = option.stdin ? option.description.replace('(stdin)', '') : option.description;       
+        const description = option.stdin ? option.description.replace('(stdin)', '') : option.description;
         const notes = [
           option.required ? '(*)' : '',
           option.default ? `default: ${option.default}` : '',
