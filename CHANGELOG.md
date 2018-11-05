@@ -4,6 +4,7 @@
 
 * Rename `mod view` to `mod list` and add support for listing all module ids, STCLI-79
 * New `mod view` implementation to view module descriptors given ids, STCLI-79
+* Update app module template with new translation directory, STCLI-67
 * Augment core API with dependencies used for generating descriptors, fixes STCLI-111
 
 
