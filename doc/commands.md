@@ -9,7 +9,7 @@ This following command documentation is largely generated from the CLI's own bui
     * [`app bigtest` command](#app-bigtest-command)
 * [`serve` command](#serve-command)
 * [`build` command](#build-command)
-* [`test` command (work in progress)](#test-command-work-in-progress)
+* [`test` command](#test-command)
     * [`test nightmare` command](#test-nightmare-command)
     * [`test karma` command](#test-karma-command)
 * [`status` command](#status-command)
@@ -32,7 +32,7 @@ This following command documentation is largely generated from the CLI's own bui
     * [`mod update` command](#mod-update-command)
     * [`mod descriptor` command](#mod-descriptor-command)
     * [`mod list` command](#mod-list-command)
-    * [`mod install` command (work in progress)](#mod-install-command-work-in-progress)
+    * [`mod install` command](#mod-install-command)
     * [`mod view` command](#mod-view-command)
     * [`mod pull` command](#mod-pull-command)
 * [`perm` command](#perm-command)
@@ -256,7 +256,7 @@ stripes build --output=dir
 ```
 
 
-## `test` command (work in progress)
+## `test` command
 
 Run the current app module's tests
 
@@ -521,21 +521,45 @@ stripes platform install
 
 ### `platform backend` command (work in progress)
 
-Initialize Okapi backend for a platform (work in progress)
+Initialize Okapi backend for a platform
 
 Usage:
 ```
 stripes platform backend [configFile]
 ```
 
+Positional | Description | Type | Notes
+---|---|---|---
+`configFile` | File containing a Stripes tenant configuration | string | 
+
 Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | (*)
 `--tenant` | Specify a tenant ID | string | (*)
-`--simulate` | Perform a dry run | boolean |
-`--remote` | Update module descriptors via remote before install | string |
-`--include` | Additional backend module ids to include with install | array |
+`--simulate` | Simulate install only (does not deploy) | boolean | default: false
+`--preRelease` | Include pre-release modules | boolean | default: true
+`--remote` | Pull module descriptors from remote registry before install | string | 
+`--include` | Additional module ids to include with install | array | 
+`--detail` | Display detailed output | boolean | default: false
 
+Examples:
+
+Deploy, enable, and/or upgrade modules to support the current platform:
+```
+stripes platform backend stripes.config.js
+```
+View modules that need to enabled/upgraded for the current platform:
+```
+stripes platform backend stripes.config.js --simulate --detail
+```
+Pull module descriptors from remote Okapi prior to install:
+```
+stripes platform backend stripes.config.js --remote http://folio-registry.aws.indexdata.com
+```
+Include modules "one" and "two" not specified in tenant config:
+```
+stripes platform backend stripes.config.js --include one two
+```
 
 ## `alias` command
 Maintain global aliases that apply to all platforms and apps
@@ -840,9 +864,9 @@ List available module ids in Okapi (overriding any tenant set via config):
 stripes mod list --no-tenant
 ```
 
-### `mod install` command (work in progress)
+### `mod install` command
 
-Enable, disable, or upgrade one or more modules for a tenant in Okapi (work in progress)
+Enable, disable, and optionally deploy one or more modules for a tenant in Okapi
 
 Usage:
 ```
@@ -853,14 +877,21 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | (*)
 `--tenant` | Specify a tenant ID | string | (*)
-`--simulate` | Perform a dry run | boolean |
+`--simulate` | Simulate operation | boolean | default: false
+`--action` | Action to perform on modules | string | choices: "enable", "disable"
+`--deploy` | Deploy modules | boolean | default: false
+`--preRelease` | Include pre-release modules | boolean | default: true
 `--ids` | Module descriptor ids  | array | supports stdin
 
 Examples:
 
-Install module ids "one" and "two":
+Install and deploy module ids "one" and "two":
 ```
-stripes mod install --ids one two --tenant diku
+stripes mod install --ids one two --tenant diku --deploy
+```
+Disable module ids "one" and "two":
+```
+stripes mod install --ids one two --tenant diku --action disable
 ```
 Install module ids "one" and "two" using stdin:
 ```
