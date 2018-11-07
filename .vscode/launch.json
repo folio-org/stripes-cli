@@ -77,6 +77,22 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Mod Descriptor",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": ["mod", "descriptor", "stripes.config.js"],
+            "cwd": "${workspaceFolder}/../platform-core"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Mod View",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": ["mod", "view", "--ids", "mod-finance-1.0.0-SNAPSHOT.16", "mod-authtoken-1.5.1-SNAPSHOT.25"],
+            "cwd": "${workspaceFolder}/../platform-core"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Alias from PLATFORM",
             "program": "${workspaceFolder}/lib/stripes-cli.js",
             "args": [ "alias", "add", "@folio/eholdings", "../ui-eholdings"],
@@ -137,6 +153,14 @@
             "program": "${workspaceFolder}/lib/stripes-cli.js",
             "args": [ "platform" , "pull"],
             "cwd": "${workspaceFolder}/../stripes-sample-platform"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Platform Backend",
+            "program": "${workspaceFolder}/lib/stripes-cli.js",
+            "args": [ "platform" , "backend", "stripes.config.js"],
+            "cwd": "${workspaceFolder}/../platform-core"
         },
     ]
 }

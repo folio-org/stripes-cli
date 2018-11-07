@@ -525,12 +525,12 @@ Initialize Okapi backend for a platform
 
 Usage:
 ```
-stripes platform backend [configFile]
+stripes platform backend <configFile>
 ```
 
 Positional | Description | Type | Notes
 ---|---|---|---
-`configFile` | File containing a Stripes tenant configuration | string | 
+`configFile` | File containing a Stripes tenant configuration | string | (*)
 
 Option | Description | Type | Notes
 ---|---|---|---
@@ -814,9 +814,12 @@ Usage:
 stripes mod descriptor [configFile]
 ```
 
+Positional | Description | Type | Notes
+---|---|---|---
+`configFile` | File containing a Stripes tenant configuration (platform context only) | string | 
+
 Option | Description | Type | Notes
 ---|---|---|---
-`--configFile` | File containing a Stripes tenant configuration (platform context only) | string |
 `--full` | Return full module descriptor JSON | boolean | default: false
 `--strict` | Include required interface dependencies | boolean | default: false
 
@@ -828,7 +831,7 @@ stripes mod descriptor
 ```
 Display module descriptor ids for platform:
 ```
-stripes mod descriptor --configFile stripes.config.js
+stripes mod descriptor stripes.config.js
 ```
 Display full module descriptor as JSON:
 ```
@@ -1009,9 +1012,8 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--name` | Name of the permission | string | supports stdin
 `--user` | Username to assign permission to | string | alias: assign
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
-
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
 
 Examples:
 
@@ -1036,8 +1038,8 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--name` | Name of the permission | string | supports stdin
 `--user` | Username to unassign permission from | string |
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
 
 
 Examples:
@@ -1059,8 +1061,8 @@ stripes perm view
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
 `--user` | Username | string | (*)
 
 
