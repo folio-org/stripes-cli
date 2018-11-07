@@ -1012,9 +1012,8 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--name` | Name of the permission | string | supports stdin
 `--user` | Username to assign permission to | string | alias: assign
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
-
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
 
 Examples:
 
@@ -1039,8 +1038,8 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--name` | Name of the permission | string | supports stdin
 `--user` | Username to unassign permission from | string |
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
 
 
 Examples:
@@ -1062,8 +1061,8 @@ stripes perm view
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
 `--user` | Username | string | (*)
 
 
