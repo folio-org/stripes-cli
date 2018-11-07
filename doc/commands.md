@@ -525,12 +525,12 @@ Initialize Okapi backend for a platform
 
 Usage:
 ```
-stripes platform backend [configFile]
+stripes platform backend <configFile>
 ```
 
 Positional | Description | Type | Notes
 ---|---|---|---
-`configFile` | File containing a Stripes tenant configuration | string | 
+`configFile` | File containing a Stripes tenant configuration | string | (*)
 
 Option | Description | Type | Notes
 ---|---|---|---
