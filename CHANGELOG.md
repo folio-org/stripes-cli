@@ -6,6 +6,11 @@
 * New `mod view` implementation to view module descriptors given ids, STCLI-79
 * Update app module template with new translation directory, STCLI-67
 * Augment core API with dependencies used for generating descriptors, fixes STCLI-111
+* Extend Okapi interactions to facilitate setup of back-end platform dependencies, STCLI-15
+  * Pull module descriptors from remote Okapi registry with `mod pull`
+  * `mod remove` now supports multiple descriptor ids
+  * Enable/disable and optionally deploy modules via `mod install`
+  * Deploy, enable, and upgrade modules for a platform via `platform backend`
 
 
 ## [1.6.0](https://github.com/folio-org/stripes-cli/tree/v1.6.0) (2018-10-19)

@@ -9,7 +9,7 @@ This following command documentation is largely generated from the CLI's own bui
     * [`app bigtest` command](#app-bigtest-command)
 * [`serve` command](#serve-command)
 * [`build` command](#build-command)
-* [`test` command (work in progress)](#test-command-work-in-progress)
+* [`test` command](#test-command)
     * [`test nightmare` command](#test-nightmare-command)
     * [`test karma` command](#test-karma-command)
 * [`status` command](#status-command)
@@ -18,6 +18,7 @@ This following command documentation is largely generated from the CLI's own bui
     * [`platform pull` command](#platform-pull-command)
     * [`platform clean` command](#platform-clean-command)
     * [`platform install` command](#platform-install-command)
+    * [`platform backend` command (work in progress)](#platform-backend-command-work-in-progress)
 * [`alias` command](#alias-command)
 * [`okapi` command](#okapi-command)
     * [`okapi login` command](#okapi-login-command)
@@ -31,8 +32,9 @@ This following command documentation is largely generated from the CLI's own bui
     * [`mod update` command](#mod-update-command)
     * [`mod descriptor` command](#mod-descriptor-command)
     * [`mod list` command](#mod-list-command)
-    * [`mod install` command (work in progress)](#mod-install-command-work-in-progress)
+    * [`mod install` command](#mod-install-command)
     * [`mod view` command](#mod-view-command)
+    * [`mod pull` command](#mod-pull-command)
 * [`perm` command](#perm-command)
     * [`perm create` command](#perm-create-command)
     * [`perm assign` command](#perm-assign-command)
@@ -254,7 +256,7 @@ stripes build --output=dir
 ```
 
 
-## `test` command (work in progress)
+## `test` command
 
 Run the current app module's tests
 
@@ -315,7 +317,7 @@ Option | Description | Type | Notes
 `--languages` | Languages to include in tenant build | array |
 `--run` | Name of the test script to run | string |
 `--show` | Show UI and dev tools while running tests | boolean |
-`--url` | URL of FOLIO UI to run tests against | string | 
+`--url` | URL of FOLIO UI to run tests against | string |
 `--local` | Shortcut for --url http://localhost:3000 | boolean | defaults to --host and --port
 `--uiTest` | Additional options for ui-testing framework |  |
 
@@ -517,6 +519,48 @@ Usage:
 stripes platform install
 ```
 
+### `platform backend` command (work in progress)
+
+Initialize Okapi backend for a platform
+
+Usage:
+```
+stripes platform backend [configFile]
+```
+
+Positional | Description | Type | Notes
+---|---|---|---
+`configFile` | File containing a Stripes tenant configuration | string | 
+
+Option | Description | Type | Notes
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
+`--simulate` | Simulate install only (does not deploy) | boolean | default: false
+`--preRelease` | Include pre-release modules | boolean | default: true
+`--remote` | Pull module descriptors from remote registry before install | string | 
+`--include` | Additional module ids to include with install | array | 
+`--detail` | Display detailed output | boolean | default: false
+
+Examples:
+
+Deploy, enable, and/or upgrade modules to support the current platform:
+```
+stripes platform backend stripes.config.js
+```
+View modules that need to enabled/upgraded for the current platform:
+```
+stripes platform backend stripes.config.js --simulate --detail
+```
+Pull module descriptors from remote Okapi prior to install:
+```
+stripes platform backend stripes.config.js --remote http://folio-registry.aws.indexdata.com
+```
+Include modules "one" and "two" not specified in tenant config:
+```
+stripes platform backend stripes.config.js --include one two
+```
+
 ## `alias` command
 Maintain global aliases that apply to all platforms and apps
 
@@ -626,6 +670,7 @@ Sub-commands:
 * `stripes mod enable`
 * `stripes mod install`
 * `stripes mod list`
+* `stripes mod pull`
 * `stripes mod remove`
 * `stripes mod update`
 * `stripes mod view`
@@ -641,19 +686,19 @@ stripes mod add
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
+`--okapi` | Specify an Okapi URL | string | (*)
 `--strict` | Include required interface dependencies | boolean | default: false
 
 Examples:
 
+Add descriptor for ui-module in current directory:
 ```
 stripes mod add
 ```
 
 ### `mod remove` command
 
-Remove an app module descriptor from Okapi
+Remove a module descriptor from Okapi
 
 Usage:
 ```
@@ -662,14 +707,22 @@ stripes mod remove
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
-
+`--okapi` | Specify an Okapi URL | string | (*)
+`--ids` | Module descriptor ids  | array | supports stdin
 
 Examples:
 
+Remove ui-module located in current directory:
 ```
 stripes mod remove
+```
+Remove module ids "one" and "two" from Okapi:
+```
+stripes mod remove --ids one two
+```
+Remove module ids "one" and "two" from Okapi with stdin:
+```
+echo one two | stripes mod remove
 ```
 
 ### `mod enable` command
@@ -681,13 +734,11 @@ Usage:
 stripes mod enable
 ```
 
-
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
-`--ids` | Module descriptor ids | array | supports stdin
-
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
+`--ids` | Module descriptor ids  | array | supports stdin
 
 Examples:
 
@@ -704,7 +755,6 @@ Enable module ids "one" and "two" for tenant diku with stdin:
 echo one two | stripes mod enable --tenant diku
 ```
 
-
 ### `mod disable` command
 
 Disable modules for a tenant in Okapi
@@ -716,10 +766,9 @@ stripes mod disable
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
-`--ids` | Module descriptor ids | array | supports stdin
-
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
+`--ids` | Module descriptor ids  | array | supports stdin
 
 Examples:
 
@@ -736,7 +785,6 @@ Disable module ids "one" and "two" for tenant diku with stdin:
 echo one two | stripes mod disable --tenant diku
 ```
 
-
 ### `mod update` command
 
 Update an app module descriptor in Okapi
@@ -746,12 +794,13 @@ Usage:
 stripes mod update
 ```
 
-
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
+`--okapi` | Specify an Okapi URL | string | (*)
 
+Examples:
+
+Update descriptor for ui-module in current directory:
 ```
 stripes mod update
 ```
@@ -762,16 +811,14 @@ Generate module descriptors for an app or platform.
 
 Usage:
 ```
-stripes mod descriptor
+stripes mod descriptor [configFile]
 ```
-
 
 Option | Description | Type | Notes
 ---|---|---|---
 `--configFile` | File containing a Stripes tenant configuration (platform context only) | string |
 `--full` | Return full module descriptor JSON | boolean | default: false
 `--strict` | Include required interface dependencies | boolean | default: false
-
 
 Examples:
 
@@ -799,7 +846,7 @@ stripes mod list
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
+`--okapi` | Specify an Okapi URL | string | (*)
 `--tenant` | Specify a tenant ID | string |
 
 Examples:
@@ -817,9 +864,9 @@ List available module ids in Okapi (overriding any tenant set via config):
 stripes mod list --no-tenant
 ```
 
-### `mod install` command (work in progress)
+### `mod install` command
 
-Enable, disable, or upgrade one or more modules for a tenant in Okapi (work in progress)
+Enable, disable, and optionally deploy one or more modules for a tenant in Okapi
 
 Usage:
 ```
@@ -828,17 +875,23 @@ stripes mod install
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string |
-`--tenant` | Specify a tenant ID | string |
-`--ids` | Module descriptor ids | array | supports stdin
-`--simulate` | Perform a dry run | boolean |
-
+`--okapi` | Specify an Okapi URL | string | (*)
+`--tenant` | Specify a tenant ID | string | (*)
+`--simulate` | Simulate operation | boolean | default: false
+`--action` | Action to perform on modules | string | choices: "enable", "disable"
+`--deploy` | Deploy modules | boolean | default: false
+`--preRelease` | Include pre-release modules | boolean | default: true
+`--ids` | Module descriptor ids  | array | supports stdin
 
 Examples:
 
-Install modules "one" and "two":
+Install and deploy module ids "one" and "two":
 ```
-stripes mod install --ids one two --tenant diku
+stripes mod install --ids one two --tenant diku --deploy
+```
+Disable module ids "one" and "two":
+```
+stripes mod install --ids one two --tenant diku --action disable
 ```
 Install module ids "one" and "two" using stdin:
 ```
@@ -856,10 +909,8 @@ stripes mod view
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | 
-`--tenant` | Specify a tenant ID | string | 
-`--ids` | Module descriptor ids | array | 
-
+`--okapi` | Specify an Okapi URL | string | (*)
+`--ids` | Module descriptor ids  | array | supports stdin
 
 Examples:
 
@@ -870,6 +921,27 @@ stripes mod view --ids one two
 View module descriptors for ids "one" and "two" with stdin:
 ```
 echo one two | stripes mod view
+```
+
+### `mod pull` command
+
+Pull module descriptors from a remote okapi
+
+Usage:
+```
+stripes mod pull
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string | (*)
+`--remote` | Remote Okapi to pull from | string | (*)
+
+Examples:
+
+Pull module descriptors from remote Okapi:
+```
+stripes mod pull --okapi http://localhost:9130 --remote http://folio-registry.aws.indexdata.com
 ```
 
 ## `perm` command
