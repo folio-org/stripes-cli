@@ -814,9 +814,12 @@ Usage:
 stripes mod descriptor [configFile]
 ```
 
+Positional | Description | Type | Notes
+---|---|---|---
+`configFile` | File containing a Stripes tenant configuration (platform context only) | string | 
+
 Option | Description | Type | Notes
 ---|---|---|---
-`--configFile` | File containing a Stripes tenant configuration (platform context only) | string |
 `--full` | Return full module descriptor JSON | boolean | default: false
 `--strict` | Include required interface dependencies | boolean | default: false
 
@@ -828,7 +831,7 @@ stripes mod descriptor
 ```
 Display module descriptor ids for platform:
 ```
-stripes mod descriptor --configFile stripes.config.js
+stripes mod descriptor stripes.config.js
 ```
 Display full module descriptor as JSON:
 ```
