@@ -538,8 +538,8 @@ Option | Description | Type | Notes
 `--tenant` | Specify a tenant ID | string | (*)
 `--simulate` | Simulate install only (does not deploy) | boolean | default: false
 `--preRelease` | Include pre-release modules | boolean | default: true
-`--remote` | Pull module descriptors from remote registry before install | string | 
-`--include` | Additional module ids to include with install | array | 
+`--remote` | Pull module descriptors from remote registry before install | string |
+`--include` | Additional module ids to include with install | array |
 `--detail` | Display detailed output | boolean | default: false
 
 Examples:
@@ -816,7 +816,7 @@ stripes mod descriptor [configFile]
 
 Positional | Description | Type | Notes
 ---|---|---|---
-`configFile` | File containing a Stripes tenant configuration (platform context only) | string | 
+`configFile` | File containing a Stripes tenant configuration (platform context only) | string |
 
 Option | Description | Type | Notes
 ---|---|---|---
