@@ -417,7 +417,7 @@ stripes workspace --modules all
 
 ### Creating a platform
 
-If you selected a platform such as `stripes-sample-platform` or `platform-core` at the time of creating a workspace, you are all set.  Refer to `stripes.config.js` and `package.json` of the [Stripes Sample Platform](https://github.com/folio-org/stripes-sample-platform) if you wish to create a platform manually. 
+If you selected a platform such as `stripes-sample-platform` or `platform-core` at the time of creating a workspace, you are all set.  Refer to `stripes.config.js` and `package.json` of the [Stripes Sample Platform](https://github.com/folio-org/stripes-sample-platform) if you wish to create a platform manually.
 
 
 ### Running a platform
@@ -557,16 +557,16 @@ Note: If running the analyzer with aliased modules, duplication is likely.  It i
 
 ### Reducing build output
 
-One quick way to limit the build output, is to limit the number of languages included in the build.  This is done my modifying a tenant's Stripes configuration.  See [filtering translations at build time](https://github.com/folio-org/stripes/blob/master/doc/dev-guide.md#filtering-translations-at-build-time) of the Stripes developer guide on how to to this.  The result will not only limit translation files, but also locale assets for `react-intl` and `moment` libraries.
+One quick way to limit the build output, is to limit the number of languages included in the build.  This is done by modifying a tenant's Stripes configuration.  See [filtering translations at build time](https://github.com/folio-org/stripes/blob/master/doc/dev-guide.md#filtering-translations-at-build-time) of the Stripes developer guide on how to to this.  The result will not only limit translation files, but also locale assets for `react-intl` and `moment` libraries.
 
-Filtering languages can be done with the CLI by specifying the `languages` option which accepts an array of values.  
+Filtering languages can be done with the CLI by specifying the `languages` option which accepts an array of values.
 ```
 stripes build stripes.config.js --languages en es
 ```
 
 ## Viewing diagnostic output
 
-The CLI's `status` command is a helpful starting point for diagnosing errors.  Among other things, `status` will output which stripes-core is in use, the stripes config for the current context and list any aliases. 
+The CLI's `status` command is a helpful starting point for diagnosing errors.  Among other things, `status` will output which stripes-core is in use, the stripes config for the current context and list any aliases.
 
 ```
 stripes status stripes.config.js
