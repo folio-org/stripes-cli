@@ -39,6 +39,24 @@ Then create a link to `lib/stripes-cli.js` in your path so stripes can easily be
 ln -s ./lib/stripes-cli.js /usr/local/bin/stripes
 ```
 
+### Developement installation on Windows
+
+The symbolic link command will not work on Windows. The Windows installation of stripes creates stripes.cmd that uses the global `stripes-cli.js`. The local Stripes CLI can be used in PowerShell by adding a function to the PowerShell Profile. The PowerShell Profile path can be obtained by displaying the value of the `$profile` variable. The path will be shown if the file exists or not. The cmdlet `Test-Path $profile` returns `True` if the file exists and `False` if it does not. If the file does not exist, it can be created by using the cmdlet `New-Item -Type file -Path $Profile -Force`. Whenever PowerShell is launched, the commands in this file are executed.
+
+The following function defines a `stripes` command that can be used in PowerShell. The full path to the local `stripes-cli.js` will have to be set in the function body.  
+
+```
+function stripes {
+ node <path to stripes-cli>\stripes-cli.js $args
+}
+```
+
+This function can be added to the PowerShell Profile and it will be defined when PowerShell is launched.
+
+By default, PowerShell sets the `Execution Policy` for script files to `Undefined`. It can be changed using the `Set-ExecutionPolicy` cmdlet, see [Microsoft Docs](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-6) for more details.  
+
+It is recommended to set the `Execution Policy` to `AllSigned` but this requires the PowerShell Profile script to be signed. [Signing PowerShell Scripts](https://www.hanselman.com/blog/SigningPowerShellScripts.aspx) has a tutorial on how to create a local certificate and sign the PowerShell Profile script. The tutorial uses `.NET Framework 2.0 SDK` to create a self signed certificate but this is no longer avaiable. The [Windows 10 SDK](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk) can be used to generate the self signed certificate. The `makecert` executable is available when the `Windows 10 SDK` is installed.  
+
 ## Running tests
 
 The CLI's tests use Mocha, Chai, and Sinon.  Run the test with the `test` script:
