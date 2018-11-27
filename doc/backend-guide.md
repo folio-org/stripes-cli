@@ -2,6 +2,8 @@
 
 Stripes CLI offers many commands for interacting with Okapi to manage back-end modules for a tenant.  This guide steps through the process of standing up a back-end to support a unique platform.
 
+> Note: This document is currently a work in progress. Notably, it depends on a Vagrant VM that is not yet published.
+
 * [Prerequisites](#prerequisites)
     * [Create a Vagrant box](#create-a-vagrant-box)
     * [Install a front-end platform](#install-a-front-end-platform)
