@@ -11,7 +11,7 @@
   * `mod remove` now supports multiple descriptor ids
   * Enable/disable and optionally deploy modules via `mod install`
   * Deploy, enable, and upgrade modules for a platform via `platform backend`
-
+* Use correct relative path for package.json in `workspace` command, fixes STCLI-121
 
 ## [1.6.0](https://github.com/folio-org/stripes-cli/tree/v1.6.0) (2018-10-19)
 
