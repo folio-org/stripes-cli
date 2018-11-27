@@ -35,6 +35,7 @@ This following command documentation is largely generated from the CLI's own bui
     * [`mod install` command](#mod-install-command)
     * [`mod view` command](#mod-view-command)
     * [`mod pull` command](#mod-pull-command)
+    * [`mod filter` command](#mod-filter-command)
 * [`perm` command](#perm-command)
     * [`perm create` command](#perm-create-command)
     * [`perm assign` command](#perm-assign-command)
@@ -668,6 +669,7 @@ Sub-commands:
 * `stripes mod descriptor`
 * `stripes mod disable`
 * `stripes mod enable`
+* `stripes mod filter`
 * `stripes mod install`
 * `stripes mod list`
 * `stripes mod pull`
@@ -945,6 +947,31 @@ Examples:
 Pull module descriptors from remote Okapi:
 ```
 stripes mod pull --okapi http://localhost:9130 --remote http://folio-registry.aws.indexdata.com
+```
+
+### `mod filter` command
+
+Filter module descriptors
+
+Usage:
+```
+stripesx mod filter
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--front` | Front-end modules only | boolean |
+`--back` | Back-end modules only | boolean |
+
+Examples:
+
+Filter front-end module ids:
+```
+echo mod-one folio_two stripesx mod filter --front
+```
+Filter back-end module ids:
+```
+echo mod-one folio_two stripesx mod filter --back
 ```
 
 ## `perm` command

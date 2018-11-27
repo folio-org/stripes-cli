@@ -11,6 +11,7 @@
   * `mod remove` now supports multiple descriptor ids
   * Enable/disable and optionally deploy modules via `mod install`
   * Deploy, enable, and upgrade modules for a platform via `platform backend`
+* Support using `mod install` simulate output as input for subsequent calls to command, STCLI-116
 
 
 ## [1.6.0](https://github.com/folio-org/stripes-cli/tree/v1.6.0) (2018-10-19)
