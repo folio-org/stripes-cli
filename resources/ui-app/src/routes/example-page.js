@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'react-router-dom/Link';
+import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { FormattedMessage } from 'react-intl';
+
 import {
   Button,
   Headline,
@@ -43,6 +45,7 @@ export default class ExamplePage extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.toggleModal = this.toggleModal.bind(this);
     this.buttonClick = this.buttonClick.bind(this);
     this.onClose = this.onClose.bind(this);
@@ -89,15 +92,13 @@ export default class ExamplePage extends React.Component {
     } = this.getHealthSummary();
 
     return (
-      <Fragment>
-        <b>{healthyInstances}</b>
-        &nbsp;
-        <FormattedMessage id="<%= uiAppName %>.example-page.instances-healthy" />
-        ,&nbsp;
-        <b>{notHealthyInstances}</b>
-        &nbsp;
-        <FormattedMessage id="<%= uiAppName %>.example-page.instances-instances-not-healthy" />
-      </Fragment>
+      <SafeHTMLMessage
+        values={{
+          healthyInstances,
+          notHealthyInstances
+        }}
+        id="<%= uiAppName %>.example-page.health-summary"
+      />
     );
   }
 

@@ -19,22 +19,30 @@ class <%= componentName %> extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.connectedExamplePage = props.stripes.connect(ExamplePage);
   }
 
   render() {
-    if (this.props.showSettings) {
+    const {
+      showSettings,
+      match: {
+        path
+      }
+    } = this.props;
+
+    if (showSettings) {
       return <Settings {...this.props} />;
     }
     return (
       <Switch>
         <Route
-          path={`${this.props.match.path}`}
+          path={path}
           exact
           component={Application}
         />
         <Route
-          path={`${this.props.match.path}/examples`}
+          path={`${path}/examples`}
           exact
           component={this.connectedExamplePage}
         />
