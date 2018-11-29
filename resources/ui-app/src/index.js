@@ -15,6 +15,11 @@ class <%= componentName %> extends React.Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
     showSettings: PropTypes.bool,
+  };
+
+  constructor(props) {
+    super(props);
+    this.connectedExamplePage = props.stripes.connect(ExamplePage);
   }
 
   render() {
@@ -23,8 +28,16 @@ class <%= componentName %> extends React.Component {
     }
     return (
       <Switch>
-        <Route path={`${this.props.match.path}`} exact component={Application} />
-        <Route path={`${this.props.match.path}/examples`} exact component={ExamplePage} />
+        <Route
+          path={`${this.props.match.path}`}
+          exact
+          component={Application}
+        />
+        <Route
+          path={`${this.props.match.path}/examples`}
+          exact
+          component={this.connectedExamplePage}
+        />
       </Switch>
     );
   }

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'react-router-dom/Link';
+import { FormattedMessage } from 'react-intl';
 import {
   Button,
   Headline,
   Pane,
-  Paneset
+  Paneset,
+  Icon,
 } from '@folio/stripes-components';
+
 import GreetingModal from '../components/greeting-modal';
 
 /*
@@ -18,7 +21,25 @@ import GreetingModal from '../components/greeting-modal';
 export default class ExamplePage extends React.Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
+    resources: PropTypes.shape({
+      health: PropTypes.shape({
+        hasLoaded: PropTypes.bool.isRequired,
+        records: PropTypes.arrayOf(PropTypes.shape({
+          healthMessage: PropTypes.string.isRequired,
+          healthStatus: PropTypes.bool.isRequired,
+          instId: PropTypes.string.isRequired,
+          srvcId: PropTypes.string.isRequired
+        })).isRequired
+      })
+    }).isRequired
   }
+
+  static manifest = Object.freeze({
+    health: {
+      type: 'okapi',
+      path: '_/discovery/health',
+    }
+  });
 
   constructor(props) {
     super(props);
@@ -40,7 +61,50 @@ export default class ExamplePage extends React.Component {
     this.toggleModal(true);
   }
 
+  getHealthSummary() {
+    const {
+      records: healthData
+    } = this.props.resources.health;
+
+    const defaultlHealthSummary = {
+      healthyInstances: 0,
+      notHealthyInstances: 0
+    };
+
+    return healthData.reduce((healthSummary, { healthStatus }) => {
+      if (healthStatus) {
+        healthSummary.healthyInstances++;
+      } else {
+        healthSummary.notHealthyInstances++;
+      }
+
+      return healthSummary;
+    }, defaultlHealthSummary);
+  }
+
+  renderHealthSummary() {
+    const {
+      healthyInstances,
+      notHealthyInstances,
+    } = this.getHealthSummary();
+
+    return (
+      <Fragment>
+        <b>{healthyInstances}</b>
+        &nbsp;
+        <FormattedMessage id="<%= uiAppName %>.example-page.instances-healthy" />
+        ,&nbsp;
+        <b>{notHealthyInstances}</b>
+        &nbsp;
+        <FormattedMessage id="<%= uiAppName %>.example-page.instances-instances-not-healthy" />
+      </Fragment>
+    );
+  }
+
   render() {
+    const { health } = this.props.resources;
+    const healthResourceAvaliable = health && health.hasLoaded;
+
     return (
       <Paneset static>
         <Pane defaultWidth="20%" paneTitle="Examples">
@@ -57,6 +121,17 @@ export default class ExamplePage extends React.Component {
             <Button onClick={this.buttonClick}>Click me</Button>
           </div>
           <GreetingModal onClose={this.onClose} open={this.state.showModal} />
+          <hr />
+          <Headline
+            size="small"
+            margin="medium"
+          >
+            <FormattedMessage id="<%= uiAppName %>.example-page.sample-request" />
+          </Headline>
+          {healthResourceAvaliable
+            ? this.renderHealthSummary()
+            : <Icon icon="spinner-ellipsis" />
+          }
           <hr />
           <Headline size="small" margin="medium">More...</Headline>
           Please refer to the
