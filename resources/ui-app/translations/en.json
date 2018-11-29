@@ -8,5 +8,5 @@
   "settings.some-feature.message": "These are your settings for some app feature.",
 
   "example-page.sample-request": "Sample API request",
-  "example-page.health-summary": "<b>{healthyInstances}</b> instances healthy, <b>{notHealthyInstances}</b> instances not healthy"
+  "example-page.health-summary": "{healthyInstances} instances healthy, {notHealthyInstances} instances not healthy"
 }

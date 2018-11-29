@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'react-router-dom/Link';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { FormattedMessage } from 'react-intl';
 
 import {
@@ -92,10 +91,10 @@ export default class ExamplePage extends React.Component {
     } = this.getHealthSummary();
 
     return (
-      <SafeHTMLMessage
+      <FormattedMessage
         values={{
-          healthyInstances,
-          notHealthyInstances
+          healthyInstances: <b>{healthyInstances}</b>,
+          notHealthyInstances: <b>{notHealthyInstances}</b>
         }}
         id="<%= uiAppName %>.example-page.health-summary"
       />
