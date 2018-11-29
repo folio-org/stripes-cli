@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes-cli",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Stripes Command Line Interface",
   "repository": "https://github.com/folio-org/stripes-cli",
   "publishConfig": {
@@ -20,7 +20,7 @@
     "lint-templates": "eslint ./resources --no-ignore"
   },
   "dependencies": {
-    "@folio/stripes-core": "^2.10.0",
+    "@folio/stripes-core": "^2.16.0",
     "@folio/stripes-testing": "^1.0.0",
     "babel-plugin-istanbul": "^4.1.6",
     "configstore": "^3.1.1",

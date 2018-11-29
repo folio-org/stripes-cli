@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 1.7.0  (IN PROGRESS)
+## [1.7.0](https://github.com/folio-org/stripes-cli/tree/v1.7.0) (2018-11-29)
 
 * Rename `mod view` to `mod list` and add support for listing all module ids, STCLI-79
 * New `mod view` implementation to view module descriptors given ids, STCLI-79
