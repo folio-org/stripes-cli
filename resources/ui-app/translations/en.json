@@ -5,5 +5,8 @@
   "settings.general": "General",
   "settings.general.message": "These are your general app settings.",
   "settings.some-feature": "Some Feature",
-  "settings.some-feature.message": "These are your settings for some app feature."
+  "settings.some-feature.message": "These are your settings for some app feature.",
+
+  "example-page.sample-request": "Sample API request",
+  "example-page.health-summary": "{healthyInstances} instances healthy, {notHealthyInstances} instances not healthy"
 }

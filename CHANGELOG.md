@@ -14,6 +14,7 @@
 * Dynamically apply CLI devDependency version for new app and workspace, STCLI-109
 * Use correct relative path for package.json in `workspace` command, fixes STCLI-121
 * Support using `mod install` simulate output as input for subsequent calls to command, STCLI-116
+*  Add sample API request to ui-app template
 
 
 ## [1.6.0](https://github.com/folio-org/stripes-cli/tree/v1.6.0) (2018-10-19)
