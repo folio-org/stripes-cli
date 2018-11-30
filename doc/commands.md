@@ -36,6 +36,7 @@ This following command documentation is largely generated from the CLI's own bui
     * [`mod view` command](#mod-view-command)
     * [`mod pull` command](#mod-pull-command)
     * [`mod filter` command](#mod-filter-command)
+    * [`mod perms` command](#mod-perms-command)
 * [`perm` command](#perm-command)
     * [`perm create` command](#perm-create-command)
     * [`perm assign` command](#perm-assign-command)
@@ -676,6 +677,7 @@ Sub-commands:
 * `stripes mod remove`
 * `stripes mod update`
 * `stripes mod view`
+* `stripes mod perms`
 
 ### `mod add` command
 
@@ -972,6 +974,32 @@ echo mod-one folio_two stripesx mod filter --front
 Filter back-end module ids:
 ```
 echo mod-one folio_two stripesx mod filter --back
+```
+
+### `mod perms` command
+
+List permissions for module ids in Okapi
+
+Usage:
+```
+stripes mod perms
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string | (*)
+`--expand` | Include sub-permissions | boolean | default: false
+`--ids` | Module descriptor ids  | array | supports stdin
+
+Examples:
+
+List permissions for ids "one" and "two":
+```
+stripes mod perms --ids one two
+```
+List permissions for ids "one" and "two" with stdin:
+```
+echo one two | stripes mod perms
 ```
 
 ## `perm` command
