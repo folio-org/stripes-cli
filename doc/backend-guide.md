@@ -69,7 +69,7 @@ This step is not required.  It is only a convenience so we don't have to include
 The following command, run from within your platform directory, will prepare and deploy modules and their dependencies for your tenant via Okapi's `/_/proxy/tenants/{tenant_id}/install` endpoint.
 
 ```
-$ stripes platform backend stripes.config.js --remote http://folio-registry.aws.indexdata.com
+$ stripes platform backend stripes.config.js --user diku_admin --remote http://folio-registry.aws.indexdata.com
 ```
 
 When running this command, the following operations are performed by the CLI and Okapi:
@@ -79,6 +79,7 @@ When running this command, the following operations are performed by the CLI and
 - Perform a dry-run install and reports a summary
 - Deploy and enable the back-end modules
 - Post the front-end modules descriptors
+- Assign missing module permissions to a user
 
 ### Useful variants
 
@@ -151,4 +152,12 @@ Using the same output from the dry run, this time filter the results for front-e
 
 ```
 $ cat my-module-actions | stripes mod filter --front | stripes mod install
+```
+
+### Assign permissions to a user
+
+In order to make use of the newly installed modules for development, assign module permissions to a user.  This can be done by chaining a few `stripes` commands together.   
+
+```
+$ stripes mod list | stripes mod perms | stripes perm assign --user diku_admin
 ```
