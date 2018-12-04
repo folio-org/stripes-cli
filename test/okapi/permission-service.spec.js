@@ -312,7 +312,7 @@ describe('The permission-service', function () {
   describe('assignAllTenantPermissionsToUser method', function () {
     beforeEach(function () {
       this.sut = new PermissionService(okapiStub, contextStub);
-      this.sandbox.stub(this.sut.moduleService, 'listModulesForTenant').resolves(['folio_one', 'mod_two', 'mod_three']);
+      this.sandbox.stub(this.sut.moduleService, 'listModulesForTenant').resolves(['folio_one', 'mod-two', 'mod-three']);
       this.sandbox.stub(this.sut.moduleService, 'listModulePermissions').resolves(['one.foo', 'two.bar', 'three.foo', 'three.bar']);
     });
 
