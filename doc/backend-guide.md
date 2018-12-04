@@ -79,7 +79,7 @@ When running this command, the following operations are performed by the CLI and
 - Perform a dry-run install and reports a summary
 - Deploy and enable the back-end modules
 - Post the front-end modules descriptors
-- Assign missing module permissions to a user
+- Given a `--user <username>`, assign missing module permissions to the user
 
 ### Useful variants
 
@@ -156,7 +156,7 @@ $ cat my-module-actions | stripes mod filter --front | stripes mod install
 
 ### Assign permissions to a user
 
-In order to make use of the newly installed modules for development, assign module permissions to a user.  This can be done by chaining a few `stripes` commands together.   
+In order to make use of the newly installed modules for development, assign module permissions to a user.  This can be done by chaining a few `stripes` commands together.  The following will gather permissions for all of the tenant's modules, and attempt to assign them to the user.
 
 ```
 $ stripes mod list | stripes mod perms | stripes perm assign --user diku_admin
