@@ -1,5 +1,12 @@
 # Change history for stripes-cli
 
+## [1.8.0] (IN PROGRESS)
+* Add sample API request to ui-app template, STCLI-98
+* New `mod perms` command to list permission for one or more modules, STCLI-115
+* Support permission assignment via `platform backend` command, STCLI-115
+* Rename `perm view` to `perm list` for consistency
+
+
 ## [1.7.0](https://github.com/folio-org/stripes-cli/tree/v1.7.0) (2018-11-29)
 
 * Rename `mod view` to `mod list` and add support for listing all module ids, STCLI-79
@@ -14,7 +21,6 @@
 * Dynamically apply CLI devDependency version for new app and workspace, STCLI-109
 * Use correct relative path for package.json in `workspace` command, fixes STCLI-121
 * Support using `mod install` simulate output as input for subsequent calls to command, STCLI-116
-*  Add sample API request to ui-app template
 
 
 ## [1.6.0](https://github.com/folio-org/stripes-cli/tree/v1.6.0) (2018-10-19)
