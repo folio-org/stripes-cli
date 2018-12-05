@@ -42,6 +42,7 @@ This following command documentation is largely generated from the CLI's own bui
     * [`perm assign` command](#perm-assign-command)
     * [`perm unassign` command](#perm-unassign-command)
     * [`perm list` command](#perm-list-command)
+* [`completion` command](#completion-command)
 
 
 ## Common options
@@ -1126,4 +1127,13 @@ Examples:
 List permissions for user diku_admin:
 ```
 stripes perm list --user diku_admin
+```
+
+## `completion` command
+
+Generate a bash completion script.  Follow instructions included with the script for adding it to your bash profile.
+
+Usage:
+```
+stripes completion
 ```
