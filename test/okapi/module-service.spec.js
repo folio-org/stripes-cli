@@ -21,7 +21,7 @@ const okapiStub = {
       }
       return okapiResolve({});
     },
-    enableModuleForTenant: (id, tenant) => {
+    enableModuleForTenant: (id) => {
       if (id === 'mod-enabled') {
         return okapiReject('already provided');
       }

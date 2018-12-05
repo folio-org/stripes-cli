@@ -24,7 +24,7 @@ const okapiStub = {
       }
       return jsonResponseStub({});
     },
-    getUserPermissions: (userUuid) => jsonResponseStub({
+    getUserPermissions: () => jsonResponseStub({
       permissionNames: [
         'ui-module.existing',
         'one.foo',
