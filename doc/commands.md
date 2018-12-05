@@ -36,11 +36,12 @@ This following command documentation is largely generated from the CLI's own bui
     * [`mod view` command](#mod-view-command)
     * [`mod pull` command](#mod-pull-command)
     * [`mod filter` command](#mod-filter-command)
+    * [`mod perms` command](#mod-perms-command)
 * [`perm` command](#perm-command)
     * [`perm create` command](#perm-create-command)
     * [`perm assign` command](#perm-assign-command)
     * [`perm unassign` command](#perm-unassign-command)
-    * [`perm view` command](#perm-view-command)
+    * [`perm list` command](#perm-list-command)
 
 
 ## Common options
@@ -676,6 +677,7 @@ Sub-commands:
 * `stripes mod remove`
 * `stripes mod update`
 * `stripes mod view`
+* `stripes mod perms`
 
 ### `mod add` command
 
@@ -974,6 +976,32 @@ Filter back-end module ids:
 echo mod-one folio_two stripesx mod filter --back
 ```
 
+### `mod perms` command
+
+List permissions for module ids in Okapi
+
+Usage:
+```
+stripes mod perms
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string | (*)
+`--expand` | Include sub-permissions | boolean | default: false
+`--ids` | Module descriptor ids  | array | supports stdin
+
+Examples:
+
+List permissions for ids "one" and "two":
+```
+stripes mod perms --ids one two
+```
+List permissions for ids "one" and "two" with stdin:
+```
+echo one two | stripes mod perms
+```
+
 ## `perm` command
 
 Commands to manage UI module permissions
@@ -987,7 +1015,7 @@ Sub-commands:
 * `stripes perm assign`
 * `stripes perm create [name]`
 * `stripes perm unassign`
-* `stripes perm view`
+* `stripes perm list`
 
 
 ### `perm create` command
@@ -1028,7 +1056,7 @@ stripes perm create ui-my-app.example --push --assign someone
 
 
 ### `perm assign` command
-Assign permission to a user
+Assign permissions to a user
 
 Usage:
 ```
@@ -1050,7 +1078,7 @@ stripes perm assign --name module.hello-world.enabled --user diku_admin
 ```
 Assign permissions from user jack to user jill:
 ```
-stripes perm view --user jack | stripes perm assign --user jill
+stripes perm list --user jack | stripes perm assign --user jill
 ```
 
 ### `perm unassign` command
@@ -1077,13 +1105,13 @@ stripes perm unassign --name module.hello-world.enabled --user diku_admin
 ```
 
 
-### `perm view` command
+### `perm list` command
 
-View permissions for a user
+List permissions for a user
 
 Usage:
 ```
-stripes perm view
+stripes perm list
 ```
 
 Option | Description | Type | Notes
@@ -1095,7 +1123,7 @@ Option | Description | Type | Notes
 
 Examples:
 
-View permissions for user diku_admin:
+List permissions for user diku_admin:
 ```
-stripes perm view --user diku_admin
+stripes perm list --user diku_admin
 ```

@@ -91,10 +91,10 @@ The above file can be piped to `mod enable` to enable multiple module descriptor
 cat my-modules | stripes mod enable --tenant diku
 ```
 
-Various commands produce output that is suitable for piping to related commands.  For example, `perm view` will output a list of permission names, one on each line.  This can be optionally be filtered and piped to `perm assign`.
+Various commands produce output that is suitable for piping to related commands.  For example, `perm list` will output a list of permission names, one on each line.  This can be optionally be filtered and piped to `perm assign`.
 
 ```
-stripes perm view --user jack | grep hello-world | stripes perm assign --user jill
+stripes perm list --user jack | grep hello-world | stripes perm assign --user jill
 ```
 
 Support for `stdin` is indicated in a command option's notes in the [command reference](./commands.md).

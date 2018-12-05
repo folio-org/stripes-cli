@@ -80,9 +80,10 @@ describe('The stripes-platform', function () {
     });
 
     it('adds app alias', function () {
+      this.sandbox.stub(path, 'resolve').returns('path/to/my-app');
       this.sut.isAppContext = true;
       this.sut.applyVirtualAppPlatform('my-app');
-      expect(this.sut.aliases).to.have.property('my-app').with.match(/stripes-cli/);
+      expect(this.sut.aliases).to.have.property('my-app').with.match(/path\/to\/my-app/);
     });
   });
 
