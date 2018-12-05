@@ -41,7 +41,7 @@ This following command documentation is largely generated from the CLI's own bui
     * [`perm create` command](#perm-create-command)
     * [`perm assign` command](#perm-assign-command)
     * [`perm unassign` command](#perm-unassign-command)
-    * [`perm view` command](#perm-view-command)
+    * [`perm list` command](#perm-list-command)
 
 
 ## Common options
@@ -1015,7 +1015,7 @@ Sub-commands:
 * `stripes perm assign`
 * `stripes perm create [name]`
 * `stripes perm unassign`
-* `stripes perm view`
+* `stripes perm list`
 
 
 ### `perm create` command
@@ -1056,7 +1056,7 @@ stripes perm create ui-my-app.example --push --assign someone
 
 
 ### `perm assign` command
-Assign permission to a user
+Assign permissions to a user
 
 Usage:
 ```
@@ -1078,7 +1078,7 @@ stripes perm assign --name module.hello-world.enabled --user diku_admin
 ```
 Assign permissions from user jack to user jill:
 ```
-stripes perm view --user jack | stripes perm assign --user jill
+stripes perm list --user jack | stripes perm assign --user jill
 ```
 
 ### `perm unassign` command
@@ -1105,13 +1105,13 @@ stripes perm unassign --name module.hello-world.enabled --user diku_admin
 ```
 
 
-### `perm view` command
+### `perm list` command
 
-View permissions for a user
+List permissions for a user
 
 Usage:
 ```
-stripes perm view
+stripes perm list
 ```
 
 Option | Description | Type | Notes
@@ -1123,7 +1123,7 @@ Option | Description | Type | Notes
 
 Examples:
 
-View permissions for user diku_admin:
+List permissions for user diku_admin:
 ```
-stripes perm view --user diku_admin
+stripes perm list --user diku_admin
 ```

@@ -14,7 +14,7 @@ When a newly created app does not show up in the navigation bar, this is likely 
 
 Given you are already [logged into Okapi](./commands.md#okapi-login-command), check to see if the user has permissions to your app.  For example:
 ```
-stripes perm view --user diku_admin
+stripes perm list --user diku_admin
 ```
 
 See [assigning permissions](./user-guide.md#assigning-permissions) if you need to add the module descriptor to Okapi, assign the module to a tenant, or assign module permissions to a user.
