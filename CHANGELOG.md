@@ -5,6 +5,7 @@
 * New `mod perms` command to list permission for one or more modules, STCLI-115
 * Support permission assignment via `platform backend` command, STCLI-115
 * Rename `perm view` to `perm list` for consistency
+* Use caret version for CLI in workspace template, fixes STCLI-123
 
 
 ## [1.7.0](https://github.com/folio-org/stripes-cli/tree/v1.7.0) (2018-11-29)
