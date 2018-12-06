@@ -4,7 +4,7 @@
       "*"
   ],
   "devDependencies": {
-    "@folio/stripes-cli": "<%= cliVersion %>"
+    "@folio/stripes-cli": "^<%= cliVersion %>"
   },
   "dependencies": {
   }
