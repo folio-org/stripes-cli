@@ -25,6 +25,7 @@
     "babel-plugin-istanbul": "^4.1.6",
     "configstore": "^3.1.1",
     "debug": "^4.0.1",
+    "fast-xml-parser": "^3.12.10",
     "find-up": "^2.1.0",
     "get-stdin": "^6.0.0",
     "global-dirs": "^0.1.1",
