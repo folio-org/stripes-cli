@@ -7,6 +7,7 @@
 * Rename `perm view` to `perm list` for consistency
 * Use caret version for CLI in workspace template, fixes STCLI-123
 * Remove deprecated `folio-testing-platform` from selection during `workspace` command, FOLIO-1370
+* Upgrade to Yargs 12.x
 
 
 ## [1.7.0](https://github.com/folio-org/stripes-cli/tree/v1.7.0) (2018-11-29)
