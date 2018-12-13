@@ -441,10 +441,6 @@ Create and select ui-users and stripes-core:
 ```
 stripes workspace --modules ui-users stripes-core
 ```
-Create and select all available modules:
-```
-stripes workspace --modules all
-```
 Create without installing dependencies:
 ```
 stripes workspace --no-install
