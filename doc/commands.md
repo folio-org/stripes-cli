@@ -852,16 +852,26 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | (*)
 `--tenant` | Specify a tenant ID | string |
+`--provide` | limit to provided interface | string |
+`--require` | limit to required interface | string |
 
 Examples:
 
-List enabled module ids for tenant diku:
-```
-stripes mod list --tenant diku
-```
 List all available module ids in Okapi:
 ```
 stripes mod list
+```
+List module ids that provide "notes" interface:
+```
+stripes mod list --provide notes
+```
+List module ids that require "notes" interface:
+```
+stripes mod list --require notes
+```
+List enabled module ids for tenant diku:
+```
+stripes mod list --tenant diku
 ```
 List available module ids in Okapi (overriding any tenant set via config):
 ```
