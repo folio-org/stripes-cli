@@ -42,6 +42,7 @@ This following command documentation is largely generated from the CLI's own bui
     * [`perm assign` command](#perm-assign-command)
     * [`perm unassign` command](#perm-unassign-command)
     * [`perm list` command](#perm-list-command)
+* [`completion` command](#completion-command)
 
 
 ## Common options
@@ -439,10 +440,6 @@ stripes workspace --dir temp
 Create and select ui-users and stripes-core:
 ```
 stripes workspace --modules ui-users stripes-core
-```
-Create and select all available modules:
-```
-stripes workspace --modules all
 ```
 Create without installing dependencies:
 ```
@@ -855,16 +852,26 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | (*)
 `--tenant` | Specify a tenant ID | string |
+`--provide` | limit to provided interface | string |
+`--require` | limit to required interface | string |
 
 Examples:
 
-List enabled module ids for tenant diku:
-```
-stripes mod list --tenant diku
-```
 List all available module ids in Okapi:
 ```
 stripes mod list
+```
+List module ids that provide "notes" interface:
+```
+stripes mod list --provide notes
+```
+List module ids that require "notes" interface:
+```
+stripes mod list --require notes
+```
+List enabled module ids for tenant diku:
+```
+stripes mod list --tenant diku
 ```
 List available module ids in Okapi (overriding any tenant set via config):
 ```
@@ -1126,4 +1133,13 @@ Examples:
 List permissions for user diku_admin:
 ```
 stripes perm list --user diku_admin
+```
+
+## `completion` command
+
+Generate a bash completion script.  Follow instructions included with the script for adding it to your bash profile.
+
+Usage:
+```
+stripes completion
 ```

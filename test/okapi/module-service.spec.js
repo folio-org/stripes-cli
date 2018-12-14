@@ -30,6 +30,8 @@ const okapiStub = {
     disableModuleForTenant: () => okapiResolve({}),
     getModulesForTenant: () => okapiResolve([{ id: 'mod-one' }, { id: 'mod-two' }, { id: 'mod-three' }]),
     getModules: () => okapiResolve([{ id: 'mod-one' }, { id: 'mod-two' }, { id: 'mod-three' }, { id: 'mod-four' }, { id: 'mod-five' }]),
+    getModulesThatRequireInterface: () => okapiResolve([{ id: 'mod-one' }, { id: 'mod-two' }]),
+    getModulesThatProvideInterface: () => okapiResolve([{ id: 'mod-four' }, { id: 'mod-five' }]),
     getModuleDescriptor: (id) => okapiResolve({ id }),
     installModulesForTenant: () => okapiResolve([{ id: 'mod-something', action: 'enable' }]),
     pullModuleDescriptorsFromRemote: () => okapiResolve([{ id: 'mod-four' }, { id: 'mod-five' }]),
@@ -175,6 +177,7 @@ describe('The module-service', function () {
     beforeEach(function () {
       this.sut = new ModuleService(okapiStub);
       this.sandbox.spy(okapiStub.proxy, 'getModulesForTenant');
+      this.sandbox.stub(this.sut, 'listModules').resolves(['mod-two']);
     });
 
     it('Returns modules ids for tenant', function (done) {
@@ -186,20 +189,56 @@ describe('The module-service', function () {
           done();
         });
     });
+
+    it('Applies module filter', function (done) {
+      const filterOptions = { provide: 'something' };
+      this.sut.listModulesForTenant('diku', filterOptions)
+        .then((response) => {
+          expect(okapiStub.proxy.getModulesForTenant).to.have.been.calledWith('diku');
+          expect(this.sut.listModules).to.have.been.calledWith(filterOptions);
+          expect(response).to.be.an('array').with.lengthOf(1);
+          expect(response).to.include.members(['mod-two']);
+          done();
+        });
+    });
   });
 
   describe('listModules method', function () {
     beforeEach(function () {
       this.sut = new ModuleService(okapiStub);
       this.sandbox.spy(okapiStub.proxy, 'getModules');
+      this.sandbox.spy(okapiStub.proxy, 'getModulesThatRequireInterface');
+      this.sandbox.spy(okapiStub.proxy, 'getModulesThatProvideInterface');
     });
 
     it('Returns modules ids', function (done) {
-      this.sut.listModules('diku')
+      this.sut.listModules()
         .then((response) => {
           expect(okapiStub.proxy.getModules).to.have.been.calledOnce;
           expect(response).to.be.an('array').with.lengthOf(5);
           expect(response).to.include.members(['mod-one', 'mod-two', 'mod-three', 'mod-four', 'mod-five']);
+          done();
+        });
+    });
+
+    it('Returns modules ids that require an interface', function (done) {
+      this.sut.listModules({ require: 'something-to-require' })
+        .then((response) => {
+          expect(okapiStub.proxy.getModulesThatRequireInterface).to.have.been.calledOnce;
+          expect(okapiStub.proxy.getModulesThatRequireInterface).to.have.been.calledWith('something-to-require');
+          expect(response).to.be.an('array').with.lengthOf(2);
+          expect(response).to.include.members(['mod-one', 'mod-two']);
+          done();
+        });
+    });
+
+    it('Returns modules ids that provide an interface', function (done) {
+      this.sut.listModules({ provide: 'something-to-provide' })
+        .then((response) => {
+          expect(okapiStub.proxy.getModulesThatProvideInterface).to.have.been.calledOnce;
+          expect(okapiStub.proxy.getModulesThatProvideInterface).to.have.been.calledWith('something-to-provide');
+          expect(response).to.be.an('array').with.lengthOf(2);
+          expect(response).to.include.members(['mod-four', 'mod-five']);
           done();
         });
     });
