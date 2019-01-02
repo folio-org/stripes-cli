@@ -37,6 +37,7 @@ This following command documentation is largely generated from the CLI's own bui
     * [`mod pull` command](#mod-pull-command)
     * [`mod filter` command](#mod-filter-command)
     * [`mod perms` command](#mod-perms-command)
+    * [`mod discover` command (work in progress)](#mod-discover-command-work-in-progress)
 * [`perm` command](#perm-command)
     * [`perm create` command](#perm-create-command)
     * [`perm assign` command](#perm-assign-command)
@@ -1007,6 +1008,39 @@ stripes mod perms --ids one two
 List permissions for ids "one" and "two" with stdin:
 ```
 echo one two | stripes mod perms
+```
+
+
+### `mod discover` command (work in progress)
+
+`mod discover` command
+
+Manage instances for the current backend module with Okapi's _/discovery endpoint
+
+Usage:
+```
+stripes mod discover
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string | (*)
+`--url` | Register instance running at URL | string | 
+`--forget` | Unregister instances | boolean | 
+
+Examples:
+
+View current instances:
+```
+stripes mod discover
+```
+Register instance running at URL with Okapi:
+```
+stripes mod discover --url
+```
+Unregister running instances with Okapi:
+```
+stripes mod discover --forget
 ```
 
 ## `perm` command
