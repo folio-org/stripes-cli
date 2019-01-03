@@ -1013,8 +1013,6 @@ echo one two | stripes mod perms
 
 ### `mod discover` command (work in progress)
 
-`mod discover` command
-
 Manage instances for the current backend module with Okapi's _/discovery endpoint
 
 Usage:

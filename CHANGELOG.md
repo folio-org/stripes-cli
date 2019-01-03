@@ -11,6 +11,10 @@
 * Remove "--modules all" option, fixes STCLI-83
 * Add `provide` and `require` options to `mod list` command, STCLI-120
 * Guard against unset karma options, fixes STCLI-124
+* Facilitate connection of a locally hosted back-end module with Okapi, STCLI-114
+  * New isBackendModule context to identify back-end modules
+  * Support back-end module context for `mod add/remove/enable/disable` commands
+  * New `mod discover` command to register instances with Okapi
 
 
 ## [1.7.0](https://github.com/folio-org/stripes-cli/tree/v1.7.0) (2018-11-29)
