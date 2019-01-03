@@ -95,16 +95,28 @@ describe('The discovery-service', function () {
     beforeEach(function () {
       this.sut = new DiscoveryService(okapiStub, contextStub);
       this.sandbox.stub(fs, 'existsSync').returns(true);
-      this.sandbox.stub(fs, 'readFileSync').returns(JSON.stringify(deploymentDescriptorStub));
       this.sandbox.spy(okapiStub.discovery, 'getInstances');
     });
 
     it('Returns list of instances', function (done) {
+      this.sandbox.stub(fs, 'readFileSync').returns(JSON.stringify(deploymentDescriptorStub));
       this.sut.listInstancesForContext()
         .then((result) => {
           expect(okapiStub.discovery.getInstances).to.have.been.calledOnce;
-          expect(result).to.be.an('array').with.lengthOf(2);
-          expect(result[0].instId).to.equal('instance-one');
+          expect(result).to.be.an('object').with.property('instances');
+          expect(result.instances).to.be.an('array').with.lengthOf(2);
+          expect(result.instances[0].instId).to.equal('instance-one');
+          done();
+        });
+    });
+
+    it('Returns an empty array when no instances are found', function (done) {
+      this.sandbox.stub(fs, 'readFileSync').returns(JSON.stringify(notHereDescriptorStub));
+      this.sut.listInstancesForContext()
+        .then((result) => {
+          expect(okapiStub.discovery.getInstances).to.have.been.calledOnce;
+          expect(result).to.be.an('object').with.property('instances');
+          expect(result.instances).to.be.an('array').with.lengthOf(0);
           done();
         });
     });
