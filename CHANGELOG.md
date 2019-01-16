@@ -1,6 +1,7 @@
 # Change history for stripes-cli
 
-## [1.8.0] (IN PROGRESS)
+## [1.8.0](https://github.com/folio-org/stripes-cli/tree/v1.8.0) (2019-01-16)
+
 * Add sample API request to ui-app template, STCLI-98
 * New `mod perms` command to list permission for one or more modules, STCLI-115
 * Support permission assignment via `platform backend` command, STCLI-115
