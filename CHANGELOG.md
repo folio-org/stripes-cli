@@ -11,6 +11,7 @@
 * Remove "--modules all" option, fixes STCLI-83
 * Add `provide` and `require` options to `mod list` command, STCLI-120
 * Guard against unset karma options, fixes STCLI-124
+* Add support for `stripes-core` `v3.x`
 
 
 ## [1.7.0](https://github.com/folio-org/stripes-cli/tree/v1.7.0) (2018-11-29)
