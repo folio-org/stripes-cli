@@ -407,9 +407,9 @@ If a directory other than "stripes" is desired, use the `--dir` option.
 stripes workspace --dir temp
 ```
 
-To skip the interactive module selection and just include everything, pass `all` to the `--modules` option.
+To skip the interactive module selection, pass space-separated list of module names with the `--modules` option.
 ```
-stripes workspace --modules all
+stripes workspace --modules ui-users stripes-components stripes-sample-platform
 ```
 
 *Note about workspaces:* Although similar in that both "workspace" and "platform" may be used to mean "development environment", they are both independent things.  A Yarn workspace is a method for managing a dependencies across multiple modules, whereas a FOLIO platform defines a collection of Stripes modules configured for FOLIO.  One workspace may contain multiple platforms.  Also, a platform can exist without a Yarn workspace.

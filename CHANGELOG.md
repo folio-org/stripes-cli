@@ -1,6 +1,16 @@
 # Change history for stripes-cli
 
-## [1.8.0] (IN PROGRESS)
+
+## [1.9.0] (IN PROGRESS)
+
+* Facilitate connection of a locally hosted back-end module with Okapi, STCLI-114
+  * New isBackendModule context to identify back-end modules
+  * Support back-end module context for `mod add/remove/enable/disable` commands
+  * New `mod discover` command to register instances with Okapi
+
+
+## [1.8.0](https://github.com/folio-org/stripes-cli/tree/v1.8.0) (2019-01-16)
+
 * Add sample API request to ui-app template, STCLI-98
 * New `mod perms` command to list permission for one or more modules, STCLI-115
 * Support permission assignment via `platform backend` command, STCLI-115
@@ -11,10 +21,7 @@
 * Remove "--modules all" option, fixes STCLI-83
 * Add `provide` and `require` options to `mod list` command, STCLI-120
 * Guard against unset karma options, fixes STCLI-124
-* Facilitate connection of a locally hosted back-end module with Okapi, STCLI-114
-  * New isBackendModule context to identify back-end modules
-  * Support back-end module context for `mod add/remove/enable/disable` commands
-  * New `mod discover` command to register instances with Okapi
+* Add support for `stripes-core` `v3.x`
 
 
 ## [1.7.0](https://github.com/folio-org/stripes-cli/tree/v1.7.0) (2018-11-29)
