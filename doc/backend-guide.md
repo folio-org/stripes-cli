@@ -8,15 +8,21 @@ Stripes CLI offers many commands for interacting with Okapi to manage back-end m
     * [Create a Vagrant box](#create-a-vagrant-box)
     * [Install a front-end platform](#install-a-front-end-platform)
     * [Configure the CLI (optional)](#configure-the-cli-optional)
-* [Set up back-end modules](#set-up-back-end-modules)
+* [Set up back-end modules for your platform](#set-up-back-end-modules-for-your-platform)
     * [Useful variants](#useful-variants)
-* [Set up back-end modules (multi-step)](#set-up-back-end-modules-multi-step)
+* [Set up back-end modules for your platform (multi-step)](#set-up-back-end-modules-for-your-platform-multi-step)
     * [Pull modules](#pull-modules)
     * [Generate front-end module ids](#generate-front-end-module-ids)
     * [Include additional dependencies](#include-additional-dependencies)
     * [Perform a dry run](#perform-a-dry-run)
     * [Perform the back-end deployment](#perform-the-back-end-deployment)
     * [Post the front-end module descriptors](#post-the-front-end-module-descriptors)
+    * [Assign permissions to a user](#assign-permissions-to-a-user)
+* [Connect a local back-end module to an existing platform](#connect-a-local-back-end-module-to-an-existing-platform)
+    * [Prerequisites](#prerequisites)
+    * [Post your backend module descriptor](#post-your-backend-module-descriptor)
+    * [Register your local running instance with Okapi](#register-your-local-running-instance-with-okapi)
+    * [Enable your module for the tenant](#enable-your-module-for-the-tenant)
 
 
 ## Prerequisites
@@ -64,7 +70,7 @@ This step is not required.  It is only a convenience so we don't have to include
 > Note: While okapi and tenant values are also present in the tenant config, the CLI commands don't yet consider the tenant config for its Okapi operations (only for build operations). STCLI-117 will address this to avoid the interim duplication.
 
 
-## Set up back-end modules
+## Set up back-end modules for your platform
 
 The following command, run from within your platform directory, will prepare and deploy modules and their dependencies for your tenant via Okapi's `/_/proxy/tenants/{tenant_id}/install` endpoint.
 
@@ -99,7 +105,7 @@ $ stripes platform backend stripes.config.js --include mod-x mod-y
 ```
 
 
-## Set up back-end modules (multi-step)
+## Set up back-end modules for your platform (multi-step)
 
 For more granular control or to better observe the intermediate operations above, the following individual commands can be performed to achieve the same result.
 
@@ -160,4 +166,50 @@ In order to make use of the newly installed modules for development, assign modu
 
 ```
 $ stripes mod list | stripes mod perms | stripes perm assign --user diku_admin
+```
+
+## Connect a local back-end module to an existing platform
+
+The following describes how to incorporate a local development instance of a backend module with an existing Okapi using `stripes` CLI commands.
+
+### Prerequisites
+
+* Create and run the [(TODO: name here)](#create-a-vagrant-box) vagrant box
+* Build and host a local Okapi (TODO: This step is TBD, pending outcome of FOLIO-634)
+* Build and host your local back-end module following its instructions
+
+Commands below assume `--okapi` and `--tenant` values have been set via [configuration](#configure-the-cli-optional).  Please include these options with your commands if not previously set.
+
+
+### Post your backend module descriptor
+
+From your back-end module's directory, post its module descriptor with the `mod add` command.  It is important to run this command after an install/build since the module descriptor found within the `/target` directory will be used. 
+
+```
+$ stripes mod add
+```
+
+### Register your local running instance with Okapi
+
+From the back-end module's directory, use the `mod discover` command register your locally running module instance. Provide the URL of where it is hosted.
+
+```
+$ stripes mod discover --url http://localhost:8080
+```
+
+Variations of this command can be useful. For example, to see existing instances, run the command with no options.  To clear out all existing instances, use the `--forget` option.  See [mod discover](./commands.md#mod-discover-command-work-in-progress) in the command reference for more information.
+
+
+### Enable your module for the tenant
+
+For the commands below, `mod descriptor` simply returns the module descriptor id so that we can pipe this into the `mod install` command.
+
+Optionally, review what changes will take place beforehand with `--simulate`.
+```
+$ stripes mod descriptor | stripes mod install --simulate
+```
+
+Enable this module for your tenant with `mod install`.
+```
+$ stripes mod descriptor | stripes mod install
 ```
