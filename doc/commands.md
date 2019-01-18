@@ -824,6 +824,7 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--full` | Return full module descriptor JSON | boolean | default: false
 `--strict` | Include required interface dependencies | boolean | default: false
+`--output` | Directory to write descriptors to as JSON files | string |
 
 Examples:
 
