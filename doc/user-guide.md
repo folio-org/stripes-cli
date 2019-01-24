@@ -69,7 +69,7 @@ Notes:
 
 Example passing array values for `modules` and false for `install`:
 ```
-stripes workspace --modules ui-users stripes-core stripes-components --no-install
+stripes workspace --modules "ui-users stripes-core stripes-components" --no-install
 ```
 
 ### Standard input
