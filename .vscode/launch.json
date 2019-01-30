@@ -162,5 +162,13 @@
             "args": [ "platform" , "backend", "stripes.config.js"],
             "cwd": "${workspaceFolder}/../platform-core"
         },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Doc Generator",
+            "program": "${workspaceFolder}/lib/doc/generator.js",
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
     ]
 }
