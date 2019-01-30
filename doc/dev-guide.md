@@ -286,7 +286,7 @@ const servePlugin = {
 
 The best way to document the CLI is within each Yargs command module.  Be sure to include a description for the command, options, and positionals.  Include `type` for options and positionals.
 
-Group options where it make sense using the `group` property.  This breaks out options in the help for readability.
+Group options where it make sense using the `group` property.  This breaks out options in the help for readability.  Custom option groups should end with the word "Options:", such as "Server Options:", in order to be picked up by the CLI document generator.
 
 ```javascript
 module.exports.serverOptions = {
@@ -300,6 +300,8 @@ module.exports.serverOptions = {
 }
 ```
 
+Note: If your command is a work in progress, experimental, or has an interface that is likley to change, include "(work in progress)" in the description.  This will be highlighted in the command documentation and TOC.
+
 Add one or more examples on how to use the command by calling `.example()` in the Yargs builder.  `$0` within the example string is replaced by the script name (stripes) in the help output:
 ```javascript
 builder: (yargs) => {
@@ -310,19 +312,16 @@ builder: (yargs) => {
 },
 ```
 
-After creating a new command or updating an existing one, be sure to update `docs/commands.md`.  A utility script has been created to help with this.  Pipe the command's help output to `doc/generator` to create markdown out of the Yargs command help:
+After creating a new command or updating an existing one, be sure to update `docs/commands.md`, the CLI's command reference.  This process is automated by the `lib/doc/generator.js` script. To update it, run:
 
 ```
-stripes build --help | node doc/generator
+$ yarn docs
 ```
 
-Note: This script helps to quickly create markdown tables out of the command options and code blocks for the examples, but it is far from perfect.  Review the generated markdown with the actual help output to correct formatting errors and check for possible omissions.
+This will traverse the CLI's commands gathering all the `--help` text and parsing to write as markdown.  The generated markdown help is then applied to the `docs/commands-template.md`.  If changes are needed to the introduction or footer, update `docs/commands-template.md` before running `yarn docs`.
 
-Finally update table of contents in `doc/commands.md` as needed. The TOC can be regenerated using Okapi's [`md2toc` script](https://github.com/folio-org/okapi/blob/master/doc/md2toc).
+Note: Review the generated changes with the actual help output checking for unexpected additions or omissions.  These may be a sign that the command reference was not updated recently or that Yargs has changed its help text formatting.  If it appears to be the later, review `docs/yargs-help-parser.js` for corrections.
 
-```
-perl md2toc -l 2 doc/commands.md
-```
 
 ## Debugging
 
