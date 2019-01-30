@@ -44,7 +44,7 @@ Stripes CLI is invoked with the `stripes` command.  When Stripes CLI is [install
 
 Example:
 ```
-stripes serve
+$ stripes serve
 ```
 
 ### Installation
@@ -58,7 +58,7 @@ Any option can be passed to the CLI either on the command line, as an [environme
 Options passed on the command line are prefixed with `--` in the form of `--optionName value`.
 
 ```
-stripes serve --port 8080
+$ stripes serve --port 8080
 ```
 
 Notes:
@@ -69,7 +69,7 @@ Notes:
 
 Example passing array values for `modules` and false for `install`:
 ```
-stripes workspace --modules ui-users stripes-core stripes-components --no-install
+$ stripes workspace --modules ui-users stripes-core stripes-components --no-install
 ```
 
 ### Standard input
@@ -88,13 +88,13 @@ folio_checkin-1.1.0
 
 The above file can be piped to `mod enable` to enable multiple module descriptor ids for a tenant:
 ```
-cat my-modules | stripes mod enable --tenant diku
+$ cat my-modules | stripes mod enable --tenant diku
 ```
 
 Various commands produce output that is suitable for piping to related commands.  For example, `perm list` will output a list of permission names, one on each line.  This can be optionally be filtered and piped to `perm assign`.
 
 ```
-stripes perm list --user jack | grep hello-world | stripes perm assign --user jill
+$ stripes perm list --user jack | grep hello-world | stripes perm assign --user jill
 ```
 
 Support for `stdin` is indicated in a command option's notes in the [command reference](./commands.md).
@@ -108,7 +108,7 @@ Option | Description | Type | Notes
 Every command in Stripes CLI includes a description, list of options with descriptions, and often example usages.  To view help for any command, simply pass the `--help` option to the command.
 
 ```
-stripes serve --help
+$ stripes serve --help
 ```
 
 ### Sub-commands
@@ -116,15 +116,15 @@ Related CLI commands are often grouped together.  This for organizational purpos
 
 Example "sub-commands" of the `platform` command:
 ```
-stripes platform clean
-stripes platform pull
+$ stripes platform clean
+$ stripes platform pull
 ```
 
 ### Interactive commands
 Some commands may require additional input before continuing.  When necessary, a command may prompt the user with questions.  This interactive input can be disabled entirely by passing `--no-interactive`.  This is useful when the CLI is part of an automated script.
 
 ```
-stripes app create "Hello World" --no-interactive
+$ stripes app create "Hello World" --no-interactive
 ```
 
 Note: This will force default values, if available, to be used.  When no suitable defaults are available, the command may fail or produce unexpected results.  Please verify behavior first.
@@ -247,7 +247,7 @@ Prerequisites:  An Okapi backend is required. See [development prerequisites](#d
 
 From a suitable directory, run the following:
 ```
-stripes app create "Hello World" --install
+$ stripes app create "Hello World" --install
 ```
 
 This generates a skeleton Stripes UI app with sample routes and settings.  The CLI will transform the provided app name, "Hello World", to follow naming conventions where the `ui-` prefix or `@folio` scope is used.
@@ -273,7 +273,7 @@ From here you can immediately start [running your app](#running-your-app), but i
 *Tip:* If you've already [logged into Okapi](#interacting-with-okapi), you can do this all with one command:
 
 ```
-stripes app create "Hello World" --assign diku_admin
+$ stripes app create "Hello World" --assign diku_admin
 ```
 
 In the above command, after creating an app and installing dependencies, `--assign` will first post the module descriptor to Okapi and then enable the module for the tenant.  Next, it will assign the new app's default permissions to the user `diku_admin`.  See [assigning permissions](#assigning-permissions) below for details on how to perform these operations independently, or to add permissions later on during development.
@@ -303,18 +303,18 @@ The new app created above contains the following permissions sets that Okapi nee
 
 To push your app's module descriptor, use the `mod add` command from within the app's directory.
 ```
-stripes mod add
+$ stripes mod add
 ```
 
 Next enable the module descriptor for your tenant:
 ```
-stripes mod enable --tenant diku
+$ stripes mod enable --tenant diku
 ```
 
 Finally assign the app's default enabled permissions for a user:
 ```
-stripes perm assign --name module.hello-world.enabled --user diku_admin
-stripes perm assign --name settings.hello-world.enabled --user diku_admin
+$ stripes perm assign --name module.hello-world.enabled --user diku_admin
+$ stripes perm assign --name settings.hello-world.enabled --user diku_admin
 ```
 
 See Stripes-core's [Adding Permissions](https://github.com/folio-org/stripes-core/blob/master/doc/adding-permissions.md) for more detail and on how to manually add permissions.
@@ -325,18 +325,18 @@ See Stripes-core's [Adding Permissions](https://github.com/folio-org/stripes-cor
 After creating "Hello World" and installing dependencies, the new app is ready to run.  Change to the new app directory and serve your new app using a development server:
 
 ```
-stripes serve
+$ stripes serve
 ```
 
 To specify your own tenant ID or to use an Okapi instance other than the default http://localhost:9130, pass the `--okapi` and `--tenant` options or set them in `.stripesclirc` file.
 ```
-stripes serve --okapi http://my-okapi.example.com:9130 --tenant my-tenant-id
+$ stripes serve --okapi http://my-okapi.example.com:9130 --tenant my-tenant-id
 ```
 
 Note: When serving up a newly created app that either does not have a module descriptor in Okapi, or permissions assigned to the user, pass the `--hasAllPerms` option to display the app in the UI navigation.  While handy for initial development, `--hasAllPerms` should not be used in production builds. See [assigning permissions](#assigning-permissions) to eliminate the need for this.
 
 ```
-stripes serve --hasAllPerms
+$ stripes serve --hasAllPerms
 ```
 
 ### Running tests
@@ -344,7 +344,7 @@ stripes serve --hasAllPerms
 The newly created app has some basic UI end-to-end tests included, designed to run with the Nightmare framework.  To run these tests, use the `test nightmare` command:
 
 ```
-stripes test nightmare --run demo --show
+$ stripes test nightmare --run demo --show
 ```
 
 The `--run` option specifies the tests, in this case the sample tests included with our app are named "demo".  The `--show` option will display the UI while running the tests.
@@ -358,9 +358,9 @@ Now that our Hello World app is up and running on its own, we may want to bring 
 
 From the directory above `ui-hello-world`, clone `ui-users` and install its dependencies.
 ```
-git clone https://github.com/folio-org/ui-users.git
-cd ui-users
-yarn install
+$ git clone https://github.com/folio-org/ui-users.git
+$ cd ui-users
+$ yarn install
 ```
 
 We should now have the following directory structure:
@@ -372,12 +372,12 @@ myDir
 
 Next add an alias for ui-users. Provide a relative path to the ui-users directory. Given you're in /ui-hello-world:
 ```
-stripes alias add @folio/users ../ui-users
+$ stripes alias add @folio/users ../ui-users
 ```
 
 Now simply start the app up again.  From the ui-hello-world directory, run:
 ```
-stripes serve
+$ stripes serve
 ```
 
 The FOLIO platform generated will now include ui-users!  The same procedure can be followed to include non-app modules as well such as `stripes-components` and `stripes-core`.
@@ -397,19 +397,19 @@ The easiest way to manage all the apps within a platform is with a [Yarn workspa
 
 From a suitable directory, run the following:
 ```
-stripes workspace
+$ stripes workspace
 ```
 
 After prompting for modules, the `workspace` command will generate a directory named "stripes", clone all the selected modules, and install their dependencies.  For any platforms chosen during module selection, such as `stripes-sample-platform`, a local Stripes configuration (`stripes.config.js.local`) will be generated.
 
 If a directory other than "stripes" is desired, use the `--dir` option.
 ```
-stripes workspace --dir temp
+$ stripes workspace --dir temp
 ```
 
 To skip the interactive module selection, pass space-separated list of module names with the `--modules` option.
 ```
-stripes workspace --modules ui-users stripes-components stripes-sample-platform
+$ stripes workspace --modules ui-users stripes-components stripes-sample-platform
 ```
 
 *Note about workspaces:* Although similar in that both "workspace" and "platform" may be used to mean "development environment", they are both independent things.  A Yarn workspace is a method for managing a dependencies across multiple modules, whereas a FOLIO platform defines a collection of Stripes modules configured for FOLIO.  One workspace may contain multiple platforms.  Also, a platform can exist without a Yarn workspace.
@@ -425,8 +425,8 @@ If you selected a platform such as `stripes-sample-platform` or `platform-core` 
 After creating a workspace with a selected platform, you can immediately serve it up.  Change directories to your platform and run `stripes serve` with a tenant configuration file, such as `stripes.config.js` or `stripes.config.js.local`.
 
 ```
-cd stripes/stripes-sample-platform
-stripes serve stripes.config.js.local
+$ cd stripes/stripes-sample-platform
+$ stripes serve stripes.config.js.local
 ```
 
 
@@ -442,7 +442,7 @@ TODO: Document CLI-specific operations that help with this.
 To pull the latest code changes from master for all cloned modules in your platform, run `platform pull` from either the platform directory, or the Yarn workspace directory.
 
 ```
-stripes platform pull
+$ stripes platform pull
 ```
 
 When run from a platform directory, the CLI will pull the latest code for all aliased modules in the platform wherever they exist on the file system.  When run from a workspace directory, the CLI will pull the latest code for all known Stripes apps/modules in the workspace directory.
@@ -453,20 +453,20 @@ When run from a platform directory, the CLI will pull the latest code for all al
 Some CLI commands make requests to a running Okapi instance.  For these to work, you must have a valid token.  To obtain a token, use the `okapi` command to login:
 
 ```
-stripes okapi login diku_admin --okapi http://localhost:9130 --tenant diku
+$ stripes okapi login diku_admin --okapi http://localhost:9130 --tenant diku
 ```
 
 *Note:* When working with Okapi, it is easiest to set `okapi` and `tenant` options in a `.stripesclirc` file or environment variables.  Either method avoids the need to manually supply `--okapi` and `--tenant` with each command.  The remaining examples in this section assume `okapi` and `tenant` are already set via config file or environment variable.
 
 ```
-stripes okapi login diku_admin
+$ stripes okapi login diku_admin
 ```
 
 If not supplied after the username, the CLI will prompt for a password.  After a successful login, the token will be stored for use with future CLI commands.
 
 To clear a previously saved token run:
 ```
-stripes okapi logout
+$ stripes okapi logout
 ```
 
 ### Managing UI modules
@@ -475,33 +475,33 @@ The CLI `mod` command can be used to manage Stripes UI modules for a tenant.  Al
 
 To view the current app's module descriptor:
 ```
-stripes mod descriptor --full
+$ stripes mod descriptor --full
 ```
 
 To add a module to Okapi and enable it for a tenant:
 ```
-stripes mod add
-stripes mod enable --tenant diku
+$ stripes mod add
+$ stripes mod enable --tenant diku
 ```
 
 To enable multiple modules for a tenant given an existing file, `my-modules`, containing module descriptor ids:
 ```
-cat my-modules | stripes mod enable --tenant diku
+$ cat my-modules | stripes mod enable --tenant diku
 ```
 
 To remove a module from Okapi:
 ```
-stripes mod remove
+$ stripes mod remove
 ```
 
 When a module is already associated with a tenant it cannot be removed without disabling it for the tenant first.
 ```
-stripes mod disable --tenant diku
+$ stripes mod disable --tenant diku
 ```
 
 When updating a module descriptor in Okapi, the CLI provides a shortcut.  The following will attempt to remove a module descriptor, and if necessary, disable it.  After adding the new module descriptor, the module will be re-enabled for the tenant.
 ```
-stripes mod update
+$ stripes mod update
 ```
 Note: At this time, `mod update` will only attempt to disable/enable one tenant (typical development use-case).  Multiple tenants will have to be disabled manually.
 
@@ -510,7 +510,7 @@ Note: At this time, `mod update` will only attempt to disable/enable one tenant 
 
 Create new UI permissions with the following command:
 ```
-stripes perm create ui-hello-world.example --push --assign diku_admin
+$ stripes perm create ui-hello-world.example --push --assign diku_admin
 ```
 
 This will update the current app's `package.json` with a new permission and invoke the `mod add` or `mod update` command as needed to push the new module descriptor to Okapi.  Finally, the permission will be assigned to the username provided.
@@ -518,8 +518,8 @@ This will update the current app's `package.json` with a new permission and invo
 If the `--push` and `--assign` options are omitted (or the permissions were created manually in package.json), run the following commands to update Okapi and assign permissions to a user:
 
 ```
-stripes mod update
-stripes app perms | stripes perm assign --user diku_admin
+$ stripes mod update
+$ stripes app perms | stripes perm assign --user diku_admin
 ```
 
 
@@ -528,20 +528,20 @@ stripes app perms | stripes perm assign --user diku_admin
 To generate a build for production, it is best to use a clean platform install with no workspace or aliases defined.  The following describes how to build `platform-core`:
 
 ```
-git clone https://github.com/folio-org/platform-core.git
-cd platform-core
-yarn install
-stripes build stripes.config.js my-build-output
+$ git clone https://github.com/folio-org/platform-core.git
+$ cd platform-core
+$ yarn install
+$ stripes build stripes.config.js my-build-output
 ```
 
 If source maps are desired, include them with the `--sourcemap` option.
 ```
-stripes build stripes.config.js my-build-output --sourcemap
+$ stripes build stripes.config.js my-build-output --sourcemap
 ```
 
 The generated build assets will be placed in the directory path provided (in this case, `my-build-output`).  These files are ready to serve up from the file server of your choice.  For testing purposes, you can serve up an existing Stripes build using the following command:
 ```
-stripes serve --existing-build my-build-output
+$ stripes serve --existing-build my-build-output
 ```
 
 ### Analyzing bundle output
@@ -549,7 +549,7 @@ stripes serve --existing-build my-build-output
 Sometimes it is useful to visualize the contents of the build to identify areas that could use some optimization.  Stripes CLI includes the Webpack Bundle Analyzer to help with this.  To enable the bundle analyzer, pass the `--analyze` option to the `build` command:
 
 ```
-stripes build stripes.config.js my-build-output --analyze
+$ stripes build stripes.config.js my-build-output --analyze
 ```
 
 Note: If running the analyzer with aliased modules, duplication is likely.  It is best to run the analyzer on a platform-only install.
@@ -561,7 +561,7 @@ One quick way to limit the build output, is to limit the number of languages inc
 
 Filtering languages can be done with the CLI by specifying the `languages` option which accepts an array of values.
 ```
-stripes build stripes.config.js --languages en es
+$ stripes build stripes.config.js --languages en es
 ```
 
 ## Viewing diagnostic output
@@ -569,17 +569,18 @@ stripes build stripes.config.js --languages en es
 The CLI's `status` command is a helpful starting point for diagnosing errors.  Among other things, `status` will output which stripes-core is in use, the stripes config for the current context and list any aliases.
 
 ```
-stripes status stripes.config.js
+$ stripes status stripes.config.js
 ```
 
 To view stripes-cli and stripes-core diagnostic output for any command while it is running, set the `DEBUG` environment variable to `stripes*`.  For example:
 ```
-DEBUG=stripes* stripes serve stripes.config.js
+$ export DEBUG=stripes*
+$ stripes serve stripes.config.js
 ```
 
 On Windows set the environment variable using the `set` command:
 ```
-set DEBUG=stripes*
+$ set DEBUG=stripes*
 ```
 
 See the [debugging section](./dev-guide.md#debugging) in the CLI developer guide for more information on `DEBUG` usage.
@@ -590,7 +591,7 @@ See the [debugging section](./dev-guide.md#debugging) in the CLI developer guide
 Monitoring Okapi requests for any Stripes CLI command is easy. Set the DEBUG environment variable to `stripes-cli:okapi`.  This can be done by prefixing any CLI command with `DEBUG=stripes-cli:okapi`.  For example:
 
 ```
-DEBUG=stripes-cli:okapi stripes okapi login diku_admin
+$ DEBUG=stripes-cli:okapi stripes okapi login diku_admin
 ```
 
 This will show what Okapi endpoints were called during a CLI command and how Okapi responded.
@@ -602,10 +603,10 @@ User diku_admin logged into tenant diku on Okapi http://localhost:9130
 
 To avoid having to prefix every command, simply set the DEBUG environment variable accordingly.
 ```
-export DEBUG=stripes-cli:okapi
+$ export DEBUG=stripes-cli:okapi
 ```
 
 On Windows:
 ```
-set DEBUG=stripes-cli:okapi
+$ set DEBUG=stripes-cli:okapi
 ```

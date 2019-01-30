@@ -29,14 +29,14 @@ Stripes CLI uses the [Yargs](https://github.com/yargs/yargs/) framework for defi
 To develop Stripes CLI, first clone the repo and then `yarn install` its dependencies:
 
 ```
-git clone https://github.com/folio-org/stripes-cli.git
-cd stripes-cli
-yarn install
+$ git clone https://github.com/folio-org/stripes-cli.git
+$ cd stripes-cli
+$ yarn install
 ```
 
 Then create a link to `lib/stripes-cli.js` in your path so stripes can easily be run from anywhere.
 ```
-ln -s ./lib/stripes-cli.js /usr/local/bin/stripes
+$ ln -s ./lib/stripes-cli.js /usr/local/bin/stripes
 ```
 
 ## Running tests
@@ -44,7 +44,7 @@ ln -s ./lib/stripes-cli.js /usr/local/bin/stripes
 The CLI's tests use Mocha, Chai, and Sinon.  Run the test with the `test` script:
 
 ```
-yarn test
+$ yarn test
 ```
 
 ## Code organization
@@ -214,8 +214,8 @@ module.exports = {
 The resulting commands from above are all accessible by `mod` followed by the command name.  This gives the appearance of sub-commands under `mod`.  For example:
 
 ```
-stripes mod add
-stripes mod remove
+$ stripes mod add
+$ stripes mod remove
 ```
 
 Yargs will surface descriptions for each command in the `mod` directory with the help output for `stripes mod --help`.
@@ -327,37 +327,38 @@ Note: Review the generated changes with the actual help output checking for unex
 
 Stripes-CLI implements [debug](https://www.npmjs.com/package/debug) for diagnostic logging.  This can be a useful starting point to diagnose errors.
 
-Debug output is enabled by setting the `DEBUG` environment variable.  The value of `DEBUG` is a comma-separated list of namespaces you wish to view debug output for.  By convention, namespaces match the supporting package name.  Features within a namespace may be separated by a colon.  The wildcard `*` is supported.
+Debug output is enabled by setting the `DEBUG` environment variable.  The value of `DEBUG` is a comma-separated list of namespaces you wish to view debug output for.  By convention, namespaces match the supporting package name.  Features within a namespace may be separated by a colon.  The wildcard `*` is supported.  For Windows, replace `export` with `set` in the examples below.
 
 For example, to view all stripes-cli debug logs:
 ```
-DEBUG=stripes-cli* stripes serve
+$ export DEBUG=stripes-cli*
 ```
 
 To view only the cli's calls to Okapi:
 ```
-DEBUG=stripes-cli:okapi stripes serve
+$ export DEBUG=stripes-cli:okapi
 ```
 
 To view all stripes-cli and stripes-core debug logs:
 ```
-DEBUG=stripes-cli*,stripes-core* stripes serve
+$ export DEBUG=stripes-cli*,stripes-core*
 ```
 
 Alternatively set the wildcard on stripes:
 ```
-DEBUG=stripes* stripes serve
+$ export DEBUG=stripes*
 ```
 
 It is also possible set the wildcard for all namespaces:
 ```
-DEBUG=* stripes serve
+$ export DEBUG=*
 ```
 **Note:** The above will enable logging for all packages that happen to be instrumented with `debug`, including `express` and `babel`.
 
 Some of the available diagnostic output can be lengthy.  The `debug` utility writes to stderr, so if you would like to send this content in a file, you can do so with:
 ```
-DEBUG=stripes* stripes serve 2> file.log
+$ export DEBUG=stripes*
+$ stripes serve 2> file.log
 ```
 
 ### Visual Studio Code

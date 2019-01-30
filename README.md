@@ -28,12 +28,12 @@ yarn global add @folio/stripes-cli
 
 Upgrade your globally installed CLI with the following command:
 ```
-yarn global upgrade @folio/stripes-cli
+$ yarn global upgrade @folio/stripes-cli
 ```
 
 If your CLI is installed locally, use:
 ```
-yarn upgrade @folio/stripes-cli
+$ yarn upgrade @folio/stripes-cli
 ```
 
 ## Issues
