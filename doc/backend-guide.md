@@ -1,14 +1,13 @@
 # Stripes CLI Back-end Guide
 
-Stripes CLI offers many commands for interacting with Okapi to manage back-end modules for a tenant.  This guide steps through the process of standing up a back-end to support a unique platform.
-
-> Note: This document is currently a work in progress. Notably, it depends on a Vagrant VM that is not yet published.
+Stripes CLI offers many commands for interacting with Okapi to manage back-end modules for a tenant on a Vagrant VM.  This guide steps through the process of standing up a back-end to support a unique front-end platform.
 
 * [Prerequisites](#prerequisites)
     * [Create a Vagrant box](#create-a-vagrant-box)
     * [Install a front-end platform](#install-a-front-end-platform)
     * [Configure the CLI (optional)](#configure-the-cli-optional)
 * [Set up back-end modules for your platform](#set-up-back-end-modules-for-your-platform)
+    * [Set up back-end in one command](#set-up-back-end-in-one-command)
     * [Useful variants](#useful-variants)
 * [Set up back-end modules for your platform (multi-step)](#set-up-back-end-modules-for-your-platform-multi-step)
     * [Pull modules](#pull-modules)
@@ -29,13 +28,12 @@ Stripes CLI offers many commands for interacting with Okapi to manage back-end m
 
 ### Create a Vagrant box
 
-This guide requires the (TODO: new box name) Vagrant box or equivalent.  This VM comes pre-loaded with modules to run [platform-core](https://github.com/folio-org/platform-core) modules.  
+This guide requires [folio/snapshot-backend-core](https://app.vagrantup.com/folio/boxes/snapshot-backend-core), [folio/snapshot-core](https://app.vagrantup.com/folio/boxes/snapshot-core), [folio/minimal](https://issues.folio.org/browse/FOLIO-1730), or equivalent Vagrant box.  The "core" VMs come pre-loaded with modules to run [platform-core](https://github.com/folio-org/platform-core) modules.
 
-TODO: replace TBD with actual VM name
 ```
-$ mkdir TBD
-$ cd TBD
-$ vagrant init folio/TBD
+$ mkdir snapshot-backend-core
+$ cd snapshot-backend-core
+$ vagrant init folio/snapshot-backend-core
 $ vagrant up
 ```
 
@@ -71,6 +69,14 @@ This step is not required.  It is only a convenience so we don't have to include
 
 
 ## Set up back-end modules for your platform
+
+The CLI attempts to simplify the back-end setup process by automating many steps with one command.  This command assumes your platform's front-end (`folio_*`) and back-end modules have published descriptors available to pull from the remote registry.  If your front-end ui-module descriptors have not yet been published, you can add add them to your VM with the CLI's [mod add](./commands.md#mod-add-command).
+
+```
+$ stripes mod add --strict
+```
+
+### Set up back-end in one command
 
 The following command, run from within your platform directory, will prepare and deploy modules and their dependencies for your tenant via Okapi's `/_/proxy/tenants/{tenant_id}/install` endpoint.
 
@@ -174,9 +180,8 @@ The following describes how to incorporate a local development instance of a bac
 
 ### Prerequisites
 
-* Create and run the [(TODO: name here)](#create-a-vagrant-box) vagrant box
-* Build and host a local Okapi (TODO: This step is TBD, pending outcome of FOLIO-634)
-* Build and host your local back-end module following its instructions
+* Create and run the [folio/snapshot-core](#create-a-vagrant-box) vagrant box
+* Build and host your local back-end module following its instructions ([example](https://github.com/folio-org/raml-module-builder#get-started-with-a-sample-working-module)).
 
 Commands below assume `--okapi` and `--tenant` values have been set via [configuration](#configure-the-cli-optional).  Please include these options with your commands if not previously set.
 
@@ -191,10 +196,10 @@ $ stripes mod add
 
 ### Register your local running instance with Okapi
 
-From the back-end module's directory, use the `mod discover` command register your locally running module instance. Provide the URL of where it is hosted.
+From the back-end module's directory, use the `mod discover` command register your locally running module instance. Provide the port where it is hosted locally.
 
 ```
-$ stripes mod discover --url http://localhost:8080
+$ stripes mod discover --port 8080
 ```
 
 Variations of this command can be useful. For example, to see existing instances, run the command with no options.  To clear out all existing instances, use the `--forget` option.  See [mod discover](./commands.md#mod-discover-command-work-in-progress) in the command reference for more information.

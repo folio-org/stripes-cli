@@ -122,6 +122,37 @@ describe('The discovery-service', function () {
     });
   });
 
+  describe('addLocalInstanceForContextOnVagrantVM method', function () {
+    beforeEach(function () {
+      this.sut = new DiscoveryService(okapiStub, contextStub);
+      this.sandbox.stub(fs, 'existsSync').returns(true);
+      this.sandbox.stub(fs, 'readFileSync').returns(JSON.stringify(deploymentDescriptorStub));
+      this.sandbox.spy(okapiStub.discovery, 'addInstance');
+    });
+
+    it('Assigns port to "10.0.2.2" and instance id', function (done) {
+      this.sut.addLocalInstanceForContextOnVagrantVM(8080)
+        .then(() => {
+          expect(okapiStub.discovery.addInstance).to.have.been.calledOnce;
+          const call = okapiStub.discovery.addInstance.getCall(0);
+          expect(call.args[0]).to.be.an('object').to.have.keys('instId', 'url', 'srvcId');
+          expect(call.args[0].instId).to.be.a('string');
+          expect(call.args[0].url).to.equal('http://10.0.2.2:8080');
+          done();
+        });
+    });
+
+    it('Omits nodeId and descriptor', function (done) {
+      this.sut.addLocalInstanceForContextOnVagrantVM(8080)
+        .then(() => {
+          expect(okapiStub.discovery.addInstance).to.have.been.calledOnce;
+          const call = okapiStub.discovery.addInstance.getCall(0);
+          expect(call.args[0]).to.be.an('object').not.to.have.keys('nodeId', 'descriptor');
+          done();
+        });
+    });
+  });
+
   describe('addInstanceForContext method', function () {
     beforeEach(function () {
       this.sut = new DiscoveryService(okapiStub, contextStub);
