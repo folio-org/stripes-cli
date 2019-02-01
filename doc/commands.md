@@ -354,6 +354,7 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--forget` | Unregister instances | boolean |
 `--okapi` | Specify an Okapi URL | string | (*)
+`--port` | Register a locally hosted instance running on port number (for use with Okapi in a Vagrant box) | number |
 `--url` | Register instance running at URL | string |
 
 Examples:

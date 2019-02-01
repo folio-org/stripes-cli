@@ -1,48 +1,46 @@
 # Stripes CLI Back-end Guide
 
-Stripes CLI offers many commands for interacting with Okapi to manage back-end modules for a tenant.  This guide steps through the process of standing up a back-end to support a unique platform.
-
-> Note: This document is currently a work in progress. Notably, it depends on a Vagrant VM that is not yet published.
+Stripes CLI offers many commands for interacting with Okapi to manage back-end modules for a tenant on a Vagrant VM.  This guide steps through the process of standing up a back-end to support a unique front-end platform.
 
 * [Prerequisites](#prerequisites)
-    * [Create a Vagrant box](#create-a-vagrant-box)
-    * [Install a front-end platform](#install-a-front-end-platform)
-    * [Configure the CLI (optional)](#configure-the-cli-optional)
+    * [1. Create a Vagrant box](#1-create-a-vagrant-box)
+    * [2. Install a front-end platform](#2-install-a-front-end-platform)
+    * [3. Configure the CLI (optional)](#3-configure-the-cli-optional)
 * [Set up back-end modules for your platform](#set-up-back-end-modules-for-your-platform)
+    * [1. Set up back-end in one command](#1-set-up-back-end-in-one-command)
     * [Useful variants](#useful-variants)
 * [Set up back-end modules for your platform (multi-step)](#set-up-back-end-modules-for-your-platform-multi-step)
-    * [Pull modules](#pull-modules)
-    * [Generate front-end module ids](#generate-front-end-module-ids)
-    * [Include additional dependencies](#include-additional-dependencies)
-    * [Perform a dry run](#perform-a-dry-run)
-    * [Perform the back-end deployment](#perform-the-back-end-deployment)
-    * [Post the front-end module descriptors](#post-the-front-end-module-descriptors)
-    * [Assign permissions to a user](#assign-permissions-to-a-user)
+    * [1. Pull modules](#1-pull-modules)
+    * [2. Generate front-end module ids](#2-generate-front-end-module-ids)
+    * [3. Include additional dependencies](#3-include-additional-dependencies)
+    * [4. Perform a dry run](#4-perform-a-dry-run)
+    * [5. Perform the back-end deployment](#5-perform-the-back-end-deployment)
+    * [6. Post the front-end module descriptors](#6-post-the-front-end-module-descriptors)
+    * [7. Assign permissions to a user](#7-assign-permissions-to-a-user)
 * [Connect a local back-end module to an existing platform](#connect-a-local-back-end-module-to-an-existing-platform)
-    * [Prerequisites](#prerequisites)
-    * [Post your backend module descriptor](#post-your-backend-module-descriptor)
-    * [Register your local running instance with Okapi](#register-your-local-running-instance-with-okapi)
-    * [Enable your module for the tenant](#enable-your-module-for-the-tenant)
+    * [1. Prerequisites](#1-prerequisites)
+    * [2. Post your backend module descriptor](#2-post-your-backend-module-descriptor)
+    * [3. Register your local running instance with Okapi](#3-register-your-local-running-instance-with-okapi)
+    * [4. Enable your module for the tenant](#4-enable-your-module-for-the-tenant)
 
 
 ## Prerequisites
 
-### Create a Vagrant box
+### 1. Create a Vagrant box
 
-This guide requires the (TODO: new box name) Vagrant box or equivalent.  This VM comes pre-loaded with modules to run [platform-core](https://github.com/folio-org/platform-core) modules.  
+This guide requires [folio/snapshot-backend-core](https://app.vagrantup.com/folio/boxes/snapshot-backend-core), [folio/snapshot-core](https://app.vagrantup.com/folio/boxes/snapshot-core), [folio/minimal](https://issues.folio.org/browse/FOLIO-1730), or equivalent Vagrant box.  The "core" VMs come pre-loaded with modules to run [platform-core](https://github.com/folio-org/platform-core) modules.
 
-TODO: replace TBD with actual VM name
 ```
-$ mkdir TBD
-$ cd TBD
-$ vagrant init folio/TBD
+$ mkdir snapshot-backend-core
+$ cd snapshot-backend-core
+$ vagrant init folio/snapshot-backend-core
 $ vagrant up
 ```
 
 See the Stripes development setup guide for information to [update an existing Vagrant box](https://github.com/folio-org/stripes/blob/master/doc/new-development-setup.md#update-your-vagrant-box).
 
 
-### Install a front-end platform
+### 2. Install a front-end platform
 
 Start by cloning your desired platform, such as [platform-erm](https://github.com/folio-org/platform-erm).
 
@@ -52,7 +50,7 @@ $ cd platform-erm
 $ yarn install
 ```
 
-### Configure the CLI (optional)
+### 3. Configure the CLI (optional)
 
 Optionally, create a `.stripesclirc` [configuration file](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md#configuration) to store an Okapi URL and tenant ID. Place your CLI configuration in your platform directory or above.
 
@@ -71,6 +69,14 @@ This step is not required.  It is only a convenience so we don't have to include
 
 
 ## Set up back-end modules for your platform
+
+The CLI attempts to simplify the back-end setup process by automating many steps with one command.  This command assumes your platform's front-end (`folio_*`) and back-end modules have published descriptors available to pull from the remote registry.  If your front-end ui-module descriptors have not yet been published, you can add add them to your VM with the CLI's [mod add](./commands.md#mod-add-command).
+
+```
+$ stripes mod add --strict
+```
+
+### 1. Set up back-end in one command
 
 The following command, run from within your platform directory, will prepare and deploy modules and their dependencies for your tenant via Okapi's `/_/proxy/tenants/{tenant_id}/install` endpoint.
 
@@ -109,21 +115,21 @@ $ stripes platform backend stripes.config.js --include mod-x mod-y
 
 For more granular control or to better observe the intermediate operations above, the following individual commands can be performed to achieve the same result.
 
-### Pull modules
+### 1. Pull modules
 Your Vagrant box will only have module descriptors available for the modules that it came pre-built with.  The `mod pull` command will instruct Okapi to download the latest module descriptor ids from a remote registry.
 
 ```
 $ stripes mod pull --remote http://folio-registry.aws.indexdata.com
 ```
  
-### Generate front-end module ids
+### 2. Generate front-end module ids
 
 This will take the tenant config, `stripes.config.js` and convert the selected modules into module descriptor ids.  Additional front-end `stripes-*` modules will be included like `stripes-core`.
 ```
 $ stripes mod descriptor stripes.config.js > my-module-ids
 ```
 
-### Include additional dependencies
+### 3. Include additional dependencies
 
 While `stripes platform backend` offers some logic to dynamically append a few module ids that are not otherwise required by a front-end platform, the CLI doesn't currently offer a stand-alone command to do the same.  Manually add any module ids that you know you need, but are not pulled as a dependency of other modules.  Simply edit the prior output file to append the desired ids.
 
@@ -135,7 +141,7 @@ mod-y
 EOF
 ```
 
-### Perform a dry run
+### 4. Perform a dry run
 
 Using the `my-module-ids` file from the prior command as input, pipe the list to `stripes mod install` with the `--simulate` option set.  This will call Okapi to generate a list of the necessary dependencies and their actions, such as enabling or upgrading, needed.  Save this output to a file as it will be used in the next steps.
 
@@ -143,7 +149,7 @@ Using the `my-module-ids` file from the prior command as input, pipe the list to
 $ cat my-module-ids | stripes mod install --simulate > my-module-actions
 ```
 
-### Perform the back-end deployment
+### 5. Perform the back-end deployment
 
 Using the output from the `--simulate` dry run, filter the results for back-end modules.  For this you can pipe your output through the `stripes mod filter` command. Then pass the filtered results onto `stripes mod install` with the `--deploy` option.
 
@@ -152,7 +158,7 @@ $ cat my-module-actions | stripes mod filter --back | stripes mod install --depl
 ```
 
 
-### Post the front-end module descriptors
+### 6. Post the front-end module descriptors
 
 Using the same output from the dry run, this time filter the results for front-end modules only. Pass the results to `stripes mod install` (without `--deploy`) enable them for the tenant.
 
@@ -160,7 +166,7 @@ Using the same output from the dry run, this time filter the results for front-e
 $ cat my-module-actions | stripes mod filter --front | stripes mod install
 ```
 
-### Assign permissions to a user
+### 7. Assign permissions to a user
 
 In order to make use of the newly installed modules for development, assign module permissions to a user.  This can be done by chaining a few `stripes` commands together.  The following will gather permissions for all of the tenant's modules, and attempt to assign them to the user.
 
@@ -172,16 +178,15 @@ $ stripes mod list | stripes mod perms | stripes perm assign --user diku_admin
 
 The following describes how to incorporate a local development instance of a backend module with an existing Okapi using `stripes` CLI commands.
 
-### Prerequisites
+### 1. Prerequisites
 
-* Create and run the [(TODO: name here)](#create-a-vagrant-box) vagrant box
-* Build and host a local Okapi (TODO: This step is TBD, pending outcome of FOLIO-634)
-* Build and host your local back-end module following its instructions
+* Create and run the [folio/snapshot-core](#create-a-vagrant-box) vagrant box
+* Build and host your local back-end module following its instructions ([example](https://github.com/folio-org/raml-module-builder#get-started-with-a-sample-working-module)).
 
 Commands below assume `--okapi` and `--tenant` values have been set via [configuration](#configure-the-cli-optional).  Please include these options with your commands if not previously set.
 
 
-### Post your backend module descriptor
+### 2. Post your backend module descriptor
 
 From your back-end module's directory, post its module descriptor with the `mod add` command.  It is important to run this command after an install/build since the module descriptor found within the `/target` directory will be used. 
 
@@ -189,18 +194,18 @@ From your back-end module's directory, post its module descriptor with the `mod 
 $ stripes mod add
 ```
 
-### Register your local running instance with Okapi
+### 3. Register your local running instance with Okapi
 
-From the back-end module's directory, use the `mod discover` command register your locally running module instance. Provide the URL of where it is hosted.
+From the back-end module's directory, use the `mod discover` command register your locally running module instance. Provide the port where it is hosted locally.
 
 ```
-$ stripes mod discover --url http://localhost:8080
+$ stripes mod discover --port 8080
 ```
 
 Variations of this command can be useful. For example, to see existing instances, run the command with no options.  To clear out all existing instances, use the `--forget` option.  See [mod discover](./commands.md#mod-discover-command-work-in-progress) in the command reference for more information.
 
 
-### Enable your module for the tenant
+### 4. Enable your module for the tenant
 
 For the commands below, `mod descriptor` simply returns the module descriptor id so that we can pipe this into the `mod install` command.
 
