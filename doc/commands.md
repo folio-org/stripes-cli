@@ -17,7 +17,7 @@ This following command documentation is generated from the CLI's own built-in he
     * [`mod add` command](#mod-add-command)
     * [`mod descriptor` command](#mod-descriptor-command)
     * [`mod disable` command](#mod-disable-command)
-    * [`mod discover` command (work in progress)](#mod-discover-command-work-in-progress)
+    * [`mod discover` command](#mod-discover-command)
     * [`mod enable` command](#mod-enable-command)
     * [`mod filter` command](#mod-filter-command)
     * [`mod install` command](#mod-install-command)
@@ -245,7 +245,7 @@ Sub-commands:
 * [`stripes mod add`](#mod-add-command)
 * [`stripes mod descriptor`](#mod-descriptor-command)
 * [`stripes mod disable`](#mod-disable-command)
-* [`stripes mod discover`](#mod-discover-command-work-in-progress)
+* [`stripes mod discover`](#mod-discover-command)
 * [`stripes mod enable`](#mod-enable-command)
 * [`stripes mod filter`](#mod-filter-command)
 * [`stripes mod install`](#mod-install-command)
@@ -341,9 +341,9 @@ Disable module ids "one" and "two" for tenant diku with stdin:
 $ echo one two | stripes mod disable --tenant diku
 ```
 
-### `mod discover` command (work in progress)
+### `mod discover` command
 
-Manage instances for the current backend module with Okapi's _/discovery endpoint (work in progress)
+Manage instances for the current backend module with Okapi's _/discovery endpoint
 
 Usage:
 ```
