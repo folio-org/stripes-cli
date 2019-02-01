@@ -1,6 +1,6 @@
 # Stripes CLI
 
-Copyright (C) 2017-2018 The Open Library Foundation
+Copyright (C) 2017-2019 The Open Library Foundation
 
 This software is distributed under the terms of the Apache License,
 Version 2.0. See the file "[LICENSE](LICENSE)" for more information.
@@ -28,12 +28,12 @@ yarn global add @folio/stripes-cli
 
 Upgrade your globally installed CLI with the following command:
 ```
-yarn global upgrade @folio/stripes-cli
+$ yarn global upgrade @folio/stripes-cli
 ```
 
 If your CLI is installed locally, use:
 ```
-yarn upgrade @folio/stripes-cli
+$ yarn upgrade @folio/stripes-cli
 ```
 
 ## Issues

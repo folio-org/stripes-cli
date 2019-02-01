@@ -7,7 +7,8 @@
   * New isBackendModule context to identify back-end modules
   * Support back-end module context for `mod add/remove/enable/disable` commands
   * New `mod discover` command to register instances with Okapi
-* New mod descriptor `--output` option for writing module descriptors to a directory
+* New mod descriptor `--output` option for writing module descriptors to a directory, STCLI-125
+* Automate generation of CLI command reference, STCLI-128
 
 
 ## [1.8.0](https://github.com/folio-org/stripes-cli/tree/v1.8.0) (2019-01-16)
