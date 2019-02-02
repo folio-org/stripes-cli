@@ -86,7 +86,7 @@ Positional | Description | Type | Notes
 ---|---|---|---
 `mod` | UI module to alias | string |
 `path` | Relative path to UI module | string |
-`sub` | Alias operation | string | (*) choices: "add", "list", "remove", "clear"
+`sub` | Alias operation | string | required; choices: "add", "list", "remove", "clear"
 
 Examples:
 
@@ -272,7 +272,7 @@ $ stripes mod add
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
 `--strict` | Include required interface dependencies | boolean | default: false
 
 Examples:
@@ -328,8 +328,8 @@ $ stripes mod disable
 Option | Description | Type | Notes
 ---|---|---|---
 `--ids` | Module descriptor ids  | array | supports stdin
-`--okapi` | Specify an Okapi URL | string | (*)
-`--tenant` | Specify a tenant ID | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
+`--tenant` | Specify a tenant ID | string | required
 
 Examples:
 
@@ -358,7 +358,7 @@ $ stripes mod discover
 Option | Description | Type | Notes
 ---|---|---|---
 `--forget` | Unregister instances | boolean |
-`--okapi` | Specify an Okapi URL | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
 `--port` | Register a locally hosted instance running on port number (for use with Okapi in a Vagrant box) | number |
 `--url` | Register instance running at URL | string |
 
@@ -389,8 +389,8 @@ $ stripes mod enable
 Option | Description | Type | Notes
 ---|---|---|---
 `--ids` | Module descriptor ids  | array | supports stdin
-`--okapi` | Specify an Okapi URL | string | (*)
-`--tenant` | Specify a tenant ID | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
+`--tenant` | Specify a tenant ID | string | required
 
 Examples:
 
@@ -443,13 +443,13 @@ $ stripes mod install
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--action` | Action to perform on modules | string | default: "enable" choices: "enable", "disable"
+`--action` | Action to perform on modules | string | default: "enable"; choices: "enable", "disable"
 `--deploy` | Deploy modules | boolean | default: false
 `--ids` | Module descriptor ids  | array | supports stdin
-`--okapi` | Specify an Okapi URL | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
 `--preRelease` | Include pre-release modules | boolean | default: true
 `--simulate` | Simulate operation | boolean | default: false
-`--tenant` | Specify a tenant ID | string | (*)
+`--tenant` | Specify a tenant ID | string | required
 
 Examples:
 
@@ -477,7 +477,7 @@ $ stripes mod list
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
 `--provide` | limit to provided interface | string |
 `--require` | limit to required interface | string |
 `--tenant` | Specify a tenant ID | string |
@@ -518,7 +518,7 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--expand` | Include sub-permissions | boolean | default: false
 `--ids` | Module descriptor ids  | array | supports stdin
-`--okapi` | Specify an Okapi URL | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
 
 Examples:
 
@@ -542,8 +542,8 @@ $ stripes mod pull
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | (*)
-`--remote` | Remote Okapi to pull from | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
+`--remote` | Remote Okapi to pull from | string | required
 
 Examples:
 
@@ -564,7 +564,7 @@ $ stripes mod remove
 Option | Description | Type | Notes
 ---|---|---|---
 `--ids` | Module descriptor ids  | array | supports stdin
-`--okapi` | Specify an Okapi URL | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
 
 Examples:
 
@@ -592,7 +592,7 @@ $ stripes mod update
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
 
 Examples:
 
@@ -613,7 +613,7 @@ $ stripes mod view
 Option | Description | Type | Notes
 ---|---|---|---
 `--ids` | Module descriptor ids  | array | supports stdin
-`--okapi` | Specify an Okapi URL | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
 
 Examples:
 
@@ -652,12 +652,12 @@ $ stripes okapi login <username> [password]
 Positional | Description | Type | Notes
 ---|---|---|---
 `password` | Okapi tenant password | string |
-`username` | Okapi tenant username | string | (*)
+`username` | Okapi tenant username | string | required
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | (*)
-`--tenant` | Specify a tenant ID | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
+`--tenant` | Specify a tenant ID | string | required
 
 Examples:
 
@@ -722,8 +722,8 @@ $ stripes perm assign
 Option | Description | Type | Notes
 ---|---|---|---
 `--name` | Name of the permission  | string | supports stdin
-`--okapi` | Specify an Okapi URL | string | (*)
-`--tenant` | Specify a tenant ID | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
+`--tenant` | Specify a tenant ID | string | required
 `--user, --assign` | Username to assign permission to | string |
 
 Examples:
@@ -781,8 +781,8 @@ $ stripes perm list
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--okapi` | Specify an Okapi URL | string | (*)
-`--user` | Username | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
+`--user` | Username | string | required
 
 Examples:
 
@@ -803,8 +803,8 @@ $ stripes perm unassign
 Option | Description | Type | Notes
 ---|---|---|---
 `--name` | Name of the permission  | string | supports stdin
-`--okapi` | Specify an Okapi URL | string | (*)
-`--tenant` | Specify a tenant ID | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
+`--tenant` | Specify a tenant ID | string | required
 `--user` | Username to unassign permission from | string |
 
 Examples:
@@ -840,17 +840,17 @@ $ stripes platform backend <configFile>
 
 Positional | Description | Type | Notes
 ---|---|---|---
-`configFile` | File containing a Stripes tenant configuration | string | (*)
+`configFile` | File containing a Stripes tenant configuration | string | required
 
 Option | Description | Type | Notes
 ---|---|---|---
 `--detail` | Display detailed output | boolean | default: false
 `--include` | Additional module ids to include with install | array |
-`--okapi` | Specify an Okapi URL | string | (*)
+`--okapi` | Specify an Okapi URL | string | required
 `--preRelease` | Include pre-release modules | boolean | default: true
 `--remote` | Pull module descriptors from remote registry before install | string |
 `--simulate` | Simulate install only (does not deploy) | boolean | default: false
-`--tenant` | Specify a tenant ID | string | (*)
+`--tenant` | Specify a tenant ID | string | required
 `--user` | Username to assign permission to | string |
 
 Examples:
