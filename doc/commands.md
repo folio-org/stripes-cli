@@ -214,6 +214,7 @@ Option | Description | Type | Notes
 `--languages` | Languages to include in tenant build | array |
 `--lint` | Show eslint warnings with build | boolean |
 `--maxChunks` | Limit the number of Webpack chunks in build output | number |
+`--minify` | Minify the bundle output | boolean | default: true
 `--okapi` | Specify an Okapi URL | string |
 `--output` | Directory to place build output | string |
 `--prod` | Use production build settings | boolean |
@@ -223,13 +224,17 @@ Option | Description | Type | Notes
 
 Examples:
 
-Platform context build:
+Build a platform (from platform directory):
 ```
-$ stripes build stripes.config.js dir
+$ stripes build stripes.config.js ./output-dir
 ```
-App context build using virtual platform:
+Build a platform without minification of the bundle:
 ```
-$ stripes build --output=dir
+$ stripes build stripes.config.js ./output-dir --no-minify
+```
+Build a single ui-module (from ui-module directory):
+```
+$ stripes build --output ./output-dir
 ```
 
 ## `mod` command
