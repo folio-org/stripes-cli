@@ -24,6 +24,7 @@ describe('The CLI\'s getContext', function () {
 
       expect(result).to.include({
         type: 'app',
+        isEmpty: false,
         isStripesModule: false,
         isUiModule: true,
         isPlatform: false,
@@ -38,6 +39,7 @@ describe('The CLI\'s getContext', function () {
 
       expect(result).to.include({
         type: 'settings',
+        isEmpty: false,
         isStripesModule: false,
         isUiModule: true,
         isPlatform: false,
@@ -52,6 +54,7 @@ describe('The CLI\'s getContext', function () {
 
       expect(result).to.include({
         type: 'components',
+        isEmpty: false,
         isStripesModule: true,
         isUiModule: false,
         isPlatform: false,
@@ -69,6 +72,7 @@ describe('The CLI\'s getContext', function () {
 
     expect(result).to.include({
       type: 'platform',
+      isEmpty: false,
       isStripesModule: false,
       isUiModule: false,
       isPlatform: true,
@@ -84,10 +88,12 @@ describe('The CLI\'s getContext', function () {
 
     expect(result).to.include({
       type: 'workspace',
+      isEmpty: false,
       isStripesModule: false,
       isUiModule: false,
       isPlatform: false,
       isBackendModule: false,
+      isWorkspace: true,
     });
   });
 
@@ -99,6 +105,7 @@ describe('The CLI\'s getContext', function () {
     const result = this.sut('someDir');
 
     expect(result).to.include({
+      isEmpty: false,
       isStripesModule: true,
       isUiModule: false,
       isPlatform: false,
@@ -114,6 +121,8 @@ describe('The CLI\'s getContext', function () {
 
     expect(result).to.include({
       type: 'cli',
+      isCli: true,
+      isEmpty: false,
       isStripesModule: false,
       isUiModule: false,
       isPlatform: false,
@@ -127,6 +136,7 @@ describe('The CLI\'s getContext', function () {
 
     expect(result).to.include({
       type: 'empty',
+      isEmpty: true,
       isStripesModule: false,
       isUiModule: false,
       isPlatform: false,
