@@ -30,7 +30,8 @@ describe('The app create command', function () {
     };
     this.context = {
       type: 'empty',
-      cwd: '/path/to/working/directory'
+      cwd: '/path/to/working/directory',
+      isEmpty: true,
     };
     this.sut = appCreateCommand;
     this.sandbox.stub(context, 'getContext').returns(this.context);
@@ -51,7 +52,8 @@ describe('The app create command', function () {
   });
 
   it('does not create an app when run from within an app', function (done) {
-    this.context.type = 'app';
+    this.context.isUiModule = true;
+    this.context.isEmpty = false;
     this.sut.handler(this.argv)
       .then(() => {
         expect(createApp.createApp).not.to.have.been.called;
@@ -72,7 +74,8 @@ describe('The app create command', function () {
 
   it('yarn installs dependencies in the workspace directory', function (done) {
     this.argv.install = true;
-    this.context.type = 'workspace';
+    this.context.isWorkspace = true;
+    this.context.isEmpty = false;
     this.sut.handler(this.argv)
       .then(() => {
         expect(yarn.install).to.have.been.calledWith('/path/to/working/directory');
@@ -93,7 +96,8 @@ describe('The app create command', function () {
 
   it('reports workspace install instructions for --no-install', function (done) {
     this.argv.install = false;
-    this.context.type = 'workspace';
+    this.context.isWorkspace = true;
+    this.context.isEmpty = false;
     this.sut.handler(this.argv)
       .then(() => {
         expect(yarn.install).not.to.have.been.called;
