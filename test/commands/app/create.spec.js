@@ -28,13 +28,13 @@ describe('The app create command', function () {
       name: 'hello world',
       desc: 'my first app',
     };
-    this.argv.cliContext = {
+    this.argv.context = {
       type: 'empty',
       cwd: '/path/to/working/directory',
       isEmpty: true,
     };
     this.sut = appCreateCommand;
-    this.sandbox.stub(context, 'getContext').returns(this.argv.cliContext);
+    this.sandbox.stub(context, 'getContext').returns(this.argv.context);
     this.sandbox.stub(createApp, 'createApp').callsFake(createAppStub);
     this.sandbox.stub(yarn, 'install').callsFake(yarnStub);
     this.sandbox.stub(addModCommand, 'handler').callsFake(addModStub);
@@ -52,8 +52,8 @@ describe('The app create command', function () {
   });
 
   it('does not create an app when run from within an app', function (done) {
-    this.argv.cliContext.isUiModule = true;
-    this.argv.cliContext.isEmpty = false;
+    this.argv.context.isUiModule = true;
+    this.argv.context.isEmpty = false;
     this.sut.handler(this.argv)
       .then(() => {
         expect(createApp.createApp).not.to.have.been.called;
@@ -74,8 +74,8 @@ describe('The app create command', function () {
 
   it('yarn installs dependencies in the workspace directory', function (done) {
     this.argv.install = true;
-    this.argv.cliContext.isWorkspace = true;
-    this.argv.cliContext.isEmpty = false;
+    this.argv.context.isWorkspace = true;
+    this.argv.context.isEmpty = false;
     this.sut.handler(this.argv)
       .then(() => {
         expect(yarn.install).to.have.been.calledWith('/path/to/working/directory');
@@ -96,8 +96,8 @@ describe('The app create command', function () {
 
   it('reports workspace install instructions for --no-install', function (done) {
     this.argv.install = false;
-    this.argv.cliContext.isWorkspace = true;
-    this.argv.cliContext.isEmpty = false;
+    this.argv.context.isWorkspace = true;
+    this.argv.context.isEmpty = false;
     this.sut.handler(this.argv)
       .then(() => {
         expect(yarn.install).not.to.have.been.called;
