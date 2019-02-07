@@ -785,6 +785,7 @@ $ stripes perm list
 Option | Description | Type | Notes
 ---|---|---|---
 `--okapi` | Specify an Okapi URL | string | required
+`--tenant` | Specify a tenant ID | string | required
 `--user` | Username | string | required
 
 Examples:
