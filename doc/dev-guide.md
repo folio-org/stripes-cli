@@ -140,11 +140,11 @@ builder: (yargs) => {
 handler: myCommand,
 ```
 
-Options used in more than one command should be kept in `lib/commands/common-options`.  Organize and export them in logical groupings, then import the desired options in each command.  Doing so consolidates the option metadata, so option descriptions and types remain consistent across the application.  Use the CLI's `applyOptions()` helper function (found in `lib/commands/common-options`) to facilitate adding imported options to the yargs builder.
+Options used in more than one command should be kept in `lib/commands/common-options`.  Organize and export them in logical groupings, then import the desired options in each command.  Doing so consolidates the option metadata, so option descriptions and types remain consistent across the application. When assigning multiple options at a time, pass a single object to `.options()` with `Object.assign()`.
 
 ```javascript
 builder: (yargs) => {
-  return applyOptions(yargs, okapiOptions, serverOptions);
+  .options(Object.assign({}, okapiOptions, serverOptions);
 },
 ```
 
@@ -208,14 +208,14 @@ module.exports = {
 
 Use the `stripesConfigMiddleware` when a Stripes tenant configuration needs to be accessed within a command.  This middleware will load the configuration from file (typically `stripes.config.js`, but `.json` is also supported) when `--configFile` is specified on the command-line.  Alternatively, the stripes configuration can be read from stdin if no `--configFile` is specified and a JSON string is piped into the command.  The stripes configuration, whether by file or stdin, is made available to the command as `argv.stripesConfig`.
 
-When using `stripesConfigMiddleware`, also apply the `stripesConfigInput` options from `common-options`.  This will ensure both `configFile` and `stripesConfig` are reported consistently as options in the command.  Commands with a config file, typically accept `configFile` as a positional option.
+When using `stripesConfigMiddleware`, apply `stripesConfigFile` and/or `stripesConfigStdin` options from `common-options`.  This will ensure both `configFile` and `stripesConfig` are reported consistently in the help.  Commands consuming a config file, typically accept `configFile` as a positional option.
 
 
 ```javascript
 // Lazy load to improve startup time
 const importLazy = require('import-lazy')(require);
 const { stripesConfigMiddleware } = importLazy('../cli/stripes-config-middleware');
-const { applyOptions, stripesConfigInput } = importLazy('./common-options');
+const { stripesConfigFile, stripesConfigStdin } = importLazy('./common-options');
 
 // The command itself
 function myCommand(argv) {
@@ -232,8 +232,9 @@ module.exports = {
       .middleware([
         stripesConfigMiddleware(),                  // <--- middleware
       ])
+      .positional('configFile', stripesConfigFile.configFile)   // .positional() does not accept an object
+      .options(stripesConfigStdin);                             // .options() will accept an object
       .example('$0 hello stripes.config.js', 'Say hello to a stripes configuration.');
-    return applyOptions(yargs, stripesConfigInput); // <--- provides options in docs 
   },
   handler: myCommand,
 };
