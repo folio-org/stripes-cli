@@ -6,9 +6,10 @@
 * [Code organization](#code-organization)
 * [Commands](#commands)
     * [Options](#options)
-    * [CLI context](#cli-context)
-    * [Standard input](#standard-input)
-    * [Interactive input](#interactive-input)
+    * [Middleware](#middleware)
+        * [CLI context](#cli-context)
+        * [Standard input](#standard-input)
+        * [Interactive input](#interactive-input)
     * [Grouping](#grouping)
 * [Logging](#logging)
 * [Okapi Client](#okapi-client)
@@ -58,7 +59,7 @@ stripes-cli
 ├─resources    Template files
 ├─test         CLI tests
 └─lib
-  ├─cli        CLI context and common logic
+  ├─cli        CLI context, middleware, and common logic
   ├─commands   Command handlers
   ├─okapi      Okapi services and http client
   └─platform   Platform generation logic
@@ -131,7 +132,13 @@ builder: (yargs) => {
 },
 ```
 
-### CLI context
+### Middleware
+
+The CLI supports middleware for additional handling of `argv` prior to invoking a command.  One or more middleware functions can applied to the Yargs builder.  See the Yargs [middleware documentation](https://github.com/yargs/yargs/blob/master/docs/advanced.md#middleware) for more details.
+
+Several useful middleware functions are included with the CLI for loading context, parsing standard input, and prompting the user for input.
+
+#### CLI context
 
 The CLI can provide a context for each command which denotes whether the command has been run from a UI module, platform, or workspace directory.  This is helpful for performing operations specific to specific contexts.  To access to this information in your command, apply the `contextMiddleware` to your command builder.  The result will be applied to `argv.context`.
 
@@ -165,8 +172,7 @@ module.exports = {
 };
 ```
 
-
-### Standard input
+#### Standard input
 
 To accept standard input (stdin) within a command, apply one of the CLI's stdin middleware handlers from `lib/cli/stdin-middleware.js`.  Available stdin middleware include `stdinStringMiddleware`, `stdinArrayMiddleware`, and `stdinJsonMiddleware` for parsing string, array, and JSON input.  The `stdinArrayMiddleware` splits on whitespace, including line breaks, to make accepting multi-line input easy.
 
@@ -204,7 +210,7 @@ module.exports = {
 };
 ```
 
-### Interactive input
+#### Interactive input
 
 When answers to questions can be acquired up front, the simplest way to ask for them is to apply the CLI's `promptMiddleware` from `lib/cli/prompt-middleware`.  When invoked, this middleware will check the incoming `argv` prompt the user for any options which were not provided on the command line.  Internally the middleware uses Inquirer to prompt the user with questions.
 
