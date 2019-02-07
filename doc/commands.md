@@ -220,6 +220,7 @@ Option | Description | Type | Notes
 `--prod` | Use production build settings | boolean |
 `--publicPath` | Specify the Webpack publicPath output option | string |
 `--sourcemap` | Include sourcemaps in build output | boolean |
+`--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
 
 Examples:
@@ -293,13 +294,14 @@ $ stripes mod descriptor [configFile]
 
 Positional | Description | Type | Notes
 ---|---|---|---
-`configFile` | File containing a Stripes tenant configuration (platform context only) | string |
+`configFile` | File containing a Stripes tenant configuration | string |
 
 Option | Description | Type | Notes
 ---|---|---|---
 `--full` | Return full module descriptor JSON | boolean | default: false
 `--output` | Directory to write descriptors to as JSON files | string |
 `--strict` | Include required interface dependencies | boolean | default: false
+`--stripesConfig` | Stripes config JSON  | string | supports stdin
 
 Examples:
 
@@ -420,6 +422,7 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--back` | Back-end modules only | boolean |
 `--front` | Front-end modules only | boolean |
+`--ids` | Module descriptor ids  | array | supports stdin
 
 Examples:
 
@@ -850,6 +853,7 @@ Option | Description | Type | Notes
 `--preRelease` | Include pre-release modules | boolean | default: true
 `--remote` | Pull module descriptors from remote registry before install | string |
 `--simulate` | Simulate install only (does not deploy) | boolean | default: false
+`--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string | required
 `--user` | Username to assign permission to | string |
 
@@ -950,6 +954,7 @@ Option | Description | Type | Notes
 `--port` | Development server port | number | default: 3000
 `--prod` | Use production build settings | boolean |
 `--publicPath` | Specify the Webpack publicPath output option | string |
+`--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
 
 Examples:
@@ -990,6 +995,7 @@ Option | Description | Type | Notes
 `--languages` | Languages to include in tenant build | array |
 `--okapi` | Specify an Okapi URL | string |
 `--platform` | View development platform status | boolean |
+`--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
 
 ## `test` command
@@ -1005,6 +1011,10 @@ Sub-commands:
 * [`stripes test karma`](#test-karma-command)
 * [`stripes test nightmare`](#test-nightmare-command)
 
+Positional | Description | Type | Notes
+---|---|---|---
+`configFile` | File containing a Stripes tenant configuration | string |
+
 Option | Description | Type | Notes
 ---|---|---|---
 `--cache` | Use HardSourceWebpackPlugin cache | boolean |
@@ -1013,6 +1023,7 @@ Option | Description | Type | Notes
 `--languages` | Languages to include in tenant build | array |
 `--okapi` | Specify an Okapi URL | string |
 `--port` | Development server port | number | default: 3000
+`--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
 
 Examples:
@@ -1049,6 +1060,7 @@ Option | Description | Type | Notes
 `--languages` | Languages to include in tenant build | array |
 `--okapi` | Specify an Okapi URL | string |
 `--port` | Development server port | number | default: 3000
+`--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
 
 Examples:
@@ -1082,6 +1094,7 @@ Option | Description | Type | Notes
 `--port` | Development server port | number | default: 3000
 `--run` | Name of the test script to run | string |
 `--show` | Show UI and dev tools while running tests | boolean |
+`--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
 `--uiTest` | Additional options for ui-testing framework |  |
 `--url` | URL of FOLIO UI to run tests against | string |

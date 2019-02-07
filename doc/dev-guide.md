@@ -6,8 +6,10 @@
 * [Code organization](#code-organization)
 * [Commands](#commands)
     * [Options](#options)
+    * [Positionals](#positionals)
     * [Middleware](#middleware)
         * [CLI context](#cli-context)
+        * [Stripes config](#stripes-config)
         * [Standard input](#standard-input)
         * [Interactive input](#interactive-input)
     * [Grouping](#grouping)
@@ -124,12 +126,42 @@ Useful settings include:
 
 At minimum, include `type` and `describe` properties for all options help populate the CLI's built-in help output and [command refrence](./commands.md).  See the Yargs [.options API documentation](https://github.com/yargs/yargs/blob/master/docs/api.md#optionkey-opt) for all available settings.
 
+In the command's builder, apply options with `.option()`:
+
+```javascript
+command: 'hello',   
+builder: (yargs) => {
+  yargs
+    .option('name', {
+      describe: 'A name to say hello to',
+      type: 'string',
+    });
+},
+handler: myCommand,
+```
+
 Options used in more than one command should be kept in `lib/commands/common-options`.  Organize and export them in logical groupings, then import the desired options in each command.  Doing so consolidates the option metadata, so option descriptions and types remain consistent across the application.  Use the CLI's `applyOptions()` helper function (found in `lib/commands/common-options`) to facilitate adding imported options to the yargs builder.
 
 ```javascript
 builder: (yargs) => {
   return applyOptions(yargs, okapiOptions, serverOptions);
 },
+```
+
+### Positionals
+
+Positional arguments are defined similar to options via the command builder.  However, they should also include a reference within the `command:` value to define their order.  Required positionals are in the form `<name>` while optional positionals use `[name]`.  See the Yargs [positional documentation](https://github.com/yargs/yargs/blob/master/docs/advanced.md#positional-arguments) for more information.
+
+```javascript
+command: 'hello <name>',
+builder: (yargs) => {
+  yargs
+    .positional('name', {
+      describe: 'A name to say hello to',
+      type: 'string',
+    });
+},
+handler: myCommand,
 ```
 
 ### Middleware
@@ -167,6 +199,41 @@ module.exports = {
         contextMiddleware(),  // <--- middleware
       ])
       .example('$0 hello', 'Say hello to from context.');
+  },
+  handler: myCommand,
+};
+```
+
+#### Stripes config
+
+Use the `stripesConfigMiddleware` when a Stripes tenant configuration needs to be accessed within a command.  This middleware will load the configuration from file (typically `stripes.config.js`, but `.json` is also supported) when `--configFile` is specified on the command-line.  Alternatively, the stripes configuration can be read from stdin if no `--configFile` is specified and a JSON string is piped into the command.  The stripes configuration, whether by file or stdin, is made available to the command as `argv.stripesConfig`.
+
+When using `stripesConfigMiddleware`, also apply the `stripesConfigInput` options from `common-options`.  This will ensure both `configFile` and `stripesConfig` are reported consistently as options in the command.  Commands with a config file, typically accept `configFile` as a positional option.
+
+
+```javascript
+// Lazy load to improve startup time
+const importLazy = require('import-lazy')(require);
+const { stripesConfigMiddleware } = importLazy('../cli/stripes-config-middleware');
+const { applyOptions, stripesConfigInput } = importLazy('./common-options');
+
+// The command itself
+function myCommand(argv) {
+  console.log(`Hello ${argv.configFile}`);          // <--- filename
+  console.log(argv.stripesConfig);                  // <--- config object
+}
+
+// Yargs command module with a builder function
+module.exports = {
+  command: 'hello [configFile]',                    // <---- indicate placement of positional
+  describe: 'A very basic command',
+  builder: (yargs) => {
+    yargs
+      .middleware([
+        stripesConfigMiddleware(),                  // <--- middleware
+      ])
+      .example('$0 hello stripes.config.js', 'Say hello to a stripes configuration.');
+    return applyOptions(yargs, stripesConfigInput); // <--- provides options in docs 
   },
   handler: myCommand,
 };
