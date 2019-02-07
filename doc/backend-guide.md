@@ -63,9 +63,9 @@ Optionally, create a `.stripesclirc` [configuration file](https://github.com/fol
 
 > Tip: Alternatively, [environment variables](https://github.com/folio-org/stripes-cli/blob/master/doc/user-guide.md#environment-variables) can be used.
 
-This step is not required.  It is only a convenience so we don't have to include `--okapi` and `--tenant` options with every command.  For simplicity, the commands in this guide will assume these values are present in a config.  Please remember to provide `--okapi` and `--tenant` on the command line if you choose to skip this step.
+This step is not required.  It is only a convenience so we don't have to include `--okapi` and `--tenant` options with every command.  For simplicity, the commands in this guide will assume these values are present in a config.
 
-> Note: While okapi and tenant values are also present in the tenant config, the CLI commands don't yet consider the tenant config for its Okapi operations (only for build operations). STCLI-117 will address this to avoid the interim duplication.
+> Note: When using a command that reads from a stripes tenant config containing `okapi.url` and `okapi.tenant`, supplying `--okapi` and `--tenant` options (via command-line or `.stripesclirc`) is not necessary.  The CLI will use `okapi.url` and `okapi.tenant` values found in the stripes config to populate `--okapi` and `--tenant` automatically.  If they are provided anyway, `--okapi` and `--tenant` will take precedence.
 
 
 ## Set up back-end modules for your platform
