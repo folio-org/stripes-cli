@@ -309,6 +309,38 @@ describe('The permission-service', function () {
     });
   });
 
+  describe('filterAssignedPermissions method', function () {
+    beforeEach(function () {
+      this.sut = new PermissionService(okapiStub, contextStub);
+    });
+
+    it('Returns assigned permissions', function (done) {
+      this.sut.filterAssignedPermissions(['one.foo', 'two.bar', 'three.foo', 'three.bar'], 'diku_admin')
+        .then((results) => {
+          expect(results).to.be.an('array').with.lengthOf(2);
+          expect(results).to.include.members(['one.foo', 'two.bar']);
+          expect(results).to.not.include('three.foo').and.not.include('three.bar');
+          done();
+        });
+    });
+  });
+
+  describe('filterUnassignedPermissions method', function () {
+    beforeEach(function () {
+      this.sut = new PermissionService(okapiStub, contextStub);
+    });
+
+    it('Returns unassigned permissions', function (done) {
+      this.sut.filterUnassignedPermissions(['one.foo', 'two.bar', 'three.foo', 'three.bar'], 'diku_admin')
+        .then((results) => {
+          expect(results).to.be.an('array').with.lengthOf(2);
+          expect(results).to.include.members(['three.foo', 'three.bar']);
+          expect(results).to.not.include('one.foo').and.not.include('two.bar');
+          done();
+        });
+    });
+  });
+
   describe('assignAllTenantPermissionsToUser method', function () {
     beforeEach(function () {
       this.sut = new PermissionService(okapiStub, contextStub);
