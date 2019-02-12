@@ -3,6 +3,19 @@ const path = require('path');
 const webpackCommon = require('../../lib/webpack-common');
 const StripesPlatform = require('../../lib/platform/stripes-platform');
 
+const stripesConfigStub = {
+  okapi: {
+    url: 'http://localhost:9130',
+    tenant: 'diku',
+  },
+  config: {
+    something: 'from test config file',
+  },
+  modules: {
+    '@folio/trivial': {},
+    '@folio/users': {},
+  },
+};
 
 describe('The stripes-platform', function () {
   beforeEach(function () {
@@ -12,13 +25,13 @@ describe('The stripes-platform', function () {
   });
 
   describe('applyDefaultConfig method', function () {
-    it('loads stripes config file when provided', function () {
-      this.sut.applyDefaultConfig(path.join(__dirname, '/stripes-test.config.js'));
+    it('uses stripes config when provided', function () {
+      this.sut.applyDefaultConfig(stripesConfigStub);
       expect(this.sut.config).to.have.keys('okapi', 'config', 'modules', 'branding');
       expect(this.sut.config).to.have.property('config').with.property('something', 'from test config file');
     });
 
-    it('uses default config when no config file is provided', function () {
+    it('uses default config when no config is provided', function () {
       this.sut.applyDefaultConfig();
       expect(this.sut.config).to.have.keys('okapi', 'config', 'modules', 'branding');
     });
@@ -111,9 +124,8 @@ describe('The stripes-platform', function () {
       expect(this.sut.config).to.have.property('modules').with.property('@folio/my-app');
     });
 
-    it('does not apply aliases to module config when a config file is provided', function () {
-      this.sandbox.stub(StripesPlatform, 'loadStripesConfig').returns({ okapi: {}, config: {}, modules: {} });
-      this.sut.applyDefaultConfig('stripes.config.js');
+    it('does not apply aliases to module config when a config is provided', function () {
+      this.sut.applyDefaultConfig(stripesConfigStub);
       const validAliasMock = {
         '@folio/my-app': { path: '/path/to/ui-my-app', type: 'app', isValid: true },
       };

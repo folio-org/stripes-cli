@@ -29,6 +29,7 @@ Note: When serving or building an existing app module that has dependencies on u
     * [Running a platform](#running-a-platform)
     * [Running tests for a platform](#running-tests-for-a-platform)
     * [Updating the platform](#updating-the-platform)
+* [Stripes configuration](#stripes-configuration)
 * [Interacting with Okapi](#interacting-with-okapi)
     * [Managing UI modules](#managing-ui-modules)
     * [Managing UI permissions](#managing-ui-permissions)
@@ -37,6 +38,7 @@ Note: When serving or building an existing app module that has dependencies on u
     * [Reducing build output](#reducing-build-output)
 * [Viewing diagnostic output](#viewing-diagnostic-output)
     * [Observing Okapi requests](#observing-okapi-requests)
+
 
 ## Using the CLI
 
@@ -429,6 +431,7 @@ $ cd stripes/stripes-sample-platform
 $ stripes serve stripes.config.js.local
 ```
 
+> Note: Stripes configuration is also accepted in [JSON format](#stripes-configuration).
 
 ### Running tests for a platform
 
@@ -446,6 +449,53 @@ $ stripes platform pull
 ```
 
 When run from a platform directory, the CLI will pull the latest code for all aliased modules in the platform wherever they exist on the file system.  When run from a workspace directory, the CLI will pull the latest code for all known Stripes apps/modules in the workspace directory.
+
+
+## Stripes configuration
+
+A Stripes config file is used to describe a tenant's front-end module configuration for a platform. This file is often described in documentation as a JavaScript module export (`stripes.config.js`).  However, it should be noted that JSON format is also accepted.
+
+For example, this `stripes.config.js` file:
+```javascript
+module.exports = {
+  okapi: {
+    url: 'http://localhost:9130',
+    tenant: 'diku',
+  },
+  config: {
+  },
+  modules: {
+    '@folio/trivial': {},
+    '@folio/users': {},
+  },
+};
+```
+
+Could be written as `stripes.config.json` in JSON format:
+```json
+{
+  "okapi": {
+    "url": "http://localhost:9130",
+    "tenant": "diku"
+  },
+  "config": {
+  },
+  "modules": {
+    "@folio/trivial": {},
+    "@folio/users": {}
+  }
+}
+```
+
+Further, when using JSON format, the CLI also accepts this configuration piped via stdin.  Therefore, given the above configuration files exist, each of these commands would produce the same output:
+
+```
+$ stripes build stripes.config.js --output ./bundle/path
+$ stripes build stripes.config.json --output ./bundle/path
+$ cat stripes.config.json | stripes build --output ./bundle/path
+```
+
+The last example becomes useful when your Stripes configuration does reside on disk and is instead emitted from another process.
 
 
 ## Interacting with Okapi
@@ -538,6 +588,8 @@ If source maps are desired, include them with the `--sourcemap` option.
 ```
 $ stripes build stripes.config.js my-build-output --sourcemap
 ```
+
+> Note: Stripes configuration is also accepted in [JSON format](#stripes-configuration).
 
 The generated build assets will be placed in the directory path provided (in this case, `my-build-output`).  These files are ready to serve up from the file server of your choice.  For testing purposes, you can serve up an existing Stripes build using the following command:
 ```

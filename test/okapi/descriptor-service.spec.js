@@ -77,7 +77,7 @@ describe('The descriptor-service', function () {
     it('accepts a context and tenant config', function () {
       const sut = new DescriptorService(platformContext, tenantConfig);
       expect(sut.context).to.equal(platformContext);
-      expect(sut.configFile).to.equal(tenantConfig);
+      expect(sut.stripesConfig).to.equal(tenantConfig);
     });
   });
 

@@ -11,6 +11,7 @@
 * Automate generation of CLI command reference, STCLI-128
 * Refactor usage of context.type, STCLI-78
 * Implement CLI context, prompts, and stdin handlers as Yargs middleware, STCLI-99
+* New middleware for loading stripes config files and applying okapi/tenant, STCLI-117
 
 
 ## [1.8.0](https://github.com/folio-org/stripes-cli/tree/v1.8.0) (2019-01-16)
