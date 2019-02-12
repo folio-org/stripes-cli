@@ -10,6 +10,7 @@
 * New mod descriptor `--output` option for writing module descriptors to a directory, STCLI-125
 * Automate generation of CLI command reference, STCLI-128
 * Refactor usage of context.type, STCLI-78
+* Implement CLI context, prompts, and stdin handlers as Yargs middleware, STCLI-99
 
 
 ## [1.8.0](https://github.com/folio-org/stripes-cli/tree/v1.8.0) (2019-01-16)
