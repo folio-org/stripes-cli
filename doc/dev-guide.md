@@ -6,8 +6,10 @@
 * [Code organization](#code-organization)
 * [Commands](#commands)
     * [Options](#options)
-    * [Interactive input](#interactive-input)
-    * [Standard input](#standard-input)
+    * [Middleware](#middleware)
+        * [CLI context](#cli-context)
+        * [Standard input](#standard-input)
+        * [Interactive input](#interactive-input)
     * [Grouping](#grouping)
 * [Logging](#logging)
 * [Okapi Client](#okapi-client)
@@ -57,7 +59,7 @@ stripes-cli
 ├─resources    Template files
 ├─test         CLI tests
 └─lib
-  ├─cli        CLI context and common logic
+  ├─cli        CLI context, middleware, and common logic
   ├─commands   Command handlers
   ├─okapi      Okapi services and http client
   └─platform   Platform generation logic
@@ -69,19 +71,13 @@ All commands are organized in the `lib/commands` directory.  A command consists 
 
 * `command` - String of the command name and any positional arguments
 * `describe` - Description of the command
-* `builder` - Function accepting and returning a Yargs instance for defining options, examples, and other things
+* `builder` - Function accepting and returning a Yargs instance for defining options, examples, and applying middleware
 * `handler` - Function invoked with a parsed `argv` to perform the command
-
-In addition, the handler should be wrapped in the CLI's own `mainHandler()` to provide proper context.
 
 Example command:
 ```javascript
-// Lazy load to improve startup time
-const importLazy = require('import-lazy')(require);
-const { mainHandler } = importLazy('../cli/main-handler');
-
 // The command itself
-function myCommand(argv, context) {
+function myCommand(argv) {
   console.log(`Hello ${argv.name}!`);
 }
 
@@ -97,8 +93,7 @@ module.exports = {
       })
       .example('$0 hello --name folio', 'Say hello to "folio".');
   },
-  // Wrap the command with mainHandler to receive CLI context
-  handler: mainHandler(myCommand),
+  handler: myCommand,
 };
 ```
 
@@ -127,9 +122,9 @@ Useful settings include:
 * `choices` - limit validation to predefined values
 * `conflicts` - options that must not be set with this one
 
-At minimum, include `type` and `describe` properties for all options help populate the help.  See the Yargs [.options API documentation](https://github.com/yargs/yargs/blob/master/docs/api.md#optionkey-opt) for all available settings.
+At minimum, include `type` and `describe` properties for all options help populate the CLI's built-in help output and [command refrence](./commands.md).  See the Yargs [.options API documentation](https://github.com/yargs/yargs/blob/master/docs/api.md#optionkey-opt) for all available settings.
 
-Options used in more than one command should be kept in `lib/commands/common-options`.  Organize and export them in logical groupings, then import the desired options in each command.  Doing so consolidates the option metadata, so option descriptions and types remain consistent across the application.  Use the CLI's `applyOptions()` helper function (found in `common-options`) to facilitate adding imported options to the yargs builder.
+Options used in more than one command should be kept in `lib/commands/common-options`.  Organize and export them in logical groupings, then import the desired options in each command.  Doing so consolidates the option metadata, so option descriptions and types remain consistent across the application.  Use the CLI's `applyOptions()` helper function (found in `lib/commands/common-options`) to facilitate adding imported options to the yargs builder.
 
 ```javascript
 builder: (yargs) => {
@@ -137,19 +132,125 @@ builder: (yargs) => {
 },
 ```
 
-### Interactive input
+### Middleware
 
-When answers to questions can be acquired up front, the simplest way to ask for them is to wrap your command handler with the CLI's `promptHandler` from `lib/questions`.  This `promptHanlder` will be invoked like a middleware, checking the incoming `argv` for possible answers.  The user will be prompted for any questions that have no answers before the command is invoked.
+The CLI supports middleware for additional handling of `argv` prior to invoking a command.  One or more middleware functions can applied to the Yargs builder.  See the Yargs [middleware documentation](https://github.com/yargs/yargs/blob/master/docs/advanced.md#middleware) for more details.
 
-This example will prompt for a password before invoking the command:
+Several useful middleware functions are included with the CLI for loading context, parsing standard input, and prompting the user for input.
+
+#### CLI context
+
+The CLI can provide a context for each command which denotes whether the command has been run from a UI module, platform, or workspace directory.  This is helpful for performing operations specific to specific contexts.  To access to this information in your command, apply the `contextMiddleware` to your command builder.  The result will be applied to `argv.context`.
+
 
 ```javascript
-handler: mainHandler(promptHandler({
-  password: authOptions.password,
-}, loginCommand)),
+// Lazy load to improve startup time
+const importLazy = require('import-lazy')(require);
+const { contextMiddleware } = importLazy('../cli/context-middleware');
+
+// The command itself
+function myCommand(argv) {
+  if(argv.context.isUiModule) {
+    console.log(`Hello from the module ${argv.context.moduleName}!`)
+  } else {
+    console.log(`Hello from somewhere else!`);
+  }
+}
+
+// Yargs command module with a builder function
+module.exports = {
+  command: 'hello',
+  describe: 'A very basic command',
+  builder: (yargs) => {
+    yargs
+      .middleware([
+        contextMiddleware(),  // <--- middleware
+      ])
+      .example('$0 hello', 'Say hello to from context.');
+  },
+  handler: myCommand,
+};
 ```
 
-Yargs options and Inquirer questions do not have fully compatible structures.  When a CLI option is also used as an interactive question, avoid duplication by using the CLI's `yargsToInquirer()` helper.  This is automatically invoked by `promptHandler`.
+#### Standard input
+
+To accept standard input (stdin) within a command, apply one of the CLI's stdin middleware handlers from `lib/cli/stdin-middleware.js`.  Available stdin middleware include `stdinStringMiddleware`, `stdinArrayMiddleware`, and `stdinJsonMiddleware` for parsing string, array, and JSON input.  The `stdinArrayMiddleware` splits on whitespace, including line breaks, to make accepting multi-line input easy.
+
+Each of the CLI's stdin middleware accept a key and return the middleware function for use by Yargs.  When the middleware is invoked, stdin will be parsed and, if available, assigned to the specified option key.  From within the command, simply access the value as you would any other option.
+
+For example, the following will assign `stdin`, parsed as an string, to the `name` option.  For consistency, include "(stdin)" in your option's description to surface this consistently in the CLI's generated documentation. 
+
+```javascript
+// Lazy load to improve startup time
+const importLazy = require('import-lazy')(require);
+const { stdinStringMiddleware } = importLazy('../cli/stdin-middleware');
+
+// The command itself
+function myCommand(argv) {
+  console.log(`Hello ${argv.name}!`);
+}
+
+// Yargs command module with a builder function
+module.exports = {
+  command: 'hello',
+  describe: 'A very basic command',
+  builder: (yargs) => {
+    yargs
+      .middleware([
+        stdinStringMiddleware('name'),  // <--- provide the option key to assign stdin to
+      ])
+      .option('name', {
+        describe: 'A name to say hello to (stdin)', // <--- include "(stdin)" in the description for the doc generator
+        type: 'string',
+      })
+      .example('$0 hello --name folio', 'Say hello to "folio".');
+      .example('echo folio | $0 hello', 'Say hello to "folio" with stdin.');
+  },
+  handler: myCommand,
+};
+```
+
+#### Interactive input
+
+When answers to questions can be acquired up front, the simplest way to ask for them is to apply the CLI's `promptMiddleware` from `lib/cli/prompt-middleware`.  When invoked, this middleware will check the incoming `argv` prompt the user for any options which were not provided on the command line.  Internally the middleware uses Inquirer to prompt the user with questions.
+
+This example will prompt for a name before running command's hander:
+
+```javascript
+// Lazy load to improve startup time
+const importLazy = require('import-lazy')(require);
+const { promptMiddleware } = importLazy('../cli/prompt-middleware');
+
+// The command itself
+function myCommand(argv) {
+  console.log(`Hello ${argv.name}!`);
+}
+
+// Used to share option details between promptMiddleware and yargs builder
+const myOptions = {
+  name: {
+    describe: 'A name to say hello to',
+    type: 'string',
+  }
+}
+
+// Yargs command module with a builder function
+module.exports = {
+  command: 'hello',
+  describe: 'A very basic command',
+  builder: (yargs) => {
+    yargs
+      .middleware([
+        promptMiddleware(myOptions),  // <--- provide object of option(s) for user prompts
+      ])
+      .option('name', myOptions.name)
+      .example('$0 hello', 'Prompt for name and then say hello.');
+  },
+  handler: myCommand,
+};
+```
+
+Yargs options and Inquirer questions do not have fully compatible structures.  When a CLI option is also used as an interactive question, avoid duplication by using the CLI's `yargsToInquirer()` helper.  This is automatically invoked by `promptMiddleware`.
 
 Any Inquirer question settings that do not have a Yargs option equivalent can be defined in an `inquirer` property.  In the following example, Yargs has no equivalent for the `password` type or `mask` setting.  The `yargsToInquirer()` helper will apply any inquirer-specific options after conversion.
 
@@ -164,21 +265,6 @@ password: {
   },
 },
 ```
-
-### Standard input
-
-To accept standard input (stdin) within a command, wrap the command's handler with one of the CLI's stdin handlers from `lib/cli/stdin-handler.js`.  Available stdin handlers include `stdinStringHandler`, `stdinArrayHandler`, and `stdinJsonHandler` for parsing string, array, and JSON input.  The `stdinArrayHandler` splits on whitespace, including line breaks, to make accepting multi-line input easy.
-
-When the invoked, each stdin handler will parse standard input and assign the result to the specified option key.  From within the command, simply access the value as you would any other option.
-
-For example, the following will assign `stdin`, parsed as an array, to the `ids` option:
-
-```javascript
-handler: mainHandler(
-  stdinArrayHandler('ids', enableModuleCommand)
-),
-```
-
 
 ### Grouping
 

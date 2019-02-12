@@ -1,8 +1,8 @@
 const expect = require('chai').expect;
 const inquirer = require('inquirer');
-const questionModule = require('../../lib/cli/questions');
+const questionModule = require('../../lib/cli/prompt-middleware');
 
-describe('The CLI questions module', function () {
+describe('The prompt-middleware module', function () {
   beforeEach(function () {
     this.sut = questionModule;
   });
@@ -131,7 +131,7 @@ describe('The CLI questions module', function () {
     });
   });
 
-  describe('prompt handler', function () {
+  describe('promptMiddleware', function () {
     beforeEach(function () {
       this.argv = {
         username: 'user',
@@ -142,39 +142,25 @@ describe('The CLI questions module', function () {
           describe: 'Okapi tenant password',
         },
       };
-      this.commandStub = {
-        handler: () => {},
-      };
 
       this.sandbox.stub(inquirer, 'prompt').resolves({ password: 'password input' });
-      this.sandbox.spy(this.commandStub, 'handler');
     });
 
     afterEach(function () {
       delete this.argv;
       delete this.yargsOptions;
-      delete this.commandStub;
     });
 
     it('returns a function', function () {
-      const result = this.sut.promptHandler({}, () => {});
+      const result = this.sut.promptMiddleware({}, () => {});
       expect(result).is.a('function');
     });
 
-    it('when invoked, calls the wrapped handler', function (done) {
-      const wrappedHandler = this.sut.promptHandler(this.yargsOptions, this.commandStub.handler);
-      wrappedHandler(this.argv).then(() => {
-        expect(this.commandStub.handler).to.be.calledOnce;
-        done();
-      });
-    });
-
-    it('passes answers to the wrapped handler', function (done) {
-      const wrappedHandler = this.sut.promptHandler(this.yargsOptions, this.commandStub.handler);
-      wrappedHandler(this.argv).then(() => {
-        const handlerCall = this.commandStub.handler.getCall(0);
-        expect(handlerCall.args[0]).to.be.an('object').with.property('username', 'user');
-        expect(handlerCall.args[0]).to.be.an('object').with.property('password', 'password input');
+    it('when invoked, returns answers', function (done) {
+      const middleware = this.sut.promptMiddleware(this.yargsOptions);
+      middleware(this.argv).then((response) => {
+        expect(response).to.be.an('object').with.property('username', 'user');
+        expect(response).to.be.an('object').with.property('password', 'password input');
         done();
       });
     });
