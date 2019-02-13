@@ -168,10 +168,10 @@ $ cat my-module-actions | stripes mod filter --front | stripes mod install
 
 ### Assign permissions to a user
 
-In order to make use of the newly installed modules for development, assign module permissions to a user.  This can be done by chaining a few `stripes` commands together.  The following will gather permissions for all of the tenant's modules, and attempt to assign them to the user.
+In order to make use of the newly installed modules for development, assign module permissions to a user.  This can be done by chaining a few `stripes` commands together.  The following will gather permissions for all of the tenant's modules, filter permissions to those the user doesn't have, and attempt to assign them to the user.
 
 ```
-$ stripes mod list | stripes mod perms | stripes perm assign --user diku_admin
+$ stripes mod list | stripes mod perms | stripes perm filter --unassigned diku_admin | stripes perm assign --user diku_admin
 ```
 
 ## Connect a local back-end module to an existing platform

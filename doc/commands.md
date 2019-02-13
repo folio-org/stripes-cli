@@ -34,10 +34,11 @@ This following command documentation is generated from the CLI's own built-in he
 * [`perm` command](#perm-command)
     * [`perm assign` command](#perm-assign-command)
     * [`perm create` command](#perm-create-command)
+    * [`perm filter` command](#perm-filter-command)
     * [`perm list` command](#perm-list-command)
     * [`perm unassign` command](#perm-unassign-command)
 * [`platform` command](#platform-command)
-    * [`platform backend` command (work in progress)](#platform-backend-command-work-in-progress)
+    * [`platform backend` command](#platform-backend-command)
     * [`platform clean` command](#platform-clean-command)
     * [`platform install` command](#platform-install-command)
     * [`platform pull` command](#platform-pull-command)
@@ -710,6 +711,7 @@ $ stripes perm <command>
 Sub-commands:
 * [`stripes perm assign`](#perm-assign-command)
 * [`stripes perm create`](#perm-create-command)
+* [`stripes perm filter`](#perm-filter-command)
 * [`stripes perm list`](#perm-list-command)
 * [`stripes perm unassign`](#perm-unassign-command)
 
@@ -773,6 +775,32 @@ Create a new permission, update the module descriptor, and assign permission to 
 $ stripes perm create ui-my-app.example --push --assign someone
 ```
 
+### `perm filter` command
+
+Filter permissions
+
+Usage:
+```
+$ stripes perm filter
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--assigned` | User to filter by assigned | string |
+`--name` | Names of the permissions to filter  | array | supports stdin
+`--unassigned` | User to filter by unassigned | string |
+
+Examples:
+
+Filter by assigned permissions:
+```
+$ echo one two | stripes perm filter --assigned diku_admin
+```
+Filter by unassigned permissions:
+```
+$ echo one two | stripes perm filter --unassigned diku_admin
+```
+
 ### `perm list` command
 
 List permissions for a user
@@ -828,14 +856,14 @@ $ stripes platform <command>
 ```
 
 Sub-commands:
-* [`stripes platform backend`](#platform-backend-command-work-in-progress)
+* [`stripes platform backend`](#platform-backend-command)
 * [`stripes platform clean`](#platform-clean-command)
 * [`stripes platform install`](#platform-install-command)
 * [`stripes platform pull`](#platform-pull-command)
 
-### `platform backend` command (work in progress)
+### `platform backend` command
 
-Initialize Okapi backend for a platform (work in progress)
+Initialize Okapi backend for a platform
 
 Usage:
 ```
