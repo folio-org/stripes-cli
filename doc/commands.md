@@ -274,6 +274,7 @@ $ stripes mod add
 
 Option | Description | Type | Notes
 ---|---|---|---
+`--descriptors` | Array of module descriptor JSON  | array | supports stdin
 `--okapi` | Specify an Okapi URL | string | required
 `--strict` | Include required interface dependencies | boolean | default: false
 
