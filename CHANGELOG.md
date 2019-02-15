@@ -3,6 +3,7 @@
 
 ## [1.10.0] (IN PROGRESS)
 * Check for TTY before calling getStdin(), fixes STCLI-131
+* Update ui-module blueprint to use stripes 2.0
 
 
 ## [1.9.0](https://github.com/folio-org/stripes-cli/tree/v1.9.0) (2019-02-13)
