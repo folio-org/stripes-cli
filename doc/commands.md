@@ -1052,7 +1052,6 @@ Option | Description | Type | Notes
 `--languages` | Languages to include in tenant build | array |
 `--okapi` | Specify an Okapi URL | string |
 `--port` | Development server port | number | default: 3000
-`--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
 
 Examples:
