@@ -1,6 +1,10 @@
 # Change history for stripes-cli
 
 
+## [1.10.0] (IN PROGRESS)
+* Check for TTY before calling getStdin(), fixes STCLI-131
+
+
 ## [1.9.0](https://github.com/folio-org/stripes-cli/tree/v1.9.0) (2019-02-13)
 
 * Facilitate connection of a locally hosted back-end module with Okapi, STCLI-114
