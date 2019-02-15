@@ -75,6 +75,28 @@ describe('The module-service', function () {
     });
   });
 
+  describe('addModuleDescriptors method', function () {
+    beforeEach(function () {
+      this.sut = new ModuleService(okapiStub);
+      this.sandbox.spy(okapiStub.proxy, 'addModuleDescriptor');
+    });
+
+    it('Returns success/doesNotExist for module ids', function (done) {
+      this.sut.addModuleDescriptors([{ id: 'mod-new' }, { id: 'mod-existing' }])
+        .then((results) => {
+          expect(okapiStub.proxy.addModuleDescriptor).to.have.been.calledTwice;
+
+          expect(results).to.be.an('array').with.lengthOf(2);
+          expect(results[0].id).to.equal('mod-new');
+          expect(results[0].success).to.be.true;
+
+          expect(results[1].id).to.equal('mod-existing');
+          expect(results[1].alreadyExists).to.be.true;
+          done();
+        });
+    });
+  });
+
   describe('removeModuleDescriptor method', function () {
     beforeEach(function () {
       this.sut = new ModuleService(okapiStub);

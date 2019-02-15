@@ -5,6 +5,7 @@
 * Check for TTY before calling getStdin(), fixes STCLI-131
 * Update ui-module blueprint to use stripes 2.0
 * Add mocha-jenkins-reporter and support passing of `--reporter` option for Nightmare tests, STCLI-84
+* Add support for `mod add` to accept existing module descriptors via stdin, STCLI-127
 
 
 ## [1.9.0](https://github.com/folio-org/stripes-cli/tree/v1.9.0) (2019-02-13)
