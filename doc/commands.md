@@ -1120,6 +1120,7 @@ Option | Description | Type | Notes
 `--local` | Shortcut for --url http://localhost:3000 | boolean |
 `--okapi` | Specify an Okapi URL | string |
 `--port` | Development server port | number | default: 3000
+`--reporter` | Specify a Mocha reporter |  |
 `--run` | Name of the test script to run | string |
 `--show` | Show UI and dev tools while running tests | boolean |
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
