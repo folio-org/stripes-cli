@@ -209,7 +209,6 @@ Positional | Description | Type | Notes
 Option | Description | Type | Notes
 ---|---|---|---
 `--analyze` | Run the Webpack Bundle Analyzer after build (launches in browser) | boolean |
-`--dev` | Use development build settings | boolean |
 `--devtool` | Specify the Webpack devtool for generating source maps | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
 `--languages` | Languages to include in tenant build | array |
@@ -218,7 +217,6 @@ Option | Description | Type | Notes
 `--minify` | Minify the bundle output | boolean | default: true
 `--okapi` | Specify an Okapi URL | string |
 `--output` | Directory to place build output | string |
-`--prod` | Use production build settings | boolean |
 `--publicPath` | Specify the Webpack publicPath output option | string |
 `--sourcemap` | Include sourcemaps in build output | boolean |
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
@@ -971,7 +969,6 @@ Positional | Description | Type | Notes
 Option | Description | Type | Notes
 ---|---|---|---
 `--cache` | Use HardSourceWebpackPlugin cache | boolean |
-`--dev` | Use development build settings | boolean |
 `--devtool` | Specify the Webpack devtool for generating source maps | string |
 `--existing-build` | Serve an existing build from the supplied directory | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
@@ -982,8 +979,6 @@ Option | Description | Type | Notes
 `--mirage [scenario]` | Enable Mirage Server when available and optionally specify a scenario | string |
 `--okapi` | Specify an Okapi URL | string |
 `--port` | Development server port | number | default: 3000
-`--prod` | Use production build settings | boolean |
-`--publicPath` | Specify the Webpack publicPath output option | string |
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
 
