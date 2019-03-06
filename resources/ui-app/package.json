@@ -22,7 +22,7 @@
     "@bigtest/react": "^0.1.2",
     "@folio/eslint-config-stripes": "^3.2.1",
     "@folio/stripes": "^2.0.0",
-    "@folio/stripes-cli": "<%= cliVersion %>",
+    "@folio/stripes-cli": "^<%= cliVersion %>",
     "@folio/stripes-core": "^3.0.0",
     "babel-eslint": "^9.0.0",
     "babel-polyfill": "^6.26.0",
