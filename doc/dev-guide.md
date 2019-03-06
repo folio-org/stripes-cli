@@ -17,9 +17,12 @@
 * [Okapi Client](#okapi-client)
 * [Plugins](#plugins)
 * [Documentation](#documentation)
+    * [Generating the command reference](#generating-the-command-reference)
+    * [Table of Contents](#table-of-contents)
 * [Debugging](#debugging)
     * [Visual Studio Code](#visual-studio-code)
     * [Adding breakpoints in Stripes-core](#adding-breakpoints-in-stripes-core)
+* [Releasing](#releasing)
 
 ## Introduction
 
@@ -99,7 +102,7 @@ module.exports = {
 };
 ```
 
-Complex logic, or logic consumed by more than one command should be kept in separate modules.  Although not a strict requirement, try to limit user input and output to the command handler itself.  This best allows the work to be shared in different contexts where the messaging may differ across commands or use-cases.
+Complex logic or logic consumed by more than one command should be kept in separate modules.  Although not a strict requirement, try to limit user input and output to the command handler itself.  This allows the work to be shared in different contexts where the messaging may differ across commands or use-cases.
 
 
 ### Options
@@ -454,7 +457,7 @@ module.exports.serverOptions = {
 }
 ```
 
-Note: If your command is a work in progress, experimental, or has an interface that is likley to change, include "(work in progress)" in the description.  This will be highlighted in the command documentation and TOC.
+Note: If your command is a work in progress, experimental, or has an interface that is likely to change, include "(work in progress)" in the description.  This will be highlighted in the command documentation and TOC.
 
 Add one or more examples on how to use the command by calling `.example()` in the Yargs builder.  `$0` within the example string is replaced by the script name (stripes) in the help output:
 ```javascript
@@ -466,6 +469,8 @@ builder: (yargs) => {
 },
 ```
 
+### Generating the command reference
+
 After creating a new command or updating an existing one, be sure to update `docs/commands.md`, the CLI's command reference.  This process is automated by the `lib/doc/generator.js` script. To update it, run:
 
 ```
@@ -476,6 +481,15 @@ This will traverse the CLI's commands gathering all the `--help` text and parsin
 
 Note: Review the generated changes with the actual help output checking for unexpected additions or omissions.  These may be a sign that the command reference was not updated recently or that Yargs has changed its help text formatting.  If it appears to be the later, review `docs/yargs-help-parser.js` for corrections.
 
+### Table of Contents
+
+When updating documentation like this dev-guide.md or the [user-guide.md](./user-guide.md), keep the table of contents (TOC) updated as well.  The TOC will need updating anytime a heading is added, removed, or changed.  When modifying an existing heading, kee.
+
+The Okapi repository has a handy script, [md2toc](https://github.com/folio-org/okapi/blob/master/doc/md2toc), to help with maintaining the TOC.  In most cases the `-l 2` option will apply.  For example, the following will generate a TOC for which can then be applied to this document.
+
+```
+$ perl ../okapi/doc/md2toc -l 2 ./doc/dev-guide.md
+```
 
 ## Debugging
 
@@ -550,3 +564,8 @@ In situations where the handler is not invoked as expected, check your input in 
 The version of stripes-core in use by the CLI could vary depending on your CLI install, app, platform, or workspace configuration.  The easiest way to ensure your stripes-core breakpoints will be hit properly is to initiate debugging in the CLI using the `Stripes Serve from PLATFORM` or `Stripes Serve from APP` configuration.  Set your breakpoint at the end of the `serve` command handler where the stripes-core API, `stripes.api.serve(...)`, is invoked.
 
 From there, simply step into the stripes-core code.  VSCode will open the version of stripes-core in use.  Once a stripes-core file is open, inspect its path, then open and set breakpoints on any other desired files found within the stripes-core's `webpack` directory.
+
+
+## Releasing
+
+To release Stripes-CLI, follow the general Stripes [release procedure](https://github.com/folio-org/stripes/blob/master/doc/release-procedure.md).  The only CLI-specific addition is to make sure [the command reference has been regenerated](#generating-the-command-reference) before tagging.  Do this after bumping the version number so the correct version is reflected in the generated documentation.

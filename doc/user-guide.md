@@ -53,6 +53,8 @@ $ stripes serve
 
 See the [README](../README.md#installation) for installation and upgrade instructions.
 
+Note: FOLIO platforms and most, if not all, FOLIO UI modules already include Stripes CLI as a devDependency.  Therefore no global installation is necessary when invoking package scripts that reference "stripes" commands.
+
 ### Options
 
 Any option can be passed to the CLI either on the command line, as an [environment variable](#environment-variables), or in a `.stripesclirc` [configuration file](#configuration).
@@ -249,7 +251,7 @@ Prerequisites:  An Okapi backend is required. See [development prerequisites](#d
 
 From a suitable directory, run the following:
 ```
-$ stripes app create "Hello World" --install
+$ stripes app create "Hello World"
 ```
 
 This generates a skeleton Stripes UI app with sample routes and settings.  The CLI will transform the provided app name, "Hello World", to follow naming conventions where the `ui-` prefix or `@folio` scope is used.
@@ -268,7 +270,7 @@ Creating app...
 }
 ```
 
-The `--install` option prompts the CLI to automatically run `yarn install` on the directory afterwards.  If the install option was omitted, please `cd` to the app's directory and run `yarn install`.
+The CLI will automatically run `yarn install` on the directory afterwards.  To prevent this, set the install option to false by passing `--no-install`.  Then `cd` to the app's directory and run `yarn install` manually.
 
 From here you can immediately start [running your app](#running-your-app), but it is best to properly post the app's module descriptor to Okapi and [assign permissions](#assigning-permissions).
 
@@ -315,8 +317,7 @@ $ stripes mod enable --tenant diku
 
 Finally assign the app's default enabled permissions for a user:
 ```
-$ stripes perm assign --name module.hello-world.enabled --user diku_admin
-$ stripes perm assign --name settings.hello-world.enabled --user diku_admin
+$ stripes app perms | stripes perm assign --user diku_admin
 ```
 
 See Stripes-core's [Adding Permissions](https://github.com/folio-org/stripes-core/blob/master/doc/adding-permissions.md) for more detail and on how to manually add permissions.
@@ -389,7 +390,7 @@ Note: When adding an alias via the `alias add` command, the alias is considered 
 
 ## Platform development
 
-When developing multiple Stripes apps and/or core modules at the same time, it is often desired to work with a platform containing most or all of the available FOLIO Stripes modules.  See [new development setup](https://github.com/folio-org/stripes/blob/master/doc/new-development-setup.md) in stripes-core for more details.  The Stripes CLI provides commands to simplify the creation of such platforms, consolidating several of the steps.
+When developing multiple Stripes apps and/or core modules at the same time, it is often desired to work with a platform containing many FOLIO Stripes modules.  See [new development setup](https://github.com/folio-org/stripes/blob/master/doc/new-development-setup.md) in stripes-core for more details.  The Stripes CLI provides commands to simplify the creation of such platforms, consolidating several of the steps.
 
 Prerequisites:  An Okapi backend is required. See [development prerequisites](#development-prerequisites)
 
@@ -495,7 +496,7 @@ $ stripes build stripes.config.json --output ./bundle/path
 $ cat stripes.config.json | stripes build --output ./bundle/path
 ```
 
-The last example becomes useful when your Stripes configuration does reside on disk and is instead emitted from another process.
+The last example becomes useful when your Stripes configuration does not reside on disk and is instead emitted from another process.
 
 
 ## Interacting with Okapi
