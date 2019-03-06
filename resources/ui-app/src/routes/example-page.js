@@ -9,7 +9,7 @@ import {
   Pane,
   Paneset,
   Icon,
-} from '@folio/stripes-components';
+} from '@folio/stripes/components';
 
 import GreetingModal from '../components/greeting-modal';
 
@@ -21,7 +21,6 @@ import GreetingModal from '../components/greeting-modal';
 
 export default class ExamplePage extends React.Component {
   static propTypes = {
-    match: PropTypes.object.isRequired,
     resources: PropTypes.shape({
       health: PropTypes.shape({
         hasLoaded: PropTypes.bool.isRequired,

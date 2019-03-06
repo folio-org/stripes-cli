@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'react-router-dom/Link';
-import NewAppGreeting from '../components/new-app-greeting';
 import { Pane, Paneset } from '@folio/stripes/components';
+import NewAppGreeting from '../components/new-app-greeting';
 
 export default class Application extends React.Component {
   static propTypes = {
@@ -27,7 +27,7 @@ export default class Application extends React.Component {
               Please refer to the
               {' '}
               <a href="https://github.com/folio-org/stripes/blob/master/doc/dev-guide.md">
-                Stripes Module Developer's Guide
+                Stripes Module Developer&apos;s Guide
               </a>
               {' '}
               for more information.
