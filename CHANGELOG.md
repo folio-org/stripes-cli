@@ -1,7 +1,7 @@
 # Change history for stripes-cli
 
 
-## [1.10.0](https://github.com/folio-org/stripes-cli/tree/v1.9.0) (2019-03-06)
+## [1.10.0](https://github.com/folio-org/stripes-cli/tree/v1.10.0) (2019-03-06)
 
 * Check for TTY before calling getStdin(), fixes STCLI-131
 * Update ui-module blueprint to use stripes 2.0

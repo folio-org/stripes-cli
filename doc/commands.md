@@ -1,6 +1,6 @@
 # Stripes CLI Commands
 
-Version 1.9.0
+Version 1.10.0
 
 This following command documentation is generated from the CLI's own built-in help.  Run any command with the `--help` option to view the latest help for your currently installed CLI.  To regenerate this file, run `yarn docs`.
 
