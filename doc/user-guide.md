@@ -68,12 +68,17 @@ $ stripes serve --port 8080
 Notes:
 * Boolean options are considered true by simply passing the option name.  No value is required.
 * To explicitly set a Boolean option to false, prefix the option name with `--no-` as in `--no-optionName`.
-* String options can be wrapped in quotes when spaces are desired. This is helpful for descriptions.
-* Array option values are space-separated.
+* Options that take an array as their argument work by consuming values from the command-line until the next "--" is found.
+* String arguments can be wrapped in quotes when spaces are desired. This is helpful for descriptions.
 
 Example passing array values for `modules` and false for `install`:
 ```
 $ stripes workspace --modules ui-users stripes-core stripes-components --no-install
+```
+
+If for some reason "stripes core" (with a space) were the name of the module, it could be quoted as one of the array arguments:
+```
+$ stripes workspace --modules ui-users "stripes core" stripes-components --no-install
 ```
 
 ### Standard input
