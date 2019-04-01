@@ -742,15 +742,16 @@ $ stripes okapi get /users/123-456
 
 ### `okapi post` command
 
-Perform an HTTP POST request with JSON payload on stdin to a given Okapi endpoint
+Perform an HTTP POST request with a payload from JSON file/stdin a given Okapi endpoint
 
 Usage:
 ```
-$ stripes okapi post <path>
+$ stripes okapi post <path> [file]
 ```
 
 Positional | Description | Type | Notes
 ---|---|---|---
+`file` | File containing JSON data | string |
 `path` | The Okapi path or endpoint to operate on. | string | required
 
 Option | Description | Type | Notes
@@ -768,15 +769,16 @@ $ stripes okapi post /users
 
 ### `okapi put` command
 
-Perform an HTTP PUT request with JSON payload on stdin sto a given Okapi endpoint
+Perform an HTTP PUT request with a payload from JSON file/stdin a given Okapi endpoint
 
 Usage:
 ```
-$ stripes okapi put <path>
+$ stripes okapi put <path> [file]
 ```
 
 Positional | Description | Type | Notes
 ---|---|---|---
+`file` | File containing JSON data | string |
 `path` | The Okapi path or endpoint to operate on. | string | required
 
 Option | Description | Type | Notes
