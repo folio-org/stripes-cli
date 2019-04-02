@@ -756,7 +756,7 @@ Positional | Description | Type | Notes
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--body` | The JSON to POST to the endpoint | string |
+`--body` | The JSON to POST to the endpoint  | string | supports stdin
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 
@@ -783,7 +783,7 @@ Positional | Description | Type | Notes
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--body` | The JSON to PUT to the endpoint | string |
+`--body` | The JSON to PUT to the endpoint  | string | supports stdin
 `--okapi` | Specify an Okapi URL | string |
 `--tenant` | Specify a tenant ID | string |
 
