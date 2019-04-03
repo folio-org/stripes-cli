@@ -30,6 +30,10 @@ This following command documentation is generated from the CLI's own built-in he
 * [`okapi` command](#okapi-command)
     * [`okapi login` command](#okapi-login-command)
     * [`okapi logout` command](#okapi-logout-command)
+    * [`okapi delete` command](#okapi-delete-command)
+    * [`okapi get` command](#okapi-get-command)
+    * [`okapi post` command](#okapi-post-command)
+    * [`okapi put` command](#okapi-put-command)
     * [`okapi token` command](#okapi-token-command)
 * [`perm` command](#perm-command)
     * [`perm assign` command](#perm-assign-command)
@@ -641,6 +645,10 @@ $ stripes okapi <command>
 Sub-commands:
 * [`stripes okapi login`](#okapi-login-command)
 * [`stripes okapi logout`](#okapi-logout-command)
+* [`stripes okapi delete`](#okapi-delete-command)
+* [`stripes okapi get`](#okapi-get-command)
+* [`stripes okapi post`](#okapi-post-command)
+* [`stripes okapi put`](#okapi-put-command)
 * [`stripes okapi token`](#okapi-token-command)
 
 ### `okapi login` command
@@ -680,6 +688,110 @@ Clear previously saved Okapi token.
 Usage:
 ```
 $ stripes okapi logout
+```
+
+### `okapi delete` command
+
+Perform an HTTP DELETE request to a given Okapi endpoint
+
+Usage:
+```
+$ stripes okapi delete <path>
+```
+
+Positional | Description | Type | Notes
+---|---|---|---
+`path` | The Okapi path or endpoint to operate on. | string | required
+
+Option | Description | Type | Notes
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+
+Examples:
+
+Perform a DELETE request to the "/users/123-456" path:
+```
+$ stripes okapi delete /users/123-456
+```
+
+### `okapi get` command
+
+Perform an HTTP GET request to a given Okapi endpoint
+
+Usage:
+```
+$ stripes okapi get <path>
+```
+
+Positional | Description | Type | Notes
+---|---|---|---
+`path` | The Okapi path or endpoint to operate on. | string | required
+
+Option | Description | Type | Notes
+---|---|---|---
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+
+Examples:
+
+Perform a GET request to the "/users/123-456" path:
+```
+$ stripes okapi get /users/123-456
+```
+
+### `okapi post` command
+
+Perform an HTTP POST request with a payload from JSON file/stdin a given Okapi endpoint
+
+Usage:
+```
+$ stripes okapi post <path> [file]
+```
+
+Positional | Description | Type | Notes
+---|---|---|---
+`file` | File containing JSON data | string |
+`path` | The Okapi path or endpoint to operate on. | string | required
+
+Option | Description | Type | Notes
+---|---|---|---
+`--body` | The JSON to POST to the endpoint  | string | supports stdin
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+
+Examples:
+
+Perform a POST request to the "/users" path:
+```
+$ stripes okapi post /users
+```
+
+### `okapi put` command
+
+Perform an HTTP PUT request with a payload from JSON file/stdin a given Okapi endpoint
+
+Usage:
+```
+$ stripes okapi put <path> [file]
+```
+
+Positional | Description | Type | Notes
+---|---|---|---
+`file` | File containing JSON data | string |
+`path` | The Okapi path or endpoint to operate on. | string | required
+
+Option | Description | Type | Notes
+---|---|---|---
+`--body` | The JSON to PUT to the endpoint  | string | supports stdin
+`--okapi` | Specify an Okapi URL | string |
+`--tenant` | Specify a tenant ID | string |
+
+Examples:
+
+Perform a PUT request to the "/users/123-456" path:
+```
+$ stripes okapi put /users/123-456
 ```
 
 ### `okapi token` command
