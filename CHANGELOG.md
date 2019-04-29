@@ -1,5 +1,7 @@
 # Change history for stripes-cli
 
+## 1.11.0 (IN PROGRESS)
+* Upgrade inquirer dependency. Resolves STCLI-136
 
 ## [1.10.0](https://github.com/folio-org/stripes-cli/tree/v1.10.0) (2019-03-06)
 
