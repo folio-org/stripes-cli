@@ -2,6 +2,7 @@
 
 ## [1.11.0](https://github.com/folio-org/stripes-cli/tree/v1.11.0) (2019-05-14)
 
+* New `okapi get/post/put/delete` commands to support arbitrary Okapi HTTP requests, STCLI-135
 * Upgrade inquirer dependency. Resolves STCLI-136
 * Upgrade stripes-testing dependency. Refs STCLI-137.
 

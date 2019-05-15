@@ -33,6 +33,7 @@ Note: When serving or building an existing app module that has dependencies on u
 * [Interacting with Okapi](#interacting-with-okapi)
     * [Managing UI modules](#managing-ui-modules)
     * [Managing UI permissions](#managing-ui-permissions)
+    * [General HTTP requests](#general-http-requests)
 * [Generating a production build](#generating-a-production-build)
     * [Analyzing bundle output](#analyzing-bundle-output)
     * [Reducing build output](#reducing-build-output)
@@ -577,6 +578,24 @@ If the `--push` and `--assign` options are omitted (or the permissions were crea
 $ stripes mod update
 $ stripes app perms | stripes perm assign --user diku_admin
 ```
+
+
+### General HTTP requests
+
+In addition to commands like `mod` which are dedicated to specific module management operations, Stripes CLI also supports issuing HTTP requests to arbitrary Okapi endpoints with the `okapi` command's `get`, `post`, `put`, `delete` sub-commands. These can be useful for reading and writing data to Okapi modules for a given tenant.  Be sure to supply `--okapi` and `--tenant` either on the command line or in a [config file](#configuration) and use `okapi login` [to obtain a valid token](#interacting-with-okapi).
+
+For example, to GET user 123, simply run the following command:
+```
+$ stripes okapi get /users/123
+```
+
+POST and PUT operations support passing the request body in via stdin.  To POST the contents of `my-user.json` to `/users` issue the following command:
+
+```
+$ cat my-user.json | stripes okapi post /users
+```
+
+For more information and examples, refer to the [`okapi` command](./commands.md#okapi-command) in the command reference.
 
 
 ## Generating a production build
