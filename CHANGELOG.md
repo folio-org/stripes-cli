@@ -1,5 +1,10 @@
 # Change history for stripes-cli
 
+## [1.12.0](https://github.com/folio-org/stripes-cli/tree/v1.12.0) (2019-05-15)
+
+* Upgrade stripes-testing dependency. Refs STCLI-137.
+* Include ui-tenant-settings in `lib/environment`, exposing it as testable.
+
 ## [1.11.0](https://github.com/folio-org/stripes-cli/tree/v1.11.0) (2019-05-14)
 
 * New `okapi get/post/put/delete` commands to support arbitrary Okapi HTTP requests, STCLI-135
