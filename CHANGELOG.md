@@ -2,7 +2,7 @@
 
 ## [1.12.0](https://github.com/folio-org/stripes-cli/tree/v1.12.0) (2019-05-15)
 
-* Upgrade stripes-testing dependency. Refs STCLI-137.
+* Upgrade stripes-testing dependency to `v1.5.0`.
 * Include ui-tenant-settings in `lib/environment`, exposing it as testable.
 
 ## [1.11.0](https://github.com/folio-org/stripes-cli/tree/v1.11.0) (2019-05-14)
