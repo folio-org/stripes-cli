@@ -54,3 +54,11 @@ Alternatively, update your `.stripesclirc` configuration:
   }
 }
 ```
+
+## Global install not detected
+
+On some environments, Stripes-CLI is unable to detect a global install. This prevents the CLI from updating the Webpack resolve.modules and resolveLoader.modules paths. As a result, various "Module not found" errors can occur during `build` or `serve`.
+
+> Note: A global CLI install is useful for setting up a workspace or scaffolding a new ui-module. It is otherwise generally advisable to run the CLI as a devDependency of your module or platform.
+
+To verify if your _global_ installation is not detected properly, run `stripes status`.  If you are experiencing issues and the output of your global install is reporting `global cli: false` with this command, please review the workaround mentioned in STCLI-66.
