@@ -20,9 +20,9 @@ $ stripes perm list --user diku_admin
 See [assigning permissions](./user-guide.md#assigning-permissions) if you need to add the module descriptor to Okapi, assign the module to a tenant, or assign module permissions to a user.
 
 
-## Global install on Windows with Yarn >=1.5.1
+## Global install on Windows with Yarn >= 1.5.1 and Stripes CLI <= 1.1.0
 
-**Note:** An initial fix for this issue has been included with CI builds starting with `1.1.100071` on `npm-folioci` and will be released with version `1.2.0` on the regular `npm-folio` registry.  If you still experience trouble, please report your issue and try the original solution below.
+> **Note:** This issue was fixed with the release of Stripes CLI `1.2.0`.  If you still experience trouble, please report your issue on Slack and try the original solution below.
 
 Yarn's global install directory changed on Windows with the release of Yarn 1.5.1.  A dependent package used to retrieve the global installation has not been updated to reflect this change.  This causes an issue in which the CLI is unable to locate `stripes-core`.
 
