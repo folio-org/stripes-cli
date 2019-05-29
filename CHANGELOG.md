@@ -1,5 +1,9 @@
 # Change history for stripes-cli
 
+## 1.13.0 (IN PROGRESS)
+
+* Upgrade bundle analyzer to avoid security vulnerability WS-2019-0058.
+
 ## [1.12.0](https://github.com/folio-org/stripes-cli/tree/v1.12.0) (2019-05-15)
 
 * Upgrade stripes-testing dependency to `v1.5.0`.
