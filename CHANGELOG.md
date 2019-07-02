@@ -1,5 +1,9 @@
 # Change history for stripes-cli
 
+## IN PROGRESS
+
+* Added checking of `stripes.actsAs` when determining `isUiModule`, handles STCOR-148
+
 ## [1.12.1](https://github.com/folio-org/stripes-cli/tree/v1.12.1) (2019-06-11)
 
 * Upgrade bundle analyzer to avoid security vulnerability WS-2019-0058.
