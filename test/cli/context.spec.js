@@ -4,10 +4,17 @@ const path = require('path');
 require('fast-xml-parser');  // included here to resolve a lazy-load issue of this module within tests
 const context = require('../../lib/cli/context');
 
-const createModule = (type) => ({
+const createModuleWithType = (type) => ({
   name: type === 'components' ? '@folio/stripes-components' : '@folio/ui-app',
   stripes: {
     type,
+  }
+});
+
+const createModuleWithActsAs = (actsAs) => ({
+  name: '@folio/ui-app',
+  stripes: {
+    actsAs,
   }
 });
 
@@ -18,7 +25,7 @@ describe('The CLI\'s getContext', function () {
 
   describe('parses stripes.type from package.json', function () {
     it('is ui module with type "app"', function () {
-      this.sandbox.stub(context, 'require').returns(createModule('app'));
+      this.sandbox.stub(context, 'require').returns(createModuleWithType('app'));
 
       const result = this.sut('someDir');
 
@@ -33,7 +40,7 @@ describe('The CLI\'s getContext', function () {
     });
 
     it('is ui module with type "settings"', function () {
-      this.sandbox.stub(context, 'require').returns(createModule('settings'));
+      this.sandbox.stub(context, 'require').returns(createModuleWithType('settings'));
 
       const result = this.sut('someDir');
 
@@ -48,7 +55,7 @@ describe('The CLI\'s getContext', function () {
     });
 
     it('is ui module with type "components"', function () {
-      this.sandbox.stub(context, 'require').returns(createModule('components'));
+      this.sandbox.stub(context, 'require').returns(createModuleWithType('components'));
 
       const result = this.sut('someDir');
 
@@ -60,6 +67,40 @@ describe('The CLI\'s getContext', function () {
         isPlatform: false,
         isBackendModule: false,
       });
+    });
+  });
+
+  describe('parses stripes.actsAs from package.json', function () {
+    it('is ui module with actsAs ["app", "settings"]', function () {
+      this.sandbox.stub(context, 'require').returns(createModuleWithActsAs(['app', 'settings']));
+
+      const result = this.sut('someDir');
+
+      expect(result).to.include({
+        isEmpty: false,
+        isStripesModule: false,
+        isUiModule: true,
+        isPlatform: false,
+        isBackendModule: false,
+      });
+
+      expect(result.actsAs).to.have.members(['app', 'settings']);
+    });
+
+    it('is ui module with actsAs ["settings"]', function () {
+      this.sandbox.stub(context, 'require').returns(createModuleWithActsAs(['settings']));
+
+      const result = this.sut('someDir');
+
+      expect(result).to.include({
+        isEmpty: false,
+        isStripesModule: false,
+        isUiModule: true,
+        isPlatform: false,
+        isBackendModule: false,
+      });
+
+      expect(result.actsAs).to.have.members(['settings']);
     });
   });
 
