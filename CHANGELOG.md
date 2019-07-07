@@ -1,8 +1,9 @@
 # Change history for stripes-cli
 
-## IN PROGRESS
+## 1.30.0 (IN PROGRESS)
 
 * Added checking of `stripes.actsAs` when determining `isUiModule`, handles STCOR-148
+* stripes-testing `v1.6.0` includes `checkout`, `setCirculationRules` helpers.
 
 ## [1.12.1](https://github.com/folio-org/stripes-cli/tree/v1.12.1) (2019-06-11)
 
