@@ -1,5 +1,24 @@
 # Change history for stripes-cli
 
+## 1.30.0 (IN PROGRESS)
+
+* Added checking of `stripes.actsAs` when determining `isUiModule`, handles STCOR-148
+* stripes-testing `v1.6.0` includes `checkout`, `setCirculationRules` helpers.
+
+## [1.12.1](https://github.com/folio-org/stripes-cli/tree/v1.12.1) (2019-06-11)
+
+* Upgrade bundle analyzer to avoid security vulnerability WS-2019-0058.
+
+## [1.12.0](https://github.com/folio-org/stripes-cli/tree/v1.12.0) (2019-05-15)
+
+* Upgrade stripes-testing dependency to `v1.5.0`.
+* Include ui-tenant-settings in `lib/environment`, exposing it as testable.
+
+## [1.11.0](https://github.com/folio-org/stripes-cli/tree/v1.11.0) (2019-05-14)
+
+* New `okapi get/post/put/delete` commands to support arbitrary Okapi HTTP requests, STCLI-135
+* Upgrade inquirer dependency. Resolves STCLI-136
+* Upgrade stripes-testing dependency. Refs STCLI-137.
 
 ## [1.10.0](https://github.com/folio-org/stripes-cli/tree/v1.10.0) (2019-03-06)
 
