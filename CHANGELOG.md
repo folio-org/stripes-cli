@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 1.30.0 (IN PROGRESS)
+## 1.13.0 (IN PROGRESS)
 
 * Added checking of `stripes.actsAs` when determining `isUiModule`, handles STCOR-148
 * stripes-testing `v1.6.0` includes `checkout`, `setCirculationRules` helpers.
