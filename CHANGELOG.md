@@ -2,6 +2,7 @@
 
 ## 1.30.0 (IN PROGRESS)
 
+* Upgrade `karma-webpack` dependency to `^4.0.2`, handles FOLIO-2139
 * Added checking of `stripes.actsAs` when determining `isUiModule`, handles STCOR-148
 * stripes-testing `v1.6.0` includes `checkout`, `setCirculationRules` helpers.
 
