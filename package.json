@@ -45,7 +45,7 @@
     "karma-junit-reporter": "^1.2.0",
     "karma-mocha": "^1.3.0",
     "karma-mocha-reporter": "^2.2.5",
-    "karma-webpack": "4.0.0-rc.6",
+    "karma-webpack": "^4.0.2",
     "kopy": "^8.2.3",
     "lodash": "^4.17.5",
     "mocha": "^5.2.0",
