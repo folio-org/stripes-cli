@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 1.30.0 (IN PROGRESS)
+## 1.13.0 (IN PROGRESS)
 
 * Upgrade `karma-webpack` dependency to `^4.0.2`, handles FOLIO-2139
 * Added checking of `stripes.actsAs` when determining `isUiModule`, handles STCOR-148
