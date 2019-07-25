@@ -1,5 +1,0 @@
-{
-  "okapi": "<%= okapi %>",
-  "tenant": "<%= tenant %>",
-  "aliases": {}
-}
