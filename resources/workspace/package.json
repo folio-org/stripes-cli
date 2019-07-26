@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "workspaces": [
+      "*"
+  ],
+  "devDependencies": {
+    "@folio/stripes-cli": "^<%= cliVersion %>"
+  },
+  "dependencies": {
+  }
+}
