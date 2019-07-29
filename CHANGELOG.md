@@ -3,6 +3,7 @@
 ## IN PROGRESS
 
 * Added checking of `stripes.actsAs` when determining `isUiModule`, handles STCOR-148
+* Retrieving template files for creating UI Modules and setting up BigTest from https://github.com/folio-org/ui-app-template. Removed old template files from /resources directory.
 
 ## [1.12.1](https://github.com/folio-org/stripes-cli/tree/v1.12.1) (2019-06-11)
 

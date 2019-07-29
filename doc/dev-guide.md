@@ -1,28 +1,29 @@
 # Stripes CLI Developer's Guide
 
-* [Introduction](#introduction)
-* [Development installation](#development-installation)
-* [Running tests](#running-tests)
-* [Code organization](#code-organization)
-* [Commands](#commands)
-    * [Options](#options)
-    * [Positionals](#positionals)
-    * [Middleware](#middleware)
-        * [CLI context](#cli-context)
-        * [Stripes config](#stripes-config)
-        * [Standard input](#standard-input)
-        * [Interactive input](#interactive-input)
-    * [Grouping](#grouping)
-* [Logging](#logging)
-* [Okapi Client](#okapi-client)
-* [Plugins](#plugins)
-* [Documentation](#documentation)
-    * [Generating the command reference](#generating-the-command-reference)
-    * [Table of Contents](#table-of-contents)
-* [Debugging](#debugging)
-    * [Visual Studio Code](#visual-studio-code)
-    * [Adding breakpoints in Stripes-core](#adding-breakpoints-in-stripes-core)
-* [Releasing](#releasing)
+- [Stripes CLI Developer's Guide](#stripes-cli-developers-guide)
+  - [Introduction](#introduction)
+  - [Development installation](#development-installation)
+  - [Running tests](#running-tests)
+  - [Code organization](#code-organization)
+  - [Commands](#commands)
+    - [Options](#options)
+    - [Positionals](#positionals)
+    - [Middleware](#middleware)
+      - [CLI context](#cli-context)
+      - [Stripes config](#stripes-config)
+      - [Standard input](#standard-input)
+      - [Interactive input](#interactive-input)
+    - [Grouping](#grouping)
+  - [Logging](#logging)
+  - [Okapi Client](#okapi-client)
+  - [Plugins](#plugins)
+  - [Documentation](#documentation)
+    - [Generating the command reference](#generating-the-command-reference)
+    - [Table of Contents](#table-of-contents)
+  - [Debugging](#debugging)
+    - [Visual Studio Code](#visual-studio-code)
+    - [Adding breakpoints in Stripes-core](#adding-breakpoints-in-stripes-core)
+  - [Releasing](#releasing)
 
 ## Introduction
 
@@ -61,7 +62,7 @@ The main CLI directories:
 ```
 stripes-cli
 ├─doc          Documentation
-├─resources    Template files
+├─resources    Workspace template files
 ├─test         CLI tests
 └─lib
   ├─cli        CLI context, middleware, and common logic
@@ -69,6 +70,8 @@ stripes-cli
   ├─okapi      Okapi services and http client
   └─platform   Platform generation logic
 ```
+
+NOTE: Template files for creating new UI Modules via `app create` and setting up BigTest via `app bigtest` are retrieved from https://github.com/folio-org/ui-app-template
 
 ## Commands
 
