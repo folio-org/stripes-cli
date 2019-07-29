@@ -2,8 +2,13 @@
 
 ## IN PROGRESS
 
-* Added checking of `stripes.actsAs` when determining `isUiModule`, handles STCOR-148
 * Retrieving template files for creating UI Modules and setting up BigTest from https://github.com/folio-org/ui-app-template. Removed old template files from /resources directory.
+
+## [1.13.0](https://github.com/folio-org/stripes-cli/tree/v1.13.0) (2019-07-24)
+
+* Upgrade `karma-webpack` dependency to `^4.0.2`, handles FOLIO-2139
+* Added checking of `stripes.actsAs` when determining `isUiModule`, handles STCOR-148
+* stripes-testing `v1.6.0` includes `checkout`, `setCirculationRules` helpers.
 
 ## [1.12.1](https://github.com/folio-org/stripes-cli/tree/v1.12.1) (2019-06-11)
 
