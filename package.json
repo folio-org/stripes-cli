@@ -3,7 +3,6 @@
   "version": "1.13.0",
   "description": "Stripes Command Line Interface",
   "repository": "https://github.com/folio-org/stripes-cli",
-  "uiTemplateRepository": "https://github.com/folio-org/ui-app-template.git",
   "publishConfig": {
     "registry": "https://repository.folio.org/repository/npm-folio/"
   },
