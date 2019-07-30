@@ -2,7 +2,7 @@
 
 ## IN PROGRESS
 
-* Retrieving template files for creating UI Modules and setting up BigTest from https://github.com/folio-org/ui-app-template. Removed old template files from /resources directory.
+* Retrieving template files for creating UI Modules and setting up BigTest from https://github.com/folio-org/ui-app-template. Removed old template files from /resources directory.  STCLI-133
 
 ## [1.13.0](https://github.com/folio-org/stripes-cli/tree/v1.13.0) (2019-07-24)
 
