@@ -61,7 +61,7 @@ The main CLI directories:
 ```
 stripes-cli
 ├─doc          Documentation
-├─resources    Template files
+├─resources    Workspace template files
 ├─test         CLI tests
 └─lib
   ├─cli        CLI context, middleware, and common logic
@@ -69,6 +69,8 @@ stripes-cli
   ├─okapi      Okapi services and http client
   └─platform   Platform generation logic
 ```
+
+NOTE: Template files for creating new UI Modules via `app create` and setting up BigTest via `app bigtest` are retrieved from https://github.com/folio-org/ui-app-template
 
 ## Commands
 
