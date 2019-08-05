@@ -16,6 +16,7 @@
   },
   "scripts": {
     "test": "mocha --recursive",
+    "test:coverage": "nyc report --reporter=lcov --reporter=text",
     "lint": "eslint ./",
     "lint-templates": "eslint ./resources --no-ignore",
     "docs": "node ./lib/doc/generator"
@@ -36,6 +37,7 @@
     "inquirer": "^6.3.1",
     "is-installed-globally": "^0.1.0",
     "is-path-inside": "^1.0.1",
+    "istanbul-reports": "^2.2.6",
     "just-kebab-case": "^1.0.0",
     "just-pascal-case": "^1.0.0",
     "karma": "^3.0.0",
