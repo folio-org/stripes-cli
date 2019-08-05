@@ -12,6 +12,8 @@ describe('The app create command', function () {
     this.sandbox.stub(fs, 'readFileSync').returns('');
     this.sandbox.stub(fs, 'writeFileSync');
     this.sandbox.stub(fs, 'removeSync');
+    this.sandbox.stub(fs, 'readdirSync').returns(['__appName__', '__appDescription__']);
+    this.sandbox.stub(fs, 'statSync').returns({isDirectory: function() {return false;}});
     this.sandbox.stub(simpleGit.prototype, '_run').callsFake(function (command, cb) {
       console.log('called command', command);
 
@@ -35,9 +37,9 @@ describe('The app create command', function () {
   });
 
   it('calls createApp with expected responses', function (done) {
-    createApp.createApp('test', 'test description').then((result) => {
+    createApp.createApp('test').then((result) => {
       expect(result.uiAppName).to.eq('ui-test');
-      expect(result.appDescription).to.eq('test description');
+      expect(result.appDescription).to.eq('Description for test');
       done();
     });
   });
