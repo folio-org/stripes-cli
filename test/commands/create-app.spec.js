@@ -13,7 +13,7 @@ describe('The app create command', function () {
     this.sandbox.stub(fs, 'writeFileSync');
     this.sandbox.stub(fs, 'removeSync');
     this.sandbox.stub(fs, 'readdirSync').returns(['__appName__', '__appDescription__']);
-    this.sandbox.stub(fs, 'statSync').returns({isDirectory: function() {return false;}});
+    this.sandbox.stub(fs, 'statSync').returns({ isDirectory() { return false; } });
     this.sandbox.stub(simpleGit.prototype, '_run').callsFake(function (command, cb) {
       console.log('called command', command);
 
