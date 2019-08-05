@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "mocha --recursive",
-    "test:coverage": "nyc report --reporter=lcov --reporter=text",
+    "test:coverage": "nyc --reporter=lcov --reporter=text mocha --recursive",
     "lint": "eslint ./",
     "lint-templates": "eslint ./resources --no-ignore",
     "docs": "node ./lib/doc/generator"
