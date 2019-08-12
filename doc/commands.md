@@ -1028,12 +1028,17 @@ $ stripes platform clean
 Option | Description | Type | Notes
 ---|---|---|---
 `--install` | Install dependencies after cleaning | boolean | default: false
+`--removeLock` | Remove yarn.lock file(s) after cleaning | boolean | default: false
 
 Examples:
 
 Clean and reinstall dependencies:
 ```
 $ stripes platform clean --install
+```
+Clean, remove yarn.lock file(s), then reinstall dependencies:
+```
+$ stripes platform clean --install --removeLock
 ```
 Clean only:
 ```
