@@ -4,6 +4,7 @@
 
 * Retrieving template files for creating UI Modules and setting up BigTest from https://github.com/folio-org/ui-app-template. Removed old template files from /resources directory.  STCLI-133
 * Add many additional apps/libraries, STCLI-142
+* New optional `platform clean` option `--removeLock` to delete `yarn.lock` file(s) after cleaning platform/workspace: STCLI-130
 
 ## [1.13.0](https://github.com/folio-org/stripes-cli/tree/v1.13.0) (2019-07-24)
 
