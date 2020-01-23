@@ -48,7 +48,7 @@ const tenantConfig = {
 };
 
 function StripesModuleParserStub(name) {
-  this.packageJson = Object.assign({}, packageJsonStub, { name });
+  this.packageJson = { ...packageJsonStub, name };
 }
 
 const stripesCoreStub = {
