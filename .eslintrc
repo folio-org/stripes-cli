@@ -1,6 +1,8 @@
 {
   "extends": "@folio/eslint-config-stripes",
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "import/no-extraneous-dependencies": "off",
+    "prefer-object-spread": "off"
   }
 }
