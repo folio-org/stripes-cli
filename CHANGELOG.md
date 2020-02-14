@@ -1,5 +1,9 @@
 # Change history for stripes-cli
 
+## 1.15.0 (IN PROGRESS)
+
+* Support stripes-core `v4.0.0`.
+
 ## [1.14.0](https://github.com/folio-org/stripes-cli/tree/v1.14.0) (2019-09-09)
 
 * Retrieving template files for creating UI Modules and setting up BigTest from https://github.com/folio-org/ui-app-template. Removed old template files from /resources directory.  STCLI-133
