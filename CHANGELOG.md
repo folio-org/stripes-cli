@@ -3,6 +3,7 @@
 ## 1.15.0 (IN PROGRESS)
 
 * Support stripes-core `v4.0.0`.
+* Use stripes-testing `v2.0.0`
 
 ## [1.14.0](https://github.com/folio-org/stripes-cli/tree/v1.14.0) (2019-09-09)
 
