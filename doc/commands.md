@@ -220,7 +220,7 @@ Option | Description | Type | Notes
 `--maxChunks` | Limit the number of Webpack chunks in build output | number |
 `--minify` | Minify the bundle output | boolean | default: true
 `--okapi` | Specify an Okapi URL | string |
-`--output` | Directory to place build output | string |
+`--output` | Directory to place build output (if omitted, default value `./output` is used) | string |
 `--publicPath` | Specify the Webpack publicPath output option | string |
 `--sourcemap` | Include sourcemaps in build output | boolean |
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
