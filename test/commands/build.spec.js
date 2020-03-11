@@ -42,7 +42,7 @@ describe('The app create command', function () {
   });
 
   it('calls "build app" handler with default folder when --output flag is omitted.', function (done) {
-    const expectedArgs = Object.assign({}, this.argv, { outputPath: './output', webpackOverrides: [] } );
+    const expectedArgs = Object.assign({}, this.argv, { outputPath: './output', webpackOverrides: [] });
     this.sut.handler(this.argv, platformStub, stripesCoreStub);
 
     expect(buildAppCommand.handler).to.have.been.calledOnce;
