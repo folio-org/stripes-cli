@@ -41,7 +41,7 @@ describe('The app create command', function () {
     this.sandbox.spy(stripesCoreStub.api, 'build');
   });
 
-  it('calls "build app" handler with default folder when --output flag is omitted.', function (done) {
+  it('calls "build app" handler with default output folder when --output flag is omitted.', function (done) {
     const expectedArgs = Object.assign({}, this.argv, { outputPath: './output', webpackOverrides: [] });
     this.sut.handler(this.argv, platformStub, stripesCoreStub);
 
@@ -51,7 +51,7 @@ describe('The app create command', function () {
     done();
   });
 
-  it('calls "build app" handler with declared folder when --output flag is used.', function (done) {
+  it('calls "build app" handler with specified output folder when --output flag is used.', function (done) {
     const expectedArgs = Object.assign({}, this.argv, { outputPath: './custom-path', output: './custom-path', webpackOverrides: [] });
     this.sut.handler(Object.assign({}, this.argv, { output: './custom-path' }), platformStub, stripesCoreStub);
 
