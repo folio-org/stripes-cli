@@ -43,7 +43,8 @@ describe('The app create command', function () {
 
   it('calls "build app" handler with default output folder when --output flag is omitted.', function (done) {
     const expectedArgs = Object.assign({}, this.argv, { outputPath: './output', webpackOverrides: [] });
-    this.sut.handler(this.argv, platformStub, stripesCoreStub);
+    this.sut.stripesOverrides(platformStub, stripesCoreStub);
+    this.sut.handler(this.argv);
 
     expect(buildAppCommand.handler).to.have.been.calledOnce;
     expect(stripesCoreStub.api.build).to.have.been.calledWith(tenantConfig, expectedArgs);
@@ -53,7 +54,8 @@ describe('The app create command', function () {
 
   it('calls "build app" handler with specified output folder when --output flag is used.', function (done) {
     const expectedArgs = Object.assign({}, this.argv, { outputPath: './custom-path', output: './custom-path', webpackOverrides: [] });
-    this.sut.handler(Object.assign({}, this.argv, { output: './custom-path' }), platformStub, stripesCoreStub);
+    this.sut.stripesOverrides(platformStub, stripesCoreStub);
+    this.sut.handler(Object.assign({}, this.argv, { output: './custom-path' }));
 
     expect(buildAppCommand.handler).to.have.been.calledOnce;
     expect(stripesCoreStub.api.build).to.have.been.calledWith(tenantConfig, expectedArgs);
