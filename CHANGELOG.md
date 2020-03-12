@@ -4,7 +4,8 @@
 
 * Support stripes-core `v4.0.0`.
 * Use stripes-testing `v2.0.0`.
-* Added default value of `./output` for `--output` flag used when running `build` command. Refs STCLI-95.
+* Support optional dependencies in UI modules. Related to OKAPI-509.
+* Added default value of `./output` for `--output` flag used when omitting from `build` command. Refs STCLI-95.
 
 ## [1.14.0](https://github.com/folio-org/stripes-cli/tree/v1.14.0) (2019-09-09)
 
