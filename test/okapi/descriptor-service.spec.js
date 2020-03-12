@@ -27,6 +27,9 @@ const packageJsonStub = {
     okapiInterfaces: {
       backend: '2.0',
     },
+    optionalOkapiInterfaces: {
+      backend2: '3.1',
+    },
     permissionSets: [
       {
         permissionName: 'module.example.enabled',
@@ -120,6 +123,11 @@ describe('The descriptor-service', function () {
           {
             id: 'backend',
             version: '2.0'
+          },
+          {
+            id: 'backend2',
+            version: '3.1',
+            optional: true
           }
         ]
       }];
@@ -173,6 +181,11 @@ describe('The descriptor-service', function () {
             {
               id: 'backend',
               version: '2.0'
+            },
+            {
+              id: 'backend2',
+              version: '3.1',
+              optional: true
             }
           ]
         };
