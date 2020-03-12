@@ -497,9 +497,9 @@ Could be written as `stripes.config.json` in JSON format:
 Further, when using JSON format, the CLI also accepts this configuration piped via stdin.  Therefore, given the above configuration files exist, each of these commands would produce the same output:
 
 ```
-$ stripes build stripes.config.js --output ./bundle/path
-$ stripes build stripes.config.json --output ./bundle/path
-$ cat stripes.config.json | stripes build --output ./bundle/path
+$ stripes build stripes.config.js
+$ stripes build stripes.config.json
+$ cat stripes.config.json | stripes build
 ```
 
 The last example becomes useful when your Stripes configuration does not reside on disk and is instead emitted from another process.

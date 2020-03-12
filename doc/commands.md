@@ -1,6 +1,6 @@
 # Stripes CLI Commands
 
-Version 1.10.0
+Version 1.15.0
 
 This following command documentation is generated from the CLI's own built-in help.  Run any command with the `--help` option to view the latest help for your currently installed CLI.  To regenerate this file, run `yarn docs`.
 
@@ -220,7 +220,7 @@ Option | Description | Type | Notes
 `--maxChunks` | Limit the number of Webpack chunks in build output | number |
 `--minify` | Minify the bundle output | boolean | default: true
 `--okapi` | Specify an Okapi URL | string |
-`--output` | Directory to place build output | string |
+`--output` | Directory to place build output. If omitted, default value of "./output" is used. | string |
 `--publicPath` | Specify the Webpack publicPath output option | string |
 `--sourcemap` | Include sourcemaps in build output | boolean |
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
@@ -1036,9 +1036,9 @@ Clean and reinstall dependencies:
 ```
 $ stripes platform clean --install
 ```
-Clean, remove yarn.lock file(s), then reinstall dependencies:
+Clean and remove yarn.lock file(s):
 ```
-$ stripes platform clean --install --removeLock
+$ stripes platform clean --removeLock
 ```
 Clean only:
 ```
