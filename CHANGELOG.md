@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 1.15.0 (IN PROGRESS)
+[1.15.0](https://github.com/folio-org/stripes-cli/tree/v1.15.0) (2020-04-09)
 
 * Support stripes-core `v4.0.0`.
 * Use stripes-testing `v2.0.0`.
