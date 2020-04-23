@@ -2,7 +2,7 @@
 
 ## [1.16.0](https://github.com/folio-org/stripes-cli/tree/v1.16.0) (IN PROGRESS)
 
-* Correct generation of optional Okapi interface depencies. Fixes FOLIO-2570.
+* Correct generation of optional Okapi interface dependencies. Fixes FOLIO-2570.
 
 ## [1.15.0](https://github.com/folio-org/stripes-cli/tree/v1.15.0) (2020-04-09)
 
