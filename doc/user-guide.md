@@ -255,7 +255,7 @@ Prerequisites:  An Okapi backend is required. See [development prerequisites](#d
 
 ### Creating your app
 
-From a suitable directory, run the following:
+From a suitable directory, run the following to generate stripes boilerplate code:
 ```
 $ stripes app create "Hello World"
 ```
@@ -278,9 +278,13 @@ Creating app...
 
 The CLI will automatically run `yarn install` on the directory afterwards.  To prevent this, set the install option to false by passing `--no-install`.  Then `cd` to the app's directory and run `yarn install` manually.
 
-From here you can immediately start [running your app](#running-your-app), but it is best to properly post the app's module descriptor to Okapi and [assign permissions](#assigning-permissions).
+From here you can immediately start [running your app](#running-your-app), but it is best to properly post the app's module descriptor to Okapi and [assign permissions](#assigning-permissions). First [login to Okapi](#interacting-with-okapi):
 
-*Tip:* If you've already [logged into Okapi](#interacting-with-okapi), you can do this all with one command:
+```
+stripes okapi login diku_admin --okapi http://localhost:9130 --tenant diku
+```
+
+To generate the stripes boilerplate code and post the module descriptor to okapi in 1 command:
 
 ```
 $ stripes app create "Hello World" --assign diku_admin
@@ -313,7 +317,7 @@ The new app created above contains the following permissions sets that Okapi nee
 
 To push your app's module descriptor, use the `mod add` command from within the app's directory.
 ```
-$ stripes mod add --okapi http://localhost:9130
+$ stripes mod add
 ```
 
 Next enable the module descriptor for your tenant:
