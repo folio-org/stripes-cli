@@ -313,7 +313,7 @@ The new app created above contains the following permissions sets that Okapi nee
 
 To push your app's module descriptor, use the `mod add` command from within the app's directory.
 ```
-$ stripes mod add
+$ stripes mod add --okapi http://localhost:9130
 ```
 
 Next enable the module descriptor for your tenant:
