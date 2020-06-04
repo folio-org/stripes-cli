@@ -1,11 +1,21 @@
 # Change history for stripes-cli
 
-## 1.15.0 (IN PROGRESS)
+## 1.16.0 (IN PROGRESS)
+
+* Support `stripes-core` `v5.0.0`.
+
+## [1.15.1](https://github.com/folio-org/stripes-cli/tree/v1.15.1) (2020-04-23)
+
+* Correct generation of optional Okapi interface dependencies. Fixes FOLIO-2570.
+
+## [1.15.0](https://github.com/folio-org/stripes-cli/tree/v1.15.0) (2020-04-09)
 
 * Support stripes-core `v4.0.0`.
 * Use stripes-testing `v2.0.0`.
 * Support optional dependencies in UI modules. Related to OKAPI-509.
 * Added default value of `./output` for `--output` flag used when omitting from `build` command. Refs STCLI-95.
+* Add ui module oai-pmh. Refs MODOAIPMH-94.
+* Added `--bundle` flag to `test` command to allow for `karma` tests (BigTest) to run against bundled code instead of a dev server.
 
 ## [1.14.0](https://github.com/folio-org/stripes-cli/tree/v1.14.0) (2019-09-09)
 

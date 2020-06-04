@@ -123,11 +123,12 @@ describe('The descriptor-service', function () {
           {
             id: 'backend',
             version: '2.0'
-          },
+          }
+        ],
+        optional: [
           {
             id: 'backend2',
-            version: '3.1',
-            optional: true
+            version: '3.1'
           }
         ]
       }];
@@ -181,11 +182,12 @@ describe('The descriptor-service', function () {
             {
               id: 'backend',
               version: '2.0'
-            },
+            }
+          ],
+          optional: [
             {
               id: 'backend2',
-              version: '3.1',
-              optional: true
+              version: '3.1'
             }
           ]
         };

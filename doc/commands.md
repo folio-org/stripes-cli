@@ -1193,6 +1193,7 @@ Positional | Description | Type | Notes
 
 Option | Description | Type | Notes
 ---|---|---|---
+`--bundle` | Create and use a production bundle retaining test hooks | boolean |
 `--cache` | Use HardSourceWebpackPlugin cache | boolean |
 `--coverage, --karma.coverage` | Enable Karma coverage reports | boolean |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
