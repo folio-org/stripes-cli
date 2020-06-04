@@ -1279,8 +1279,9 @@ Option | Description | Type | Notes
 `--default.okapi` | Default Okapi URL for CLI config | string | default: "http://localhost:9130"
 `--default.tenant` | Default tenant for CLI config | string | default: "diku"
 `--dir` | Directory to create | string | default: "stripes"
+`--fetch` | Fetch module names from Github | boolean | default: false
 `--install` | Install dependencies | boolean | default: true
-`--modules` | Stripes modules to include | array |
+`--modules` | Stripes modules to include. Run `stripes workspace --modules --fetch` to update list. | array |
 
 Examples:
 
