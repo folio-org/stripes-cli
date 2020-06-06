@@ -284,7 +284,7 @@ From here you can immediately start [running your app](#running-your-app), but i
 stripes okapi login diku_admin --okapi http://localhost:9130 --tenant diku
 ```
 
-To generate the stripes boilerplate code and post the module descriptor to okapi in 1 command:
+To generate the Stripes boilerplate code and post the module descriptor to Okapi in one command:
 
 ```
 $ stripes app create "Hello World" --assign diku_admin
