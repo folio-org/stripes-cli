@@ -413,7 +413,7 @@ After prompting for modules, the `workspace` command will generate a directory n
 
 If you do not see a recently-added module in the prompt list, you can fetch and refresh the list by running the following command:
 ```
-$ stripes workspace --modules --fetch
+$ stripes inventory --fetch
 ```
 
 If a directory other than "stripes" is desired, use the `--dir` option.
