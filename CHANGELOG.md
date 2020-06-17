@@ -1,5 +1,9 @@
 # Change history for stripes-cli
 
+## [1.16.1] IN PROGRESS
+
+* Introduced new command `stripes inventory --fetch` to update module list for `stripes workspace` command. Refs STCLI-122.
+
 ## [1.16.0](https://github.com/folio-org/stripes-cli/tree/v1.16.0) (2020-06-08)
 
 * Support `stripes-core` `v5.0.0`.
