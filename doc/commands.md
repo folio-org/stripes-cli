@@ -1,6 +1,6 @@
 # Stripes CLI Commands
 
-Version 1.15.1
+Version 1.16.0
 
 This following command documentation is generated from the CLI's own built-in help.  Run any command with the `--help` option to view the latest help for your currently installed CLI.  To regenerate this file, run `yarn docs`.
 
@@ -253,7 +253,7 @@ $ stripes inventory
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--fetch` | Fetch module names from Github and store in local cache. | boolean | default: true
+`--fetch` | Fetch module names from Github and store in local cache. Note that there is a rate limit per IP to Github, so you can't call this too many times in a short time period. | boolean | default: true
 
 Examples:
 
@@ -1302,7 +1302,7 @@ Option | Description | Type | Notes
 `--default.tenant` | Default tenant for CLI config | string | default: "diku"
 `--dir` | Directory to create | string | default: "stripes"
 `--install` | Install dependencies | boolean | default: true
-`--modules` | Stripes modules to include. Run `stripes workspace --modules --fetch` to update list. | array |
+`--modules` | Stripes modules to include | array |
 
 Examples:
 
