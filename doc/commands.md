@@ -1,7 +1,5 @@
 # Stripes CLI Commands
 
-Version 1.15.1
-
 This following command documentation is generated from the CLI's own built-in help.  Run any command with the `--help` option to view the latest help for your currently installed CLI.  To regenerate this file, run `yarn docs`.
 
 > Note: Commands labeled "(work in progress)" are incomplete or experimental and subject to change.
@@ -253,7 +251,7 @@ $ stripes inventory
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--fetch` | Fetch module names from Github and store in local cache. | boolean | default: true
+`--fetch` | Fetch module names from Github and store in local cache. Note that there is a rate limit per IP to Github, so you can't call this too many times in a short time period. | boolean | default: true
 
 Examples:
 
