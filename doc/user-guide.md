@@ -411,6 +411,11 @@ $ stripes workspace
 
 After prompting for modules, the `workspace` command will generate a directory named "stripes", clone all the selected modules, and install their dependencies.  For any platforms chosen during module selection, such as `stripes-sample-platform`, a local Stripes configuration (`stripes.config.js.local`) will be generated.
 
+If you do not see a recently-added module in the prompt list, you can fetch and refresh the list by running the following command:
+```
+$ stripes inventory --fetch
+```
+
 If a directory other than "stripes" is desired, use the `--dir` option.
 ```
 $ stripes workspace --dir temp

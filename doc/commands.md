@@ -1,7 +1,5 @@
 # Stripes CLI Commands
 
-Version 1.15.0
-
 This following command documentation is generated from the CLI's own built-in help.  Run any command with the `--help` option to view the latest help for your currently installed CLI.  To regenerate this file, run `yarn docs`.
 
 > Note: Commands labeled "(work in progress)" are incomplete or experimental and subject to change.
@@ -13,6 +11,7 @@ This following command documentation is generated from the CLI's own built-in he
     * [`app create` command](#app-create-command)
     * [`app perms` command](#app-perms-command)
 * [`build` command](#build-command)
+* [`inventory` command](#inventory-command)
 * [`mod` command](#mod-command)
     * [`mod add` command](#mod-add-command)
     * [`mod descriptor` command](#mod-descriptor-command)
@@ -239,6 +238,26 @@ $ stripes build stripes.config.js ./output-dir --no-minify
 Build a single ui-module (from ui-module directory):
 ```
 $ stripes build --output ./output-dir
+```
+
+## `inventory` command
+
+Manage local inventory cache to supply module data for `stripes workspace`.
+
+Usage:
+```
+$ stripes inventory
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--fetch` | Fetch module names from Github and store in local cache. Note that there is a rate limit per IP to Github, so you can't call this too many times in a short time period. | boolean | default: true
+
+Examples:
+
+Fetch module names from Github and store in local cache.:
+```
+$ stripes inventory --fetch
 ```
 
 ## `mod` command
@@ -1281,7 +1300,7 @@ Option | Description | Type | Notes
 `--default.tenant` | Default tenant for CLI config | string | default: "diku"
 `--dir` | Directory to create | string | default: "stripes"
 `--install` | Install dependencies | boolean | default: true
-`--modules` | Stripes modules to include | array |
+`--modules` | Stripes modules to include. Run `stripes workspace --modules --fetch` to update list. | array |
 
 Examples:
 

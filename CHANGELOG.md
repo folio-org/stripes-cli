@@ -1,6 +1,14 @@
 # Change history for stripes-cli
 
-## [1.16.0](https://github.com/folio-org/stripes-cli/tree/v1.16.0) (IN PROGRESS)
+## [1.17.0](https://github.com/folio-org/stripes-cli/tree/v1.17.0) (2020-06-19)
+
+* Introduced new command `stripes inventory --fetch` to update module list for `stripes workspace` command. Refs STCLI-122.
+
+## [1.16.0](https://github.com/folio-org/stripes-cli/tree/v1.16.0) (2020-06-08)
+
+* Support `stripes-core` `v5.0.0`.
+
+## [1.15.1](https://github.com/folio-org/stripes-cli/tree/v1.15.1) (2020-04-23)
 
 * Correct generation of optional Okapi interface dependencies. Fixes FOLIO-2570.
 
