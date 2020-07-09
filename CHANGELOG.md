@@ -4,6 +4,7 @@
 
 * Support `stripes-core` `v6.0.0`.
 * okapi-client logs as curl commands, including headers and body, because that's super handy.
+* New command-line option `--coverage` for `stripes serve`.
 
 ## [1.17.0](https://github.com/folio-org/stripes-cli/tree/v1.17.0) (2020-06-19)
 
