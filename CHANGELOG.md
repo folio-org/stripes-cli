@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 1.18.0 (IN PROGRESS)
+## 1.18.0 (2020-07-31)
 
 * New command-line option `--coverage` for `stripes serve`, generates (but does not emit) coverage statistics.
 
