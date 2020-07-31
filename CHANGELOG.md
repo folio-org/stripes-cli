@@ -1,9 +1,12 @@
 # Change history for stripes-cli
 
-## 1.18.0 (IN PROGRESS)
+## 1.19.0 (IN PROGRESS)
 
 * Support `stripes-core` `v6.0.0`.
 * okapi-client logs as curl commands, including headers and body, because that's super handy.
+
+## [1.18.0](https://github.com/folio-org/stripes-cli/tree/v1.18.0) (2020-07-31)
+
 * New command-line option `--coverage` for `stripes serve`, generates (but does not emit) coverage statistics.
 
 ## [1.17.0](https://github.com/folio-org/stripes-cli/tree/v1.17.0) (2020-06-19)
