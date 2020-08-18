@@ -1277,7 +1277,7 @@ $ stripes test nightmare --local
 ```
 Run Nightmare tests against an external instance of FOLIO:
 ```
-$ stripes test nightmare --url http://folio-testing.aws.indexdata.com/
+$ stripes test nightmare --url https://folio-testing.dev.folio.org/
 ```
 Specify a username via ui-testing's test-module CLI options:
 ```
