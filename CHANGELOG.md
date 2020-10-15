@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 1.19.0 (IN PROGRESS)
+## [1.19.0](https://github.com/folio-org/stripes-cli/tree/v1.19.0) (2020-10-14)
 
 * Support `stripes-core` `v6.0.0`.
 * okapi-client logs as curl commands, including headers and body, because that's super handy.
