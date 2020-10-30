@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 1.20.0 (IN PROGRESS)
+## [1.20.0](https://github.com/folio-org/stripes-cli/tree/v1.20.0) (2020-10-30)
 
 * Upgrade karma to `v4.4` which removes `core-js` dependency to clean up a warning which displays when compiling any app.
 
