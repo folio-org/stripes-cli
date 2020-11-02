@@ -55,6 +55,7 @@
     "mocha": "^5.2.0",
     "mocha-jenkins-reporter": "^0.4.1",
     "node-fetch-npm": "^2.0.2",
+    "node-fetch": "^2.6.1",
     "nyc": "^14.1.1",
     "resolve-from": "^4.0.0",
     "resolve-pkg": "^1.0.0",
