@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+const sinon = require('sinon');
 
 const buildAppCommand = require('../../lib/commands/build');
 
