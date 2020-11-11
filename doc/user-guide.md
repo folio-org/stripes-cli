@@ -37,6 +37,7 @@ Note: When serving or building an existing app module that has dependencies on u
 * [Generating a production build](#generating-a-production-build)
     * [Analyzing bundle output](#analyzing-bundle-output)
     * [Reducing build output](#reducing-build-output)
+    * [Using Webpack DLL](#using-webpack-dll)
 * [Viewing diagnostic output](#viewing-diagnostic-output)
     * [Observing Okapi requests](#observing-okapi-requests)
 
@@ -649,6 +650,22 @@ Filtering languages can be done with the CLI by specifying the `languages` optio
 ```
 $ stripes build stripes.config.js --languages en es
 ```
+
+### Using Webpack DLL
+
+A technique you can use to pre-build dependencies that change less frequently so that subsequent builds can be more focused in what code needs to be transpiled and will therefore run more quickly. For more information see: [DllPlugin documentation](https://webpack.js.org/plugins/dll-plugin/).
+
+For example, you could choose to create a re-usable DLL for third-party dependencies and call it "vendor":
+```
+$ stripes build --createDll react,react-dom,react-router --dllName vendor
+```
+
+To then use that DLL in the final bundle:
+```
+$ stripes build --useDll vendor
+```
+
+The benefit is that if you make changes to your code, you only need to re-run the final bundle command above which bypasses the need to re-bundle the third-party dependencies, which reduces the build time. Note that in this case if you update the version of a third-party dependency, you will then need to run both commands for the change to affect the final bundle.
 
 ## Viewing diagnostic output
 
