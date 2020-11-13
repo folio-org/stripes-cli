@@ -660,9 +660,9 @@ For example, you could choose to create a re-usable DLL for third-party dependen
 $ stripes build --createDll react,react-dom,react-router --dllName vendor
 ```
 
-To then use that DLL in the final bundle:
+To then use that DLL in the final bundle, point to the manifest JSON file:
 ```
-$ stripes build --useDll vendor
+$ stripes build --useDll ./path/to/dll/vendor.json
 ```
 
 The benefit is that if you make changes to your code, you only need to re-run the final bundle command above which bypasses the need to re-bundle the third-party dependencies, which reduces the build time. Note that in this case if you update the version of a third-party dependency, you will then need to run both commands for the change to affect the final bundle.
