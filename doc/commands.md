@@ -225,10 +225,11 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--output` | Directory to place build output. If omitted, default value of "./output" is used. | string |
 `--publicPath` | Specify the Webpack publicPath output option | string |
+`--skipStripesBuild` | Bypass Stripes-specific steps in build (useful when building third-party Webpack DLLs). | boolean |
 `--sourcemap` | Include sourcemaps in build output | boolean |
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
-`--useDll` | List of DLLs (comma-separated) to include in build. | string |
+`--useDll` | List of DLL manifest files (comma-separated) to include in build. | string |
 
 Examples:
 
@@ -246,11 +247,11 @@ $ stripes build --output ./output-dir
 ```
 Builds a Webpack DLL called vendor with react and react-dom:
 ```
-$ stripes build --createDll react,react-dom --dllName vendor
+$ stripes build --createDll react,react-dom --dllName vendor --skipStripesBuild
 ```
 Build using vendor and stripes DLLs:
 ```
-$ stripes build stripes.config.js --useDll vendor,stripes
+$ stripes build stripes.config.js --useDll ./path/vendor.json,./path/stripes.json
 ```
 
 ## `inventory` command

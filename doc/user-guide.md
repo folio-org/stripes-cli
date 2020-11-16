@@ -655,9 +655,9 @@ $ stripes build stripes.config.js --languages en es
 
 A technique you can use to pre-build dependencies that change less frequently so that subsequent builds can be more focused in what code needs to be transpiled and will therefore run more quickly. For more information see: [DllPlugin documentation](https://webpack.js.org/plugins/dll-plugin/).
 
-For example, you could choose to create a re-usable DLL for third-party dependencies and call it "vendor":
+For example, you could choose to create a re-usable DLL for third-party dependencies and call it "vendor" (note that using the flag `--skipStripesBuild` is appropriate here as it will exclude Stripes-specific steps during the build. It should not be used when building a Stripes DLL):
 ```
-$ stripes build --createDll react,react-dom,react-router --dllName vendor
+$ stripes build --createDll react,react-dom,react-router --dllName vendor --skipStripesBuild
 ```
 
 To then use that DLL in the final bundle, point to the manifest JSON file:
