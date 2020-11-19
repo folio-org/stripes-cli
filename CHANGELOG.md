@@ -1,9 +1,12 @@
 # Change history for stripes-cli
 
+## [1.21.0](https://github.com/folio-org/stripes-cli/tree/v1.21.0) (2020-11-19)
+
+* Add support for building and consuming Webpack DLLs. Refs STCLI-154.
+
 ## [1.20.0](https://github.com/folio-org/stripes-cli/tree/v1.20.0) (2020-10-30)
 
 * Upgrade karma to `v4.4` which removes `core-js` dependency to clean up a warning which displays when compiling any app.
-* Add support for building and consuming Webpack DLLs. Refs STCLI-154.
 
 ## [1.19.0](https://github.com/folio-org/stripes-cli/tree/v1.19.0) (2020-10-14)
 
