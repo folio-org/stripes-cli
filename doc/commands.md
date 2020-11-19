@@ -1,5 +1,7 @@
 # Stripes CLI Commands
 
+Version 1.20.0
+
 This following command documentation is generated from the CLI's own built-in help.  Run any command with the `--help` option to view the latest help for your currently installed CLI.  To regenerate this file, run `yarn docs`.
 
 > Note: Commands labeled "(work in progress)" are incomplete or experimental and subject to change.
@@ -212,7 +214,9 @@ Positional | Description | Type | Notes
 Option | Description | Type | Notes
 ---|---|---|---
 `--analyze` | Run the Webpack Bundle Analyzer after build (launches in browser) | boolean |
+`--createDll` | List of dependencies (comma-separated) to build into a Webpack DLL. | string |
 `--devtool` | Specify the Webpack devtool for generating source maps | string |
+`--dllName` | Name of Webpack DLL to create. | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
 `--languages` | Languages to include in tenant build | array |
 `--lint` | Show eslint warnings with build | boolean |
@@ -221,9 +225,11 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--output` | Directory to place build output. If omitted, default value of "./output" is used. | string |
 `--publicPath` | Specify the Webpack publicPath output option | string |
+`--skipStripesBuild` | Bypass Stripes-specific steps in build (useful when building third-party Webpack DLLs). | boolean |
 `--sourcemap` | Include sourcemaps in build output | boolean |
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
+`--useDll` | List of DLL manifest files (comma-separated) to include in build. | string |
 
 Examples:
 
@@ -238,6 +244,14 @@ $ stripes build stripes.config.js ./output-dir --no-minify
 Build a single ui-module (from ui-module directory):
 ```
 $ stripes build --output ./output-dir
+```
+Builds a Webpack DLL called vendor with react and react-dom:
+```
+$ stripes build --createDll react,react-dom --dllName vendor --skipStripesBuild
+```
+Build using vendor and stripes DLLs:
+```
+$ stripes build stripes.config.js --useDll ./path/vendor.json,./path/stripes.json
 ```
 
 ## `inventory` command
@@ -1105,6 +1119,7 @@ Positional | Description | Type | Notes
 Option | Description | Type | Notes
 ---|---|---|---
 `--cache` | Use HardSourceWebpackPlugin cache | boolean |
+`--coverage` | Enable coverage generation | boolean |
 `--devtool` | Specify the Webpack devtool for generating source maps | string |
 `--existing-build` | Serve an existing build from the supplied directory | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
@@ -1188,7 +1203,7 @@ Option | Description | Type | Notes
 
 Examples:
 
-Serve app and run it's demo.js Nightmare tests:
+Serve app and run its demo.js Nightmare tests:
 ```
 $ stripes test nightmare --run=demo
 ```
@@ -1300,7 +1315,7 @@ Option | Description | Type | Notes
 `--default.tenant` | Default tenant for CLI config | string | default: "diku"
 `--dir` | Directory to create | string | default: "stripes"
 `--install` | Install dependencies | boolean | default: true
-`--modules` | Stripes modules to include. Run `stripes workspace --modules --fetch` to update list. | array |
+`--modules` | Stripes modules to include | array |
 
 Examples:
 
