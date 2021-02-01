@@ -3,7 +3,7 @@ buildNPM {
   publishModDescriptor = 'no'
   runLint = 'yes'
   runTest = 'yes'
-  runSonarqube = false
+  runSonarqube = true
   sonarScanDirs = './lib'
    
   runScripts = [
