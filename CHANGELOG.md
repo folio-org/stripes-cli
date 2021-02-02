@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 1.21.0 IN PROGRESS
+## 2.0.0 IN PROGRESS
 
 * Support `stripes-core` `v7.0.0`.
 * Serve static pages with `express` instead of `http-server`. Refs STCLI-147.
