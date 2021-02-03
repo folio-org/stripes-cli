@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 1.21.0 IN PROGRESS
+## [1.21.0](https://github.com/folio-org/stripes-cli/tree/v1.21.0) (2021-02-03)
 
 * Support `stripes-core` `v7.0.0`.
 * Serve static pages with `express` instead of `http-server`. Refs STCLI-147.
