@@ -2,6 +2,7 @@
 buildNPM {
   publishModDescriptor = false
   runLint = true
+  runTest = true
   runScripts = [
    ['test:coverage':'']
   ]
