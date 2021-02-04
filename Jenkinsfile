@@ -5,6 +5,6 @@ buildNPM {
   runLint = 'yes'
   runTest = false
   runSonarqube = true
-  sonarScanDirs = './lib/commands,./lib/cli,./lib/doc,./lib/environment,./lib/okapi'
+  sonarScanDirs = './lib/commands,./lib/cli,./lib/doc,./lib/environment,./lib/okapi,./lib/platform,./lib/test'
    
 }
