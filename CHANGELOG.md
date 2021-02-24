@@ -1,6 +1,21 @@
 # Change history for stripes-cli
 
-## 1.19.0 (IN PROGRESS)
+
+## [2.0.0](https://github.com/folio-org/stripes-cli/tree/v2.0.0) (2021-02-03)
+
+* Remove `stripes-core` dependency and use `stripes-webpack` instead. Refs STCLI-167.
+
+## [1.21.0](https://github.com/folio-org/stripes-cli/tree/v1.21.0) (2021-02-03)
+
+* Support `stripes-core` `v7.0.0`.
+* Serve static pages with `express` instead of `http-server`. Refs STCLI-147.
+
+## [1.20.0](https://github.com/folio-org/stripes-cli/tree/v1.20.0) (2020-10-30)
+
+* Upgrade karma to `v4.4` which removes `core-js` dependency to clean up a warning which displays when compiling any app.
+* Add support for building and consuming Webpack DLLs. Refs STCLI-154.
+
+## [1.19.0](https://github.com/folio-org/stripes-cli/tree/v1.19.0) (2020-10-14)
 
 * Support `stripes-core` `v6.0.0`.
 * okapi-client logs as curl commands, including headers and body, because that's super handy.
