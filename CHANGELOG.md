@@ -1,5 +1,8 @@
 # Change history for stripes-cli
 
+## 2.1.0 (IN PROGRESS)
+
+* Increment `@folio/stripes-testing` to `v3`, sans `nightmarejs`. Refs STCLI-171.
 
 ## [2.0.0](https://github.com/folio-org/stripes-cli/tree/v2.0.0) (2021-02-03)
 
