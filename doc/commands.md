@@ -51,7 +51,6 @@ This following command documentation is generated from the CLI's own built-in he
 * [`status` command](#status-command)
 * [`test` command](#test-command)
     * [`test karma` command](#test-karma-command)
-    * [`test nightmare` command](#test-nightmare-command)
 * [`workspace` command](#workspace-command)
 * [`completion` command](#completion-command)
 
@@ -1185,7 +1184,6 @@ $ stripes test
 
 Sub-commands:
 * [`stripes test karma`](#test-karma-command)
-* [`stripes test nightmare`](#test-nightmare-command)
 
 Positional | Description | Type | Notes
 ---|---|---|---
@@ -1203,10 +1201,6 @@ Option | Description | Type | Notes
 
 Examples:
 
-Serve app and run its demo.js Nightmare tests:
-```
-$ stripes test nightmare --run=demo
-```
 Run Karma tests for the current app module:
 ```
 $ stripes test karma
@@ -1244,59 +1238,6 @@ Examples:
 Run tests with Karma for the current app module:
 ```
 $ stripes test karma
-```
-
-### `test nightmare` command
-
-Run the current app module's Nightmare tests
-
-Usage:
-```
-$ stripes test nightmare [configFile]
-```
-
-Positional | Description | Type | Notes
----|---|---|---
-`configFile` | File containing a Stripes tenant configuration | string |
-
-Option | Description | Type | Notes
----|---|---|---
-`--cache` | Use HardSourceWebpackPlugin cache | boolean |
-`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
-`--host` | Development server host | string | default: "localhost"
-`--languages` | Languages to include in tenant build | array |
-`--local` | Shortcut for --url http://localhost:3000 | boolean |
-`--okapi` | Specify an Okapi URL | string |
-`--port` | Development server port | number | default: 3000
-`--reporter` | Specify a Mocha reporter |  |
-`--run` | Name of the test script to run | string |
-`--show` | Show UI and dev tools while running tests | boolean |
-`--stripesConfig` | Stripes config JSON  | string | supports stdin
-`--tenant` | Specify a tenant ID | string |
-`--uiTest` | Additional options for ui-testing framework |  |
-`--url` | URL of FOLIO UI to run tests against | string |
-
-Examples:
-
-Serve app or platform and run all of its Nightmare tests:
-```
-$ stripes test nightmare
-```
-Serve app or platform and run its demo.js Nightmare tests:
-```
-$ stripes test nightmare --run demo
-```
-Run Nightmare tests against a locally hosted instance of FOLIO:
-```
-$ stripes test nightmare --local
-```
-Run Nightmare tests against an external instance of FOLIO:
-```
-$ stripes test nightmare --url https://folio-testing.dev.folio.org/
-```
-Specify a username via ui-testing's test-module CLI options:
-```
-$ stripes test nightmare --uiTest.username admin
 ```
 
 ## `workspace` command

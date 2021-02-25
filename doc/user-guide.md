@@ -353,19 +353,6 @@ Note: When serving up a newly created app that either does not have a module des
 $ stripes serve --hasAllPerms
 ```
 
-### Running tests
-
-The newly created app has some basic UI end-to-end tests included, designed to run with the Nightmare framework.  To run these tests, use the `test nightmare` command:
-
-```
-$ stripes test nightmare --run demo --show
-```
-
-The `--run` option specifies the tests, in this case the sample tests included with our app are named "demo".  The `--show` option will display the UI while running the tests.
-
-Additional options specific to the `@folio/ui-testing` framework can be passed in the form of `--uiTest.optionName value`.  For example, to override the default `typeInterval`, pass `--uiTest.typeInterval 50`.  Refer to [@folio/ui-testing](https://github.com/folio-org/ui-testing) for more information on available options.
-
-
 ### Including another Stripes module
 
 Now that our Hello World app is up and running on its own, we may want to bring in an existing app for testing or further development.  The CLI makes this easy.  The following will demonstrate how to add `ui-users`.
