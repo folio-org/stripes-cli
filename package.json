@@ -52,7 +52,7 @@
     "karma-webpack": "^4.0.2",
     "kopy": "^8.2.3",
     "lodash": "^4.17.5",
-    "mocha": "^5.2.0",
+    "mocha": "^8.3.0",
     "mocha-jenkins-reporter": "^0.4.1",
     "morgan": "^1.10.0",
     "node-fetch-npm": "^2.0.2",
