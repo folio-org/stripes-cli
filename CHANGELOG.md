@@ -1,5 +1,9 @@
 # Change history for stripes-cli
 
+## [2.2.0](https://github.com/folio-org/stripes-cli/tree/v2.2.0) (2021-04-13)
+
+* Bump `stripes-webpack` to version 1.2.0. Fixes STCLI-175.
+
 ## [2.1.0](https://github.com/folio-org/stripes-cli/tree/v2.1.0) (2021-03-18)
 
 * Increment `@folio/stripes-testing` to `v3`, adding `interactors`, removing `nightmarejs`. Refs STCLI-171.
