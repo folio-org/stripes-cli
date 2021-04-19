@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 2.1.1 (IN PROGRESS)
+## [2.1.1](https://github.com/folio-org/stripes-cli/tree/v2.1.1) (2021-04-19)
 
 * Pin `@folio/stripes-webpack` to `~1.1.0`. Refs STCLI-176.
 
