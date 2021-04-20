@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes-cli",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Stripes Command Line Interface",
   "repository": "https://github.com/folio-org/stripes-cli",
   "publishConfig": {
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@folio/stripes-testing": "^3.0.0",
-    "@folio/stripes-webpack": "^1.0.0",
+    "@folio/stripes-webpack": "^1.2.0",
     "@octokit/rest": "^17.1.4",
     "babel-plugin-istanbul": "^4.1.6",
     "configstore": "^3.1.1",
