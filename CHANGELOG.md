@@ -1,5 +1,10 @@
 # Change history for stripes-cli
 
+## 2.3.0 (IN PROGRESS)
+
+* Bump `mocha` to `^8.3.0`.
+* Bump `babel-plugin-istanbul`, `karma`, `karma-mocha` and `webpack-bundle-analyzer` to avoid security warnings. Refs STCLI-179.
+
 ## [2.2.0](https://github.com/folio-org/stripes-cli/tree/v2.2.0) (2021-04-13)
 
 * Bump `stripes-webpack` to version 1.2.0. Fixes STCLI-175.
