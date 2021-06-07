@@ -1,12 +1,62 @@
 # Change history for stripes-cli
 
-## 1.15.0 (IN PROGRESS)
+## 2.3.0 (IN PROGRESS)
+
+* Bump `mocha` to `^8.3.0`.
+* Bump `babel-plugin-istanbul`, `karma`, `karma-mocha` and `webpack-bundle-analyzer` to avoid security warnings. Refs STCLI-179.
+* Provide `--nuke` as an alias to `--removeLock` because it's easier to remember and more fun to type. Refs Mike Taylor.
+
+## [2.2.0](https://github.com/folio-org/stripes-cli/tree/v2.2.0) (2021-04-13)
+
+* Bump `stripes-webpack` to version 1.2.0. Fixes STCLI-175.
+
+## [2.1.0](https://github.com/folio-org/stripes-cli/tree/v2.1.0) (2021-03-18)
+
+* Increment `@folio/stripes-testing` to `v3`, adding `interactors`, removing `nightmarejs`. Refs STCLI-171.
+
+## [2.0.0](https://github.com/folio-org/stripes-cli/tree/v2.0.0) (2021-02-03)
+
+* Remove `stripes-core` dependency and use `stripes-webpack` instead. Refs STCLI-167.
+
+## [1.21.0](https://github.com/folio-org/stripes-cli/tree/v1.21.0) (2021-02-03)
+
+* Support `stripes-core` `v7.0.0`.
+* Serve static pages with `express` instead of `http-server`. Refs STCLI-147.
+
+## [1.20.0](https://github.com/folio-org/stripes-cli/tree/v1.20.0) (2020-10-30)
+
+* Upgrade karma to `v4.4` which removes `core-js` dependency to clean up a warning which displays when compiling any app.
+* Add support for building and consuming Webpack DLLs. Refs STCLI-154.
+
+## [1.19.0](https://github.com/folio-org/stripes-cli/tree/v1.19.0) (2020-10-14)
+
+* Support `stripes-core` `v6.0.0`.
+* okapi-client logs as curl commands, including headers and body, because that's super handy.
+
+## [1.18.0](https://github.com/folio-org/stripes-cli/tree/v1.18.0) (2020-07-31)
+
+* New command-line option `--coverage` for `stripes serve`, generates (but does not emit) coverage statistics.
+
+## [1.17.0](https://github.com/folio-org/stripes-cli/tree/v1.17.0) (2020-06-19)
+
+* Introduced new command `stripes inventory --fetch` to update module list for `stripes workspace` command. Refs STCLI-122.
+
+## [1.16.0](https://github.com/folio-org/stripes-cli/tree/v1.16.0) (2020-06-08)
+
+* Support `stripes-core` `v5.0.0`.
+
+## [1.15.1](https://github.com/folio-org/stripes-cli/tree/v1.15.1) (2020-04-23)
+
+* Correct generation of optional Okapi interface dependencies. Fixes FOLIO-2570.
+
+## [1.15.0](https://github.com/folio-org/stripes-cli/tree/v1.15.0) (2020-04-09)
 
 * Support stripes-core `v4.0.0`.
 * Use stripes-testing `v2.0.0`.
 * Support optional dependencies in UI modules. Related to OKAPI-509.
 * Added default value of `./output` for `--output` flag used when omitting from `build` command. Refs STCLI-95.
-* Provide `--nuke` as an alias to `--removeLock` because it's easier to remember and more fun to type. Refs Mike Taylor.
+* Add ui module oai-pmh. Refs MODOAIPMH-94.
+* Added `--bundle` flag to `test` command to allow for `karma` tests (BigTest) to run against bundled code instead of a dev server.
 
 ## [1.14.0](https://github.com/folio-org/stripes-cli/tree/v1.14.0) (2019-09-09)
 

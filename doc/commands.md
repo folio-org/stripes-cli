@@ -1,6 +1,6 @@
 # Stripes CLI Commands
 
-Version 1.15.0
+Version 1.20.0
 
 This following command documentation is generated from the CLI's own built-in help.  Run any command with the `--help` option to view the latest help for your currently installed CLI.  To regenerate this file, run `yarn docs`.
 
@@ -13,6 +13,7 @@ This following command documentation is generated from the CLI's own built-in he
     * [`app create` command](#app-create-command)
     * [`app perms` command](#app-perms-command)
 * [`build` command](#build-command)
+* [`inventory` command](#inventory-command)
 * [`mod` command](#mod-command)
     * [`mod add` command](#mod-add-command)
     * [`mod descriptor` command](#mod-descriptor-command)
@@ -50,7 +51,6 @@ This following command documentation is generated from the CLI's own built-in he
 * [`status` command](#status-command)
 * [`test` command](#test-command)
     * [`test karma` command](#test-karma-command)
-    * [`test nightmare` command](#test-nightmare-command)
 * [`workspace` command](#workspace-command)
 * [`completion` command](#completion-command)
 
@@ -213,7 +213,9 @@ Positional | Description | Type | Notes
 Option | Description | Type | Notes
 ---|---|---|---
 `--analyze` | Run the Webpack Bundle Analyzer after build (launches in browser) | boolean |
+`--createDll` | List of dependencies (comma-separated) to build into a Webpack DLL. | string |
 `--devtool` | Specify the Webpack devtool for generating source maps | string |
+`--dllName` | Name of Webpack DLL to create. | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
 `--languages` | Languages to include in tenant build | array |
 `--lint` | Show eslint warnings with build | boolean |
@@ -222,9 +224,11 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--output` | Directory to place build output. If omitted, default value of "./output" is used. | string |
 `--publicPath` | Specify the Webpack publicPath output option | string |
+`--skipStripesBuild` | Bypass Stripes-specific steps in build (useful when building third-party Webpack DLLs). | boolean |
 `--sourcemap` | Include sourcemaps in build output | boolean |
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
+`--useDll` | List of DLL manifest files (comma-separated) to include in build. | string |
 
 Examples:
 
@@ -239,6 +243,34 @@ $ stripes build stripes.config.js ./output-dir --no-minify
 Build a single ui-module (from ui-module directory):
 ```
 $ stripes build --output ./output-dir
+```
+Builds a Webpack DLL called vendor with react and react-dom:
+```
+$ stripes build --createDll react,react-dom --dllName vendor --skipStripesBuild
+```
+Build using vendor and stripes DLLs:
+```
+$ stripes build stripes.config.js --useDll ./path/vendor.json,./path/stripes.json
+```
+
+## `inventory` command
+
+Manage local inventory cache to supply module data for `stripes workspace`.
+
+Usage:
+```
+$ stripes inventory
+```
+
+Option | Description | Type | Notes
+---|---|---|---
+`--fetch` | Fetch module names from Github and store in local cache. Note that there is a rate limit per IP to Github, so you can't call this too many times in a short time period. | boolean | default: true
+
+Examples:
+
+Fetch module names from Github and store in local cache.:
+```
+$ stripes inventory --fetch
 ```
 
 ## `mod` command
@@ -1086,6 +1118,7 @@ Positional | Description | Type | Notes
 Option | Description | Type | Notes
 ---|---|---|---
 `--cache` | Use HardSourceWebpackPlugin cache | boolean |
+`--coverage` | Enable coverage generation | boolean |
 `--devtool` | Specify the Webpack devtool for generating source maps | string |
 `--existing-build` | Serve an existing build from the supplied directory | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
@@ -1151,7 +1184,6 @@ $ stripes test
 
 Sub-commands:
 * [`stripes test karma`](#test-karma-command)
-* [`stripes test nightmare`](#test-nightmare-command)
 
 Positional | Description | Type | Notes
 ---|---|---|---
@@ -1169,10 +1201,6 @@ Option | Description | Type | Notes
 
 Examples:
 
-Serve app and run it's demo.js Nightmare tests:
-```
-$ stripes test nightmare --run=demo
-```
 Run Karma tests for the current app module:
 ```
 $ stripes test karma
@@ -1193,6 +1221,7 @@ Positional | Description | Type | Notes
 
 Option | Description | Type | Notes
 ---|---|---|---
+`--bundle` | Create and use a production bundle retaining test hooks | boolean |
 `--cache` | Use HardSourceWebpackPlugin cache | boolean |
 `--coverage, --karma.coverage` | Enable Karma coverage reports | boolean |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
@@ -1209,59 +1238,6 @@ Examples:
 Run tests with Karma for the current app module:
 ```
 $ stripes test karma
-```
-
-### `test nightmare` command
-
-Run the current app module's Nightmare tests
-
-Usage:
-```
-$ stripes test nightmare [configFile]
-```
-
-Positional | Description | Type | Notes
----|---|---|---
-`configFile` | File containing a Stripes tenant configuration | string |
-
-Option | Description | Type | Notes
----|---|---|---
-`--cache` | Use HardSourceWebpackPlugin cache | boolean |
-`--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
-`--host` | Development server host | string | default: "localhost"
-`--languages` | Languages to include in tenant build | array |
-`--local` | Shortcut for --url http://localhost:3000 | boolean |
-`--okapi` | Specify an Okapi URL | string |
-`--port` | Development server port | number | default: 3000
-`--reporter` | Specify a Mocha reporter |  |
-`--run` | Name of the test script to run | string |
-`--show` | Show UI and dev tools while running tests | boolean |
-`--stripesConfig` | Stripes config JSON  | string | supports stdin
-`--tenant` | Specify a tenant ID | string |
-`--uiTest` | Additional options for ui-testing framework |  |
-`--url` | URL of FOLIO UI to run tests against | string |
-
-Examples:
-
-Serve app or platform and run all of its Nightmare tests:
-```
-$ stripes test nightmare
-```
-Serve app or platform and run its demo.js Nightmare tests:
-```
-$ stripes test nightmare --run demo
-```
-Run Nightmare tests against a locally hosted instance of FOLIO:
-```
-$ stripes test nightmare --local
-```
-Run Nightmare tests against an external instance of FOLIO:
-```
-$ stripes test nightmare --url http://folio-testing.aws.indexdata.com/
-```
-Specify a username via ui-testing's test-module CLI options:
-```
-$ stripes test nightmare --uiTest.username admin
 ```
 
 ## `workspace` command

@@ -37,6 +37,7 @@ Note: When serving or building an existing app module that has dependencies on u
 * [Generating a production build](#generating-a-production-build)
     * [Analyzing bundle output](#analyzing-bundle-output)
     * [Reducing build output](#reducing-build-output)
+    * [Using Webpack DLL](#using-webpack-dll)
 * [Viewing diagnostic output](#viewing-diagnostic-output)
     * [Observing Okapi requests](#observing-okapi-requests)
 
@@ -255,7 +256,7 @@ Prerequisites:  An Okapi backend is required. See [development prerequisites](#d
 
 ### Creating your app
 
-From a suitable directory, run the following:
+From a suitable directory, run the following to generate stripes boilerplate code:
 ```
 $ stripes app create "Hello World"
 ```
@@ -278,9 +279,13 @@ Creating app...
 
 The CLI will automatically run `yarn install` on the directory afterwards.  To prevent this, set the install option to false by passing `--no-install`.  Then `cd` to the app's directory and run `yarn install` manually.
 
-From here you can immediately start [running your app](#running-your-app), but it is best to properly post the app's module descriptor to Okapi and [assign permissions](#assigning-permissions).
+From here you can immediately start [running your app](#running-your-app), but it is best to properly post the app's module descriptor to Okapi and [assign permissions](#assigning-permissions). First [login to Okapi](#interacting-with-okapi):
 
-*Tip:* If you've already [logged into Okapi](#interacting-with-okapi), you can do this all with one command:
+```
+stripes okapi login diku_admin --okapi http://localhost:9130 --tenant diku
+```
+
+To generate the Stripes boilerplate code and post the module descriptor to Okapi in one command:
 
 ```
 $ stripes app create "Hello World" --assign diku_admin
@@ -348,19 +353,6 @@ Note: When serving up a newly created app that either does not have a module des
 $ stripes serve --hasAllPerms
 ```
 
-### Running tests
-
-The newly created app has some basic UI end-to-end tests included, designed to run with the Nightmare framework.  To run these tests, use the `test nightmare` command:
-
-```
-$ stripes test nightmare --run demo --show
-```
-
-The `--run` option specifies the tests, in this case the sample tests included with our app are named "demo".  The `--show` option will display the UI while running the tests.
-
-Additional options specific to the `@folio/ui-testing` framework can be passed in the form of `--uiTest.optionName value`.  For example, to override the default `typeInterval`, pass `--uiTest.typeInterval 50`.  Refer to [@folio/ui-testing](https://github.com/folio-org/ui-testing) for more information on available options.
-
-
 ### Including another Stripes module
 
 Now that our Hello World app is up and running on its own, we may want to bring in an existing app for testing or further development.  The CLI makes this easy.  The following will demonstrate how to add `ui-users`.
@@ -410,6 +402,11 @@ $ stripes workspace
 ```
 
 After prompting for modules, the `workspace` command will generate a directory named "stripes", clone all the selected modules, and install their dependencies.  For any platforms chosen during module selection, such as `stripes-sample-platform`, a local Stripes configuration (`stripes.config.js.local`) will be generated.
+
+If you do not see a recently-added module in the prompt list, you can fetch and refresh the list by running the following command:
+```
+$ stripes inventory --fetch
+```
 
 If a directory other than "stripes" is desired, use the `--dir` option.
 ```
@@ -640,6 +637,22 @@ Filtering languages can be done with the CLI by specifying the `languages` optio
 ```
 $ stripes build stripes.config.js --languages en es
 ```
+
+### Using Webpack DLL
+
+A technique you can use to pre-build dependencies that change less frequently so that subsequent builds can be more focused in what code needs to be transpiled and will therefore run more quickly. For more information see: [DllPlugin documentation](https://webpack.js.org/plugins/dll-plugin/).
+
+For example, you could choose to create a re-usable DLL for third-party dependencies and call it "vendor" (note that using the flag `--skipStripesBuild` is appropriate here as it will exclude Stripes-specific steps during the build. It should not be used when building a Stripes DLL):
+```
+$ stripes build --createDll react,react-dom,react-router --dllName vendor --skipStripesBuild
+```
+
+To then use that DLL in the final bundle, point to the manifest JSON file:
+```
+$ stripes build --useDll ./path/to/dll/vendor.json
+```
+
+The benefit is that if you make changes to your code, you only need to re-run the final bundle command above which bypasses the need to re-bundle the third-party dependencies, which reduces the build time. Note that in this case if you update the version of a third-party dependency, you will then need to run both commands for the change to affect the final bundle.
 
 ## Viewing diagnostic output
 
