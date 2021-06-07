@@ -4,6 +4,7 @@
 
 * Bump `mocha` to `^8.3.0`.
 * Bump `babel-plugin-istanbul`, `karma`, `karma-mocha` and `webpack-bundle-analyzer` to avoid security warnings. Refs STCLI-179.
+* Provide `--nuke` as an alias to `--removeLock` because it's easier to remember and more fun to type. Refs Mike Taylor.
 
 ## [2.2.0](https://github.com/folio-org/stripes-cli/tree/v2.2.0) (2021-04-13)
 
