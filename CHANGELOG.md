@@ -4,6 +4,7 @@
 
 * Bump `mocha` to `^8.3.0`.
 * Bump `babel-plugin-istanbul`, `karma`, `karma-mocha` and `webpack-bundle-analyzer` to avoid security warnings. Refs STCLI-179.
+* Bump `@folio/stripes-webpack` to `1.3.0` to reduce build warnings and allow transpiling of non-`@folio` namespaced modules.
 
 ## [2.2.0](https://github.com/folio-org/stripes-cli/tree/v2.2.0) (2021-04-13)
 
