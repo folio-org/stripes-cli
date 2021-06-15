@@ -1,5 +1,8 @@
 # Change history for stripes-cli
 
+## [2.3.1](https://github.com/folio-org/stripes-cli/tree/v2.3.1) (2021-06-15)
+* Updated @octokit/rest to ^10.6.0 so that @octokit/core > 3 peerDependency could be resolved. Refs STCLI-178.
+
 ## [2.3.0](https://github.com/folio-org/stripes-cli/tree/v2.3.0) (2021-06-08)
 
 * Bump `mocha` to `^8.3.0`.
