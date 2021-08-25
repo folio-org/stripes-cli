@@ -1,6 +1,6 @@
-const { babelConfig } = require('@folio/stripes-webpack');
+const { babelOptions } = require('@folio/stripes-webpack');
 
 module.exports = {
-  babelConfig,
+  babelOptions,
 };
 
