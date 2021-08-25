@@ -2,7 +2,7 @@
 
 ## 2.4.0 (IN PROGRESS)
 
-* Export babel config. Refs STCLI-182, STRIPES-742.
+* Re-export babel config options. Refs STCLI-182, STRIPES-742.
 
 ## [2.3.1](https://github.com/folio-org/stripes-cli/tree/v2.3.1) (2021-06-15)
 * Updated @octokit/rest to ^10.6.0 so that @octokit/core > 3 peerDependency could be resolved. Refs STCLI-178.
