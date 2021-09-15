@@ -1,5 +1,19 @@
 # Change history for stripes-cli
 
+## 2.4.0 (IN PROGRESS)
+
+* Re-export babel config options. Refs STCLI-182, STRIPES-742.
+* Conditionally inject webpack aliases for shared stripes-components styles based on context. Refs STCLI-183.
+
+## [2.3.1](https://github.com/folio-org/stripes-cli/tree/v2.3.1) (2021-06-15)
+* Updated @octokit/rest to ^10.6.0 so that @octokit/core > 3 peerDependency could be resolved. Refs STCLI-178.
+
+## [2.3.0](https://github.com/folio-org/stripes-cli/tree/v2.3.0) (2021-06-08)
+
+* Bump `mocha` to `^8.3.0`.
+* Bump `babel-plugin-istanbul`, `karma`, `karma-mocha` and `webpack-bundle-analyzer` to avoid security warnings. Refs STCLI-179.
+* Bump `@folio/stripes-webpack` to `1.3.0` to reduce build warnings and allow transpiling of non-`@folio` namespaced modules.
+
 ## [2.2.0](https://github.com/folio-org/stripes-cli/tree/v2.2.0) (2021-04-13)
 
 * Bump `stripes-webpack` to version 1.2.0. Fixes STCLI-175.
