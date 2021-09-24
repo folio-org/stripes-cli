@@ -4,6 +4,7 @@
 
 * Re-export babel config options. Refs STCLI-182, STRIPES-742.
 * Conditionally inject webpack aliases for shared stripes-components styles based on context. Refs STCLI-183.
+* Update `stripes-webpack` to provide `react` `17` support to apps. Refs STCLI-185.
 
 ## [2.3.1](https://github.com/folio-org/stripes-cli/tree/v2.3.1) (2021-06-15)
 * Updated @octokit/rest to ^10.6.0 so that @octokit/core > 3 peerDependency could be resolved. Refs STCLI-178.
