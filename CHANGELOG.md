@@ -1,12 +1,14 @@
 # Change history for stripes-cli
 
-## 2.4.0 (IN PROGRESS)
+## [2.4.0](https://github.com/folio-org/stripes-cli/tree/v2.4.0) (2021-09-24)
 
 * Re-export babel config options. Refs STCLI-182, STRIPES-742.
 * Conditionally inject webpack aliases for shared stripes-components styles based on context. Refs STCLI-183.
 * Update `stripes-webpack` to provide `react` `17` support to apps. Refs STCLI-185.
+* Remove `rxjs`, which only ever a hack (#260). Refs STCLI-184.
 
 ## [2.3.1](https://github.com/folio-org/stripes-cli/tree/v2.3.1) (2021-06-15)
+
 * Updated @octokit/rest to ^10.6.0 so that @octokit/core > 3 peerDependency could be resolved. Refs STCLI-178.
 
 ## [2.3.0](https://github.com/folio-org/stripes-cli/tree/v2.3.0) (2021-06-08)
