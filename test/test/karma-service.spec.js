@@ -4,7 +4,7 @@ const { config } = require('karma');
 const KarmaService = require('../../lib/test/karma-service');
 
 const webpackStub = {
-  resolve: 'somewhere',
+  entry: 'somewhere',
 };
 
 const parseConfigSub = (configPath, options) => {
@@ -25,7 +25,7 @@ describe('The karma-service', function () {
 
     it('applies webpack config', function () {
       const karmaConfig = this.sut.generateKarmaConfig(webpackStub, this.karmaOptions);
-      expect(karmaConfig).to.have.property('webpack').with.property('resolve', 'somewhere');
+      expect(karmaConfig).to.have.property('webpack').with.property('entry', 'somewhere');
     });
 
     it('applies karma options to the config', function () {
