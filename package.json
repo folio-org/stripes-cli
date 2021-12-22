@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@folio/stripes-testing": "folio-org/stripes-testing#uitest-86",
-    "@folio/stripes-webpack": "^3.0.0",
+    "@folio/stripes-webpack": "folio-org/stripes-webpack#alias-browser-mocha",
     "@octokit/rest": "^18.6.0",
     "babel-plugin-istanbul": "^6.0.0",
     "configstore": "^3.1.1",
