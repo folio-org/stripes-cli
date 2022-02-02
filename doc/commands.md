@@ -1,6 +1,6 @@
 # Stripes CLI Commands
 
-Version 1.20.0
+Version 2.5.0
 
 This following command documentation is generated from the CLI's own built-in help.  Run any command with the `--help` option to view the latest help for your currently installed CLI.  To regenerate this file, run `yarn docs`.
 
@@ -80,7 +80,7 @@ $ stripes app create "Hello World" --no-interactive
 
 ## `alias` command
 
-Maintain global aliases that apply to all platforms and apps
+Maintain global aliases that apply to all platforms and apps [deprecated: use workspace instead]
 
 Usage:
 ```
@@ -224,7 +224,7 @@ Option | Description | Type | Notes
 `--okapi` | Specify an Okapi URL | string |
 `--output` | Directory to place build output. If omitted, default value of "./output" is used. | string |
 `--publicPath` | Specify the Webpack publicPath output option | string |
-`--skipStripesBuild` | Bypass Stripes-specific steps in build (useful when building third-party Webpack DLLs). | boolean |
+`--skipStripesBuild` | Bypass Stripes-specific steps in build (useful when building third-party Webpack DLLs). | boolean | default: false
 `--sourcemap` | Include sourcemaps in build output | boolean |
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |

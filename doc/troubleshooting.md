@@ -32,28 +32,13 @@ ERROR in multi webpack-hot-middleware/client typeface-source-sans-pro @folio/str
 Module not found: Error: Can't resolve 'babel-loader' in 'C:\Users\mattjones\projects\folio\ui-users'
 ```
 
-The interim solution is to include `stripes-core` locally in your platform's dependencies, or in the case of an app, create an alias to clone of stripes-core.
+The interim solution is to include `stripes-core` locally in your platform's dependencies, or in the case of an app, create a workspace which includes stripes-core.
 
-Install stripes-core:
+Create workspace with stripes-core:
 ```
-$ git clone https://github.com/folio-org/stripes-core.git
-$ cd stripes-core
-$ yarn install
+$ stripes workspace
 ```
-
-Create an alias:
-```
-$ stripes alias add @folio/stripes-core ..path/to/stripes-core
-```
-
-Alternatively, update your `.stripesclirc` configuration:
-```
-{
-  "aliases": {
-    "@folio/stripes-core": "..path/to/stripes-core"
-  }
-}
-```
+From interactive menu, select stripes-core along with any other modules you plan to modify.
 
 ## Global install not detected
 
