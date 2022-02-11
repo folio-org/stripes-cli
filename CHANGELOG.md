@@ -1,10 +1,11 @@
 # Change history for stripes-cli
 
-## [2.5.0] (IN PROGRESS)
+## [2.5.0](https://github.com/folio-org/stripes-cli/tree/v2.5.0) (2022-02-08)
 
 * Update webpack to v5. Refs STCLI-187.
 * Avoid sabotaged `colors`. Refs STCLI-188.
 * Deprecated `alias` command and updated user documention in favor of `workspace`. Refs STCLI-155.
+* Upgrade to `mocha` `v9`.
 
 ## [2.4.0](https://github.com/folio-org/stripes-cli/tree/v2.4.0) (2021-09-24)
 
