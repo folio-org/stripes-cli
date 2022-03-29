@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 2.6.0
+## 2.6.0 IN PROGRESS
 
 * Avoid `webpack` > `5.69.1` due to `moment` incompatibilities. Refs STCLI-195.
 
