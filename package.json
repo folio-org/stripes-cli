@@ -64,7 +64,7 @@
     "simple-git": "^1.89.0",
     "supports-color": "^4.5.0",
     "update-notifier": "^2.3.0",
-    "webpack": "5.69.1",
+    "webpack": "~5.68.0",
     "webpack-bundle-analyzer": "^4.4.2",
     "yargs": "^13.1.0"
   },
