@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 2.5.2 IN PROGRESS
+## [2.5.2](https://github.com/folio-org/stripes-cli/tree/v2.5.2) (2022-04-05)
 
 * Pin `webpack` to `~5.68.0` due to `moment` and `karma-webpack` trouble. Refs STCLI-195.
 
