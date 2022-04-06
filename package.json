@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes-cli",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "Stripes Command Line Interface",
   "repository": "https://github.com/folio-org/stripes-cli",
   "publishConfig": {
@@ -64,7 +64,7 @@
     "simple-git": "^1.89.0",
     "supports-color": "^4.5.0",
     "update-notifier": "^5.1.0",
-    "webpack": "^5.58.1",
+    "webpack": "~5.68.0",
     "webpack-bundle-analyzer": "^4.4.2",
     "yargs": "^17.3.1"
   },
@@ -75,5 +75,8 @@
     "eslint": "^7.32.0",
     "sinon": "^4.1.4",
     "sinon-chai": "^2.14.0"
+  },
+  "resolutions": {
+    "isbinaryfile": "4.0.8"
   }
 }
