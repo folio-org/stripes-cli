@@ -1,7 +1,6 @@
 const expect = require('chai').expect;
 const path = require('path');
 const fs = require('fs-extra');
-const simpleGit = require('simple-git/src/git');
 
 const { templates } = require('../../lib/environment/inventory');
 const createApp = require('../../lib/create-app');
@@ -14,17 +13,7 @@ describe('The app create command', function () {
     this.sandbox.stub(fs, 'removeSync');
     this.sandbox.stub(fs, 'renameSync');
     this.sandbox.stub(fs, 'readdirSync').returns(['__appDir__', '__appName__.js']);
-    this.sandbox.stub(simpleGit.prototype, '_run').callsFake(function (command, cb) {
-      console.log('called command', command);
 
-      // to indicate success (will resolve eventual promise)
-      cb.call(this, null, 'any message');
-
-      // OR to indicate failure (will reject eventual promise)
-      simpleGit.fail(this, 'error message', cb);
-
-      return this;
-    });
     this.sandbox.stub(templates, 'uiApp').returns('gitUrl');
 
     const statSyncStub = this.sandbox.stub(fs, 'statSync');
