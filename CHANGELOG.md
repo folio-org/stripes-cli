@@ -1,10 +1,38 @@
 # Change history for stripes-cli
 
-## 2.3.0 (IN PROGRESS)
+## 2.6.0 IN PROGRESS
+
+* Pin `webpack` to `~5.68.0` due to `moment` and `karma-webpack` trouble. Refs STCLI-195.
+* Upgrade `simple-git` to `^3.5.0` to avoid command injection vulnerability. Refs STCLI-200, STCLI-192.
+* Provide `--nuke` as an alias to `--removeLock` because it's easier to remember and more fun to type. Refs Mike Taylor.
+
+## [2.5.1](https://github.com/folio-org/stripes-cli/tree/v2.5.1) (2022-03-25)
+
+* Avoid sabotaged `isBinaryFile`. Fixes STCLI-193.
+
+## [2.5.0](https://github.com/folio-org/stripes-cli/tree/v2.5.0) (2022-02-08)
+
+* Update webpack to v5. Refs STCLI-187.
+* Avoid sabotaged `colors`. Refs STCLI-188.
+* Deprecated `alias` command and updated user documention in favor of `workspace`. Refs STCLI-155.
+* Upgrade to `mocha` `v9`.
+
+## [2.4.0](https://github.com/folio-org/stripes-cli/tree/v2.4.0) (2021-09-24)
+
+* Re-export babel config options. Refs STCLI-182, STRIPES-742.
+* Conditionally inject webpack aliases for shared stripes-components styles based on context. Refs STCLI-183.
+* Update `stripes-webpack` to provide `react` `17` support to apps. Refs STCLI-185.
+* Remove `rxjs`, which only ever a hack (#260). Refs STCLI-184.
+
+## [2.3.1](https://github.com/folio-org/stripes-cli/tree/v2.3.1) (2021-06-15)
+
+* Updated @octokit/rest to ^10.6.0 so that @octokit/core > 3 peerDependency could be resolved. Refs STCLI-178.
+
+## [2.3.0](https://github.com/folio-org/stripes-cli/tree/v2.3.0) (2021-06-08)
 
 * Bump `mocha` to `^8.3.0`.
 * Bump `babel-plugin-istanbul`, `karma`, `karma-mocha` and `webpack-bundle-analyzer` to avoid security warnings. Refs STCLI-179.
-* Provide `--nuke` as an alias to `--removeLock` because it's easier to remember and more fun to type. Refs Mike Taylor.
+* Bump `@folio/stripes-webpack` to `1.3.0` to reduce build warnings and allow transpiling of non-`@folio` namespaced modules.
 
 ## [2.2.0](https://github.com/folio-org/stripes-cli/tree/v2.2.0) (2021-04-13)
 
