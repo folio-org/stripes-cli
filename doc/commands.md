@@ -1222,7 +1222,7 @@ Positional | Description | Type | Notes
 Option | Description | Type | Notes
 ---|---|---|---
 `--bundle` | Create and use a production bundle retaining test hooks | boolean |
-`--cache` | Use HardSourceWebpackPlugin cache | boolean |
+`--cache, --karma.cache` | Enable webpack's caching for test runs | boolean | default: `false`
 `--coverage, --karma.coverage` | Enable Karma coverage reports | boolean |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
 `--host` | Development server host | string | default: "localhost"
@@ -1232,12 +1232,18 @@ Option | Description | Type | Notes
 `--port` | Development server port | number | default: 3000
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
+`--watch, --karma.watch` | Enable webpack's watching via karma options | boolean | default: `false`
 
 Examples:
 
 Run tests with Karma for the current app module:
 ```
 $ stripes test karma
+```
+
+Run tests with Karma for the current app module with watch enabled:
+```
+$ stripes test karma --watch true
 ```
 
 ## `workspace` command
