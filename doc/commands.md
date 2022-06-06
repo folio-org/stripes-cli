@@ -1222,7 +1222,7 @@ Positional | Description | Type | Notes
 Option | Description | Type | Notes
 ---|---|---|---
 `--bundle` | Create and use a production bundle retaining test hooks | boolean |
-`--cache, --karma.cache` | Enable webpack's caching for test runs | boolean | default: `false`
+`--cache` | Enable webpack's caching for quicker rebuilds during development. | boolean | default: `false`
 `--coverage, --karma.coverage` | Enable Karma coverage reports | boolean |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
 `--host` | Development server host | string | default: "localhost"
@@ -1232,7 +1232,7 @@ Option | Description | Type | Notes
 `--port` | Development server port | number | default: 3000
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
-`--watch, --karma.watch` | Enable webpack's watching via karma options | boolean | default: `false`
+`--watch` | Watch test files for changes and rerun tests automatically when changes are saved. | boolean | default: `false`
 
 Examples:
 
