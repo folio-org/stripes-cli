@@ -1241,9 +1241,9 @@ Run tests with Karma for the current app module:
 $ stripes test karma
 ```
 
-Run tests with Karma for the current app module with watch enabled:
+Run tests with Karma for the current app module with watching enabled:
 ```
-$ stripes test karma --watch true
+$ stripes test karma --watch
 ```
 
 ## `workspace` command
