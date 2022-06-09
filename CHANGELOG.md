@@ -6,6 +6,7 @@
 * Upgrade `simple-git` to `^3.5.0` to avoid command injection vulnerability. Refs STCLI-200, STCLI-192.
 * Upgrade `stripes-webpack` to `^4.0.0`. Refs STCLI-203.
 * Update NodeJS to Active LTS. Refs STCLI-208.
+* Provide `--cache false` to disable webpack caching. Refs STCLI-209.
 
 ## [2.5.1](https://github.com/folio-org/stripes-cli/tree/v2.5.1) (2022-03-25)
 
