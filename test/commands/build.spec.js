@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const buildAppCommand = require('../../lib/commands/build');
 
-const { processError, processStats, emitLintWarnings, limitChunks, ignoreCache } = require('../../lib/webpack-common');
+const { ignoreCache } = require('../../lib/webpack-common');
 
 const packageJsonStub = {};
 const tenantConfig = {};
