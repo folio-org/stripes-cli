@@ -1117,7 +1117,7 @@ Positional | Description | Type | Notes
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--cache` | Use HardSourceWebpackPlugin cache | boolean |
+`--cache` | Use webpack cache | boolean | default: true
 `--coverage` | Enable coverage generation | boolean |
 `--devtool` | Specify the Webpack devtool for generating source maps | string |
 `--existing-build` | Serve an existing build from the supplied directory | string |
@@ -1191,7 +1191,7 @@ Positional | Description | Type | Notes
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--cache` | Use HardSourceWebpackPlugin cache | boolean |
+`--cache` | Use webpack cache | boolean | default: true
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
 `--host` | Development server host | string | default: "localhost"
 `--languages` | Languages to include in tenant build | array |

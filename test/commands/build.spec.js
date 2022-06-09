@@ -1,6 +1,7 @@
 const expect = require('chai').expect;
-
 const buildAppCommand = require('../../lib/commands/build');
+
+const { ignoreCache } = require('../../lib/webpack-common');
 
 const packageJsonStub = {};
 const tenantConfig = {};
@@ -61,5 +62,14 @@ describe('The app create command', function () {
     expect(stripesCoreStub.api.build).to.have.been.calledWith(tenantConfig, expectedArgs);
     expect(console.log).to.have.been.calledWithMatch('Building...');
     done();
+  });
+
+  it('turns off webpack caching when --output flag is used.', function () {
+    const expectedArgs = Object.assign({}, this.argv, { cache: false, outputPath: './output', webpackOverrides: [ignoreCache] });
+    this.sut.stripesOverrides(platformStub, stripesCoreStub);
+    this.sut.handler(Object.assign({}, this.argv, { cache: false }));
+
+    expect(buildAppCommand.handler).to.have.been.calledOnce;
+    expect(stripesCoreStub.api.build).to.have.been.calledWith(tenantConfig, expectedArgs);
   });
 });
