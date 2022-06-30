@@ -51,4 +51,10 @@ describe('The webpack-common module', function () {
       expect(result.resolveLoader.modules).to.not.include('path/to/yarn/global/npm_modules');
     });
   });
+
+  describe('ignoreCache', () => {
+    it('"--cache false" turns off caching', () => {
+      expect(webpackCommon.ignoreCache({})).to.eql({ cache: false });
+    });
+  });
 });
