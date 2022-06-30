@@ -1117,7 +1117,7 @@ Positional | Description | Type | Notes
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--cache` | Use HardSourceWebpackPlugin cache | boolean |
+`--cache` | Use webpack cache | boolean | default: true
 `--coverage` | Enable coverage generation | boolean |
 `--devtool` | Specify the Webpack devtool for generating source maps | string |
 `--existing-build` | Serve an existing build from the supplied directory | string |
@@ -1191,7 +1191,7 @@ Positional | Description | Type | Notes
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--cache` | Use HardSourceWebpackPlugin cache | boolean |
+`--cache` | Use webpack cache | boolean | default: true
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
 `--host` | Development server host | string | default: "localhost"
 `--languages` | Languages to include in tenant build | array |
@@ -1222,7 +1222,7 @@ Positional | Description | Type | Notes
 Option | Description | Type | Notes
 ---|---|---|---
 `--bundle` | Create and use a production bundle retaining test hooks | boolean |
-`--cache` | Use HardSourceWebpackPlugin cache | boolean |
+`--cache` | Enable webpack's caching for quicker rebuilds during development. | boolean | default: `false`
 `--coverage, --karma.coverage` | Enable Karma coverage reports | boolean |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
 `--host` | Development server host | string | default: "localhost"
@@ -1232,12 +1232,18 @@ Option | Description | Type | Notes
 `--port` | Development server port | number | default: 3000
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
+`--watch` | Watch test files for changes and rerun tests automatically when changes are saved. | boolean | default: `false`
 
 Examples:
 
 Run tests with Karma for the current app module:
 ```
 $ stripes test karma
+```
+
+Run tests with Karma for the current app module with watching enabled:
+```
+$ stripes test karma --watch
 ```
 
 ## `workspace` command
