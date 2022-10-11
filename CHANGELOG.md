@@ -1,5 +1,10 @@
 # Change history for stripes-cli
 
+## [2.6.1](https://github.com/folio-org/stripes-cli/tree/v2.6.1) (2022-10-11)
+
+* Correctly implement caching, watching (default to true when CLI flags are absent). Refs STCLI-198.
+* Consume `webpack.config.cli.dev` as a function, an accidental breaking change in STRWEB-49. Refs STCLI-211.
+
 ## [2.6.0](https://github.com/folio-org/stripes-cli/tree/v2.6.0) (2022-06-14)
 
 * Pin `webpack` to `~5.68.0` due to `moment` and `karma-webpack` trouble. Refs STCLI-195.
