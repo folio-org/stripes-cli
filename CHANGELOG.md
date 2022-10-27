@@ -4,6 +4,7 @@
 
 * Correctly implement caching, watching (default to true when CLI flags are absent). Refs STCLI-198.
 * Consume `webpack.config.cli.dev` as a function, an accidental breaking change in STRWEB-49. Refs STCLI-211.
+* Fix outputPath positional is ignored on `build` command. Refs STCLI-165.
 
 ## [2.6.0](https://github.com/folio-org/stripes-cli/tree/v2.6.0) (2022-06-14)
 
