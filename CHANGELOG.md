@@ -1,5 +1,9 @@
 # Change history for stripes-cli
 
+## 2.6.2 IN PROGRESS
+
+* Fix outputPath positional is ignored on `build` command. Refs STCLI-165.
+
 ## [2.6.1](https://github.com/folio-org/stripes-cli/tree/v2.6.1) (2022-10-11)
 
 * Correctly implement caching, watching (default to true when CLI flags are absent). Refs STCLI-198.
