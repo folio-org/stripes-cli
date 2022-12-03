@@ -4,6 +4,7 @@
 
 * Fix outputPath positional is ignored on `build` command. Refs STCLI-165.
 * Add `stripes-ui` to the list of stripes modules. Refs STCLI-217.
+* Turn off `exprContextCritical` when running karma tests. Refs STCLI-220.
 
 ## [2.6.1](https://github.com/folio-org/stripes-cli/tree/v2.6.1) (2022-10-11)
 
