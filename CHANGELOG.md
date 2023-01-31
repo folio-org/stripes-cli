@@ -1,17 +1,20 @@
 # Change history for stripes-cli
 
-## 2.6.2 IN PROGRESS
+## [2.6.2](https://github.com/folio-org/stripes-cli/tree/v2.6.2) (2023-01-30)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.6.1...v2.6.2)
 
 * Fix outputPath positional is ignored on `build` command. Refs STCLI-165.
 * Add `stripes-ui` to the list of stripes modules. Refs STCLI-217.
 * Turn off `exprContextCritical` when running karma tests. Refs STCLI-220.
 
 ## [2.6.1](https://github.com/folio-org/stripes-cli/tree/v2.6.1) (2022-10-11)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.6.0...v2.6.1)
 
 * Correctly implement caching, watching (default to true when CLI flags are absent). Refs STCLI-198.
 * Consume `webpack.config.cli.dev` as a function, an accidental breaking change in STRWEB-49. Refs STCLI-211.
 
 ## [2.6.0](https://github.com/folio-org/stripes-cli/tree/v2.6.0) (2022-06-14)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.5.1...v2.6.0)
 
 * Pin `webpack` to `~5.68.0` due to `moment` and `karma-webpack` trouble. Refs STCLI-195.
 * Upgrade `simple-git` to `^3.5.0` to avoid command injection vulnerability. Refs STCLI-200, STCLI-192.
@@ -20,10 +23,12 @@
 * Provide `--cache false` to disable webpack caching. Refs STCLI-209.
 
 ## [2.5.1](https://github.com/folio-org/stripes-cli/tree/v2.5.1) (2022-03-25)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.5.0...v2.5.1)
 
 * Avoid sabotaged `isBinaryFile`. Fixes STCLI-193.
 
 ## [2.5.0](https://github.com/folio-org/stripes-cli/tree/v2.5.0) (2022-02-08)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.4.0...v2.5.0)
 
 * Update webpack to v5. Refs STCLI-187.
 * Avoid sabotaged `colors`. Refs STCLI-188.
