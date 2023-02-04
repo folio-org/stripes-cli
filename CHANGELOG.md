@@ -1,5 +1,9 @@
 # Change history for stripes-cli
 
+## 2.6.3 IN PROGRESS
+
+* Upgrade `mocha` from 9 to 10 fixing ReDoS. Refs STCLI-226.
+
 ## [2.6.2](https://github.com/folio-org/stripes-cli/tree/v2.6.2) (2023-01-30)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.6.1...v2.6.2)
 
