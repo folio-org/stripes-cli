@@ -1,6 +1,7 @@
 # Change history for stripes-cli
 
-## 2.7.0 IN PROGRESS
+## [2.7.0](https://github.com/folio-org/stripes-cli/tree/v2.7.0) (2023-02-07)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.6.3...v2.7.0)
 
 * Bump `stripes-webpack` to `^4.2` to use `stripes-ui` for the entrypoint.
 
