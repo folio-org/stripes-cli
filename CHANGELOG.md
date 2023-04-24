@@ -3,6 +3,7 @@
 ## 2.8.0 IN PROGRESS
 
 * Adjust finding `babel-loader` in webpack config in order to fix coverage. Fixes STCLI-231.
+* Upgrade `mocha` from 9 to 10 fixing ReDoS. Refs STCLI-226.
 * Unpin `webpack` from `~5.68.0`. Refs STCLI-222.
 
 ## [2.7.0](https://github.com/folio-org/stripes-cli/tree/v2.7.0) (2023-02-07)
