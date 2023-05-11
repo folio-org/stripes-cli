@@ -31,7 +31,7 @@
     "express": "^4.17.1",
     "fast-xml-parser": "^3.12.10",
     "find-up": "^2.1.0",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^11.1.1",
     "get-stdin": "^6.0.0",
     "global-dirs": "^0.1.1",
     "import-lazy": "^3.1.0",
