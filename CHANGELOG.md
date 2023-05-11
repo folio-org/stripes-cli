@@ -7,6 +7,7 @@
 * Unpin `webpack` from `~5.68.0`. Refs STCLI-222.
 * Bump `@octokit/rest` to `^19.0.7`.
 * Bump `update-notifier` to `^6.0.2`.
+* Bump `semver` to `^7.5.0`.
 
 ## [2.7.0](https://github.com/folio-org/stripes-cli/tree/v2.7.0) (2023-02-07)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.6.3...v2.7.0)
