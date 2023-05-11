@@ -72,9 +72,7 @@
     "@folio/eslint-config-stripes": "^6.0.0",
     "chai": "^4.1.2",
     "colors": "1.4.0",
-    "eslint": "^7.32.0",
-    "sinon": "^4.1.4",
-    "sinon-chai": "^2.14.0"
+    "eslint": "^7.32.0"
   },
   "resolutions": {
     "isbinaryfile": "4.0.8"
