@@ -10,6 +10,7 @@
 * Bump `semver` to `^7.5.0`.
 * Bump `fs-extra` to `^11.1.1`.
 * Bump `just-kebab-case` to `^4.2.0`.
+* Remove `isbinaryfile` resolution.
 
 ## [2.7.0](https://github.com/folio-org/stripes-cli/tree/v2.7.0) (2023-02-07)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.6.3...v2.7.0)
