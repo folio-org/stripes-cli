@@ -1,5 +1,9 @@
 # Change history for stripes-cli
 
+## 2.6.4 IN PROGRESS
+
+* Bump `stripes-webpack` to `~4.1.3` to include babel plugins. Refs STRWEB-86.
+
 ## [2.6.3](https://github.com/folio-org/stripes-cli/tree/v2.6.3) (2023-02-07)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.6.2...v2.6.3)
 
