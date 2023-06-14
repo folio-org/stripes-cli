@@ -12,6 +12,7 @@
 * Bump `just-kebab-case` to `^4.2.0`.
 * Remove `isbinaryfile` resolution.
 * Bump devdeps `sinon` to `15.0.4`, `sinon-chai` to `3.7.0`.
+* Bump `fast-xml-parser` to `4.2.4`. Refs STCLI-234.
 
 ## [2.7.0](https://github.com/folio-org/stripes-cli/tree/v2.7.0) (2023-02-07)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.6.3...v2.7.0)
