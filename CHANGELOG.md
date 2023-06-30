@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 2.8.0 IN PROGRESS
+## 3.0.0 IN PROGRESS
 
 * Adjust finding `babel-loader` in webpack config in order to fix coverage. Fixes STCLI-231.
 * Upgrade `mocha` from 9 to 10 fixing ReDoS. Refs STCLI-226.
@@ -13,6 +13,9 @@
 * Remove `isbinaryfile` resolution.
 * Bump devdeps `sinon` to `15.0.4`, `sinon-chai` to `3.7.0`.
 * Bump `fast-xml-parser` to `4.2.4`. Refs STCLI-234.
+* Bump devdeps `@folio/eslint-config-stripes` to `^7.0.0`.
+* *BREAKING* Bump `@folio/stripes-webpack` to `^5.0.0`. Refs STCLI-235.
+* *BREAKING* Bump devdep `@folio/eslint-config-stripes` to `^7.0.0` for stripes-webpack compat.
 
 ## [2.7.0](https://github.com/folio-org/stripes-cli/tree/v2.7.0) (2023-02-07)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.6.3...v2.7.0)
