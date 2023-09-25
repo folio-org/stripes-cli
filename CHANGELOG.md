@@ -16,6 +16,7 @@
 * Bump devdeps `@folio/eslint-config-stripes` to `^7.0.0`.
 * *BREAKING* Bump `@folio/stripes-webpack` to `^5.0.0`. Refs STCLI-235.
 * *BREAKING* Bump devdep `@folio/eslint-config-stripes` to `^7.0.0` for stripes-webpack compat.
+* Properly configure/calculate coverage for `stripes test karma` command. Refs STCLI-237
 
 ## [2.7.0](https://github.com/folio-org/stripes-cli/tree/v2.7.0) (2023-02-07)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.6.3...v2.7.0)
