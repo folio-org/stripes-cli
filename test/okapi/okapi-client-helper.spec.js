@@ -6,7 +6,6 @@ const {
   ensureOk,
   optionsHeaders,
   optionsBody,
-  okapiFetch,
 } = require('../../lib/okapi/okapi-client-helper');
 
 
@@ -43,7 +42,7 @@ describe('okapi-client-helpers', function () {
       };
       let didError = false;
       try {
-        const r = await ensureOk(res);
+        await ensureOk(res);
       } catch (e) {
         didError = true;
         expect(e instanceof OkapiError).to.be.true;
