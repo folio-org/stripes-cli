@@ -3,7 +3,7 @@ const path = require('path');
 const stdin = require('../../lib/cli/stdin');
 const { stripesConfigMiddleware } = require('../../lib/cli/stripes-config-middleware');
 const StripesCliError = require('../../lib/cli/stripes-cli-error');
-const stripesConfigTestFile = require('./stripes-test.config.js');
+const stripesConfigTestFile = require('./stripes-test.config');
 
 const stripesConfigStub = {
   okapi: {
