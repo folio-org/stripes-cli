@@ -1,6 +1,7 @@
 # Change history for stripes-cli
 
-## 3.0.0 IN PROGRESS
+## [3.0.0](https://github.com/folio-org/stripes-cli/tree/v3.0.0) (2023-10-11)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.7.0...v3.0.0)
 
 * Adjust finding `babel-loader` in webpack config in order to fix coverage. Fixes STCLI-231.
 * Upgrade `mocha` from 9 to 10 fixing ReDoS. Refs STCLI-226.
