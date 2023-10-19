@@ -2,6 +2,8 @@
 
 ## 3.1.0 IN PROGRESS
 
+* Log additional error details. Refs STCLI-240.
+
 ## [3.0.0](https://github.com/folio-org/stripes-cli/tree/v3.0.0) (2023-10-11)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.7.0...v3.0.0)
 
