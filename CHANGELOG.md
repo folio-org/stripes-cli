@@ -4,6 +4,7 @@
 
 * Log additional error details. Refs STCLI-240.
 * Add new projects to stripes workspace command. Refs STCLI-241.
+* update karma libraries to latest versions. Refs STCLI-174.
 
 ## [3.0.0](https://github.com/folio-org/stripes-cli/tree/v3.0.0) (2023-10-11)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.7.0...v3.0.0)
