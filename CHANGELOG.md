@@ -1,5 +1,9 @@
 # Change history for stripes-cli
 
+## 3.0.1 IN PROGRESS
+
+* Bump `@folio/stripes-webpack` to `^5.0.2`.
+
 ## [3.0.0](https://github.com/folio-org/stripes-cli/tree/v3.0.0) (2023-10-11)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.7.0...v3.0.0)
 
