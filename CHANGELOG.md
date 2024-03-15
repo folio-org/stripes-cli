@@ -1,6 +1,9 @@
 # Change history for stripes-cli
 
-## 3.1.0 IN PROGRESS
+## 3.2.0 IN PROGRESS
+
+## [3.1.0](https://github.com/folio-org/stripes-cli/tree/v3.1.0) (2024-03-12)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.0.0...v3.1.0)
 
 * Log additional error details. Refs STCLI-240.
 * Add new projects to stripes workspace command. Refs STCLI-241.
