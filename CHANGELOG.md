@@ -1,5 +1,9 @@
 # Change history for stripes-cli
 
+## 2.8.0 IN PROGRESS
+
+* Add a proxy server to overcome issues with cookies SameSite policy. Refs STCLI-246.
+
 ## [2.7.1](https://github.com/folio-org/stripes-cli/tree/v2.7.1) (2023-05-31)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v2.7.0...v2.7.1)
 
