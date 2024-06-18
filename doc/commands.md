@@ -1148,7 +1148,7 @@ Serve a build previously created with "stripes build":
 ```
 $ stripes serve --existing-build output
 ```
-Serve a platform with a local proxy server that points to remove okapi server:
+Serve a platform with a local proxy server that points to a remote okapi server:
 ```
 $ stripes serve --startProxy --proxyPort 3010 --okapi http://some-okapi-server.folio.org
 ```
