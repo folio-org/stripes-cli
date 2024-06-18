@@ -1131,6 +1131,8 @@ Option | Description | Type | Notes
 `--port` | Development server port | number | default: 3000
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
+`--startProxy` | Start a local proxy server between the platform and okapi | boolean | default: false
+`--proxyPort` | Port number for the proxy server | number | default: 3010
 
 Examples:
 
@@ -1145,6 +1147,10 @@ $ stripes serve stripes.config.js
 Serve a build previously created with "stripes build":
 ```
 $ stripes serve --existing-build output
+```
+Serve a platform with a local proxy server that points to remove okapi server:
+```
+$ stripes serve --startProxy --proxyPort 3010 --okapi http://some-okapi-server.folio.org
 ```
 Serve an app (in app context) with a mock backend server":
 ```

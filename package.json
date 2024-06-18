@@ -37,6 +37,7 @@
     "fs-extra": "^11.1.1",
     "get-stdin": "^6.0.0",
     "global-dirs": "^0.1.1",
+    "http-proxy-middleware": "^3.0.0",
     "import-lazy": "^3.1.0",
     "inquirer": "^8.2.0",
     "is-installed-globally": "^0.4.0",
