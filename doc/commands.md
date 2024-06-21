@@ -14,6 +14,7 @@ This following command documentation is generated from the CLI's own built-in he
     * [`app perms` command](#app-perms-command)
 * [`build` command](#build-command)
 * [`inventory` command](#inventory-command)
+* [`lint` command](#lint-command)
 * [`mod` command](#mod-command)
     * [`mod add` command](#mod-add-command)
     * [`mod descriptor` command](#mod-descriptor-command)
@@ -51,6 +52,7 @@ This following command documentation is generated from the CLI's own built-in he
 * [`status` command](#status-command)
 * [`test` command](#test-command)
     * [`test karma` command](#test-karma-command)
+* [`translate` command](#translate-command)
 * [`workspace` command](#workspace-command)
 * [`completion` command](#completion-command)
 
@@ -1291,4 +1293,79 @@ Generate a bash completion script.  Follow instructions included with the script
 Usage:
 ```
 $ stripes completion
+```
+
+## `translate` command
+
+Translation utilities
+
+Usage:
+```
+$ stripes translate [compile | pcheck | stats]
+```
+
+Sub-commands:
+* [`stripes translate compile`](#translate-compile-command)
+* [`stripes translate pcheck`](#translate-pcheck-command)
+* [`stripes translate stats`](#translate-stats-command)
+
+### `translate compile` command
+
+Compile translations to AST. This is done automatically by CI workflows when merging any PR or publishing a release. Compiled translations must not be committed to source control.
+
+Usage:
+```
+$ stripes translate compile
+```
+
+### `translate pcheck` command
+
+Look for permissions defined in `package.json` that lack corresponding translation keys in `en.json`. Exits non-zero if any are missing.
+
+Usage:
+```
+$ stripes translate pcheck
+```
+Output:
+```
+Could not find a translation for permission.call-number-browse.view.
+Could not find a translation for permission.subjects.view.
+```
+
+### `translate stats` command
+
+Compile completion statistics for each locale.
+
+Usage:
+```
+$ stripes translate stats
+```
+Output:
+```
+    ar  83% 720/864
+   ber   0% 0/864
+    ca   0% 2/864
+ cs_CZ  98% 855/864
+    da  15% 132/864
+    de  95% 827/864
+ en_GB   0% 0/864
+ en_SE   0% 0/864
+    es  59% 511/864
+```
+
+## `lint` command
+
+Run lint on `./lib` and/or `./src` directories. Includes `.eslintrc`. Exits 0 on warnings, 1 on errors.
+
+Usage:
+```
+$ stripes lint
+```
+Output:
+```
+/Users/zburke/projects/folio-org/stripes-cli/lib/commands/lint.js
+  17:24 error     Arrow function used ambiguously with a conditional expression.  no-confusing-arrow
+
+✖ 1 problem (1 error, 0 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
 ```
