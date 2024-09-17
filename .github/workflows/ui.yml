@@ -12,4 +12,5 @@ jobs:
       jest-enabled: true
       jest-test-command: yarn run test
       sonar-sources: ./lib
+      compile-translations: false
 
