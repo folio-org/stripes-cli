@@ -3,6 +3,7 @@
 ## 3.2.0 IN PROGRESS
 
 * Add a proxy server to overcome issues with cookies SameSite policy. Refs STCLI-246.
+* Bug fix: don't pass unused arguments to `okToPull()`. Refs STCLI-250.
 
 ## [3.1.0](https://github.com/folio-org/stripes-cli/tree/v3.1.0) (2024-03-12)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.0.0...v3.1.0)
