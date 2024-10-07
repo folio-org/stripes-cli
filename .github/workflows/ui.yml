@@ -13,4 +13,6 @@ jobs:
       jest-test-command: yarn run test
       sonar-sources: ./lib
       compile-translations: false
+      generate-module-descriptor: false
+      publish-module-descriptor: false
 
