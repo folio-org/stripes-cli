@@ -1,6 +1,9 @@
 # Change history for stripes-cli
 
-## 3.2.0 IN PROGRESS
+## 3.3.0 IN PROGRESS
+
+## [3.2.0](https://github.com/folio-org/stripes-cli/tree/v3.2.0) (2024-10-09)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.1.0...v3.2.0)
 
 * Add a proxy server to overcome issues with cookies SameSite policy. Refs STCLI-246.
 * Bug fix: don't pass unused arguments to `okToPull()`. Refs STCLI-250.
