@@ -1,5 +1,9 @@
 # Change history for stripes-cli
 
+## 3.3.0 IN PROGRESS
+
+* Prune STS headers, permitting local non-SSL access via proxy. Refs STCLI-248.
+
 ## 3.2.0 IN PROGRESS
 
 * Add a proxy server to overcome issues with cookies SameSite policy. Refs STCLI-246.
