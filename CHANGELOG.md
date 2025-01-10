@@ -4,6 +4,7 @@
 
 * Prune STS headers, permitting local non-SSL access via proxy. Refs STCLI-248.
 * Turn off `<StrictMode>` when running tests. Refs STCLI-256.
+* Check for `main` branch in `stripes platform pull` command. Refs STCLI-258.
 
 ## [3.2.0](https://github.com/folio-org/stripes-cli/tree/v3.2.0) (2024-10-09)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.1.0...v3.2.0)
