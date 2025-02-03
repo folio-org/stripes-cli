@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 3.3.0 IN PROGRESS
+## 4.0.0 IN PROGRESS
 
 * Prune STS headers, permitting local non-SSL access via proxy. Refs STCLI-248.
 * Turn off `<StrictMode>` when running tests. Refs STCLI-256.
