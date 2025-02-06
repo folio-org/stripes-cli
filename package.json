@@ -74,7 +74,7 @@
     "yargs": "^17.3.1"
   },
   "devDependencies": {
-    "@folio/eslint-config-stripes": "^7.0.0",
+    "@folio/eslint-config-stripes": "^8.0.0",
     "chai": "^4.1.2",
     "colors": "1.4.0",
     "eslint": "^7.32.0",

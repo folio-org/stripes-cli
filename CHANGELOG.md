@@ -8,6 +8,7 @@
 * *BREAKING* bump `@folio/stripes-webpack` to `6.0.0`.
 * *BREAKING* bump `NodeJS` to `v20`. Refs STCLI-260.
 * Bump `@formatjs/cli` and `@formatjs/cli-lib` to their latest versions. Refs STCLI-262.
+* *BREAKING* bump `@folio/eslint-config-stripes` to `8.0.0`.
 
 ## [3.2.0](https://github.com/folio-org/stripes-cli/tree/v3.2.0) (2024-10-09)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.1.0...v3.2.0)
