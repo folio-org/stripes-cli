@@ -4,6 +4,7 @@
     "no-console": "off",
     "import/no-extraneous-dependencies": "off",
     "prefer-object-spread": "off",
-    "no-multiple-empty-lines": "off"
+    "no-multiple-empty-lines": "off",
+    "import/extensions": "off"
   }
 }

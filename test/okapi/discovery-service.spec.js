@@ -1,8 +1,7 @@
-const expect = require('chai').expect;
-const fs = require('fs');
-
-const DiscoveryService = require('../../lib/okapi/discovery-service');
-const OkapiError = require('../../lib/okapi/okapi-error');
+import { expect } from 'chai';
+import fs from 'fs';
+import DiscoveryService from '../../lib/okapi/discovery-service.js';
+import OkapiError from '../../lib/okapi/okapi-error.js';
 
 const okapiResolve = (data) => Promise.resolve({ json: () => data });
 const okapiReject = (message) => Promise.reject(new OkapiError({}, message));

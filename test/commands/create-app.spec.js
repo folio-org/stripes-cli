@@ -1,9 +1,8 @@
-const expect = require('chai').expect;
-const path = require('path');
-const fs = require('fs-extra');
-
-const { templates } = require('../../lib/environment/inventory');
-const createApp = require('../../lib/create-app');
+import { expect } from 'chai';
+import path from 'path';
+import fs from 'fs-extra';
+import { templates } from '../../lib/environment/inventory.js';
+import createApp from '../../lib/create-app.js';
 
 describe('The app create command', function () {
   beforeEach(function () {

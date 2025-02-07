@@ -1,9 +1,10 @@
 // Test setup for Mocha tests
 // Root-level Mocha hooks defined here apply to all tests regardless of file.
 
-const sinon = require('sinon');
-const chai = require('chai');
-const sinonChai = require('sinon-chai');
+import sinon from 'sinon';
+
+import chai from 'chai';
+import sinonChai from 'sinon-chai';
 
 before(function () {
   chai.use(sinonChai);
