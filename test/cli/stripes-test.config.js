@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   okapi: {
     url: 'http://localhost:9130',
     tenant: 'diku',

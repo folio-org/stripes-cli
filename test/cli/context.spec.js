@@ -1,8 +1,8 @@
-const expect = require('chai').expect;
-const fs = require('fs');
-const path = require('path');
-require('fast-xml-parser');  // included here to resolve a lazy-load issue of this module within tests
-const context = require('../../lib/cli/context');
+import { expect } from 'chai';
+import fs from 'fs';
+import path from 'path';
+import 'fast-xml-parser';  // included here to resolve a lazy-load issue of this module within tests
+import context from '../../lib/cli/context.js';
 
 const createModuleWithType = (type) => ({
   name: type === 'components' ? '@folio/stripes-components' : '@folio/ui-app',
@@ -158,7 +158,7 @@ describe('The CLI\'s getContext', function () {
     this.sandbox.stub(context, 'require').returns({
       name: '@folio/stripes-cli',
     });
-    const result = this.sut(path.resolve(__dirname, '../..'));
+    const result = this.sut(path.resolve(import.meta.dirname, '../..'));
 
     expect(result).to.include({
       type: 'cli',
