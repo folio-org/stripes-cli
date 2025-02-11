@@ -7,7 +7,6 @@
 * Check for `main` branch in `stripes platform pull` command. Refs STCLI-258.
 * *BREAKING* bump `@folio/stripes-webpack` to `6.0.0`.
 * *BREAKING* bump `NodeJS` to `v20`. Refs STCLI-260.
-* Bump `@formatjs/cli` and `@formatjs/cli-lib` to their latest versions. Refs STCLI-262.
 * *BREAKING* bump `@folio/eslint-config-stripes` to `8.0.0`.
 * *BREAKING* Correctly implement `transpile`. Refs STCLI-259.
 
