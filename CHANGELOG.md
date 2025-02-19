@@ -1,6 +1,7 @@
 # Change history for stripes-cli
 
-## IN PROGRESS
+## [3.2.2](https://github.com/folio-org/stripes-cli/tree/v3.2.2) (2025-02-18)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.2.1...v3.2.2)
 
 * Bump `@folio/stripes-webpack` to `^5.2.1`. Refs STCLI-263.
 
