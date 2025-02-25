@@ -1,6 +1,7 @@
 # Change history for stripes-cli
 
-## 4.0.0 IN PROGRESS
+## [4.0.0](https://github.com/folio-org/stripes-cli/tree/v4.0.0) (2025-02-24)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.2.0...v4.0.0)
 
 * Prune STS headers, permitting local non-SSL access via proxy. Refs STCLI-248.
 * Turn off `<StrictMode>` when running tests. Refs STCLI-256.
