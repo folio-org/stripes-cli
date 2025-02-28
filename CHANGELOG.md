@@ -1,6 +1,13 @@
 # Change history for stripes-cli
 
-## 3.3.0 IN PROGRESS
+## 4.0.0 IN PROGRESS
+
+* Prune STS headers, permitting local non-SSL access via proxy. Refs STCLI-248.
+* Turn off `<StrictMode>` when running tests. Refs STCLI-256.
+* Check for `main` branch in `stripes platform pull` command. Refs STCLI-258.
+* *BREAKING* bump `@folio/stripes-webpack` to `6.0.0`.
+* *BREAKING* bump `@folio/eslint-config-stripes` to `8.0.0`.
+* Loosen GA workflow dependency to `@1` for `^1.0.0` compatibility. Refs STCLI-266.
 
 ## [3.2.0](https://github.com/folio-org/stripes-cli/tree/v3.2.0) (2024-10-09)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.1.0...v3.2.0)
