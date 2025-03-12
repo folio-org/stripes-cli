@@ -1,5 +1,10 @@
 # Change history for stripes-cli
 
+## [4.0.1](https://github.com/folio-org/stripes-cli/tree/v4.0.1) (2025-03-12)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v4.0.0...v4.0.1)
+
+* Bump `@folio/stripes-webpack` to `v6.0.1`.
+
 ## [4.0.0](https://github.com/folio-org/stripes-cli/tree/v4.0.0) (2025-02-24)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.2.0...v4.0.0)
 
