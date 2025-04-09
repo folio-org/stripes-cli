@@ -1,7 +1,9 @@
-const expect = require('chai').expect;
-const context = require('../../lib/cli/context');
-const contextMiddleware = require('../../lib/cli/context-middleware');
+import { expect } from 'chai';
+import context from '../../lib/cli/context.js';
+import { contextMiddleware, applyContext } from '../../lib/cli/context-middleware.js';
 
+
+const cmw = { contextMiddleware, applyContext };
 const contextStub = {
   moduleName: 'myModule',
   isUiModule: true,
@@ -10,7 +12,7 @@ const contextStub = {
 
 describe('The context-middleware module', function () {
   beforeEach(function () {
-    this.sut = contextMiddleware;
+    this.sut = cmw;
     this.sandbox.stub(context, 'getContext').returns(contextStub);
     this.argvIn = {
       tenant: 'diku',
