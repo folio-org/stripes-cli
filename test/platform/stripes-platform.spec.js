@@ -1,7 +1,8 @@
-const expect = require('chai').expect;
-const path = require('path');
-const webpackCommon = require('../../lib/webpack-common');
-const StripesPlatform = require('../../lib/platform/stripes-platform');
+import { expect } from 'chai';
+import path from 'path';
+
+import webpackCommon from '../../lib/webpack-common.js';
+import StripesPlatform from '../../lib/platform/stripes-platform.js';
 
 const stripesConfigStub = {
   okapi: {

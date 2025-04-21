@@ -1,8 +1,8 @@
-const expect = require('chai').expect;
-const sinon = require('sinon');
+import { expect } from 'chai';
+import sinon from 'sinon';
 
-const ModuleService = require('../../lib/okapi/module-service');
-const OkapiError = require('../../lib/okapi/okapi-error');
+import ModuleService from '../../lib/okapi/module-service.js';
+import OkapiError from '../../lib/okapi/okapi-error.js';
 
 const okapiResolve = (data) => Promise.resolve({ json: () => data });
 const okapiReject = (message) => Promise.reject(new OkapiError({}, message));

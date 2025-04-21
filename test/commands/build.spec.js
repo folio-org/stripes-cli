@@ -1,7 +1,6 @@
-const expect = require('chai').expect;
-const buildAppCommand = require('../../lib/commands/build');
-
-const { ignoreCache } = require('../../lib/webpack-common');
+import { expect } from 'chai';
+import buildAppCommand from '../../lib/commands/build.js';
+import webpackCommon from '../../lib/webpack-common.js';
 
 const packageJsonStub = {};
 const tenantConfig = {};
@@ -65,7 +64,7 @@ describe('The app create command', function () {
   });
 
   it('turns off webpack caching when --output flag is used.', function () {
-    const expectedArgs = Object.assign({}, this.argv, { cache: false, outputPath: './output', webpackOverrides: [ignoreCache] });
+    const expectedArgs = Object.assign({}, this.argv, { cache: false, outputPath: './output', webpackOverrides: [webpackCommon.ignoreCache] });
     this.sut.stripesOverrides(platformStub, stripesCoreStub);
     this.sut.handler(Object.assign({}, this.argv, { cache: false }));
 
