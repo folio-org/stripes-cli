@@ -11,6 +11,7 @@
 * *BREAKING* bump `@folio/stripes-webpack` to `6.0.0`.
 * *BREAKING* bump `@folio/eslint-config-stripes` to `8.0.0`.
 * Loosen GA workflow dependency to `@1` for `^1.0.0` compatibility. Refs STCLI-266.
+* Boost `webpack` to `^5.99.3` to avoid buggy behavior in `5.99.0`. STCLI-268.
 
 ## [3.2.2](https://github.com/folio-org/stripes-cli/tree/v3.2.2) (2025-02-18)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.2.1...v3.2.2)
