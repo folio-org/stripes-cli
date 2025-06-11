@@ -1,12 +1,12 @@
-const expect = require('chai').expect;
+import { expect } from 'chai';
 
-const context = require('../../../lib/cli/context');
-const yarn = require('../../../lib/yarn');
-const createApp = require('../../../lib/create-app');
-const appCreateCommand = require('../../../lib/commands/app/create');
-const addModCommand = require('../../../lib/commands/mod/add');
-const enableModCommand = require('../../../lib/commands/mod/enable');
-const assignPermissionCommand = require('../../../lib/commands/perm/assign');
+import context from '../../../lib/cli/context.js';
+import yarn from '../../../lib/yarn.js';
+import createApp from '../../../lib/create-app.js';
+import appCreateCommand from '../../../lib/commands/app/create.js';
+import addModCommand from '../../../lib/commands/mod/add.js';
+import enableModCommand from '../../../lib/commands/mod/enable.js';
+import assignPermissionCommand from '../../../lib/commands/perm/assign.js';
 
 
 const yarnStub = () => Promise.resolve({

@@ -1,6 +1,6 @@
-const expect = require('chai').expect;
-const inquirer = require('inquirer');
-const questionModule = require('../../lib/cli/prompt-middleware');
+import { expect } from 'chai';
+import inquirer from 'inquirer';
+import questionModule from '../../lib/cli/prompt-middleware.js';
 
 describe('The prompt-middleware module', function () {
   beforeEach(function () {

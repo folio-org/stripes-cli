@@ -1,8 +1,10 @@
-const expect = require('chai').expect;
-const path = require('path');
-const { config } = require('karma');
-const KarmaService = require('../../lib/test/karma-service');
+import { expect } from 'chai';
+import path from 'path';
+import karma from 'karma';
 
+import KarmaService from '../../lib/test/karma-service.js';
+
+const { config } = { karma };
 const webpackStub = {
   resolve: 'somewhere',
 };
@@ -54,8 +56,8 @@ describe('The karma-service', function () {
     });
 
     it('applies a local karma config', function () {
-      // Passing __dirname should prompt the service to consider the karma.conf.js within the current test directory.
-      this.sut = new KarmaService(__dirname);
+      // Passing import.meta.dirname should prompt the service to consider the karma.conf.js within the current test directory.
+      this.sut = new KarmaService(import.meta.dirname);
 
       // Expected from applying local karma.conf.js
       const globalExpected = {

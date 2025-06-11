@@ -1,9 +1,9 @@
-const expect = require('chai').expect;
-const path = require('path');
-const stdin = require('../../lib/cli/stdin');
-const { stripesConfigMiddleware } = require('../../lib/cli/stripes-config-middleware');
-const StripesCliError = require('../../lib/cli/stripes-cli-error');
-const stripesConfigTestFile = require('./stripes-test.config');
+import { expect } from 'chai';
+import path from 'path';
+import stdin from '../../lib/cli/stdin.js';
+import { stripesConfigMiddleware } from '../../lib/cli/stripes-config-middleware.js';
+import StripesCliError from '../../lib/cli/stripes-cli-error.js';
+import stripesConfigTestFile from './stripes-test.config.js';
 
 const stripesConfigStub = {
   okapi: {
@@ -19,7 +19,7 @@ const stripesConfigStub = {
   },
 };
 
-const testConfigFile = path.resolve(__dirname, 'stripes-test.config.js');
+const testConfigFile = path.resolve(import.meta.dirname, 'stripes-test.config.js');
 
 describe('The stripes-config-middleware module', function () {
   describe('stripesConfigMiddleware', function () {
@@ -42,7 +42,7 @@ describe('The stripes-config-middleware module', function () {
 
     it('rejects when no file is found', function (done) {
       const argvIn = {
-        configFile: path.resolve(__dirname, 'not-a-file.js'),
+        configFile: path.resolve(import.meta.dirname, 'not-a-file.js'),
       };
       this.sut(argvIn)
         .catch((err) => {
