@@ -2,6 +2,8 @@
 
 ## 4.1.0 IN PROGRESS
 
+* Populate module descriptor's `name` field with module-name if `description` is missing. Refs STCLI-272.
+
 ## [4.0.1](https://github.com/folio-org/stripes-cli/tree/v4.0.1) (2025-03-12)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v4.0.0...v4.0.1)
 
