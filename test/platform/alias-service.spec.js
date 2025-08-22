@@ -1,9 +1,10 @@
-const expect = require('chai').expect;
-const match = require('sinon').match;
-const path = require('path');
-const cliConfig = require('../../lib/cli/config');
-const AliasService = require('../../lib/platform/alias-service');
-const AliasError = require('../../lib/platform/alias-error');
+import { expect } from 'chai';
+import { match } from 'sinon';
+import path from 'path';
+
+import cliConfig from '../../lib/cli/config.js';
+import AliasService from '../../lib/platform/alias-service.js';
+import AliasError from '../../lib/platform/alias-error.js';
 
 const storageStub = {
   getAllAliases: () => {},
