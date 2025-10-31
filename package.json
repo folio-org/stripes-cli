@@ -1,6 +1,6 @@
 {
   "name": "@folio/stripes-cli",
-  "version": "3.3.0",
+  "version": "4.1.0",
   "description": "Stripes Command Line Interface",
   "repository": "https://github.com/folio-org/stripes-cli",
   "publishConfig": {
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@folio/stripes-testing": "^3.0.0",
-    "@folio/stripes-webpack": "^5.2.0",
+    "@folio/stripes-webpack": "^6.0.0",
     "@formatjs/cli": "^6.1.3",
     "@formatjs/cli-lib": "^6.1.3",
     "@octokit/rest": "^19.0.7",
@@ -69,12 +69,12 @@
     "supports-color": "^4.5.0",
     "tough-cookie": "^4.1.3",
     "update-notifier": "^6.0.2",
-    "webpack": "^5.80.0",
+    "webpack": "^5.99.6",
     "webpack-bundle-analyzer": "^4.4.2",
     "yargs": "^17.3.1"
   },
   "devDependencies": {
-    "@folio/eslint-config-stripes": "^7.0.0",
+    "@folio/eslint-config-stripes": "^8.0.0",
     "chai": "^4.1.2",
     "colors": "1.4.0",
     "eslint": "^7.32.0",

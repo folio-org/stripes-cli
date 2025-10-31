@@ -1,8 +1,28 @@
 # Change history for stripes-cli
 
-## 3.3.0 IN PROGRESS
+## 4.1.0 IN PROGRESS
+
+* Populate module descriptor's `name` field with module-name if `description` is missing. Refs STCLI-272.
+
+## [4.0.0](https://github.com/folio-org/stripes-cli/tree/v4.0.0) (2025-02-24)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.2.0...v4.0.0)
 
 * Prune STS headers, permitting local non-SSL access via proxy. Refs STCLI-248.
+* Turn off `<StrictMode>` when running tests. Refs STCLI-256.
+* Check for `main` branch in `stripes platform pull` command. Refs STCLI-258.
+* *BREAKING* bump `@folio/stripes-webpack` to `6.0.0`.
+* *BREAKING* bump `@folio/eslint-config-stripes` to `8.0.0`.
+* Loosen GA workflow dependency to `@1` for `^1.0.0` compatibility. Refs STCLI-266.
+* Boost `webpack` to `^5.99.3` to avoid buggy behavior in `5.99.0`. STCLI-268.
+
+## [3.2.2](https://github.com/folio-org/stripes-cli/tree/v3.2.2) (2025-02-18)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.2.1...v3.2.2)
+
+* Bump `@folio/stripes-webpack` to `^5.2.1`. Refs STCLI-263.
+
+## [3.2.1](https://github.com/folio-org/stripes-cli/tree/v3.2.1) (2024-11-25)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.2.0...v3.2.1)
+
 * Turn off `<StrictMode>` when running tests. Refs STCLI-256.
 
 ## [3.2.0](https://github.com/folio-org/stripes-cli/tree/v3.2.0) (2024-10-09)
@@ -10,6 +30,11 @@
 
 * Add a proxy server to overcome issues with cookies SameSite policy. Refs STCLI-246.
 * Bug fix: don't pass unused arguments to `okToPull()`. Refs STCLI-250.
+
+## [3.1.1](https://github.com/folio-org/stripes-cli/tree/v3.1.1) (2025-02-18)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.1.0...v3.1.1)
+
+* Bump `@folio/stripes-webpack` to `5.1.1`. Refs STCLI-264.
 
 ## [3.1.0](https://github.com/folio-org/stripes-cli/tree/v3.1.0) (2024-03-12)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.0.0...v3.1.0)
