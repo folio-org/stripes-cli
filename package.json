@@ -31,7 +31,6 @@
     "configstore": "^3.1.1",
     "debug": "^4.0.1",
     "express": "^4.17.1",
-    "fast-glob": "^3.3.1",
     "fast-xml-parser": "^4.2.4",
     "find-up": "^2.1.0",
     "fs-extra": "^11.1.1",
