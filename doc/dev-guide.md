@@ -134,7 +134,7 @@ At minimum, include `type` and `describe` properties for all options help popula
 In the command's builder, apply options with `.option()`:
 
 ```javascript
-command: 'hello',   
+command: 'hello',
 builder: (yargs) => {
   yargs
     .option('name', {
@@ -251,7 +251,7 @@ To accept standard input (stdin) within a command, apply one of the CLI's stdin 
 
 Each of the CLI's stdin middleware accept a key and return the middleware function for use by Yargs.  When the middleware is invoked, stdin will be parsed and, if available, assigned to the specified option key.  From within the command, simply access the value as you would any other option.
 
-For example, the following will assign `stdin`, parsed as an string, to the `name` option.  For consistency, include "(stdin)" in your option's description to surface this consistently in the CLI's generated documentation. 
+For example, the following will assign `stdin`, parsed as an string, to the `name` option.  For consistency, include "(stdin)" in your option's description to surface this consistently in the CLI's generated documentation.
 
 ```javascript
 // Lazy load to improve startup time
@@ -384,15 +384,19 @@ Yargs will surface descriptions for each command in the `mod` directory with the
 
 Logging is instrumented with the [debug](https://www.npmjs.com/package/debug) utility. All logs within the CLI pass through `lib/cli/logger.js`, a wrapper around `debug`, to ensure proper namespace assignment.
 
-To add a logger to code, require and invoke it:
+To add a logger to code, import and invoke it with a channel:
 ```javascript
-const logger = require('./cli/logger')();
+import getLogger from './cli/logger';
+
+const logger = getLogger();
 logger.log('a message');
 ```
 
 Optionally, pass the name of a feature or category when invoking the logger.  This is useful for filtering log output.
 ```javascript
-const okapiLogger = require('./cli/logger')('okapi');
+import getLogger from './cli/logger';
+
+const okapiLogger = getLogger('okapi');
 okapiLogger.log('a message about Okapi');
 ```
 

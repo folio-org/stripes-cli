@@ -1,4 +1,4 @@
-module.exports = (config) => {
+export default (config) => {
   config.coverageIstanbulReporter.thresholds.global = {
     statements: 95,
     branches: 85,

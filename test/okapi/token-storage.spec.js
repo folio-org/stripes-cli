@@ -1,7 +1,7 @@
-const expect = require('chai').expect;
-const Configstore = require('configstore');
+import { expect } from 'chai';
+import Configstore from 'configstore';
 
-const TokenStorage = require('../../lib/okapi/token-storage');
+import TokenStorage from '../../lib/okapi/token-storage.js';
 
 describe('token-storage', function () {
   beforeEach(function () {
