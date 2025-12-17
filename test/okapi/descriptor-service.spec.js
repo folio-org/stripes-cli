@@ -130,7 +130,8 @@ describe('The descriptor-service', function () {
             id: 'backend2',
             version: '3.1'
           }
-        ]
+        ],
+        metadata: { stripes: { type: packageJsonStub.stripes.type } }
       }];
 
       const output = this.sut.getUiModuleDescriptor(true);
@@ -189,7 +190,8 @@ describe('The descriptor-service', function () {
               id: 'backend2',
               version: '3.1'
             }
-          ]
+          ],
+          metadata: { stripes: { type: packageJsonStub.stripes.type } }
         };
       });
 
