@@ -4,6 +4,7 @@
 
 * Populate module descriptor's `name` field with module-name if `description` is missing. Refs STCLI-272.
 * Populate module descriptor's `metadata` field with remaining `stripes` properties. Refs STCLI-274.
+* Supply `webpack` `^5.103` to provide `webpack.ManifestPlugin` for STRWEB-144. Refs STCLI-275.
 
 ## [4.0.0](https://github.com/folio-org/stripes-cli/tree/v4.0.0) (2025-02-24)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.2.0...v4.0.0)
