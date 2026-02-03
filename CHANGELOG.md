@@ -5,6 +5,7 @@
 * Populate module descriptor's `name` field with module-name if `description` is missing. Refs STCLI-272.
 * Use node-native glob functionality in `translate compile`. Refs STCLI-273.
 * Populate module descriptor's `metadata` field with remaining `stripes` properties. Refs STCLI-274.
+* Supply `webpack` `^5.103` to provide `webpack.ManifestPlugin` for STRWEB-144. Refs STCLI-275.
 * Expose the `--federate` flag on `build` and `serve` command. Refs STRIPES-861.
 * Build static federated ui-bundles, host app. Refs STRIPES-861.
 
