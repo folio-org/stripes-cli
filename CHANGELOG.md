@@ -9,6 +9,7 @@
 * Expose the `--federate` flag on `build` and `serve` command. Refs STRIPES-861.
 * Build static federated ui-bundles, host app. Refs STRIPES-861.
 * Upgrade fast-xml-parser from 4 (EOL) to 5.5.8. Refs STCLI-278.
+* Bump @octokit/rest to ^22.0.1. Refs STCLI-280.
 
 ## [4.0.0](https://github.com/folio-org/stripes-cli/tree/v4.0.0) (2025-02-24)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.2.0...v4.0.0)
