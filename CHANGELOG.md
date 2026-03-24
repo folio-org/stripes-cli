@@ -8,6 +8,7 @@
 * Supply `webpack` `^5.103` to provide `webpack.ManifestPlugin` for STRWEB-144. Refs STCLI-275.
 * Expose the `--federate` flag on `build` and `serve` command. Refs STRIPES-861.
 * Build static federated ui-bundles, host app. Refs STRIPES-861.
+* Upgrade fast-xml-parser from 4 (EOL) to 5.5.8. Refs STCLI-278.
 
 ## [4.0.1](https://github.com/folio-org/stripes-cli/tree/v4.0.1) (2025-03-12)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v4.0.0...v4.0.1)
