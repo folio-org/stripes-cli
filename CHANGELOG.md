@@ -10,6 +10,7 @@
 * Build static federated ui-bundles, host app. Refs STRIPES-861.
 * Upgrade fast-xml-parser from 4 (EOL) to 5.5.8. Refs STCLI-278.
 * Bump @octokit/rest to ^22.0.1. Refs STCLI-280.
+* Commit `yarn.lock` to avoid future supply chain attacks. Refs STCLI-281.
 
 ## [4.0.1](https://github.com/folio-org/stripes-cli/tree/v4.0.1) (2025-03-12)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v4.0.0...v4.0.1)
