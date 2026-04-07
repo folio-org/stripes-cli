@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 4.1.0 IN PROGRESS
+## 5.0.0 IN PROGRESS
 
 * Populate module descriptor's `name` field with module-name if `description` is missing. Refs STCLI-272.
 * Use node-native glob functionality in `translate compile`. Refs STCLI-273.
