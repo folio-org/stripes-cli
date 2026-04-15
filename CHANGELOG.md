@@ -1,6 +1,6 @@
 # Change history for stripes-cli
 
-## 5.0.0 IN PROGRESS
+## [5.0.0](https://github.com/folio-org/stripes-cli/tree/v5.0.0) (2026-04-15)
 
 * Populate module descriptor's `name` field with module-name if `description` is missing. Refs STCLI-272.
 * Use node-native glob functionality in `translate compile`. Refs STCLI-273.
