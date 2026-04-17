@@ -1,7 +1,6 @@
 # Change history for stripes-cli
 
 ## 4.1.0 IN PROGRESS
-
 * Populate module descriptor's `name` field with module-name if `description` is missing. Refs STCLI-272.
 * Use node-native glob functionality in `translate compile`. Refs STCLI-273.
 * Populate module descriptor's `metadata` field with remaining `stripes` properties. Refs STCLI-274.
@@ -11,6 +10,7 @@
 * Upgrade fast-xml-parser from 4 (EOL) to 5.5.8. Refs STCLI-278.
 * Bump @octokit/rest to ^22.0.1. Refs STCLI-280.
 * Commit `yarn.lock` to avoid future supply chain attacks. Refs STCLI-281.
+* fix - OctoKit `import()` compat for node v20.
 
 ## [4.0.1](https://github.com/folio-org/stripes-cli/tree/v4.0.1) (2025-03-12)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v4.0.0...v4.0.1)
