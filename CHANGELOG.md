@@ -1,5 +1,9 @@
 # Change history for stripes-cli
 
+## IN PROGRESS
+
+* Supply Personal Data Disclosure form. Refs STCLI-269.
+
 ## 5.0.0 IN PROGRESS
 
 * Populate module descriptor's `name` field with module-name if `description` is missing. Refs STCLI-272.
