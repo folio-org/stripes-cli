@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+const path = require('path');
 
 const context = require('../../../lib/cli/context');
 const yarn = require('../../../lib/yarn');
@@ -66,7 +67,7 @@ describe('The app create command', function () {
     this.argv.install = true;
     this.sut.handler(this.argv)
       .then(() => {
-        expect(yarn.install).to.have.been.calledWith('/path/to/working/directory/ui-hello-world');
+        expect(yarn.install).to.have.been.calledWith(path.resolve(this.argv.context.cwd, 'ui-hello-world'));
         expect(console.log).to.have.been.calledWithMatch('then "stripes serve" to run your new app');
         done();
       });
