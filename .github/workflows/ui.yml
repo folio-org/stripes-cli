@@ -11,7 +11,7 @@ jobs:
     secrets: inherit
     with:
       jest-enabled: true
-      jest-test-command: yarn run test
+      jest-test-command: yarn run test:coverage
       sonar-sources: ./lib
       compile-translations: false
       generate-module-descriptor: false
