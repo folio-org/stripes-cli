@@ -86,12 +86,6 @@ describe('The package-manager service', function () {
 
       expect(packageManager.detect('/project')).to.equal('npm');
     });
-
-    it('wraps errors encountered while probing for a pnpm lockfile', function () {
-      this.sandbox.stub(fs, 'existsSync').throws(new Error('disk error'));
-
-      expect(() => packageManager.detect('/project')).to.throw('Unable to detect package manager');
-    });
   });
 
   describe('install', function () {

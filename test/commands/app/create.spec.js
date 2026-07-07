@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const path = require('path');
 
 const context = require('../../../lib/cli/context');
-const yarn = require('../../../lib/yarn');
+const packageManager = require('../../../lib/package-manager');
 const createApp = require('../../../lib/create-app');
 const appCreateCommand = require('../../../lib/commands/app/create');
 const addModCommand = require('../../../lib/commands/mod/add');
@@ -10,7 +10,7 @@ const enableModCommand = require('../../../lib/commands/mod/enable');
 const assignPermissionCommand = require('../../../lib/commands/perm/assign');
 
 
-const yarnStub = () => Promise.resolve({
+const pmStub = () => Promise.resolve({
   isInstalled: true,
   appDir: 'ui-hello-world',
 });
@@ -37,7 +37,7 @@ describe('The app create command', function () {
     this.sut = appCreateCommand;
     this.sandbox.stub(context, 'getContext').returns(this.argv.context);
     this.sandbox.stub(createApp, 'createApp').callsFake(createAppStub);
-    this.sandbox.stub(yarn, 'install').callsFake(yarnStub);
+    this.sandbox.stub(packageManager, 'install').callsFake(pmStub);
     this.sandbox.stub(addModCommand, 'handler').callsFake(addModStub);
     this.sandbox.stub(enableModCommand, 'handler').callsFake(() => Promise.resolve());
     this.sandbox.stub(assignPermissionCommand, 'handler').callsFake(() => Promise.resolve());
@@ -67,7 +67,7 @@ describe('The app create command', function () {
     this.argv.install = true;
     this.sut.handler(this.argv)
       .then(() => {
-        expect(yarn.install).to.have.been.calledWith(path.resolve(this.argv.context.cwd, 'ui-hello-world'));
+        expect(packageManager.install).to.have.been.calledWith(path.resolve(this.argv.context.cwd, 'ui-hello-world'));
         expect(console.log).to.have.been.calledWithMatch('then "stripes serve" to run your new app');
         done();
       });
@@ -79,7 +79,7 @@ describe('The app create command', function () {
     this.argv.context.isEmpty = false;
     this.sut.handler(this.argv)
       .then(() => {
-        expect(yarn.install).to.have.been.calledWith('/path/to/working/directory');
+        expect(packageManager.install).to.have.been.calledWith('/path/to/working/directory');
         expect(console.log).to.have.been.calledWithMatch('then "stripes serve" to run your new app');
         done();
       });
@@ -89,7 +89,7 @@ describe('The app create command', function () {
     this.argv.install = false;
     this.sut.handler(this.argv)
       .then(() => {
-        expect(yarn.install).not.to.have.been.called;
+        expect(packageManager.install).not.to.have.been.called;
         expect(console.log).to.have.been.calledWithMatch('"cd ui-hello-world", "yarn install",');
         done();
       });
@@ -101,7 +101,7 @@ describe('The app create command', function () {
     this.argv.context.isEmpty = false;
     this.sut.handler(this.argv)
       .then(() => {
-        expect(yarn.install).not.to.have.been.called;
+        expect(packageManager.install).not.to.have.been.called;
         expect(console.log).to.have.been.calledWithMatch('"yarn install", "cd ui-hello-world",');
         done();
       });
