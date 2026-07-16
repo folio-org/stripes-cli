@@ -16,13 +16,13 @@ describe('The server module', function () {
     fs.rmSync(this.tmpDir, { recursive: true, force: true });
   });
 
-  describe('csp-file option', function () {
+  describe('csp option', function () {
     it('applies the CSP header from the supplied file when serving', function (done) {
       const cspValue = "default-src 'self'";
       const cspFilePath = path.join(this.tmpDir, 'csp.txt');
       fs.writeFileSync(cspFilePath, `${cspValue}\n`);
 
-      server.start(this.tmpDir, { port: 0, cspFile: cspFilePath });
+      server.start(this.tmpDir, { port: 0, csp: cspFilePath });
 
       const httpServer = this.httpCreateServerSpy.returnValues[0];
       httpServer.on('listening', () => {
@@ -53,7 +53,7 @@ describe('The server module', function () {
       this.sandbox.spy(console, 'error');
       const missingCspPath = path.join(this.tmpDir, 'missing-csp.txt');
 
-      server.start(this.tmpDir, { port: 0, cspFile: missingCspPath });
+      server.start(this.tmpDir, { port: 0, csp: missingCspPath });
 
       expect(console.error).to.have.been.calledWithMatch(`CSP file "${missingCspPath}" does not exist.`);
       expect(this.httpCreateServerSpy).to.not.have.been.called;
