@@ -3,6 +3,7 @@
 ## IN PROGRESS
 
 * Supply Personal Data Disclosure form. Refs STCLI-269.
+* Resolve workspace command failure after package-manager support refactor. STCLI-287
 
 ## 5.0.0 IN PROGRESS
 
