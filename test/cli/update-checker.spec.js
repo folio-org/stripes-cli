@@ -104,7 +104,7 @@ describe('update-checker', function () {
     it('runs the notify/refresh cycle for global installs', function () {
       this.sut.isInstalledGlobally = true;
       this.sandbox.stub(process, 'env').value({ ...process.env, CI: '' });
-      this.sandbox.stub(process.stdout, 'isTTY').value(true);
+      this.sandbox.stub(process, 'stdout').value({ isTTY: true });
       const notifySpy = this.sandbox.spy(this.sut, 'notifyIfAvailable');
       const refreshStub = this.sandbox.stub(this.sut, 'refreshIfStale').resolves();
 
