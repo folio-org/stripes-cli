@@ -4,6 +4,7 @@
 
 * Supply Personal Data Disclosure form. Refs STCLI-269.
 * Resolve workspace command failure after package-manager support refactor. STCLI-287
+* Remove `update-notifier` dependency. Re-implement locally. Refs STCLI-288.
 
 ## 5.0.0 IN PROGRESS
 
