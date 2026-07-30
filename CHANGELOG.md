@@ -3,6 +3,7 @@
 ## IN PROGRESS
 
 * Supply Personal Data Disclosure form. Refs STCLI-269.
+* Remove `update-notifier` dependency. Re-implement locally. Refs STCLI-288.
 
 ## 5.0.0 IN PROGRESS
 
