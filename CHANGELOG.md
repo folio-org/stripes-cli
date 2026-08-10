@@ -1,9 +1,23 @@
 # Change history for stripes-cli
 
-## 4.1.0 IN PROGRESS
+## IN PROGRESS
+
+* Supply Personal Data Disclosure form. Refs STCLI-269.
+* Remove `update-notifier` dependency. Re-implement locally. Refs STCLI-288.
+* Use node-native glob functionality in `translate compile`. Refs STCLI-273.
+
+## 5.0.0 IN PROGRESS
 
 * Populate module descriptor's `name` field with module-name if `description` is missing. Refs STCLI-272.
-* Use node-native glob functionality in `translate compile`. Refs STCLI-273.
+* Populate module descriptor's `metadata` field with remaining `stripes` properties. Refs STCLI-274.
+* Supply `webpack` `^5.103` to provide `webpack.ManifestPlugin` for STRWEB-144. Refs STCLI-275.
+* Expose the `--federate` flag on `build` and `serve` command. Refs STRIPES-861.
+* Build static federated ui-bundles, host app. Refs STRIPES-861.
+* Upgrade fast-xml-parser from 4 (EOL) to 5.5.8. Refs STCLI-278.
+* Bump @octokit/rest to ^22.0.1. Refs STCLI-280.
+* Commit `yarn.lock` to avoid future supply chain attacks. Refs STCLI-281.
+* *BREAKING* bump `engines.node` to v22. Refs STCLI-XXX.
+* Add capability to attach a Content-Security-Policy to locally served, existing build. Refs STCLI-286.
 
 ## [4.0.0](https://github.com/folio-org/stripes-cli/tree/v4.0.0) (2025-02-24)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.2.0...v4.0.0)

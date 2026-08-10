@@ -16,7 +16,7 @@ const storageStub = {
 describe('The alias-service', function () {
   beforeEach(function () {
     this.aliases = {
-      '@folio/users': '../ui-users',
+      '@folio/users': path.join('..', 'ui-users'),
     };
   });
 
@@ -41,7 +41,7 @@ describe('The alias-service', function () {
       this.sandbox.stub(cliConfig, 'configPath').value(path.join(path.resolve(), '..', '.stripesclirc'));
       this.sut = new AliasService(storageStub);
       expect(this.sut.configAliases).to.deep.equal({
-        '@folio/users': '../../ui-users',
+        '@folio/users': path.join('..', '..', 'ui-users'),
       });
     });
   });
@@ -158,7 +158,7 @@ describe('The alias-service', function () {
 
     it('converts relative paths to absolute', function () {
       const result = this.sut.validateAlias('moduleName', '../modulePath');
-      expect(result.path[0]).to.equal('/');
+      expect(path.isAbsolute(result.path)).to.equal(true);
     });
 
     it('returns alias data', function () {
