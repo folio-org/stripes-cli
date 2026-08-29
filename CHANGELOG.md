@@ -5,6 +5,7 @@
 * Supply Personal Data Disclosure form. Refs STCLI-269.
 * Remove `update-notifier` dependency. Re-implement locally. Refs STCLI-288.
 * Use node-native glob functionality in `translate compile`. Refs STCLI-273.
+* Lock `webpack` to `~5.109.2` for `esbuild` compatibility. Refs STCLI-289.
 
 ## 5.0.0 IN PROGRESS
 
