@@ -3,7 +3,7 @@
 ## IN PROGRESS
 
 * Supply Personal Data Disclosure form. Refs STCLI-269.
-* Resolve workspace command failure after package-manager support refactor. STCLI-287
+* Resolve workspace command failure after package-manager support refactor. Fill out additional package-manager language gaps. STCLI-287
 * Remove `update-notifier` dependency. Re-implement locally. Refs STCLI-288.
 * Use node-native glob functionality in `translate compile`. Refs STCLI-273.
 
