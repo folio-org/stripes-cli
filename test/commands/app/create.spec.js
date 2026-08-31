@@ -63,7 +63,7 @@ describe('The app create command', function () {
       });
   });
 
-  it('yarn installs dependencies in the app directory', function (done) {
+  it('installs dependencies in the app directory', function (done) {
     this.argv.install = true;
     this.sut.handler(this.argv)
       .then(() => {
@@ -73,7 +73,7 @@ describe('The app create command', function () {
       });
   });
 
-  it('yarn installs dependencies in the workspace directory', function (done) {
+  it('installs dependencies in the workspace directory', function (done) {
     this.argv.install = true;
     this.argv.context.isWorkspace = true;
     this.argv.context.isEmpty = false;
@@ -90,7 +90,7 @@ describe('The app create command', function () {
     this.sut.handler(this.argv)
       .then(() => {
         expect(packageManager.install).not.to.have.been.called;
-        expect(console.log).to.have.been.calledWithMatch('"cd ui-hello-world", "yarn install",');
+        expect(console.log).to.have.been.calledWithMatch('"cd ui-hello-world", install dependencies,');
         done();
       });
   });
@@ -102,7 +102,7 @@ describe('The app create command', function () {
     this.sut.handler(this.argv)
       .then(() => {
         expect(packageManager.install).not.to.have.been.called;
-        expect(console.log).to.have.been.calledWithMatch('"yarn install", "cd ui-hello-world",');
+        expect(console.log).to.have.been.calledWithMatch('Install dependencies, "cd ui-hello-world",');
         done();
       });
   });

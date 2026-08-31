@@ -129,7 +129,7 @@ $ stripes app bigtest
 
 Option | Description | Type | Notes
 ---|---|---|---
-`--install` | Yarn add dependencies | boolean | default: true
+`--install` | Install dependencies | boolean | default: true
 
 Examples:
 
@@ -159,7 +159,7 @@ Option | Description | Type | Notes
 ---|---|---|---
 `--assign` | Assign new app permission to the given user (includes pushing module descriptor to Okapi and enabling for tenant) | string |
 `--desc` | Description of the app | string |
-`--install` | Yarn install dependencies | boolean | default: true
+`--install` | Install dependencies | boolean | default: true
 
 Examples:
 
@@ -1060,7 +1060,7 @@ $ stripes platform clean
 Option | Description | Type | Notes
 ---|---|---|---
 `--install` | Install dependencies after cleaning | boolean | default: false
-`--removeLock` | Remove yarn.lock file(s) after cleaning | boolean | default: false
+`--removeLock` | Remove lock file(s) after cleaning | boolean | default: false
 
 Examples:
 
@@ -1068,7 +1068,7 @@ Clean and reinstall dependencies:
 ```
 $ stripes platform clean --install
 ```
-Clean and remove yarn.lock file(s):
+Clean and remove lock file(s):
 ```
 $ stripes platform clean --removeLock
 ```
@@ -1079,7 +1079,7 @@ $ stripes platform clean
 
 ### `platform install` command
 
-Yarn install platform or workspace dependencies including aliases
+Install platform or workspace dependencies including aliases
 
 Usage:
 ```
@@ -1255,7 +1255,7 @@ $ stripes test karma --watch
 
 ## `workspace` command
 
-Create a Yarn workspace for Stripes development, select modules, clone, and install.
+Create a workspace for Stripes development, select modules, clone, and install.
 
 Usage:
 ```

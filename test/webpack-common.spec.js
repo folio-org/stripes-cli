@@ -20,12 +20,8 @@ describe('The webpack-common module', function () {
         },
       };
       this.context = {
-        isGlobalYarn: false,
-        globalDirs: {
-          yarn: {
-            packages: 'path/to/yarn/global/npm_modules',
-          },
-        },
+        isGlobalInstall: false,
+        globalPackagesDir: 'path/to/global/npm_modules',
       };
     });
 
@@ -34,21 +30,21 @@ describe('The webpack-common module', function () {
       expect(webpackOverride).to.be.a('function');
     });
 
-    it('updates resolve modules global yarn installs', function () {
-      this.context.isGlobalYarn = true;
+    it('updates resolve modules for global installs', function () {
+      this.context.isGlobalInstall = true;
       const webpackOverride = this.sut.cliResolve(this.context);
       const result = webpackOverride(this.inputConfig);
 
-      expect(result.resolve.modules).to.include('path/to/yarn/global/npm_modules');
-      expect(result.resolveLoader.modules).to.include('path/to/yarn/global/npm_modules');
+      expect(result.resolve.modules).to.include('path/to/global/npm_modules');
+      expect(result.resolveLoader.modules).to.include('path/to/global/npm_modules');
     });
 
     it('does not update resolve modules for other installs', function () {
       const webpackOverride = this.sut.cliResolve(this.context);
       const result = webpackOverride(this.inputConfig);
 
-      expect(result.resolve.modules).to.not.include('path/to/yarn/global/npm_modules');
-      expect(result.resolveLoader.modules).to.not.include('path/to/yarn/global/npm_modules');
+      expect(result.resolve.modules).to.not.include('path/to/global/npm_modules');
+      expect(result.resolveLoader.modules).to.not.include('path/to/global/npm_modules');
     });
   });
 
