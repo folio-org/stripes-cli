@@ -1,12 +1,16 @@
-const expect = require('chai').expect;
-const OkapiClient = require('../../lib/okapi/okapi-client');
-const OkapiError = require('../../lib/okapi/okapi-error');
-const TokenStorage = require('../../lib/okapi/token-storage');
+import chaiMod from 'chai';
+import OkapiClient from '../../lib/okapi/okapi-client.js';
+import OkapiError from '../../lib/okapi/okapi-error.js';
+import TokenStorage from '../../lib/okapi/token-storage.js';
+import okapiClientHelperMod from '../../lib/okapi/okapi-client-helper.js';
+
+const expect = chaiMod.expect;
+
 const {
   ensureOk,
   optionsHeaders,
   optionsBody,
-} = require('../../lib/okapi/okapi-client-helper');
+} = okapiClientHelperMod;
 
 
 // const OkapiError = require('./okapi-error');
