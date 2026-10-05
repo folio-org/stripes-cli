@@ -1,6 +1,7 @@
-const { babelOptions } = require('@folio/stripes-webpack');
+import stripesWebpackMod from '@folio/stripes-webpack';
+const { babelOptions } = stripesWebpackMod;
 
-module.exports = {
+export default {
   babelOptions,
 };
 

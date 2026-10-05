@@ -1,8 +1,11 @@
-const expect = require('chai').expect;
-const fs = require('fs');
-const path = require('path');
-require('fast-xml-parser');  // included here to resolve a lazy-load issue of this module within tests
-const context = require('../../lib/cli/context');
+import chaiMod from 'chai';
+import fs from 'fs';
+import path from 'path';
+import context from '../../lib/cli/context.js';
+
+import 'fast-xml-parser';
+
+const expect = chaiMod.expect;  // included here to resolve a lazy-load issue of this module within tests
 
 const createModuleWithType = (type) => ({
   name: type === 'components' ? '@folio/stripes-components' : '@folio/ui-app',
@@ -25,7 +28,7 @@ describe('The CLI\'s getContext', function () {
 
   describe('parses stripes.type from package.json', function () {
     it('is ui module with type "app"', function () {
-      this.sandbox.stub(context, 'require').returns(createModuleWithType('app'));
+      this.sandbox.stub(context, 'readJson').returns(createModuleWithType('app'));
 
       const result = this.sut('someDir');
 
@@ -40,7 +43,7 @@ describe('The CLI\'s getContext', function () {
     });
 
     it('is ui module with type "settings"', function () {
-      this.sandbox.stub(context, 'require').returns(createModuleWithType('settings'));
+      this.sandbox.stub(context, 'readJson').returns(createModuleWithType('settings'));
 
       const result = this.sut('someDir');
 
@@ -55,7 +58,7 @@ describe('The CLI\'s getContext', function () {
     });
 
     it('is ui module with type "components"', function () {
-      this.sandbox.stub(context, 'require').returns(createModuleWithType('components'));
+      this.sandbox.stub(context, 'readJson').returns(createModuleWithType('components'));
 
       const result = this.sut('someDir');
 
@@ -72,7 +75,7 @@ describe('The CLI\'s getContext', function () {
 
   describe('parses stripes.actsAs from package.json', function () {
     it('is ui module with actsAs ["app", "settings"]', function () {
-      this.sandbox.stub(context, 'require').returns(createModuleWithActsAs(['app', 'settings']));
+      this.sandbox.stub(context, 'readJson').returns(createModuleWithActsAs(['app', 'settings']));
 
       const result = this.sut('someDir');
 
@@ -88,7 +91,7 @@ describe('The CLI\'s getContext', function () {
     });
 
     it('is ui module with actsAs ["settings"]', function () {
-      this.sandbox.stub(context, 'require').returns(createModuleWithActsAs(['settings']));
+      this.sandbox.stub(context, 'readJson').returns(createModuleWithActsAs(['settings']));
 
       const result = this.sut('someDir');
 
@@ -105,7 +108,7 @@ describe('The CLI\'s getContext', function () {
   });
 
   it('identifies platforms', function () {
-    this.sandbox.stub(context, 'require').returns({
+    this.sandbox.stub(context, 'readJson').returns({
       name: '@folio/platform-core',
       dependencies: { '@folio/stripes-core': '1.2.3' }
     });
@@ -122,7 +125,7 @@ describe('The CLI\'s getContext', function () {
   });
 
   it('identifies workspaces', function () {
-    this.sandbox.stub(context, 'require').returns({
+    this.sandbox.stub(context, 'readJson').returns({
       workspaces: [],
     });
     const result = this.sut('someDir');
@@ -139,7 +142,7 @@ describe('The CLI\'s getContext', function () {
   });
 
   it('identifies stripes modules', function () {
-    this.sandbox.stub(context, 'require').returns({
+    this.sandbox.stub(context, 'readJson').returns({
       name: '@folio/stripes-core',
       stripes: {},
     });
@@ -155,10 +158,10 @@ describe('The CLI\'s getContext', function () {
   });
 
   it('identifies itself', function () {
-    this.sandbox.stub(context, 'require').returns({
+    this.sandbox.stub(context, 'readJson').returns({
       name: '@folio/stripes-cli',
     });
-    const result = this.sut(path.resolve(__dirname, '../..'));
+    const result = this.sut(path.resolve(import.meta.dirname, '../..'));
 
     expect(result).to.include({
       type: 'cli',
@@ -172,7 +175,7 @@ describe('The CLI\'s getContext', function () {
   });
 
   it('handles no package.json', function () {
-    this.sandbox.stub(context, 'require').throws();
+    this.sandbox.stub(context, 'readJson').throws();
     const result = this.sut('someDir');
 
     expect(result).to.include({
@@ -186,7 +189,7 @@ describe('The CLI\'s getContext', function () {
   });
 
   it('identifies when a local stripes-core is available', function () {
-    this.sandbox.stub(context, 'require').returns({
+    this.sandbox.stub(context, 'readJson').returns({
       name: '@folio/platform-core',
       dependencies: { '@folio/stripes-core': '1.2.3' }
     });
@@ -198,7 +201,7 @@ describe('The CLI\'s getContext', function () {
   });
 
   it('identifies when a local stripes-core is not available', function () {
-    this.sandbox.stub(context, 'require').returns({
+    this.sandbox.stub(context, 'readJson').returns({
       name: '@folio/platform-core',
       dependencies: { '@folio/not-stripes-core': '1.2.3' }
     });
@@ -212,7 +215,7 @@ describe('The CLI\'s getContext', function () {
 
   describe('given a backend module', function () {
     beforeEach(function () {
-      this.sandbox.stub(context, 'require').throws();
+      this.sandbox.stub(context, 'readJson').throws();
       this.sandbox.stub(fs, 'existsSync').returns(true);
       this.sandbox.stub(fs, 'readFileSync').returns(`
         <project>

@@ -1,9 +1,13 @@
-const expect = require('chai').expect;
-const match = require('sinon').match;
-const path = require('path');
-const cliConfig = require('../../lib/cli/config');
-const AliasService = require('../../lib/platform/alias-service');
-const AliasError = require('../../lib/platform/alias-error');
+import chaiMod from 'chai';
+import sinonMod from 'sinon';
+import fs from 'fs';
+import path from 'path';
+import cliConfig from '../../lib/cli/config.js';
+import AliasService from '../../lib/platform/alias-service.js';
+import AliasError from '../../lib/platform/alias-error.js';
+
+const expect = chaiMod.expect;
+const match = sinonMod.match;
 
 const storageStub = {
   getAllAliases: () => {},
@@ -152,8 +156,8 @@ describe('The alias-service', function () {
     beforeEach(function () {
       this.sut = new AliasService(storageStub);
       this.sandbox.spy(path, 'join');
-      this.sandbox.stub(this.sut.require, 'resolve').returns(true);
-      this.sandbox.stub(this.sut, 'require').returns({ name: 'moduleName', stripes: { type: 'app' } });
+      this.sandbox.stub(fs, 'existsSync').returns(true);
+      this.sandbox.stub(this.sut, 'readJson').returns({ name: 'moduleName', stripes: { type: 'app' } });
     });
 
     it('converts relative paths to absolute', function () {
@@ -178,7 +182,7 @@ describe('The alias-service', function () {
     });
 
     it('throws AliasError for missing package.json', function () {
-      this.sandbox.stub(this.sut.require, 'resolve').throws('oh-no!');
+      this.sandbox.stub(fs, 'existsSync').returns(false);
       try {
         this.sut.validateAlias('moduleName', '../modulePath');
       } catch (error) {
@@ -188,8 +192,8 @@ describe('The alias-service', function () {
     });
 
     it('throws AliasError module name mismatch', function () {
-      this.sandbox.stub(this.sut.require, 'resolve').returns(true);
-      this.sandbox.stub(this.sut, 'require').returns({ name: 'moduleName', stripes: { type: 'app' } });
+      this.sandbox.stub(fs, 'existsSync').returns(true);
+      this.sandbox.stub(this.sut, 'readJson').returns({ name: 'moduleName', stripes: { type: 'app' } });
       try {
         this.sut.validateAlias('anotherModuleName', '../modulePath');
       } catch (error) {
@@ -199,8 +203,8 @@ describe('The alias-service', function () {
     });
 
     it('throws AliasError for missing stripes configuration', function () {
-      this.sandbox.stub(this.sut.require, 'resolve').returns(true);
-      this.sandbox.stub(this.sut, 'require').returns({ name: 'moduleName' });
+      this.sandbox.stub(fs, 'existsSync').returns(true);
+      this.sandbox.stub(this.sut, 'readJson').returns({ name: 'moduleName' });
       try {
         this.sut.validateAlias('moduleName', '../modulePath');
       } catch (error) {

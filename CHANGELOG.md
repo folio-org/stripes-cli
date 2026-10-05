@@ -6,6 +6,7 @@
 * Resolve workspace command failure after package-manager support refactor. Fill out additional package-manager language gaps. STCLI-287
 * Remove `update-notifier` dependency. Re-implement locally. Refs STCLI-288.
 * Use node-native glob functionality in `translate compile`. Refs STCLI-273.
+* Convert from CommonJS to ESM. Refs STCLI-215.
 
 ## 5.0.0 IN PROGRESS
 

@@ -1,6 +1,7 @@
-const expect = require('chai').expect;
+import chaiMod from 'chai';
+import AuthService from '../../lib/okapi/auth-service.js';
 
-const AuthService = require('../../lib/okapi/auth-service');
+const expect = chaiMod.expect;
 
 const authnStub = {
   login: (username, password) => {

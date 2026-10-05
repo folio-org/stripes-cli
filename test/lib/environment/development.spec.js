@@ -1,8 +1,9 @@
-const expect = require('chai').expect;
-const path = require('path');
+import chaiMod from 'chai';
+import path from 'path';
+import packageManager from '../../../lib/package-manager.js';
+import DevelopmentEnvironment from '../../../lib/environment/development.js';
 
-const packageManager = require('../../../lib/package-manager');
-const DevelopmentEnvironment = require('../../../lib/environment/development');
+const expect = chaiMod.expect;
 
 describe('The DevelopmentEnvironment', function () {
   describe('installDependencies method', function () {

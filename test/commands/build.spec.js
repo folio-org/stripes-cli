@@ -1,7 +1,10 @@
-const expect = require('chai').expect;
-const buildAppCommand = require('../../lib/commands/build');
+import chaiMod from 'chai';
+import buildAppCommand from '../../lib/commands/build.js';
+import webpackCommonMod from '../../lib/webpack-common.js';
 
-const { ignoreCache } = require('../../lib/webpack-common');
+const expect = chaiMod.expect;
+
+const { ignoreCache } = webpackCommonMod;
 
 const packageJsonStub = {};
 const tenantConfig = {};
