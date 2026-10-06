@@ -50,7 +50,7 @@ This following command documentation is generated from the CLI's own built-in he
 * [`serve` command](#serve-command)
 * [`status` command](#status-command)
 * [`test` command](#test-command)
-    * [`test karma` command](#test-karma-command)
+    * [`test playwright` command](#test-playwright-command)
 * [`workspace` command](#workspace-command)
 * [`completion` command](#completion-command)
 
@@ -1190,7 +1190,7 @@ $ stripes test
 ```
 
 Sub-commands:
-* [`stripes test karma`](#test-karma-command)
+* [`stripes test playwright`](#test-playwright-command)
 
 Positional | Description | Type | Notes
 ---|---|---|---
@@ -1208,18 +1208,18 @@ Option | Description | Type | Notes
 
 Examples:
 
-Run Karma tests for the current app module:
+Run Playwright tests for the current app module:
 ```
-$ stripes test karma
+$ stripes test playwright
 ```
 
-### `test karma` command
+### `test playwright` command
 
-Run the current app module's Karma tests
+Run the current app module's tests in a Playwright-driven browser
 
 Usage:
 ```
-$ stripes test karma [configFile]
+$ stripes test playwright [configFile]
 ```
 
 Positional | Description | Type | Notes
@@ -1228,30 +1228,43 @@ Positional | Description | Type | Notes
 
 Option | Description | Type | Notes
 ---|---|---|---
+`--browser` | Browser to run the tests in | chromium, firefox, webkit | default: "chromium"
 `--bundle` | Create and use a production bundle retaining test hooks | boolean |
-`--cache` | Enable webpack's caching for quicker rebuilds during development. | boolean | default: `false`
-`--coverage, --karma.coverage` | Enable Karma coverage reports | boolean |
+`--cache` | Enable caching of test bundle. Defaults to false. | boolean |
+`--coverage` | Enable coverage reports (artifacts/coverage) | boolean |
+`--grep` | Only run tests whose full title matches this pattern. | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
+`--headed` | Show the browser window instead of running headless. | boolean |
 `--host` | Development server host | string | default: "localhost"
-`--karma` | Options passed to Karma using dot-notation and camelCase: --karma.browsers=Chrome --karma.singleRun |  |
+`--junit` | Write a JUnit XML report to artifacts/runTest. | boolean |
 `--languages` | Languages to include in tenant build | array |
 `--okapi` | Specify an Okapi URL | string |
 `--port` | Development server port | number | default: 3000
 `--stripesConfig` | Stripes config JSON  | string | supports stdin
 `--tenant` | Specify a tenant ID | string |
-`--watch` | Watch test files for changes and rerun tests automatically when changes are saved. | boolean | default: `false`
+`--verbose` | Print passing tests as well as failures. | boolean |
+`--watch` | Watch test files for changes and run tests automatically when changes are saved. | boolean |
+
+Browsers are installed separately with `npx playwright install <browser>`.
 
 Examples:
 
-Run tests with Karma for the current app module:
+Run tests with Playwright for the current app module:
 ```
-$ stripes test karma
+$ stripes test playwright
 ```
 
-Run tests with Karma for the current app module with watching enabled:
+Run tests and write coverage and JUnit reports:
 ```
-$ stripes test karma --watch
+$ stripes test playwright --coverage --junit
 ```
+
+Re-run tests in a visible browser when files change:
+```
+$ stripes test playwright --watch --headed
+```
+
+The previous `stripes test karma` command is deprecated and runs `stripes test playwright`; `--karma.*` options are ignored.
 
 ## `workspace` command
 

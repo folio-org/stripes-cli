@@ -5,6 +5,8 @@
 * Supply Personal Data Disclosure form. Refs STCLI-269.
 * Remove `update-notifier` dependency. Re-implement locally. Refs STCLI-288.
 * Use node-native glob functionality in `translate compile`. Refs STCLI-273.
+* *BREAKING* Replace Karma (EOL) with Playwright: add `stripes test playwright` (`--browser`, `--headed`, `--grep`, `--junit`, `--coverage`, `--watch`) and drop all `karma*` dependencies. `stripes test karma` remains as a deprecated alias that ignores `--karma.*` options. Browsers are installed with `npx playwright install`.
+* Instrument test coverage after esbuild-loader (via babel-loader + istanbul) and enable legacy decorators for test bundles so BigTest interactors keep working.
 
 ## 5.0.0 IN PROGRESS
 
