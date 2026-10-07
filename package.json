@@ -22,7 +22,7 @@
     "docs": "node ./lib/doc/generator"
   },
   "dependencies": {
-    "@folio/stripes-webpack": "folio-org/stripes-webpack#debabel",
+    "@folio/stripes-webpack": "^8.0.0",
     "@formatjs/cli": "^6.1.3",
     "@formatjs/cli-lib": "^6.1.3",
     "@octokit/rest": "^22.0.1",
