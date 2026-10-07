@@ -109,7 +109,7 @@ describe('The okapi-client', function () {
         let didError = false;
         try {
           await this.sut._exchangeToken(getStub);
-        } catch (e) {
+        } catch {
           didError = true;
         }
         expect(didError).to.equal(false);

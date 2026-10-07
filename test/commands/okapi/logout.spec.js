@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions -- chai-style assertions */
 const expect = require('chai').expect;
 
 const AuthService = require('../../../lib/okapi/auth-service');

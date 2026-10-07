@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions -- chai-style assertions */
 const expect = require('chai').expect;
 const path = require('path');
 const webpackCommon = require('../../lib/webpack-common');

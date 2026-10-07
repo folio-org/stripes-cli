@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions -- chai-style assertions */
 const expect = require('chai').expect;
 
 const AuthService = require('../../lib/okapi/auth-service');
@@ -138,7 +139,7 @@ describe('The auth-service', function () {
   });
 
 
-  describe('retrieves tokens', async function () {
+  describe('retrieves tokens', function () {
     it('token', async function () {
       this.sut = new AuthService();
       this.sandbox.stub(this.sut.tokenStorage, 'getToken').callsFake(() => true);

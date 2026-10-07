@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions -- chai-style assertions */
 const expect = require('chai').expect;
 const childProcess = require('node:child_process');
 const fs = require('node:fs');

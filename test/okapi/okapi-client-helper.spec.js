@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions -- chai-style assertions */
 const expect = require('chai').expect;
 const OkapiClient = require('../../lib/okapi/okapi-client');
 const OkapiError = require('../../lib/okapi/okapi-error');

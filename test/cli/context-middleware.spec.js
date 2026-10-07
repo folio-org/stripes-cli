@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions -- chai-style assertions */
 const expect = require('chai').expect;
 const context = require('../../lib/cli/context');
 const contextMiddleware = require('../../lib/cli/context-middleware');

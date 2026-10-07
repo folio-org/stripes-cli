@@ -17,8 +17,7 @@
   "scripts": {
     "test": "mocha --recursive",
     "test:coverage": "nyc --reporter=lcov --reporter=text --report-dir ./artifacts/coverage mocha --recursive",
-    "lint": "eslint ./",
-    "lint-templates": "eslint ./resources --no-ignore",
+    "lint": "stripes-lint ./",
     "docs": "node ./lib/doc/generator"
   },
   "dependencies": {
@@ -72,7 +71,7 @@
     "yargs": "^17.3.1"
   },
   "devDependencies": {
-    "@folio/eslint-config-stripes": "^9.0.0",
+    "@folio/eslint-config-stripes": "^10.0.0",
     "chai": "^4.1.2",
     "colors": "1.4.0",
     "eslint": "^7.32.0",
