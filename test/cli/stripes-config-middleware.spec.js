@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions -- chai-style assertions */
 const expect = require('chai').expect;
 const path = require('path');
 const stdin = require('../../lib/cli/stdin');

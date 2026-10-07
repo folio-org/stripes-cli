@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions -- chai-style assertions */
 const fs = require('fs');
 const http = require('http');
 const os = require('os');

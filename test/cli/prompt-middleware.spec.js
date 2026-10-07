@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions -- chai-style assertions */
 const expect = require('chai').expect;
 const inquirer = require('inquirer');
 const questionModule = require('../../lib/cli/prompt-middleware');
