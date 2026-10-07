@@ -10,7 +10,7 @@ describe('The app create command', function () {
     this.sandbox.stub(path, 'sep').returns('/');
     this.sandbox.stub(fs, 'readFileSync').returns('__appDescription__');
     this.sandbox.stub(fs, 'writeFileSync');
-    this.sandbox.stub(fs, 'removeSync');
+    this.removeSyncStub = this.sandbox.stub(fs, 'removeSync');
     this.sandbox.stub(fs, 'renameSync');
     this.sandbox.stub(fs, 'readdirSync').returns(['__appDir__', '__appName__.js']);
 
@@ -21,6 +21,12 @@ describe('The app create command', function () {
     statSyncStub.withArgs('./ui-test/__appName__.js').returns({ isDirectory() { return false; } });
     statSyncStub.withArgs('./ui-test/__appDir__/__appDir__').returns({ isDirectory() { return false; } });
     statSyncStub.withArgs('./ui-test/__appDir__/__appName__.js').returns({ isDirectory() { return false; } });
+  });
+
+  afterEach(function () {
+    // createApp really clones the template; restore removeSync so we can delete the clone
+    this.removeSyncStub.restore();
+    fs.removeSync('./ui-test');
   });
 
   it('calls appDefaults with expected responses', function (done) {
@@ -35,7 +41,8 @@ describe('The app create command', function () {
     createApp.createApp('test').then((result) => {
       expect(result.uiAppName).to.eq('ui-test');
       expect(result.appDescription).to.eq('Description for test');
+      expect(this.removeSyncStub).to.have.been.calledWith('./ui-test/.git');
       done();
-    });
+    }).catch(done);
   });
 });
