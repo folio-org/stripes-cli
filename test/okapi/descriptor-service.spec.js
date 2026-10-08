@@ -51,7 +51,7 @@ const tenantConfig = {
 };
 
 function StripesModuleParserStub(name) {
-  this.packageJson = Object.assign({}, packageJsonStub, { name });
+  this.packageJson = Object.assign({}, packageJsonStub, { name }); // eslint-disable-line react/no-this-in-sfc
 }
 
 const stripesCoreStub = {
