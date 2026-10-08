@@ -2,12 +2,14 @@
 
 ## IN PROGRESS
 
+* Add capability to attach a Content-Security-Policy to locally served, existing build. Refs STCLI-286.
 * Supply Personal Data Disclosure form. Refs STCLI-269.
 * Resolve workspace command failure after package-manager support refactor. Fill out additional package-manager language gaps. STCLI-287
 * Remove `update-notifier` dependency. Re-implement locally. Refs STCLI-288.
 * Use node-native glob functionality in `translate compile`. Refs STCLI-273.
 
-## 5.0.0 IN PROGRESS
+## [5.0.0](https://github.com/folio-org/stripes-cli/tree/v5.0.0) (2026-04-15)
+[Full Changelog](https://github.com/folio-org/stripes-cli/compare/v4.0.0...v5.0.0)
 
 * Populate module descriptor's `name` field with module-name if `description` is missing. Refs STCLI-272.
 * Populate module descriptor's `metadata` field with remaining `stripes` properties. Refs STCLI-274.
@@ -18,7 +20,6 @@
 * Bump @octokit/rest to ^22.0.1. Refs STCLI-280.
 * Commit `yarn.lock` to avoid future supply chain attacks. Refs STCLI-281.
 * *BREAKING* bump `engines.node` to v22. Refs STCLI-XXX.
-* Add capability to attach a Content-Security-Policy to locally served, existing build. Refs STCLI-286.
 
 ## [4.0.0](https://github.com/folio-org/stripes-cli/tree/v4.0.0) (2025-02-24)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v3.2.0...v4.0.0)
