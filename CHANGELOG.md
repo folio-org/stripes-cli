@@ -7,6 +7,7 @@
 * Resolve workspace command failure after package-manager support refactor. Fill out additional package-manager language gaps. STCLI-287
 * Remove `update-notifier` dependency. Re-implement locally. Refs STCLI-288.
 * Use node-native glob functionality in `translate compile`. Refs STCLI-273.
+* *BREAKING* bump `@folio/stripes-webpack` to v8;, remove `babelOptions` public export and orphaned `@folio/stripes-testing` dependency. Refs STCLI-292.
 
 ## [5.0.0](https://github.com/folio-org/stripes-cli/tree/v5.0.0) (2026-04-15)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v4.0.0...v5.0.0)
