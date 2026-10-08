@@ -138,7 +138,7 @@ describe('The auth-service', function () {
   });
 
 
-  describe('retrieves tokens', async function () {
+  describe('retrieves tokens', function () {
     it('token', async function () {
       this.sut = new AuthService();
       this.sandbox.stub(this.sut.tokenStorage, 'getToken').callsFake(() => true);

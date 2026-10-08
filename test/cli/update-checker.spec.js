@@ -72,6 +72,7 @@ describe('update-checker', function () {
       });
     });
 
+    // eslint-disable-next-line jest/expect-expect -- resolving without throwing is the assertion
     it('does not throw when the registry is unreachable', function () {
       this.sandbox.stub(this.sut.config, 'get').withArgs('lastChecked').returns(0);
       this.sandbox.stub(this.sut.config, 'set');
