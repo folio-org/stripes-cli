@@ -1329,9 +1329,10 @@
     webpack-remove-empty-scripts "^1.0.1"
     webpack-virtual-modules "^0.4.3"
 
-"@folio/stripes-webpack@folio-org/stripes-webpack#debabel":
-  version "7.0.0"
-  resolved "https://codeload.github.com/folio-org/stripes-webpack/tar.gz/e4177150372c1661d14d3d7dbf1c8c490797547b"
+"@folio/stripes-webpack@^8.0.0":
+  version "8.0.1099000000000378"
+  resolved "https://repository.folio.org/repository/npm-folioci/@folio/stripes-webpack/-/stripes-webpack-8.0.1099000000000378.tgz#4fad519bcefe5929f92bcc9ce8eb35469539658d"
+  integrity sha512-scLkCsHn/rskyotjpWqozeGap/hq6tumtsmQdxRMwrNbAGsycptpRARxPKYf3g8+tAk0XQcQj3K/YN+jbmnuBQ==
   dependencies:
     "@cerner/duplicate-package-checker-webpack-plugin" "~2.1.0"
     "@csstools/postcss-global-data" "^3.0.0"
