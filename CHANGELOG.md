@@ -10,6 +10,7 @@
 * Bug fix: `app create` cleans up correct `.git` directory; tests correctly await slow git-clones. Refs STCLI-293.
 * Migrate from `eslint` to `oxlint`. Refs STCLI-290.
 * *BREAKING* bump `@folio/stripes-webpack` to v8, remove `babelOptions` public export and orphaned `@folio/stripes-testing` dependency. Refs STCLI-292.
+* Bump simple-git to v4. Refs STCLI-291.
 
 ## [5.0.0](https://github.com/folio-org/stripes-cli/tree/v5.0.0) (2026-04-15)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v4.0.0...v5.0.0)
