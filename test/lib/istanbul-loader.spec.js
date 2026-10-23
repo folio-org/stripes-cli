@@ -1,6 +1,5 @@
-const expect = require('chai').expect;
-
-const istanbulLoader = require('../../lib/istanbul-loader');
+import { expect } from 'chai';
+import istanbulLoader from '../../lib/istanbul-loader.js';
 
 // run the loader the way webpack would, resolving with its (err, code, map) callback args
 function runLoader(source, inputSourceMap) {
