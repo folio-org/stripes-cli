@@ -1,5 +1,7 @@
-const expect = require('chai').expect;
-const webpackCommon = require('../lib/webpack-common');
+import chaiMod from 'chai';
+import webpackCommon from '../lib/webpack-common.js';
+
+const expect = chaiMod.expect;
 
 describe('The webpack-common module', function () {
   beforeEach(function () {

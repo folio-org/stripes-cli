@@ -1,9 +1,11 @@
-const expect = require('chai').expect;
-const childProcess = require('node:child_process');
-const fs = require('node:fs');
-const { EventEmitter } = require('node:events');
+import chaiMod from 'chai';
+import childProcess from 'node:child_process';
+import fs from 'node:fs';
+import nodeEventsMod from 'node:events';
+import packageManager from '../../lib/package-manager.js';
 
-const packageManager = require('../../lib/package-manager');
+const expect = chaiMod.expect;
+const { EventEmitter } = nodeEventsMod;
 
 // Stubs childProcess.exec to simulate a successful or failed command,
 // emitting stdout/stderr asynchronously so listeners attached by execCmd

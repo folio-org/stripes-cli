@@ -1,7 +1,8 @@
-const expect = require('chai').expect;
-const fs = require('fs');
+import chaiMod from 'chai';
+import fs from 'fs';
+import DescriptorService from '../../lib/okapi/descriptor-service.js';
 
-const DescriptorService = require('../../lib/okapi/descriptor-service');
+const expect = chaiMod.expect;
 
 const platformContext = {
   isPlatform: true,

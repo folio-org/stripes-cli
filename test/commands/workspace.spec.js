@@ -1,8 +1,9 @@
-const expect = require('chai').expect;
-const path = require('path');
+import chaiMod from 'chai';
+import path from 'path';
+import DevelopmentEnvironment from '../../lib/environment/development.js';
+import workspaceCommand from '../../lib/commands/workspace.js';
 
-const DevelopmentEnvironment = require('../../lib/environment/development');
-const workspaceCommand = require('../../lib/commands/workspace');
+const expect = chaiMod.expect;
 
 describe('The workspace command', function () {
   beforeEach(function () {

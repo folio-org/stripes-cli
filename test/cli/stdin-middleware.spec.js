@@ -1,6 +1,8 @@
-const expect = require('chai').expect;
-const stdin = require('../../lib/cli/stdin');
-const stdinMiddleware = require('../../lib/cli/stdin-middleware');
+import chaiMod from 'chai';
+import stdin from '../../lib/cli/stdin.js';
+import stdinMiddleware from '../../lib/cli/stdin-middleware.js';
+
+const expect = chaiMod.expect;
 
 describe('The stdin-middleware module', function () {
   beforeEach(function () {
