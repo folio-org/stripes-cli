@@ -1,8 +1,7 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import buildAppCommand from '../../lib/commands/build.js';
 import webpackCommonMod from '../../lib/webpack-common.js';
 
-const expect = chaiMod.expect;
 
 const { ignoreCache } = webpackCommonMod;
 

@@ -1,11 +1,10 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import path from 'path';
 import stdin from '../../lib/cli/stdin.js';
 import stripesConfigMiddlewareMod from '../../lib/cli/stripes-config-middleware.js';
 import StripesCliError from '../../lib/cli/stripes-cli-error.js';
 import stripesConfigTestFile from './stripes-test.config.js';
 
-const expect = chaiMod.expect;
 const { stripesConfigMiddleware } = stripesConfigMiddlewareMod;
 
 const stripesConfigStub = {

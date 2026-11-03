@@ -1,11 +1,10 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import fs from 'fs';
 import path from 'path';
 import context from '../../lib/cli/context.js';
 
 import 'fast-xml-parser';
 
-const expect = chaiMod.expect;  // included here to resolve a lazy-load issue of this module within tests
 
 const createModuleWithType = (type) => ({
   name: type === 'components' ? '@folio/stripes-components' : '@folio/ui-app',

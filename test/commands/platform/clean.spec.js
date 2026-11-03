@@ -1,4 +1,4 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
@@ -6,7 +6,6 @@ import packageManager from '../../../lib/package-manager.js';
 import DevelopmentEnvironment from '../../../lib/environment/development.js';
 import cleanCommand from '../../../lib/commands/platform/clean.js';
 
-const expect = chaiMod.expect;
 
 describe('The platform clean command', function () {
   beforeEach(function () {

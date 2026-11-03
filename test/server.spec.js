@@ -2,10 +2,9 @@ import fs from 'fs';
 import http from 'http';
 import os from 'os';
 import path from 'path';
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import server from '../lib/server.js';
 
-const expect = chaiMod.expect;
 
 describe('The server module', function () {
   beforeEach(function () {

@@ -1,10 +1,9 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import path from 'path';
 import fs from 'fs-extra';
 import inventoryMod from '../../lib/environment/inventory.js';
 import createApp from '../../lib/create-app.js';
 
-const expect = chaiMod.expect;
 
 const { templates } = inventoryMod;
 
@@ -41,6 +40,8 @@ describe('The app create command', function () {
   });
 
   it('calls createApp with expected responses', function (done) {
+    // createApp really clones the template from GitHub, which takes a while
+    this.timeout(60000);
     createApp.createApp('test').then((result) => {
       expect(result.uiAppName).to.eq('ui-test');
       expect(result.appDescription).to.eq('Description for test');

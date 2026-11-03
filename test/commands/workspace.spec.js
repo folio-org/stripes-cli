@@ -1,9 +1,8 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import path from 'path';
 import DevelopmentEnvironment from '../../lib/environment/development.js';
 import workspaceCommand from '../../lib/commands/workspace.js';
 
-const expect = chaiMod.expect;
 
 describe('The workspace command', function () {
   beforeEach(function () {

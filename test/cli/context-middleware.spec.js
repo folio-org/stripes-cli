@@ -1,8 +1,7 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import context from '../../lib/cli/context.js';
 import contextMiddleware from '../../lib/cli/context-middleware.js';
 
-const expect = chaiMod.expect;
 
 const contextStub = {
   moduleName: 'myModule',

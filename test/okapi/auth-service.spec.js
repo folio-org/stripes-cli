@@ -1,7 +1,6 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import AuthService from '../../lib/okapi/auth-service.js';
 
-const expect = chaiMod.expect;
 
 const authnStub = {
   login: (username, password) => {

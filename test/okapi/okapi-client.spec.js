@@ -1,8 +1,7 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import OkapiClient from '../../lib/okapi/okapi-client.js';
 import TokenStorage from '../../lib/okapi/token-storage.js';
 
-const expect = chaiMod.expect;
 
 describe('The okapi-client', function () {
   beforeEach(function () {

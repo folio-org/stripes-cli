@@ -1,10 +1,9 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import childProcess from 'node:child_process';
 import fs from 'node:fs';
 import nodeEventsMod from 'node:events';
 import packageManager from '../../lib/package-manager.js';
 
-const expect = chaiMod.expect;
 const { EventEmitter } = nodeEventsMod;
 
 // Stubs childProcess.exec to simulate a successful or failed command,

@@ -1,8 +1,7 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import inquirer from 'inquirer';
 import questionModule from '../../lib/cli/prompt-middleware.js';
 
-const expect = chaiMod.expect;
 
 describe('The prompt-middleware module', function () {
   beforeEach(function () {

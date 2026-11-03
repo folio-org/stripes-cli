@@ -1,9 +1,8 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import path from 'path';
 import karmaMod from 'karma';
 import KarmaService from '../../lib/test/karma-service.js';
 
-const expect = chaiMod.expect;
 const { config } = karmaMod;
 
 const webpackStub = {

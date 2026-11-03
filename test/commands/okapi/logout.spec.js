@@ -1,8 +1,7 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import AuthService from '../../../lib/okapi/auth-service.js';
 import logoutCommand from '../../../lib/commands/okapi/logout.js';
 
-const expect = chaiMod.expect;
 
 const authServiceStub = {
   logout: () => Promise.resolve(),

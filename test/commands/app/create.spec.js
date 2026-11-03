@@ -1,4 +1,4 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import path from 'path';
 import context from '../../../lib/cli/context.js';
 import packageManager from '../../../lib/package-manager.js';
@@ -8,7 +8,6 @@ import addModCommand from '../../../lib/commands/mod/add.js';
 import enableModCommand from '../../../lib/commands/mod/enable.js';
 import assignPermissionCommand from '../../../lib/commands/perm/assign.js';
 
-const expect = chaiMod.expect;
 
 const pmStub = () => Promise.resolve({
   isInstalled: true,

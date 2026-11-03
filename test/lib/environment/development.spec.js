@@ -1,9 +1,8 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import path from 'path';
 import packageManager from '../../../lib/package-manager.js';
 import DevelopmentEnvironment from '../../../lib/environment/development.js';
 
-const expect = chaiMod.expect;
 
 describe('The DevelopmentEnvironment', function () {
   describe('installDependencies method', function () {

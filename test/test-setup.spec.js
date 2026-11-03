@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import chai from 'chai';
+import { use } from 'chai';
 import sinonChai from 'sinon-chai';
 
 // Test setup for Mocha tests
@@ -7,7 +7,7 @@ import sinonChai from 'sinon-chai';
 
 
 before(function () {
-  chai.use(sinonChai);
+  use(sinonChai);
 });
 
 beforeEach(function () {

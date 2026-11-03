@@ -1,9 +1,8 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import fs from 'fs';
 import PermissionService from '../../lib/okapi/permission-service.js';
 import OkapiError from '../../lib/okapi/okapi-error.js';
 
-const expect = chaiMod.expect;
 
 const jsonResponseStub = (data) => {
   return Promise.resolve({

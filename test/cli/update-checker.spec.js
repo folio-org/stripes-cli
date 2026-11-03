@@ -1,8 +1,7 @@
-import chaiMod from 'chai';
+import { expect } from 'chai';
 import Configstore from 'configstore';
 import UpdateChecker from '../../lib/cli/update-checker.js';
 
-const expect = chaiMod.expect;
 
 const packageJson = {
   name: '@folio/stripes-cli',
