@@ -1,7 +1,8 @@
-const expect = require('chai').expect;
-const fs = require('fs');
+import chaiMod from 'chai';
+import fs from 'fs';
+import DescriptorService from '../../lib/okapi/descriptor-service.js';
 
-const DescriptorService = require('../../lib/okapi/descriptor-service');
+const expect = chaiMod.expect;
 
 const platformContext = {
   isPlatform: true,
@@ -51,7 +52,7 @@ const tenantConfig = {
 };
 
 function StripesModuleParserStub(name) {
-  this.packageJson = Object.assign({}, packageJsonStub, { name });
+  this.packageJson = Object.assign({}, packageJsonStub, { name }); // eslint-disable-line react/no-this-in-sfc
 }
 
 const stripesCoreStub = {

@@ -1,6 +1,7 @@
-const expect = require('chai').expect;
+import chaiMod from 'chai';
+import AuthService from '../../lib/okapi/auth-service.js';
 
-const AuthService = require('../../lib/okapi/auth-service');
+const expect = chaiMod.expect;
 
 const authnStub = {
   login: (username, password) => {
@@ -138,7 +139,7 @@ describe('The auth-service', function () {
   });
 
 
-  describe('retrieves tokens', async function () {
+  describe('retrieves tokens', function () {
     it('token', async function () {
       this.sut = new AuthService();
       this.sandbox.stub(this.sut.tokenStorage, 'getToken').callsFake(() => true);

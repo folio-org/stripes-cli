@@ -1,7 +1,8 @@
-const expect = require('chai').expect;
-const OkapiClient = require('../../lib/okapi/okapi-client');
-const TokenStorage = require('../../lib/okapi/token-storage');
+import chaiMod from 'chai';
+import OkapiClient from '../../lib/okapi/okapi-client.js';
+import TokenStorage from '../../lib/okapi/token-storage.js';
 
+const expect = chaiMod.expect;
 
 describe('The okapi-client', function () {
   beforeEach(function () {
@@ -109,7 +110,7 @@ describe('The okapi-client', function () {
         let didError = false;
         try {
           await this.sut._exchangeToken(getStub);
-        } catch (e) {
+        } catch {
           didError = true;
         }
         expect(didError).to.equal(false);

@@ -1,14 +1,14 @@
-const expect = require('chai').expect;
-const path = require('path');
+import chaiMod from 'chai';
+import path from 'path';
+import context from '../../../lib/cli/context.js';
+import packageManager from '../../../lib/package-manager.js';
+import createApp from '../../../lib/create-app.js';
+import appCreateCommand from '../../../lib/commands/app/create.js';
+import addModCommand from '../../../lib/commands/mod/add.js';
+import enableModCommand from '../../../lib/commands/mod/enable.js';
+import assignPermissionCommand from '../../../lib/commands/perm/assign.js';
 
-const context = require('../../../lib/cli/context');
-const packageManager = require('../../../lib/package-manager');
-const createApp = require('../../../lib/create-app');
-const appCreateCommand = require('../../../lib/commands/app/create');
-const addModCommand = require('../../../lib/commands/mod/add');
-const enableModCommand = require('../../../lib/commands/mod/enable');
-const assignPermissionCommand = require('../../../lib/commands/perm/assign');
-
+const expect = chaiMod.expect;
 
 const pmStub = () => Promise.resolve({
   isInstalled: true,
@@ -63,7 +63,7 @@ describe('The app create command', function () {
       });
   });
 
-  it('yarn installs dependencies in the app directory', function (done) {
+  it('installs dependencies in the app directory', function (done) {
     this.argv.install = true;
     this.sut.handler(this.argv)
       .then(() => {
@@ -73,7 +73,7 @@ describe('The app create command', function () {
       });
   });
 
-  it('yarn installs dependencies in the workspace directory', function (done) {
+  it('installs dependencies in the workspace directory', function (done) {
     this.argv.install = true;
     this.argv.context.isWorkspace = true;
     this.argv.context.isEmpty = false;
@@ -90,7 +90,7 @@ describe('The app create command', function () {
     this.sut.handler(this.argv)
       .then(() => {
         expect(packageManager.install).not.to.have.been.called;
-        expect(console.log).to.have.been.calledWithMatch('"cd ui-hello-world", "yarn install",');
+        expect(console.log).to.have.been.calledWithMatch('"cd ui-hello-world", install dependencies,');
         done();
       });
   });
@@ -102,7 +102,7 @@ describe('The app create command', function () {
     this.sut.handler(this.argv)
       .then(() => {
         expect(packageManager.install).not.to.have.been.called;
-        expect(console.log).to.have.been.calledWithMatch('"yarn install", "cd ui-hello-world",');
+        expect(console.log).to.have.been.calledWithMatch('Install dependencies, "cd ui-hello-world",');
         done();
       });
   });

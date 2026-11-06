@@ -1,7 +1,8 @@
-const expect = require('chai').expect;
-const Configstore = require('configstore');
+import chaiMod from 'chai';
+import Configstore from 'configstore';
+import UpdateChecker from '../../lib/cli/update-checker.js';
 
-const UpdateChecker = require('../../lib/cli/update-checker');
+const expect = chaiMod.expect;
 
 const packageJson = {
   name: '@folio/stripes-cli',
@@ -72,6 +73,7 @@ describe('update-checker', function () {
       });
     });
 
+    // eslint-disable-next-line jest/expect-expect -- resolving without throwing is the assertion
     it('does not throw when the registry is unreachable', function () {
       this.sandbox.stub(this.sut.config, 'get').withArgs('lastChecked').returns(0);
       this.sandbox.stub(this.sut.config, 'set');
