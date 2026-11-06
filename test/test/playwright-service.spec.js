@@ -2,7 +2,7 @@ import chaiMod from 'chai';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import PlaywrightService, { getTestIndex, buildJunit, FileFilterPlugin } from '../../lib/test/playwright-service.js';
+import PlaywrightService, { getTestIndex, buildJunit, FileFilterPlugin, toRelativePath, sourceLocator, mapStack } from '../../lib/test/playwright-service.js';
 
 const { expect } = chaiMod;
 
@@ -163,6 +163,57 @@ describe('The playwright-service', function () {
       expect(service.generateWebpackConfig({ plugins: [] }, '/out').plugins).to.have.length(0);
       const plugins = service.generateWebpackConfig({ plugins: [] }, '/out', ['a-test.js']).plugins;
       expect(plugins[0]).to.be.instanceOf(FileFilterPlugin);
+    });
+  });
+
+  describe('source locations', function () {
+    describe('toRelativePath function', function () {
+      it('strips a namespace that contains a slash and the loader query', function () {
+        expect(toRelativePath('webpack://@folio/stripes-components/./lib/Button/Button.js?ab12', '/work')).to.equal('lib/Button/Button.js');
+      });
+
+      it('keeps files outside of the project relative', function () {
+        expect(toRelativePath('webpack://app/../stripes-core/index.js', path.resolve('/work/app'))).to.equal('../stripes-core/index.js');
+      });
+
+      it('ignores webpack internals and externals', function () {
+        expect(toRelativePath('webpack://app/webpack/bootstrap', '/work')).to.equal(undefined);
+        expect(toRelativePath('external "mocha"', '/work')).to.equal(undefined);
+        expect(toRelativePath(undefined, '/work')).to.equal(undefined);
+      });
+    });
+
+    describe('sourceLocator function', function () {
+      const fakeMap = { findOrigin: (line, column) => ({ fileName: 'webpack://app/./lib/A-test.js', lineNumber: line - 100, columnNumber: column }) };
+
+      it('maps bundle positions to file:line', function () {
+        expect(sourceLocator(fakeMap, '/work')(150, 7)).to.equal('lib/A-test.js:50');
+      });
+
+      it('returns undefined without a source map or position', function () {
+        expect(sourceLocator(null, '/work')(150, 7)).to.equal(undefined);
+        expect(sourceLocator(fakeMap, '/work')(undefined, undefined)).to.equal(undefined);
+      });
+    });
+
+    describe('mapStack function', function () {
+      const locate = (line, column) => (line === 150 ? 'lib/A-test.js:50' : undefined);
+
+      it('replaces bundle frames, with or without the host', function () {
+        const stack = 'Error: x\n    at fn (http://127.0.0.1:1234/tests.js:150:7)\n    at Context.<anonymous> (tests.js:150:9)';
+        expect(mapStack(stack, locate)).to.equal('Error: x\n    at fn (lib/A-test.js:50)\n    at Context.<anonymous> (lib/A-test.js:50)');
+      });
+
+      it('leaves frames it cannot map', function () {
+        expect(mapStack('at x (tests.js:999:1)', locate)).to.equal('at x (tests.js:999:1)');
+        expect(mapStack(undefined, locate)).to.equal('');
+      });
+    });
+
+    it('generateWebpackConfig emits a source map', function () {
+      fs.mkdirSync(path.join(this.tmp, 'tests'));
+      fs.writeFileSync(path.join(this.tmp, 'tests/index.js'), '');
+      expect(new PlaywrightService(this.tmp).generateWebpackConfig({}, '/out').devtool).to.equal('cheap-module-source-map');
     });
   });
 });
