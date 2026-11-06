@@ -50,7 +50,7 @@ This following command documentation is generated from the CLI's own built-in he
 * [`serve` command](#serve-command)
 * [`status` command](#status-command)
 * [`test` command](#test-command)
-    * [`test playwright` command](#test-playwright-command)
+    * [`test browser` command](#test-browser-command)
 * [`workspace` command](#workspace-command)
 * [`completion` command](#completion-command)
 
@@ -1190,7 +1190,7 @@ $ stripes test
 ```
 
 Sub-commands:
-* [`stripes test playwright`](#test-playwright-command)
+* [`stripes test browser`](#test-browser-command)
 
 Positional | Description | Type | Notes
 ---|---|---|---
@@ -1210,16 +1210,16 @@ Examples:
 
 Run Playwright tests for the current app module:
 ```
-$ stripes test playwright
+$ stripes test browser
 ```
 
-### `test playwright` command
+### `test browser` command
 
 Run the current app module's tests in a Playwright-driven browser
 
 Usage:
 ```
-$ stripes test playwright [configFile]
+$ stripes test browser [configFile]
 ```
 
 Positional | Description | Type | Notes
@@ -1253,20 +1253,20 @@ Examples:
 
 Run tests with Playwright for the current app module:
 ```
-$ stripes test playwright
+$ stripes test browser
 ```
 
 Run tests and write coverage and JUnit reports:
 ```
-$ stripes test playwright --coverage --junit
+$ stripes test browser --coverage --junit
 ```
 
 Re-run tests in a visible browser when files change:
 ```
-$ stripes test playwright --watch --headed
+$ stripes test browser --watch --headed
 ```
 
-The previous `stripes test karma` command is deprecated and runs `stripes test playwright`; `--karma.*` options are ignored.
+The previous `stripes test karma` command is deprecated and runs `stripes test browser`; `--karma.*` options are ignored.
 
 ## `workspace` command
 

@@ -117,9 +117,9 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Test Playwright from APP",
+            "name": "Test Browser from APP",
             "program": "${workspaceFolder}/lib/stripes-cli.js",
-            "args": [ "test", "playwright", "demo/stripes.config.js"],
+            "args": [ "test", "browser", "demo/stripes.config.js"],
             "cwd": "${workspaceFolder}/../ui-eholdings"
         },
         {
