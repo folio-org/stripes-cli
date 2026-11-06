@@ -1232,9 +1232,11 @@ Option | Description | Type | Notes
 `--bundle` | Create and use a production bundle retaining test hooks | boolean |
 `--cache` | Enable caching of test bundle. Defaults to false. | boolean |
 `--coverage` | Enable coverage reports (artifacts/coverage) | boolean |
+`--file` | Only run test files matching this path or case-insensitive regular expression (repeatable), e.g. button or lib/Button/tests/Button-test.js. | array |
 `--grep` | Only run tests whose full title matches this pattern. | string |
 `--hasAllPerms` | Set "hasAllPerms" in Stripes config | boolean |
 `--headed` | Show the browser window instead of running headless. | boolean |
+`--show` | Show the tests running in a visible browser with DevTools: disables the test timeout and keeps the browser open after the run. | boolean |
 `--host` | Development server host | string | default: "localhost"
 `--junit` | Write a JUnit XML report to artifacts/runTest. | boolean |
 `--languages` | Languages to include in tenant build | array |

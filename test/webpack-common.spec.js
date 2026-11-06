@@ -1,3 +1,4 @@
+import path from 'node:path';
 import chaiMod from 'chai';
 import webpackCommon from '../lib/webpack-common.js';
 
@@ -76,22 +77,28 @@ describe('The webpack-common coverage and decorator helpers', function () {
   });
 
   describe('enableCoverage function', function () {
-    it('adds the istanbul babel loader after esbuild in the pipeline', function () {
+    it('adds the istanbul loader as a post-loader for project and @folio sources', function () {
       const config = webpackCommon.enableCoverage(makeConfig());
-      const use = config.module.rules[0].use;
-      expect(use).to.have.length(2);
-      expect(use[0].loader).to.contain('babel-loader');
-      expect(use[0].options.plugins[0][0]).to.contain('babel-plugin-istanbul');
-      expect(use[1].loader).to.contain('esbuild-loader');
+      const rule = config.module.rules[config.module.rules.length - 1];
+      expect(rule.enforce).to.equal('post');
+      expect(rule.loader).to.contain('istanbul-loader');
+      expect(rule.include(path.join('/project', 'src', 'Button.js'))).to.equal(true);
+      expect(rule.include(path.join('/project', 'node_modules', '@folio', 'stripes-core', 'index.js'))).to.equal(true);
+      expect(rule.include(path.join('/project', 'node_modules', 'lodash', 'index.js'))).to.equal(false);
     });
 
-    it('leaves non-esbuild rules alone', function () {
+    it('excludes node_modules, tests and stories from coverage', function () {
+      const rule = webpackCommon.enableCoverage(makeConfig()).module.rules.at(-1);
+      const excluded = file => rule.exclude.some(re => re.test(file));
+      expect(excluded(path.join('/project', 'node_modules', '@folio', 'x', 'index.js'))).to.equal(true);
+      expect(excluded(path.join('/project', 'src', 'Button.test.js'))).to.equal(true);
+      expect(excluded(path.join('/project', 'src', 'Button.js'))).to.equal(false);
+    });
+
+    it('leaves existing rules alone', function () {
       const config = webpackCommon.enableCoverage(makeConfig());
+      expect(config.module.rules[0].use).to.have.length(1);
       expect(config.module.rules[1].use).to.have.length(1);
-    });
-
-    it('throws when there is no esbuild rule to instrument', function () {
-      expect(() => webpackCommon.enableCoverage({ module: { rules: [] } })).to.throw(/esbuild-loader/);
     });
   });
 });

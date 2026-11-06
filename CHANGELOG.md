@@ -14,6 +14,8 @@
 * *BREAKING* bump `@folio/stripes-webpack` to v8, remove `babelOptions` public export and orphaned `@folio/stripes-testing` dependency. Refs STCLI-292.
 * Bump simple-git to v4. Refs STCLI-291.
 * Convert from CommonJS to ESM. Refs STCLI-215.
+* Add `--file` to `stripes test playwright` to run only the test files matching the given path(s) or regular expression(s).
+* Add `--show` to `stripes test playwright`: visible browser with DevTools, no mocha timeout, and the browser stays open after the run.
 * Report coverage with c8. Refs STCLI-297, STCLI-215.
 * Correctly locate `istanbul-loader` when calculating coverage for karma tests. Refs STCLI-298, STCLI-215.
 

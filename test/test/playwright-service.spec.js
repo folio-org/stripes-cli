@@ -1,10 +1,10 @@
-const expect = require('chai').expect;
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
-const PlaywrightService = require('../../lib/test/playwright-service');
+import chaiMod from 'chai';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import PlaywrightService, { getTestIndex, buildJunit, FileFilterPlugin } from '../../lib/test/playwright-service.js';
 
-const { getTestIndex, buildJunit } = PlaywrightService;
+const { expect } = chaiMod;
 
 describe('The playwright-service', function () {
   beforeEach(function () {
@@ -92,6 +92,77 @@ describe('The playwright-service', function () {
 
     it('does not modify the incoming config', function () {
       expect(this.input.entry).to.deep.equal(['other']);
+    });
+  });
+
+  describe('FileFilterPlugin', function () {
+    // runs the plugin against a fake context module factory and returns the resulting regExp
+    const resolveContext = (plugin, resource, regExp = /(.*?)\/tests\/(.*?)-test/) => {
+      let afterResolve;
+      plugin.apply({ hooks: { contextModuleFactory: { tap: (n, fn) => fn({ hooks: { afterResolve: { tap: (m, f) => { afterResolve = f; } } } }) } } });
+      const data = { resource, regExp };
+      afterResolve(data);
+      return data.regExp;
+    };
+
+    it('accepts an exact file path', function () {
+      fs.mkdirSync(path.join(this.tmp, 'lib/Button/tests'), { recursive: true });
+      fs.writeFileSync(path.join(this.tmp, 'lib/Button/tests/Button-test.js'), '');
+      const re = resolveContext(new FileFilterPlugin(['lib/Button/tests/Button-test.js'], this.tmp), path.join(this.tmp, 'lib'));
+      expect(re.test('./Button/tests/Button-test.js')).to.equal(true);
+      expect(re.test('./Accordion/tests/Accordion-test.js')).to.equal(false);
+    });
+
+    it('treats anything that is not an existing file as a case-insensitive regex on the path', function () {
+      const re = resolveContext(new FileFilterPlugin(['button'], this.tmp), path.join(this.tmp, 'lib'));
+      expect(re.test('./Button/tests/Button-test.js')).to.equal(true);
+      expect(re.test('./ButtonGroup/tests/ButtonGroup-test.js')).to.equal(true);
+      expect(re.test('./Accordion/tests/Accordion-test.js')).to.equal(false);
+    });
+
+    it('still requires the index\'s own pattern to match', function () {
+      const re = resolveContext(new FileFilterPlugin(['button'], this.tmp), path.join(this.tmp, 'lib'));
+      expect(re.test('./Button/Button.js')).to.equal(false);
+    });
+
+    it('does not filter non-test files, which tests may depend on', function () {
+      const re = resolveContext(new FileFilterPlugin(['button'], this.tmp), path.join(this.tmp, 'lib'), /\.js$/);
+      expect(re.test('./Icon/Icon.js')).to.equal(true);
+      expect(re.test('./Icon/tests/Icon-test.js')).to.equal(false);
+      expect(re.test('./Button/tests/Button-test.js')).to.equal(true);
+    });
+
+    it('matches any of several filters', function () {
+      const re = resolveContext(new FileFilterPlugin(['button', 'accordion'], this.tmp), path.join(this.tmp, 'lib'));
+      expect(re.test('./Accordion/tests/Accordion-test.js')).to.equal(true);
+      expect(re.test('./Icon/tests/Icon-test.js')).to.equal(false);
+    });
+
+    it('gives differently-filtered contexts a different source', function () {
+      const a = resolveContext(new FileFilterPlugin(['button'], this.tmp), path.join(this.tmp, 'lib'));
+      const b = resolveContext(new FileFilterPlugin(['icon'], this.tmp), path.join(this.tmp, 'lib'));
+      expect(a.source).to.not.equal(b.source);
+    });
+
+    it('leaves node_modules contexts alone', function () {
+      const original = /locale/;
+      const re = resolveContext(new FileFilterPlugin(['button'], this.tmp), path.join(this.tmp, 'node_modules', 'moment', 'locale'), original);
+      expect(re).to.equal(original);
+    });
+
+    it('rejects an invalid regular expression', function () {
+      expect(() => new FileFilterPlugin(['('], this.tmp)).to.throw(/regular expression/);
+    });
+  });
+
+  describe('generateWebpackConfig with files', function () {
+    it('adds the FileFilterPlugin only when files are given', function () {
+      fs.mkdirSync(path.join(this.tmp, 'tests'));
+      fs.writeFileSync(path.join(this.tmp, 'tests/index.js'), '');
+      const service = new PlaywrightService(this.tmp);
+      expect(service.generateWebpackConfig({ plugins: [] }, '/out').plugins).to.have.length(0);
+      const plugins = service.generateWebpackConfig({ plugins: [] }, '/out', ['a-test.js']).plugins;
+      expect(plugins[0]).to.be.instanceOf(FileFilterPlugin);
     });
   });
 });
