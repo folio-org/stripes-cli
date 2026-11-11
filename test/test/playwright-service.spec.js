@@ -2,7 +2,8 @@ import chaiMod from 'chai';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import PlaywrightService, { getTestIndex, resolveRequestFile, buildJunit, FileFilterPlugin, toRelativePath, sourceLocator, mapStack } from '../../lib/test/playwright-service.js';
+import vm from 'node:vm';
+import PlaywrightService, { PASSTHROUGH_JS, getTestIndex, resolveRequestFile, buildJunit, FileFilterPlugin, toRelativePath, sourceLocator, mapStack } from '../../lib/test/playwright-service.js';
 
 const { expect } = chaiMod;
 
@@ -66,6 +67,86 @@ describe('The playwright-service', function () {
       expect(resolveRequestFile(posixOut, '/absolute/tmp/stripes-playwright-abc/../../etc/passwd')).to.equal(null);
       expect(resolveRequestFile(posixOut, '/../etc/passwd')).to.equal(null);
       expect(resolveRequestFile(posixOut, '/%2e%2e/%2e%2e/etc/passwd')).to.equal(null);
+    });
+  });
+
+  describe('passthrough shim', function () {
+    // runs the shim in a sandbox standing in for the browser's window
+    const setup = () => {
+      const calls = [];
+      const nativeFetch = (url) => { calls.push(['native', String(url)]); return Promise.resolve('native'); };
+      const window = {
+        fetch: nativeFetch,
+        location: { href: 'http://127.0.0.1:1234/context.html', origin: 'http://127.0.0.1:1234' },
+        URL,
+      };
+      window.window = window;
+      vm.runInNewContext(PASSTHROUGH_JS, window);
+      // stands in for pretender's fetch polyfill
+      const polyfill = (url) => { calls.push(['mirage', String(url)]); return Promise.resolve('mirage'); };
+      polyfill.polyfill = true;
+      return { window, calls, nativeFetch, polyfill };
+    };
+
+    it('routes translation requests to the native fetch even when a polyfill is installed', async function () {
+      const { window, calls, polyfill } = setup();
+      window.fetch = polyfill;
+      await window.fetch('http://127.0.0.1:1234/absolute/C:/tmp/translations/en-1.json');
+      await window.fetch('/translations/en.json');
+      await window.fetch('http://127.0.0.1:1234/okapi/users');
+      expect(calls.map(c => c[0])).to.deep.equal(['native', 'native', 'mirage']);
+    });
+
+    it('also passes through the separator-less Windows form of the translations URL', async function () {
+      const { window, calls, polyfill } = setup();
+      window.fetch = polyfill;
+      await window.fetch('http://127.0.0.1:1234/absoluteC:/Users/me/Temp/stripes-playwright-abc/translations/en-1.json');
+      expect(calls.map(c => c[0])).to.deep.equal(['native']);
+    });
+
+    it('stores assigned functions as-is so save/replace/restore keeps working', function () {
+      const { window, nativeFetch, polyfill } = setup();
+      expect(window.fetch).to.equal(nativeFetch);
+      const first = (window.fetch = polyfill, window.fetch);
+      const ffetch = () => {};
+      const saved = window.fetch;
+      window.fetch = ffetch;
+      expect(window.fetch).to.equal(ffetch); // FFetch.restoreFetch() compares by identity
+      window.fetch = saved;
+      expect(window.fetch).to.equal(first);
+      window.fetch = nativeFetch;
+      expect(window.fetch).to.equal(nativeFetch);
+    });
+
+    it('does not recurse when a fetch wrapper saves and calls the previous fetch (FFetch)', async function () {
+      const { window, calls, polyfill } = setup();
+      window.fetch = polyfill;
+      const previous = window.fetch;
+      const ffetch = (...args) => previous.apply(window, args);
+      window.fetch = ffetch;
+      expect(await window.fetch('http://127.0.0.1:1234/okapi/users')).to.equal('mirage');
+      expect(await window.fetch('/translations/en.json')).to.equal('native');
+      expect(calls.length).to.equal(2);
+    });
+
+    it('tolerates fetch being cleared and then polyfilled', function () {
+      const { window, polyfill } = setup();
+      window.fetch = undefined;
+      expect(window.fetch).to.equal(undefined);
+      window.fetch = polyfill;
+      expect(window.fetch).to.be.a('function');
+    });
+  });
+
+  describe('resolveRequestFile with the separator-less Windows form', function () {
+    it('maps /absoluteC:/Users/... (as emitted by the translations plugin on Windows) onto outDir', function () {
+      const winOut = 'C:\\Users\\me\\AppData\\Local\\Temp\\stripes-playwright-abc';
+      const url = '/absoluteC:/Users/me/AppData/Local/Temp/stripes-playwright-abc/translations/en-1.json';
+      expect(resolveRequestFile(winOut, url)).to.equal(path.join(winOut, 'translations/en-1.json'));
+    });
+
+    it('does not treat unrelated paths that merely start with "absolute" as translations', function () {
+      expect(resolveRequestFile('/tmp/out', '/absolutely.js')).to.equal(path.join('/tmp/out', 'absolutely.js'));
     });
   });
 
