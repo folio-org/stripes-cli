@@ -244,6 +244,14 @@ describe('The playwright-service', function () {
       expect(re.test('./Button/tests/Button-test.js')).to.equal(true);
     });
 
+    it('keeps support files under test/ (e.g. mirage network config)', function () {
+      const re = resolveContext(new FileFilterPlugin(['login'], this.tmp), path.join(this.tmp, 'test'), /\.js$/);
+      expect(re.test('./bigtest/network/config.js')).to.equal(true);
+      expect(re.test('./bigtest/helpers/setup.js')).to.equal(true);
+      expect(re.test('./bigtest/tests/other-test.js')).to.equal(false);
+      expect(re.test('./bigtest/tests/login-test.js')).to.equal(true);
+    });
+
     it('matches any of several filters', function () {
       const re = resolveContext(new FileFilterPlugin(['button', 'accordion'], this.tmp), path.join(this.tmp, 'lib'));
       expect(re.test('./Accordion/tests/Accordion-test.js')).to.equal(true);
