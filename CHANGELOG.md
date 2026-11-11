@@ -14,6 +14,7 @@
 * *BREAKING* bump `@folio/stripes-webpack` to v8, remove `babelOptions` public export and orphaned `@folio/stripes-testing` dependency. Refs STCLI-292.
 * Bump simple-git to v4. Refs STCLI-291.
 * Convert from CommonJS to ESM. Refs STCLI-215.
+* `stripes test browser` with `--browser chromium` falls back to an installed Google Chrome or Microsoft Edge when Playwright's own chromium is not installed, so no download is needed.
 * Add `--file` to `stripes test browser` to run only the test files matching the given path(s) or regular expression(s).
 * Add `--show` to `stripes test browser`: visible browser with DevTools, no mocha timeout, and the browser stays open after the run.
 * Report coverage with c8. Refs STCLI-297, STCLI-215.

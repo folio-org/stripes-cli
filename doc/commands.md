@@ -1247,7 +1247,7 @@ Option | Description | Type | Notes
 `--verbose` | Print passing tests as well as failures. | boolean |
 `--watch` | Watch test files for changes and run tests automatically when changes are saved. | boolean |
 
-Browsers are installed separately with `npx playwright install <browser>`.
+Browsers are installed separately with `npx playwright install <browser>`. For `chromium`, if Playwright's own build is not installed, an installed Google Chrome or Microsoft Edge is used instead.
 
 Examples:
 
