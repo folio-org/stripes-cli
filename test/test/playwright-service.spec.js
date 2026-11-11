@@ -2,7 +2,7 @@ import chaiMod from 'chai';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import PlaywrightService, { getTestIndex, buildJunit, FileFilterPlugin } from '../../lib/test/playwright-service.js';
+import PlaywrightService, { getTestIndex, resolveRequestFile, buildJunit, FileFilterPlugin } from '../../lib/test/playwright-service.js';
 
 const { expect } = chaiMod;
 
@@ -35,6 +35,37 @@ describe('The playwright-service', function () {
       fs.mkdirSync(path.join(this.tmp, 'tests'));
       fs.writeFileSync(path.join(this.tmp, 'tests/index.js'), '');
       expect(getTestIndex(this.tmp)).to.equal(path.join(this.tmp, 'tests/index.js'));
+    });
+  });
+
+  describe('resolveRequestFile function', function () {
+    const posixOut = '/tmp/stripes-playwright-abc';
+    const winOut = 'C:\\Users\\me\\AppData\\Local\\Temp\\stripes-playwright-abc';
+
+    it('maps plain URLs onto outDir and ignores the query string', function () {
+      expect(resolveRequestFile(posixOut, '/tests.js?x=1')).to.equal(path.join(posixOut, 'tests.js'));
+    });
+
+    it('maps /absolute/ URLs (posix, leading slash dropped)', function () {
+      const url = '/absolute/tmp/stripes-playwright-abc/translations/en-1.json';
+      expect(resolveRequestFile(posixOut, url)).to.equal(path.join(posixOut, 'translations/en-1.json'));
+    });
+
+    it('maps /absolute/ URLs (Windows drive letter)', function () {
+      const url = '/absolute/C:/Users/me/AppData/Local/Temp/stripes-playwright-abc/translations/en-1.json';
+      expect(resolveRequestFile(winOut, url)).to.equal(path.join(winOut, 'translations/en-1.json'));
+    });
+
+    it('rejects /absolute/ URLs outside outDir', function () {
+      expect(resolveRequestFile(posixOut, '/absolute/etc/passwd')).to.equal(null);
+      expect(resolveRequestFile(posixOut, '/absolute/tmp/stripes-playwright-abcd/x.json')).to.equal(null);
+    });
+
+    it('rejects traversal attempts', function () {
+      expect(resolveRequestFile(posixOut, '/absolute/../..')).to.equal(null);
+      expect(resolveRequestFile(posixOut, '/absolute/tmp/stripes-playwright-abc/../../etc/passwd')).to.equal(null);
+      expect(resolveRequestFile(posixOut, '/../etc/passwd')).to.equal(null);
+      expect(resolveRequestFile(posixOut, '/%2e%2e/%2e%2e/etc/passwd')).to.equal(null);
     });
   });
 
