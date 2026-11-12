@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import vm from 'node:vm';
-import PlaywrightService, { PASSTHROUGH_JS, getTestIndex, resolveRequestFile, buildJunit, FileFilterPlugin, toRelativePath, sourceLocator, mapStack } from '../../lib/test/playwright-service.js';
+import PlaywrightService, { PASSTHROUGH_JS, getTestIndex, resolveRequestFile, buildJunit, collectCssEntries, FileFilterPlugin, toRelativePath, sourceLocator, mapStack } from '../../lib/test/playwright-service.js';
 
 const { expect } = chaiMod;
 
@@ -328,6 +328,19 @@ describe('The playwright-service', function () {
         expect(mapStack('at x (tests.js:999:1)', locate)).to.equal('at x (tests.js:999:1)');
         expect(mapStack(undefined, locate)).to.equal('');
       });
+    });
+
+    it('generateWebpackConfig keeps the global stylesheets from an array entry', function () {
+      const svc = new PlaywrightService(process.cwd());
+      const config = svc.generateWebpackConfig({ entry: ['webpack/hot', 'a/global.css', 'a/variables.css', '@folio/stripes-ui'] }, os.tmpdir());
+      expect(config.entry.css).to.deep.equal(['a/global.css', 'a/variables.css']);
+      expect(config.entry.tests).to.be.a('string');
+    });
+
+    it('collectCssEntries finds stylesheets in object entries', function () {
+      const entry = { css: ['g.css', 'v.css'], stripesConfig: { import: 'stripes-config.js' }, index: { dependOn: 'x', import: 'ui' } };
+      expect(collectCssEntries(entry)).to.deep.equal(['g.css', 'v.css']);
+      expect(collectCssEntries(undefined)).to.deep.equal([]);
     });
 
     it('generateWebpackConfig emits a source map', function () {
