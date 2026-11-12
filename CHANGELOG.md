@@ -7,7 +7,7 @@
 * Resolve workspace command failure after package-manager support refactor. Fill out additional package-manager language gaps. STCLI-287
 * Remove `update-notifier` dependency. Re-implement locally. Refs STCLI-288.
 * Use node-native glob functionality in `translate compile`. Refs STCLI-273.
-* *BREAKING* Replace Karma (EOL) with Playwright: add `stripes test browser` (`--browser`, `--headed`, `--grep`, `--junit`, `--coverage`, `--watch`) and drop all `karma*` dependencies. `stripes test karma` remains as a deprecated alias that ignores `--karma.*` options. Browsers are installed with `npx playwright install`.
+* Add Playwright (replacing EOL Karma): `stripes test browser` (`--browser`, `--headed`, `--grep`, `--junit`, `--coverage`, `--watch`). `stripes test karma` and its `karma*` dependencies remain, for now, as a deprecated opt-out so in-flight work is not broken; the command prints a deprecation notice. Browsers are installed with `npx playwright install`.
 * Instrument test coverage after esbuild-loader (via babel-loader + istanbul) and enable legacy decorators for test bundles so BigTest interactors keep working.
 * Bug fix: `app create` cleans up correct `.git` directory; tests correctly await slow git-clones. Refs STCLI-293.
 * Migrate from `eslint` to `oxlint`. Refs STCLI-290.
