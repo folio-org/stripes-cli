@@ -7,11 +7,16 @@
 * Resolve workspace command failure after package-manager support refactor. Fill out additional package-manager language gaps. STCLI-287
 * Remove `update-notifier` dependency. Re-implement locally. Refs STCLI-288.
 * Use node-native glob functionality in `translate compile`. Refs STCLI-273.
+* Add Playwright (replacing EOL Karma): `stripes test browser` (`--browser`, `--headed`, `--grep`, `--junit`, `--coverage`, `--watch`). `stripes test karma` and its `karma*` dependencies remain, for now, as a deprecated opt-out so in-flight work is not broken; the command prints a deprecation notice. Browsers are installed with `npx playwright install`.
+* Instrument test coverage after esbuild-loader (via babel-loader + istanbul) and enable legacy decorators for test bundles so BigTest interactors keep working.
 * Bug fix: `app create` cleans up correct `.git` directory; tests correctly await slow git-clones. Refs STCLI-293.
 * Migrate from `eslint` to `oxlint`. Refs STCLI-290.
 * *BREAKING* bump `@folio/stripes-webpack` to v8, remove `babelOptions` public export and orphaned `@folio/stripes-testing` dependency. Refs STCLI-292.
 * Bump simple-git to v4. Refs STCLI-291.
 * Convert from CommonJS to ESM. Refs STCLI-215.
+* `stripes test browser` with `--browser chromium` falls back to an installed Google Chrome or Microsoft Edge when Playwright's own chromium is not installed, so no download is needed.
+* Add `--file` to `stripes test browser` to run only the test files matching the given path(s) or regular expression(s).
+* Add `--show` to `stripes test browser`: visible browser with DevTools, no mocha timeout, and the browser stays open after the run.
 * Report coverage with c8. Refs STCLI-297, STCLI-215.
 * Correctly locate `istanbul-loader` when calculating coverage for karma tests. Refs STCLI-298, STCLI-215.
 * Supply `en_US`, a valid local, in default platform config. Refs STCLI-299.
