@@ -317,7 +317,7 @@ describe('The playwright-service', function () {
     });
 
     describe('mapStack function', function () {
-      const locate = (line, column) => (line === 150 ? 'lib/A-test.js:50' : undefined);
+      const locate = (line) => (line === 150 ? 'lib/A-test.js:50' : undefined);
 
       it('replaces bundle frames, with or without the host', function () {
         const stack = 'Error: x\n    at fn (http://127.0.0.1:1234/tests.js:150:7)\n    at Context.<anonymous> (tests.js:150:9)';
