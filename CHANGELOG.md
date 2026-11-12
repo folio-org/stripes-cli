@@ -19,6 +19,8 @@
 * Add `--show` to `stripes test browser`: visible browser with DevTools, no mocha timeout, and the browser stays open after the run.
 * Report coverage with c8. Refs STCLI-297, STCLI-215.
 * Correctly locate `istanbul-loader` when calculating coverage for karma tests. Refs STCLI-298, STCLI-215.
+* Supply `en_US`, a valid local, in default platform config. Refs STCLI-299.
+* Actually process `beforeBuild` wrappers from the CLI. Refs STCLI-300.
 
 ## [5.0.0](https://github.com/folio-org/stripes-cli/tree/v5.0.0) (2026-04-15)
 [Full Changelog](https://github.com/folio-org/stripes-cli/compare/v4.0.0...v5.0.0)
